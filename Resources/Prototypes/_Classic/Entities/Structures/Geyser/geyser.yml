@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   id: ClassicGeyserOutletBase
   name: rusty geyser outlet
@@ -12,6 +12,9 @@
   - type: Transform
     anchored: true
     noRot: true
+  # Procedural outlets mutate their eruption timer during MapInit. They must still unload with
+  # their biome chunk instead of accumulating forever across explored surface/deep regions.
+  - type: ClassicBiomeAlwaysUnload
   - type: Sprite
     sprite: _Classic/Structures/Piping/pipe_geyser.rsi
     state: icon
@@ -45,6 +48,12 @@
     minDormantTime: 35
     maxDormantTime: 70
     eruptionDuration: 8
+
+- type: entity
+  parent: ClassicGeyserOutletSteam
+  id: ClassicGeyserCore
+  name: geyser core
+  description: A natural vent where heat and pressurized steam rise from the deep crust.
 
 - type: entity
   parent: ClassicGeyserOutletBase

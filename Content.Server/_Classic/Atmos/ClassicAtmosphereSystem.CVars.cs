@@ -18,26 +18,6 @@ public sealed partial class AtmosphereSystem
         Subs.CVar(_cfg, ClassicCCVars.AtmosEnabled, SetAtmosEnabled, true);
     }
 
-    private static GasMixture CreateDisabledAtmosphere()
-    {
-        var mixture = new GasMixture(Atmospherics.CellVolume)
-        {
-            Temperature = Atmospherics.T20C,
-        };
-
-        mixture.AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
-        mixture.AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
-        mixture.MarkImmutable();
-        return mixture;
-    }
-
-    private static GasMixture?[] GetDisabledTileMixtures(int count)
-    {
-        var mixtures = new GasMixture?[count];
-        Array.Fill(mixtures, DisabledAtmosphere);
-        return mixtures;
-    }
-
     private void SetAtmosEnabled(bool value)
     {
         if (AtmosEnabled == value)
@@ -65,6 +45,26 @@ public sealed partial class AtmosphereSystem
         {
             ClearGridAtmosphere(atmosphere);
         }
+    }
+
+    private static GasMixture CreateDisabledAtmosphere()
+    {
+        var mixture = new GasMixture(Atmospherics.CellVolume)
+        {
+            Temperature = Atmospherics.T20C,
+        };
+
+        mixture.AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
+        mixture.AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
+        mixture.MarkImmutable();
+        return mixture;
+    }
+
+    private static GasMixture?[] GetDisabledTileMixtures(int count)
+    {
+        var mixtures = new GasMixture?[count];
+        Array.Fill(mixtures, DisabledAtmosphere);
+        return mixtures;
     }
 
     private static void ClearGridAtmosphere(GridAtmosphereComponent atmosphere)

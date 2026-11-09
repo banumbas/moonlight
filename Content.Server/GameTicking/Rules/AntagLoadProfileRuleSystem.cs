@@ -59,6 +59,13 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
 
             if (profilePool.Count > 0)
                 profile = RobustRandom.Pick(profilePool);
+            // clasic start
+            else
+            {
+                profile = prefs.GetRandomEnabledProfile()
+                       ?? prefs.Characters.Values.OfType<HumanoidCharacterProfile>().FirstOrDefault();
+            }
+            // classic end
             #endregion
         }
 

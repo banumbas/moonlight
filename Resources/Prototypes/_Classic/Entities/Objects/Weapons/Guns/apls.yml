@@ -1,0 +1,111 @@
+- type: entity
+  id: HitscanAPLSStandard
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.50
+    damage:
+      types:
+        Piercing: 100
+        Structural: 600
+  - type: HitscanStaminaDamage
+    staminaDamage: 50
+  - type: HitscanPierce
+    chance: 1.0
+    pierceLevel: Rock
+    deviation: 0
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20
+
+- type: entity
+  id: HitscanAPLSBurst
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.25
+    damage:
+      types:
+        Piercing: 35
+        Structural: 150
+  - type: HitscanStaminaDamage
+    staminaDamage: 20
+  - type: HitscanPierce
+    chance: 1.0
+    pierceLevel: Rock
+    deviation: 0.005
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 15
+
+- type: entity
+  name: APLS anti-materiel rifle
+  description: Latest development from Eridani with an automatic recharging system. Originally designed for destroying armored vehicles, but demonstrates superior effectiveness against biological targets.
+  parent: [ BaseItem, BaseGunWieldable ]
+  id: WeaponSniperAPLS
+  components:
+  - type: Sprite
+    sprite: _Classic/Objects/Weapons/Guns/apls.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-1
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Item
+    sprite: _Classic/Objects/Weapons/Guns/apls.rsi
+    size: Huge
+    shape:
+    - 0,0,4,1
+  - type: Clothing
+    sprite: _Classic/Objects/Weapons/Guns/apls.rsi
+    slots: [ Back, suitStorage ]
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.33333333
+    burstFireRate: 8
+    shotsPerBurst: 3
+    burstCooldown: 3.0
+    availableModes:
+    - SemiAuto
+    - Burst
+    selectedMode: SemiAuto
+    soundGunshot:
+      path: /Audio/_Classic/Weapons/Guns/apls_shot.ogg
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
+  - type: Battery
+    maxCharge: 900
+    startingCharge: 900
+  - type: BatteryAmmoProvider
+    proto: HitscanAPLSStandard
+    fireCost: 300
+  - type: BatteryWeaponDischargePrefix
+    emptyHeldPrefix: empty
+    emptyEquippedPrefix: empty
+  - type: BatteryWeaponDischargeVisuals
+    soundReload:
+      path: /Audio/_Classic/Weapons/Guns/apls_recharge.ogg
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: HitscanAPLSStandard
+      fireCost: 300
+      mode: SemiAuto
+      magState: mag
+    - proto: HitscanAPLSBurst
+      fireCost: 100
+      mode: Burst
+      magState: mag
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100000
+    autoRechargePauseTime: 9
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance

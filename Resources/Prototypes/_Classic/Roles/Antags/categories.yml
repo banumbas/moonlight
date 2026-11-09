@@ -1,0 +1,11 @@
+- type: antagCategory
+  id: PMC
+  name: antag-category-pmc-name
+  description: antag-category-pmc-desc
+  priority: -2
+  accentColor: "#5A6B5C"
+  antags:
+  - PMCCommander
+  - PMCMedic
+  - PMCSpecialist
+  - PMCAssault

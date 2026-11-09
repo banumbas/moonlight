@@ -1,13 +1,13 @@
 ent-BaseCartridgePistol = патрон (.35 авто)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgePistol = патрон (.35 авто)
-    .desc = Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Standard kinetic ammunition is common and useful in most situations.
+    .desc = Пожалуй, самый популярный калибр на рынке, используемый в большинстве пистолетов и пистолетов-пулемётов. Стандартный кинетический боеприпас широкого назначения.
 ent-CartridgePistolPractice = патрон (.35 авто учебный)
-    .desc = Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
+    .desc = Учебный патрон с меловым сердечником. Вызывает лёгкую боль, но не наносит серьёзных травм.
 ent-CartridgePistolIncendiary = патрон (.35 авто зажигательный)
-    .desc = Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
+    .desc = Зажигательный патрон, содержащий самовоспламеняющийся состав, поджигающий цель при попадании.
 ent-CartridgePistolUranium = патрон (.35 авто урановый)
-    .desc = Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
+    .desc = Патрон с урановым сердечником из расщепляющегося материала. Облучает цель радиацией изнутри.
 ent-CartridgePistolSpent = патрон (.35 авто)
     .desc = { ent-BaseCartridgePistol.desc }
     .suffix = Использован

@@ -1,0 +1,17 @@
+- type: soundCollection
+  id: ShovelDig
+  files:
+  - /Audio/_Classic/Effects/shovel_dig1.ogg
+  - /Audio/_Classic/Effects/shovel_dig2.ogg
+  - /Audio/_Classic/Effects/shovel_dig3.ogg
+  - /Audio/_Classic/Effects/shovel_dig4.ogg
+  - /Audio/_Classic/Effects/shovel_dig5.ogg
+  - /Audio/Items/shovel_dig.ogg
+
+- type: soundCollection
+  id: DirtBulletImpact
+  files:
+  - /Audio/Weapons/Guns/Hits/bullet_meat1.ogg
+  - /Audio/Weapons/Guns/Hits/bullet_meat2.ogg
+  - /Audio/Weapons/Guns/Hits/bullet_meat3.ogg
+  - /Audio/Weapons/Guns/Hits/bullet_meat4.ogg

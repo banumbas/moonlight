@@ -1,43 +1,48 @@
+using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Armor;
 
 namespace Content.Shared._Classic.PMC;
 
-public sealed class ToggleArmorModifierSystem : EntitySystem
+public sealed partial class ToggleArmorModifierSystem : EntitySystem
 {
     [Dependency] private readonly SharedArmorSystem _armor = default!;
+
+    private EntityQuery<ArmorComponent> _armorQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _armorQuery = GetEntityQuery<ArmorComponent>();
+
         SubscribeLocalEvent<ToggleArmorModifierComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ToggleArmorModifierComponent, ItemToggledEvent>(OnToggled);
     }
 
-    private void OnMapInit(EntityUid uid, ToggleArmorModifierComponent component, MapInitEvent args)
+    private void OnMapInit(Entity<ToggleArmorModifierComponent> ent, ref MapInitEvent args)
     {
-        if (TryComp<ArmorComponent>(uid, out var armor))
+        if (_armorQuery.TryComp(ent, out var armor))
         {
-            component.BaseDamageModifiers = armor.Modifiers;
+            ent.Comp.BaseDamageModifiers = armor.Modifiers;
         }
     }
 
-    private void OnToggled(EntityUid uid, ToggleArmorModifierComponent component, ref ItemToggledEvent args)
+    private void OnToggled(Entity<ToggleArmorModifierComponent> ent, ref ItemToggledEvent args)
     {
-        if (TryComp<ArmorComponent>(uid, out var armor))
+        if (_armorQuery.TryComp(ent, out var armor))
         {
             if (args.Activated)
             {
-                if (component.BaseDamageModifiers == null)
-                    component.BaseDamageModifiers = armor.Modifiers;
-                _armor.SetModifiers(uid, component.ActiveDamageModifiers, armor);
+                if (ent.Comp.BaseDamageModifiers == null)
+                    ent.Comp.BaseDamageModifiers = armor.Modifiers;
+                _armor.SetModifiers(ent.Owner, ent.Comp.ActiveDamageModifiers, armor);
             }
             else
             {
-                if (component.BaseDamageModifiers != null)
+                if (ent.Comp.BaseDamageModifiers != null)
                 {
-                    _armor.SetModifiers(uid, component.BaseDamageModifiers, armor);
+                    _armor.SetModifiers(ent.Owner, ent.Comp.BaseDamageModifiers, armor);
                 }
             }
         }

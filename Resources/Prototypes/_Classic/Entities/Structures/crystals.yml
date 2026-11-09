@@ -356,7 +356,13 @@
   id: ClassicCrystalSpawner
   parent: MarkerBase
   name: crystal spawner
+  categories: [ ForkFiltered ]
   components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Classic/Structures/Decoration/crystal.rsi
+        state: medium1
   - type: RandomSpawner
     prototypes:
       - ClassicCrystalQuartzWhiteBig
@@ -587,7 +593,14 @@
   id: ClassicCrystalIceSpawner
   parent: MarkerBase
   name: ice crystal spawner
+  categories: [ ForkFiltered ]
   components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Classic/Structures/Decoration/crystal.rsi
+        state: medium1
+        color: "#aaddff"
   - type: RandomSpawner
     prototypes:
       - ClassicCrystalIceBig

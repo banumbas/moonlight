@@ -1,0 +1,17 @@
+- type: entity
+  id: VehicleTurretVisual
+  categories: [ Vehicle ]
+  suffix: Vehicle
+  name: vehicle turret visual
+  components:
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - Vehicle
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _Classic/Structures/Vehicles/hardpoints/humvee.rsi
+    layers:
+    - state: humveeturret
+      visible: false
+  - type: VehicleTurretVisual

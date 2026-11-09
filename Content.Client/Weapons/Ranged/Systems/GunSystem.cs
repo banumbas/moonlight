@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
@@ -39,6 +39,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
+using Content.Shared._Classic.Vehicles; // Classic-edit
+using Content.Shared.Maps; // Classic-Edit
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -56,6 +58,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private TurfSystem _turf = default!; // Classic-Edit
 
 #region Starlight
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -407,7 +410,10 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
-        var coordinates = TransformSystem.ToCoordinates(entity, mousePos);
+        // Classic-edit: begin
+        var coordinateEntity = HasComp<GunUseGunOriginComponent>(gun) ? (EntityUid)gun : entity;
+        var coordinates = TransformSystem.ToCoordinates(coordinateEntity, mousePos);
+        // Classic-edit: end
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)
@@ -552,9 +558,9 @@ public sealed partial class GunSystem : SharedGunSystem
             track.Offset = Vector2.UnitX / 2f;
         }
 
-        var lifetime = 0.4f;
+        var lifetime = 0.3f; // Classic edit
 
-        if (TryComp<TimedDespawnComponent>(gunUid, out var despawn))
+        if (TryComp<TimedDespawnComponent>(ent, out var despawn)) // Classic edit
         {
             lifetime = despawn.Lifetime;
         }
@@ -571,14 +577,79 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), 0),
-                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), lifetime)
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), 0f), // Classic edit
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), lifetime * 0.45f), // Classic add
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), lifetime * 0.55f) // Classic edit
                     }
                 }
             }
         };
 
         _animPlayer.Play(ent, anim, "muzzle-flash");
+
+        // classic-start
+        var smokeEnt = Spawn("GunshotSmokeEffect", coordinates);
+        TransformSystem.SetWorldRotationNoLerp(smokeEnt, message.Angle);
+        if (tracked != null)
+        {
+            var smokeTrack = EnsureComp<TrackUserComponent>(smokeEnt);
+            smokeTrack.User = tracked;
+            smokeTrack.Offset = Vector2.UnitX * 0.55f;
+        }
+
+        var smokeAnim = new Animation()
+        {
+            Length = TimeSpan.FromSeconds(0.4f),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Color),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0.85f), 0f),
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0.7f), 0.15f),
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), 0.25f)
+                    }
+                }
+            }
+        };
+        _animPlayer.Play(smokeEnt, smokeAnim, "gunshot-smoke");
+
+        if (gridUid != null && mapGrid != null && _maps.TryGetTileRef(gridUid.Value, mapGrid, coordinates, out var tileRef) && !_turf.IsSpace(tileRef))
+        {
+            var origin = tracked ?? gunUid;
+            var originPos = TransformSystem.GetWorldPosition(origin);
+            var dustWorldPos = originPos + message.Angle.ToVec() * 0.65f;
+            var dustEnt = Spawn("GunshotDustEffect", coordinates);
+            TransformSystem.SetWorldPosition(dustEnt, dustWorldPos);
+            TransformSystem.SetWorldRotationNoLerp(dustEnt, Angle.Zero);
+
+            var dustAnim = new Animation()
+            {
+                Length = TimeSpan.FromSeconds(0.36f),
+                AnimationTracks =
+                {
+                    new AnimationTrackComponentProperty
+                    {
+                        ComponentType = typeof(SpriteComponent),
+                        Property = nameof(SpriteComponent.Color),
+                        InterpolationMode = AnimationInterpolationMode.Linear,
+                        KeyFrames =
+                        {
+                            new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0.9f), 0f),
+                            new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0.7f), 0.16f),
+                            new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), 0.20f)
+                        }
+                    }
+                }
+            };
+            _animPlayer.Play(dustEnt, dustAnim, "gunshot-dust");
+        }
+        // classic-end
+
         if (!TryComp(gunUid, out PointLightComponent? light))
         {
             light = Factory.GetComponent<PointLightComponent>();
@@ -587,13 +658,14 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         Lights.SetEnabled(gunUid, true, light);
-        Lights.SetRadius(gunUid, 2f, light);
-        Lights.SetColor(gunUid, Color.FromHex("#cc8e2b"), light);
-        Lights.SetEnergy(gunUid, 5f, light);
+        Lights.SetRadius(gunUid, 5.5f, light); // classic-edit
+        Lights.SetColor(gunUid, Color.FromHex("#FFE4A0"), light); // classic-edit
+        Lights.SetEnergy(gunUid, 6.0f, light); // classic-edit
 
+        var flashDuration = 0.15f; // classic-add
         var animTwo = new Animation()
         {
-            Length = TimeSpan.FromSeconds(lifetime),
+            Length = TimeSpan.FromSeconds(flashDuration), // classic-edit
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -603,8 +675,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(5f, 0),
-                        new AnimationTrackProperty.KeyFrame(0f, lifetime)
+                        new AnimationTrackProperty.KeyFrame(6.0f, 0f), // classic-edit
+                        new AnimationTrackProperty.KeyFrame(3.5f, 0.03f), // classic-add
+                        new AnimationTrackProperty.KeyFrame(1.2f, 0.04f), // classic-add
+                        new AnimationTrackProperty.KeyFrame(0.0f, 0.08f) // classic-edit
                     }
                 },
                 new AnimationTrackComponentProperty
@@ -614,8 +688,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(true, 0),
-                        new AnimationTrackProperty.KeyFrame(false, lifetime)
+                        new AnimationTrackProperty.KeyFrame(true, 0f), // classic-edit
+                        new AnimationTrackProperty.KeyFrame(false, flashDuration) // classic-edit
                     }
                 }
             }

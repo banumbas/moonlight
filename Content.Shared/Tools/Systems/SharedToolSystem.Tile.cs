@@ -50,8 +50,10 @@ public abstract partial class SharedToolSystem
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return;
 
-        if (!TryDeconstructWithToolQualities(tileRef, tool.Qualities))
+        // Classic-Start
+        if (!TryDeconstructWithToolQualities(tileRef, tool.Qualities, ent.Owner, args.User))
             return;
+        // Classic-End
 
         AdminLogger.Add(
             LogType.LatticeCut,
@@ -80,6 +82,11 @@ public abstract partial class SharedToolSystem
         if (string.IsNullOrWhiteSpace(tileDef.BaseTurf))
             return false;
 
+        // Classic-Start
+        if (!CanDigClassicTile(tileRef, tool.Qualities, ent.Owner, user))
+            return false;
+        // Classic-End
+
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return false;
 
@@ -92,13 +99,35 @@ public abstract partial class SharedToolSystem
         return true;
     }
 
-    public bool TryDeconstructWithToolQualities(TileRef tileRef, PrototypeFlags<ToolQualityPrototype> withToolQualities)
+    public bool TryDeconstructWithToolQualities(
+        TileRef tileRef,
+        PrototypeFlags<ToolQualityPrototype> withToolQualities,
+        EntityUid? toolUid = null,
+        EntityUid? user = null)
     {
+        // Classic-Start
+        if (!CanDigClassicTile(tileRef, withToolQualities, toolUid, user))
+            return false;
+        // Classic-End
+
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];
         if (withToolQualities.ContainsAny(tileDef.DeconstructTools))
         {
             // don't do this on the client or else the tile entity spawn mispredicts and looks horrible
-            return _net.IsClient || _tiles.DeconstructTile(tileRef);
+            var deconstructed = _net.IsClient || _tiles.DeconstructTile(tileRef); // classic-edit z-levels digging
+            // classic-start z-levels digging
+            if (deconstructed &&
+                !_net.IsClient &&
+                tileDef.DeconstructTools.Contains(DiggingQuality) &&
+                withToolQualities.Contains(DiggingQuality) &&
+                TryComp<MapGridComponent>(tileRef.GridUid, out var grid) &&
+                _maps.GetTileRef(tileRef.GridUid, grid, tileRef.GridIndices).Tile.IsEmpty)
+            {
+                RaiseLocalEvent(new ClassicDiggingTileDeconstructedEvent(tileRef.GridUid, tileRef.GridIndices));
+            }
+
+            return deconstructed;
+            // classic-end
         }
         return false;
     }

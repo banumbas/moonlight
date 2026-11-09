@@ -1,0 +1,1112 @@
+# -Z1: earth mixed with stone (solid walls over tiles), nothing more.
+- type: biomeTemplate
+  id: ClassicUndergroundDirtStone
+  layers:
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: -1.0
+      entities:
+        - ClassicBiomeWallDirt
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicStone
+      threshold: -1.0
+      entities:
+        - ClassicBiomeWallRock
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: ClassicDirt
+    - !type:BiomeTileLayer
+      threshold: 0.15
+      tile: ClassicStone
+      noise:
+        seed: 410
+        noiseType: OpenSimplex2
+        frequency: 0.018
+        fractalType: FBm
+        octaves: 3
+
+# Reusable underground cave geology. New deep-level biome compositions can include this template.
+- type: biomeTemplate
+  id: ClassicUndergroundCaveTerrain
+  layers:
+    # Cave walls and props moved off the surface plains.
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: -1.0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 0.01
+      entities:
+        - ClassicBiomeWallRock2
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+      threshold: -1.0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 0.01
+      entities:
+        - ClassicBiomeWallRedRock
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSnowDeepDeep
+      threshold: -1.0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 0.01
+      entities:
+        - ClassicBiomeWallIcerock
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMycelium
+      threshold: -1.0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 0.01
+      entities:
+        - ClassicBiomeWallRock2
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMyceliumLight
+      threshold: -1.0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 0.01
+      entities:
+        - ClassicWaterDeep
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+      threshold: 0.93
+      noise:
+        seed: 77
+        noiseType: OpenSimplex2
+        frequency: 0.8
+      entities:
+        - FloraRockSolid
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicGrassBlood
+        - ClassicGrassLightBlood
+        - ClassicGrassTallBlood
+      threshold: 0.55
+      noise:
+        seed: 42
+        noiseType: OpenSimplex2
+        frequency: 0.5
+      entities:
+        - ClassicCrystalSpawner
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicIce
+        - ClassicSnow
+      threshold: 0.50
+      noise:
+        seed: 42
+        noiseType: OpenSimplex2
+        frequency: 0.5
+      entities:
+        - ClassicCrystalIceSpawner
+
+    # Stone is the default substrate; the old surface cave materials form regional caves.
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: ClassicStone
+    - !type:BiomeTileLayer
+      tile: ClassicDirt
+      threshold: -0.20
+      noise:
+        seed: 10
+        noiseType: OpenSimplex2
+        frequency: 0.004
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicStone
+      threshold: 0.00
+      noise:
+        seed: 10
+        noiseType: OpenSimplex2
+        frequency: 0.004
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicCobblestone
+      threshold: 0.65
+      noise:
+        seed: 10
+        noiseType: OpenSimplex2
+        frequency: 0.004
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+
+    # Red caves.
+    - !type:BiomeTileLayer
+      tile: ClassicSand
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+      threshold: 0.55
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicGrassBlood
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+        - ClassicSand
+      threshold: 0.60
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicGrassTallBlood
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+        - ClassicSand
+        - ClassicGrassBlood
+      threshold: 0.70
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+
+    # Ice caves.
+    - !type:BiomeTileLayer
+      tile: ClassicSnowDeepDeep
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+      threshold: 0.55
+      invert: true
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicIce
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+        - ClassicSnowDeepDeep
+      threshold: 0.60
+      invert: true
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicSnow
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+        - ClassicSnowDeepDeep
+        - ClassicIce
+      threshold: 0.70
+      invert: true
+      noise:
+        seed: 100
+        noiseType: OpenSimplex2
+        frequency: 0.01
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+
+    # Water caves.
+    - !type:BiomeTileLayer
+      tile: ClassicDirt
+      threshold: 0.80
+      noise:
+        seed: 300
+        noiseType: OpenSimplex2
+        frequency: 0.007
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicMycelium
+      threshold: 0.82
+      noise:
+        seed: 300
+        noiseType: OpenSimplex2
+        frequency: 0.007
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicMyceliumLight
+      threshold: 0.84
+      noise:
+        seed: 300
+        noiseType: OpenSimplex2
+        frequency: 0.007
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 3
+
+# -Z2: cave terrain surrounded by solid rock walls, with deep chasms leading down to -Z3.
+# Comprises 4 distinct underground environments:
+# 1. Standard Stone Caves with stalagmites and rock formations
+# 2. Red Rock / Bloodstone Caverns with red rock walls, sand, bloodgrass, and blood crystals
+# 3. Ice Caverns with frozen ice walls, snow, ice, and ice crystals
+# 4. Fungal Grotto with mycelium, glowing light mycelium, deep water pools, and dark walls
+- type: biomeTemplate
+  id: ClassicUndergroundCaves
+  layers:
+    # --- CAVERN INTERIOR PROPS & FEATURES (Evaluated in open caverns) ---
+    # Standard Stone Caverns: Stalagmites and loose rocks inside open caverns
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+      threshold: 0.88
+      noise:
+        seed: 77
+        noiseType: OpenSimplex2
+        frequency: 0.5
+      entities:
+        - FloraRockSolid
+
+    # Red Rock Caverns: Blood crystal clusters
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: 0.60
+      noise:
+        seed: 42
+        noiseType: OpenSimplex2
+        frequency: 0.4
+      entities:
+        - ClassicCrystalSpawner
+
+    # Ice Caverns: Ice crystal formations
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSnowDeepDeep
+        - ClassicIce
+        - ClassicSnow
+      threshold: 0.55
+      noise:
+        seed: 42
+        noiseType: OpenSimplex2
+        frequency: 0.4
+      entities:
+        - ClassicCrystalIceSpawner
+
+    # Fungal Grotto: Deep water pools and fungal formations
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMycelium
+        - ClassicMyceliumLight
+      threshold: 0.82
+      noise:
+        seed: 88
+        noiseType: OpenSimplex2
+        frequency: 0.15
+      entities:
+        - ClassicWaterDeep
+
+    # --- CAVERN WALLS (Fills all non-cavern space) ---
+    # All walls share the same cave-carving noise (seed 901), so caverns flow seamlessly across biomes!
+    # Standard Stone Walls
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicStone
+        - ClassicCobblestone
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 901
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRock
+
+    # Red Rock Walls
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 901
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRedRock
+
+    # Ice Rock Walls
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSnowDeepDeep
+        - ClassicIce
+        - ClassicSnow
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 901
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallIcerock
+
+    # Dark Rock Walls in Fungal Grotto
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMycelium
+        - ClassicMyceliumLight
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 901
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRock2
+
+    # --- TILE SUBSTRATES (Evaluated in reverse: highest index checked first) ---
+    # Base default floor substrate everywhere
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: ClassicStone
+
+    # Cobblestone patches in Stone caves
+    - !type:BiomeTileLayer
+      threshold: 0.35
+      tile: ClassicCobblestone
+      noise:
+        seed: 905
+        noiseType: OpenSimplex2
+        frequency: 0.012
+        fractalType: FBm
+        octaves: 3
+
+    # Regional: Fungal Grotto (seed 904 >= 0.22)
+    - !type:BiomeTileLayer
+      tile: ClassicMycelium
+      threshold: 0.22
+      noise:
+        seed: 904
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicMyceliumLight
+      threshold: 0.50
+      noise:
+        seed: 904
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+
+    # Regional: Ice Caverns (seed 903 <= -0.22)
+    - !type:BiomeTileLayer
+      tile: ClassicSnowDeepDeep
+      threshold: 0.22
+      invert: true
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicIce
+      threshold: 0.42
+      invert: true
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicSnow
+      threshold: 0.60
+      invert: true
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+
+    # Regional: Red Rock Caverns (seed 903 >= 0.22)
+    - !type:BiomeTileLayer
+      tile: ClassicSand
+      threshold: 0.22
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicGrassBlood
+      threshold: 0.48
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicGrassTallBlood
+      threshold: 0.65
+      noise:
+        seed: 903
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+
+    # Chasms: absence of tiles (Space) leading down to -Z3
+    - !type:BiomeTileLayer
+      tile: Space
+      threshold: 0.84
+      noise:
+        seed: 902
+        noiseType: OpenSimplex2
+        frequency: 0.008
+        fractalType: Ridged
+        octaves: 2
+        lacunarity: 2
+
+# -Z3: Diverse deep underworld biome with multiple regional environments:
+# 1. Molten Magma Core with lava lakes and magma chasms
+# 2. Ash Wastes & Obsidian Fields with Goliaths and iron/metal deposits
+# 3. Crystal Abyssal Caverns glowing with quartz formations (Plasma, Uranium, Bananium, Diamond, Silver)
+# 4. Bloodstone & Hellish Fissures with red rock and watchers
+# 5. Geothermal Vent Fields with dense steam geysers
+- type: biomeTemplate
+  id: ClassicUndergroundDeepRegions
+  layers:
+    # --- REGION: ASH WASTES & OBSIDIAN PLAINS ---
+    # Obsidian walls
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 1301
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRock2
+
+    # Ash wastes wandering Goliaths
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: 0.965
+      noise:
+        seed: 1302
+        noiseType: OpenSimplex2
+        frequency: 0.03
+      entities:
+        - MobGoliath
+
+    # Ash rocks and monoliths
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: 0.88
+      noise:
+        seed: 1303
+        noiseType: OpenSimplex2
+        frequency: 0.35
+      entities:
+        - FloraRockSolid
+
+    # --- REGION: CRYSTAL ABYSSAL CAVERNS ---
+    # Deep quartz crystals: Plasma (Purple)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.88
+      noise:
+        seed: 1401
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzPurpleBig
+        - ClassicCrystalQuartzPurpleMedium
+        - ClassicCrystalQuartzPurpleSmall
+
+    # Deep quartz crystals: Uranium (Green)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.89
+      noise:
+        seed: 1402
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzGreenBig
+        - ClassicCrystalQuartzGreenMedium
+        - ClassicCrystalQuartzGreenSmall
+
+    # Deep quartz crystals: Bananium (Red)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.91
+      noise:
+        seed: 1403
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzRedBig
+        - ClassicCrystalQuartzRedMedium
+        - ClassicCrystalQuartzRedSmall
+
+    # Deep quartz crystals: Diamond (White) & Silver (Blue)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.92
+      noise:
+        seed: 1404
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzWhiteBig
+        - ClassicCrystalQuartzWhiteMedium
+        - ClassicCrystalQuartzBlueBig
+        - ClassicCrystalQuartzBlueMedium
+
+    # Abyssal Watchers guarding the crystals
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.97
+      noise:
+        seed: 1405
+        noiseType: OpenSimplex2
+        frequency: 0.04
+      entities:
+        - MobWatcherBase
+
+    # --- REGION: BLOODSTONE & HELLISH FISSURES ---
+    # Red rock walls in bloodstone regions
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: -0.20
+      invert: true
+      noise:
+        seed: 1501
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRedRock
+
+    # Blood crystal spawners
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: 0.65
+      noise:
+        seed: 1502
+        noiseType: OpenSimplex2
+        frequency: 0.4
+      entities:
+        - ClassicCrystalSpawner
+
+    # Lavaland Watchers
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+      threshold: 0.96
+      noise:
+        seed: 1503
+        noiseType: OpenSimplex2
+        frequency: 0.03
+      entities:
+        - MobWatcherLavaland
+
+    # --- REGIONAL TILE SUBSTRATES ---
+    # Ash Wastes substrate (ClassicDirt)
+    - !type:BiomeTileLayer
+      tile: ClassicDirt
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.45
+      noise:
+        seed: 1300
+        noiseType: OpenSimplex2
+        frequency: 0.005
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+    # Crystal Caverns substrate (ClassicCobblestone)
+    - !type:BiomeTileLayer
+      tile: ClassicCobblestone
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.48
+      noise:
+        seed: 1400
+        noiseType: OpenSimplex2
+        frequency: 0.005
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+    # Bloodstone & Hellish Fissures substrate (ClassicSand & Bloodgrass)
+    - !type:BiomeTileLayer
+      tile: ClassicSand
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.50
+      noise:
+        seed: 1500
+        noiseType: OpenSimplex2
+        frequency: 0.005
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+    - !type:BiomeTileLayer
+      tile: ClassicGrassBlood
+      allowedTiles:
+        - ClassicSand
+      threshold: 0.58
+      noise:
+        seed: 1500
+        noiseType: OpenSimplex2
+        frequency: 0.005
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+    - !type:BiomeTileLayer
+      tile: ClassicGrassTallBlood
+      allowedTiles:
+        - ClassicGrassBlood
+      threshold: 0.68
+      noise:
+        seed: 1500
+        noiseType: OpenSimplex2
+        frequency: 0.005
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+# Main -Z3 Biome template combining the primary magma features with the regional sub-biomes
+- type: biomeTemplate
+  id: ClassicUndergroundMagma
+  layers:
+    # --- CAVERN INTERIOR PROPS & FEATURES (Evaluated in open caverns) ---
+    # --- REGION: MOLTEN MAGMA CORE ---
+    # Stalagmites and basalt rock formations
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.88
+      noise:
+        seed: 1205
+        frequency: 0.4
+        noiseType: OpenSimplex2
+      entities:
+        - FloraRockSolid
+
+    # Glowing basalt cracks and glowing molten fissures
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.62
+      noise:
+        seed: 1202
+        frequency: 0.22
+        noiseType: OpenSimplex2
+      entities:
+        - BasaltOne
+        - BasaltTwo
+        - BasaltThree
+        - BasaltFour
+        - BasaltFive
+
+    # Flowing lava pools in basalt
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.91
+      noise:
+        seed: 1204
+        frequency: 0.08
+        noiseType: OpenSimplex2
+      entities:
+        - FloorLavaEntity
+
+    # Geothermal steam geysers
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.985
+      noise:
+        seed: 1203
+        frequency: 0.12
+        noiseType: OpenSimplex2
+      entities:
+        - ClassicGeyserCore
+
+    # Magmawing Watchers in lava fields
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.97
+      noise:
+        seed: 1207
+        frequency: 0.03
+        noiseType: OpenSimplex2
+      entities:
+        - MobWatcherMagmawing
+
+    # --- REGION: ASH WASTES & OBSIDIAN FIELDS ---
+    # Ash monoliths
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: 0.88
+      noise:
+        seed: 1303
+        noiseType: OpenSimplex2
+        frequency: 0.35
+      entities:
+        - FloraRockSolid
+
+    # Wandering Goliaths
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: 0.965
+      noise:
+        seed: 1302
+        noiseType: OpenSimplex2
+        frequency: 0.03
+      entities:
+        - MobGoliath
+
+    # --- REGION: CRYSTAL ABYSSAL CAVERNS ---
+    # Deep quartz crystals: Plasma (Purple)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.85
+      noise:
+        seed: 1401
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzPurpleBig
+        - ClassicCrystalQuartzPurpleMedium
+        - ClassicCrystalQuartzPurpleSmall
+
+    # Deep quartz crystals: Uranium (Green)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.87
+      noise:
+        seed: 1402
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzGreenBig
+        - ClassicCrystalQuartzGreenMedium
+        - ClassicCrystalQuartzGreenSmall
+
+    # Deep quartz crystals: Bananium (Red)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.89
+      noise:
+        seed: 1403
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzRedBig
+        - ClassicCrystalQuartzRedMedium
+        - ClassicCrystalQuartzRedSmall
+
+    # Deep quartz crystals: Diamond (White) & Silver (Blue)
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.91
+      noise:
+        seed: 1404
+        noiseType: OpenSimplex2
+        frequency: 0.45
+      entities:
+        - ClassicCrystalQuartzWhiteBig
+        - ClassicCrystalQuartzWhiteMedium
+        - ClassicCrystalQuartzBlueBig
+        - ClassicCrystalQuartzBlueMedium
+
+    # Abyssal Watchers guarding the crystals
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicCobblestone
+      threshold: 0.97
+      noise:
+        seed: 1405
+        noiseType: OpenSimplex2
+        frequency: 0.04
+      entities:
+        - MobWatcherBase
+
+    # --- REGION: BLOODSTONE & HELLISH FISSURES ---
+    # Blood crystal spawners
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: 0.65
+      noise:
+        seed: 1502
+        noiseType: OpenSimplex2
+        frequency: 0.4
+      entities:
+        - ClassicCrystalSpawner
+
+    # Lava pools in bloodstone fissures
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+      threshold: 0.92
+      noise:
+        seed: 1504
+        frequency: 0.08
+        noiseType: OpenSimplex2
+      entities:
+        - FloorLavaEntity
+
+    # Lavaland Watchers
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+      threshold: 0.965
+      noise:
+        seed: 1503
+        frequency: 0.03
+        noiseType: OpenSimplex2
+      entities:
+        - MobWatcherLavaland
+
+    # --- CAVERN WALLS (Fills all non-cavern space with seamless cave noise 1101) ---
+    # Basalt / Rock Walls in Magma Core and Crystal Abyss
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+        - ClassicCobblestone
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 1101
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRock
+
+    # Dark Obsidian / Rock Walls in Ash Wastes
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicDirt
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 1101
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRock2
+
+    # Red Rock Walls in Bloodstone Fissures
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - ClassicSand
+        - ClassicGrassBlood
+        - ClassicGrassTallBlood
+      threshold: -0.22
+      invert: true
+      noise:
+        seed: 1101
+        noiseType: OpenSimplex2
+        frequency: 0.016
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+      entities:
+        - ClassicBiomeWallRedRock
+
+    # Basalt decal details
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - ClassicMagmaBasalt
+      threshold: 0.82
+      divisions: 1
+      noise:
+        seed: 1206
+        frequency: 0.3
+      decals:
+        - Basalt1
+        - Basalt2
+        - Basalt3
+        - Basalt4
+        - Basalt5
+        - Basalt6
+        - Basalt7
+        - Basalt8
+        - Basalt9
+
+    # --- TILE SUBSTRATES (Evaluated in reverse: highest index checked first) ---
+    # Primary base floor substrate: basalt
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: ClassicMagmaBasalt
+
+    # Regional: Ash Wastes (ClassicDirt, seed 1600 <= -0.22)
+    - !type:BiomeTileLayer
+      tile: ClassicDirt
+      threshold: 0.22
+      invert: true
+      noise:
+        seed: 1600
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+    # Regional: Crystal Abyssal Caverns (ClassicCobblestone, seed 1700 >= 0.25)
+    - !type:BiomeTileLayer
+      tile: ClassicCobblestone
+      threshold: 0.25
+      noise:
+        seed: 1700
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+    # Regional: Bloodstone & Hellish Fissures (seed 1600 >= 0.22)
+    - !type:BiomeTileLayer
+      tile: ClassicSand
+      threshold: 0.22
+      noise:
+        seed: 1600
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+    - !type:BiomeTileLayer
+      tile: ClassicGrassBlood
+      threshold: 0.50
+      noise:
+        seed: 1600
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+    - !type:BiomeTileLayer
+      tile: ClassicGrassTallBlood
+      threshold: 0.68
+      noise:
+        seed: 1600
+        noiseType: OpenSimplex2
+        frequency: 0.0035
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+
+    # Chasms: absence of tiles (Space) revealing the magma parallax beneath
+    - !type:BiomeTileLayer
+      tile: Space
+      threshold: 0.82
+      noise:
+        seed: 1201
+        noiseType: OpenSimplex2
+        frequency: 0.009
+        fractalType: Ridged
+        octaves: 2
+        lacunarity: 2
+
+# Legacy alias pointing to ClassicUndergroundMagma
+- type: biomeTemplate
+  id: ClassicUndergroundDeep
+  layers:
+    - !type:BiomeMetaLayer
+      template: ClassicUndergroundMagma

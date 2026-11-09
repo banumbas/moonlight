@@ -1,4 +1,4 @@
-wizard-item-restricted-1 = «Только волшебники, дураки».
-wizard-item-restricted-2 = Размахивает им, ожидая, что что-то произойдет.
-wizard-item-restricted-3 = Видит искру волшебства... стоп, нет, просто отражение.
-wizard-item-restricted-4 = Не стоит этим пользоваться.
+wizard-item-restricted-1 = «Только для волшебников, невежда!»
+wizard-item-restricted-2 = Вы бессмысленно взмахиваете предметом, ожидая чуда.
+wizard-item-restricted-3 = Вы замечаете искру магии... хотя нет, это просто блик.
+wizard-item-restricted-4 = Лучше не прикасаться к этому без магических познаний.

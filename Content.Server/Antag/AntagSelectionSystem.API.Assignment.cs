@@ -502,7 +502,10 @@ public sealed partial class AntagSelectionSystem
     [Obsolete]
     public void ForceMakeAntag<T>(ICommonSession player, EntProtoId defaultRule) where T : Component
     {
-        var rule = ForceGetGameRuleEnt<T>(defaultRule);
+        // Classic-Edit start - AddGameRule may reject map-loading rules.
+        if (ForceGetGameRuleEnt<T>(defaultRule) is not { } rule)
+            return;
+        // Classic-Edit end
 
         if (TryAssignNextAvailableAntag(rule, player))
             return;
@@ -536,7 +539,10 @@ public sealed partial class AntagSelectionSystem
     /// </remarks>
     public void ForceMakeAntag<T>(ICommonSession player, EntProtoId ruleProto, AntagSpecifierPrototype proto) where T : Component
     {
-        var rule = ForceGetGameRuleEnt<T>(ruleProto);
+        // Classic-Edit start - AddGameRule may reject map-loading rules.
+        if (ForceGetGameRuleEnt<T>(ruleProto) is not { } rule)
+            return;
+        // Classic-Edit end
 
         foreach (var antag in rule.Comp.Antags)
         {
@@ -557,7 +563,7 @@ public sealed partial class AntagSelectionSystem
     /// Note that this is private because you generally should not be forcing a gamerule and this code is evil.
     /// I'm not touching it any more than I have to.
     /// </summary>
-    private Entity<AntagSelectionComponent> ForceGetGameRuleEnt<T>(string id) where T : Component
+    private Entity<AntagSelectionComponent>? ForceGetGameRuleEnt<T>(string id) where T : Component // Classic-Edit
     {
         var query = EntityQueryEnumerator<T, AntagSelectionComponent>();
         while (query.MoveNext(out var uid, out _, out var comp))
@@ -566,6 +572,11 @@ public sealed partial class AntagSelectionSystem
                 return (uid, comp);
         }
         var ruleEnt = GameTicker.AddGameRule(id);
+        // Classic-Edit start - do not query components on a rejected rule UID.
+        if (ruleEnt == EntityUid.Invalid || !Exists(ruleEnt))
+            return null;
+        // Classic-Edit end
+
         RemComp<LoadMapRuleComponent>(ruleEnt);
         var antag = RuleQuery.Comp(ruleEnt);
         antag.AssignmentHandled = true; // don't do normal selection.

@@ -3,4 +3,4 @@ salvage-dungeon-mod-soviet-stronghold = Объединенный комплек�
 salvage-dungeon-mod-soviet-warehouse = Склад стратегических ресурсов
 
 salvage-biome-mod-true-abyss = Бездна
-salvage-biome-mod-abyss = Бездна коснулась
+salvage-biome-mod-abyss = Тронутый Бездной

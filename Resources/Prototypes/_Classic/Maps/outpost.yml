@@ -1,0 +1,20 @@
+- type: zMap
+  id: Outpost
+  maps:
+  - /Maps/_Classic/Nonstations/Outpost/outpost0.yml
+  - /Maps/_Classic/Nonstations/Outpost/outpost1.yml
+  - /Maps/_Classic/Nonstations/Outpost/outpost2.yml
+  components:
+  - type: MapAtmosphere
+    space: False
+    mixture:
+      volume: 2500
+      immutable: True
+      temperature: 293.15
+      moles:
+        Oxygen: 21.824879
+        Nitrogen: 82.10312
+  - type: Parallax
+    parallax: Dirt
+  - type: ClassicZLevelRoof
+  - type: ClassicAutoGridGravity

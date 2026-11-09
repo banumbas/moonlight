@@ -1,0 +1,5 @@
+- type: entityCategory
+  id: Vehicle
+  name: entity-category-name-vehicle
+  suffix: entity-category-suffix-vehicle
+  inheritable: true

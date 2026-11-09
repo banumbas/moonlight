@@ -5,11 +5,12 @@ namespace Content.Client._Classic.Vendors;
 
 public sealed partial class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorSystem
 {
-    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<ClassicVendorUserComponent, AfterAutoHandleStateEvent>(OnUserCompState);
         SubscribeLocalEvent<ClassicAutomatedVendorComponent, AfterAutoHandleStateEvent>(OnVendorCompState);
     }

@@ -9,6 +9,7 @@
       - CartridgePistol
   - type: CartridgeAmmo
     proto: BulletPistolTraceSP
+    muzzleFlash: MuzzleFlashEffectPistol # Classic-Edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:

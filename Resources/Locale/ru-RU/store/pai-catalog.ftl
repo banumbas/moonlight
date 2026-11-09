@@ -4,5 +4,5 @@ pai-mass-scanner-desc = Позволяет сканировать близлеж
 pai-midi-player-name = MIDI проигрыватель
 pai-midi-player-desc = Позволяет проигрывать музыку для развлечения владельца.
 
-pai-station-map-name = Карта станции
-pai-station-map-desc = Позволяет просматривать карту станции для помощи в навигации.
+pai-station-map-name = Карта колонии
+pai-station-map-desc = Позволяет просматривать карту колонии для помощи в навигации.

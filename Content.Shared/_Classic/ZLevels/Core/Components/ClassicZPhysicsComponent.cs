@@ -77,7 +77,7 @@ public sealed partial class ClassicZPhysicsComponent : Component
     /// If true, ClassicGetZVelocityEvent is raised every physics tick so systems (e.g. flight) can adjust Velocity.
     /// Off by default to avoid the event overhead for entities that never need custom vertical control.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool VelocityRaiseEvent;
 
     #endregion

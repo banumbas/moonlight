@@ -1,0 +1,223 @@
+- type: entity
+  id: FlamerFuelTankSmall
+  parent: BaseItem
+  name: flamer fuel cartridge
+  description: A pressurized chemical cartridge for portable flamethrowers.
+  components:
+  - type: Sprite
+    sprite: _Classic/Objects/Tanks/minitank.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Large
+    shape:
+    - 0, 0, 1, 3
+    sprite: _Classic/Objects/Tanks/minitank.rsi
+  - type: Tag
+    tags:
+    - FlamerTank
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 100
+  - type: DrainableSolution
+    solution: tank
+  - type: RefillableSolution
+    solution: tank
+  - type: SolutionTransfer
+    transferAmount: 25
+    maxTransferAmount: 100
+    minTransferAmount: 5
+    canChangeTransferAmount: true
+  - type: ExaminableSolution
+    solution: tank
+    exactVolume: true
+  - type: SolutionItemStatus
+    solution: tank
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: RefillReagentFilter
+    reagents:
+    - Napalm
+    - WeldingFuel
+    - Ethanol
+    - Plasma
+    - Phlogiston
+    - ChlorineTrifluoride
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+
+- type: entity
+  id: FlamerFuelTankSmallWeldingFuel
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (welding fuel)
+  description: A pressurized chemical cartridge filled with welding fuel.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 100
+
+- type: entity
+  id: FlamerFuelTankSmallEthanol
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (ethanol)
+  description: A pressurized chemical cartridge filled with ethanol.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: Ethanol
+          Quantity: 100
+
+- type: entity
+  id: FlamerFuelTankSmallPlasma
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (plasma)
+  description: A pressurized chemical cartridge filled with plasma.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 100
+
+- type: entity
+  id: FlamerFuelTankSmallPhlogiston
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (phlogiston)
+  description: A pressurized chemical cartridge filled with phlogiston.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: Phlogiston
+          Quantity: 100
+
+- type: entity
+  id: FlamerFuelTankSmallChlorineTrifluoride
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (chlorine trifluoride)
+  description: A pressurized chemical cartridge filled with chlorine trifluoride.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+        reagents:
+        - ReagentId: ChlorineTrifluoride
+          Quantity: 100
+
+- type: entity
+  id: FlamerFuelTankSmallEmpty
+  parent: FlamerFuelTankSmall
+  name: flamer fuel cartridge (empty)
+  description: An empty pressurized chemical cartridge for portable flamethrowers. Can be refilled with chemical fuels.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 100
+
+- type: entity
+  id: FlamerBackpackTankFLCS
+  parent: ClothingBackpackSatchel
+  name: FLCS combat backpack
+  description: A specialized combat backpack system designed to carry chemical fuel cartridges and holster the FLC flamethrower.
+  components:
+  - type: Sprite
+    sprite: _Classic/Clothing/Back/Misc/flcs.rsi
+    layers:
+    - state: icon
+    - state: incinerator
+      map: [ "incinerator" ]
+      visible: false
+  - type: Item
+    size: Huge
+    sprite: _Classic/Clothing/Back/Misc/flcs.rsi
+  - type: Clothing
+    sprite: _Classic/Clothing/Back/Misc/flcs.rsi
+    slots:
+    - Back
+  - type: Storage
+    grid:
+    - 0,0,1,3
+    - 0,0,6,3
+    - 8,0,9,3
+    maxItemSize: Huge
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      flamer_slot: !type:ContainerSlot
+      tank_slot_1: !type:ContainerSlot
+      tank_slot_2: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      flamer_slot:
+        name: flamer-slot-flamer
+        priority: 10
+        startingItem: WeaponFlamethrowerFLC
+        insertSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_reload.ogg
+        ejectSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_unload.ogg
+        whitelist:
+          tags:
+          - WeaponFlamethrowerFLC
+      tank_slot_1:
+        name: flamer-slot-tank-1
+        priority: 1
+        startingItem: FlamerFuelTankSmall
+        insertSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_reload.ogg
+        ejectSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_unload.ogg
+        whitelist:
+          tags:
+          - FlamerTank
+      tank_slot_2:
+        name: flamer-slot-tank-2
+        priority: 1
+        startingItem: FlamerFuelTankSmall
+        insertSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_reload.ogg
+        ejectSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_unload.ogg
+        whitelist:
+          tags:
+          - FlamerTank
+  - type: ItemMapper
+    containerWhitelist:
+    - flamer_slot
+    mapLayers:
+      incinerator:
+        whitelist:
+          tags:
+          - WeaponFlamethrowerFLC
+  - type: Appearance
+  - type: ExplosionResistance
+    damageCoefficient: 0

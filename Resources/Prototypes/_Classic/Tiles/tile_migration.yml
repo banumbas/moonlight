@@ -1,7 +1,158 @@
-# Base Tiles
-# Natural Tiles
-# Grass Tiles
-# Produced Tiles
-# OAK Wood Planks
-# OAK Wood Planks Broken
-# Burned Wood Planks
+# 2026-08-06
+# Classic tiles liquidated in favor of standard and Starlight tiles
+
+- type: tileAlias
+  id: ClassicDarkDiagonal
+  target: FloorDarkDiagonal
+
+- type: tileAlias
+  id: ClassicDarkHerringbone
+  target: FloorDarkHerringbone
+
+- type: tileAlias
+  id: ClassicDarkLarge
+  target: FloorDarkMono
+
+- type: tileAlias
+  id: ClassicDarkSmall
+  target: FloorDarkMini
+
+- type: tileAlias
+  id: ClassicDarkfull
+  target: FloorDark
+
+- type: tileAlias
+  id: ClassicFloor
+  target: FloorSteel
+
+- type: tileAlias
+  id: ClassicFloorLarge
+  target: FloorSteelMono
+
+- type: tileAlias
+  id: ClassicDiagonal
+  target: FloorSteelDiagonal
+
+- type: tileAlias
+  id: ClassicHerringbone
+  target: FloorSteelHerringbone
+
+- type: tileAlias
+  id: ClassicSmall
+  target: FloorSteelMini
+
+- type: tileAlias
+  id: ClassicSmooth
+  target: FloorGrayConcrete
+
+- type: tileAlias
+  id: ClassicSmoothLarge
+  target: FloorGrayConcreteSmooth
+
+- type: tileAlias
+  id: ClassicTextured
+  target: FloorSteel
+
+- type: tileAlias
+  id: ClassicTexturedDark
+  target: FloorDark
+
+- type: tileAlias
+  id: ClassicTexturedDarkLarge
+  target: FloorDarkMono
+
+- type: tileAlias
+  id: ClassicTexturedLarge
+  target: FloorSteelMono
+
+- type: tileAlias
+  id: ClassicTexturedWhite
+  target: FloorWhite
+
+- type: tileAlias
+  id: ClassicTexturedWhiteLarge
+  target: FloorWhiteMono
+
+- type: tileAlias
+  id: ClassicWhite
+  target: FloorWhite
+
+- type: tileAlias
+  id: ClassicWhiteDiagonal
+  target: FloorWhiteDiagonal
+
+- type: tileAlias
+  id: ClassicWhiteHerringbone
+  target: FloorWhiteHerringbone
+
+- type: tileAlias
+  id: ClassicWhiteLarge
+  target: FloorWhiteMono
+
+- type: tileAlias
+  id: ClassicWhiteSmall
+  target: FloorWhiteMini
+
+- type: tileAlias
+  id: ClassicWood
+  target: FloorWood
+
+- type: tileAlias
+  id: ClassicWoodLarge
+  target: FloorWoodLarge
+
+- type: tileAlias
+  id: ClassicWoodParquet
+  target: FloorWoodParquet
+
+- type: tileAlias
+  id: ClassicWoodTile
+  target: FloorWoodTile
+
+- type: tileAlias
+  id: ClassicCafeteria
+  target: FloorSteelCheckerLight
+
+- type: tileAlias
+  id: ClassicKitchen
+  target: FloorKitchen
+
+- type: tileAlias
+  id: ClassicKitchenDiagonal
+  target: FloorSteelDiagonal
+
+- type: tileAlias
+  id: ClassicKitchenHerringbone
+  target: FloorSteelHerringbone
+
+- type: tileAlias
+  id: ClassicKitchenSmall
+  target: FloorSteelMini
+
+- type: tileAlias
+  id: ClassicMaterialfloor
+  target: FloorSteel
+
+- type: tileAlias
+  id: ClassicPlastic
+  target: FloorPlastic
+
+- type: tileAlias
+  id: ClassicSepia
+  target: FloorSepia
+
+- type: tileAlias
+  id: ClassicTerracotta
+  target: FloorTerracotta
+
+- type: tileAlias
+  id: ClassicTerracottaDiagonal
+  target: FloorTerracottaDiagonal
+
+- type: tileAlias
+  id: ClassicTerracottaHerringbone
+  target: FloorTerracotta
+
+- type: tileAlias
+  id: ClassicTerracottaSmall
+  target: FloorTerracottaSmall

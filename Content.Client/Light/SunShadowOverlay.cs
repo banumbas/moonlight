@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.Graphics;
 using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
@@ -12,7 +13,7 @@ namespace Content.Client.Light;
 
 public sealed partial class SunShadowOverlay : Overlay
 {
-    private static readonly ProtoId<ShaderPrototype> MixShader = "Mix";
+    // classic remove | private static readonly ProtoId<ShaderPrototype> MixShader = "Mix";
 
     public override OverlaySpace Space => OverlaySpace.BeforeLighting;
 
@@ -21,6 +22,7 @@ public sealed partial class SunShadowOverlay : Overlay
     [Dependency] private IPrototypeManager _protoManager = default!;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedMapSystem _map;
+    private readonly SharedRoofSystem _roof; // classic-add
     private readonly SharedTransformSystem _xformSys;
 
     private readonly HashSet<Entity<SunShadowCastComponent>> _shadows = new();
@@ -32,7 +34,16 @@ public sealed partial class SunShadowOverlay : Overlay
         IoCManager.InjectDependencies(this);
         _xformSys = _entManager.System<SharedTransformSystem>();
         _map = _entManager.System<SharedMapSystem>();
+        _roof = _entManager.System<SharedRoofSystem>(); // classic-add
         _lookup = _entManager.System<EntityLookupSystem>();
+        // classic-start
+        var stencilClearPrototype = _protoManager.Index(StencilClearShaderPrototype);
+        _stencilClearShader = stencilClearPrototype.Instance();
+        _stencilRestoreShader = stencilClearPrototype.InstanceUnique();
+        _stencilRestoreShader.Stencil = _stencilRestoreShader.Stencil with { Ref = byte.MaxValue };
+        _stencilMaskShader = _protoManager.Index(StencilMaskShaderPrototype).Instance();
+        _unroofedMixShader = _protoManager.Index(UnroofedMixShaderPrototype).Instance();
+        // classic-end
         ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;
     }
 
@@ -75,12 +86,15 @@ public sealed partial class SunShadowOverlay : Overlay
         var lightScale = viewport.LightRenderTarget.Size / (Vector2)viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
 
-        foreach (var grid in _grids)
+        var suns = GetSunShadows(args.MapUid); // classic-add
+
+        foreach (var sunEntity in suns) // classic-edit
         {
-            if (!_entManager.TryGetComponent(grid.Owner, out SunShadowComponent? sun))
-            {
-                continue;
-            }
+            var sun = sunEntity.Comp; // classic-add
+            //if (!_entManager.TryGetComponent(grid.Owner, out SunShadowComponent? sun))
+            //{
+            //    continue;
+            //}
 
             var direction = sun.Direction;
             var alpha = Math.Clamp(sun.Alpha, 0f, 1f);
@@ -153,18 +167,27 @@ public sealed partial class SunShadowOverlay : Overlay
                 {
                     var invMatrix =
                         viewport.LightRenderTarget.GetWorldToLocalMatrix(eye, scale);
+
+                    PrepareSunShadowRoofStencil(worldHandle, invMatrix, worldBounds); // classic-add
+
                     worldHandle.SetTransform(invMatrix);
 
-                    var maskShader = _protoManager.Index(MixShader).Instance();
-                    worldHandle.UseShader(maskShader);
+                    //var maskShader = _protoManager.Index(MixShader).Instance();
+                    worldHandle.UseShader(_unroofedMixShader); // classic-edit
 
                     worldHandle.DrawTextureRect(res.Target.Texture, worldBounds, Color.Black.WithAlpha(alpha));
+                    // classic-start
+                    RestoreLightStencil(worldHandle, invMatrix, worldBounds);
+                    worldHandle.UseShader(null);
+                    worldHandle.SetTransform(Matrix3x2.Identity);
+                    // classic-end
                 }, null);
         }
     }
 
     protected override void DisposeBehavior()
     {
+        _stencilRestoreShader.Dispose(); // classic-add
         _resources.Dispose();
 
         base.DisposeBehavior();

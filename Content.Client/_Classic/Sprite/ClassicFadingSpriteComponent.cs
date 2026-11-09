@@ -1,10 +1,12 @@
 #pragma warning disable IDE0130 // Namespace does not match folder structure
+using Content.Client.Clickable;
+
 namespace Content.Client.Sprite;
 
 /// <summary>
 /// Tracks the upper IconSmooth layers used by Classic wall fading.
 /// </summary>
-[RegisterComponent, Access(typeof(SpriteFadeSystem))]
+[RegisterComponent, Access(typeof(SpriteFadeSystem), typeof(ClickableSystem))]
 public sealed partial class ClassicFadingSpriteComponent : Component
 {
     /// <summary>

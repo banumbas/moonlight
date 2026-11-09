@@ -6,7 +6,7 @@ emergency-shuttle-command-round-yes = Раунд продлён.
 emergency-shuttle-command-round-no = Невозможно продлить окончание раунда.
 
 ## Dock emergency shuttle
-cmd-dockemergencyshuttle-desc = Вызывает спасательный шаттл и пристыковывает его к станции... если это возможно.
+cmd-dockemergencyshuttle-desc = Вызывает спасательный шаттл и пристыковывает его к колонии... если это возможно.
 cmd-dockemergencyshuttle-help = Использование: dockemergencyshuttle
 
 ## Launch emergency shuttle
@@ -14,11 +14,11 @@ cmd-launchemergencyshuttle-desc = Досрочно запускает эваку
 cmd-launchemergencyshuttle-help = Использование: launchemergencyshuttle
 
 # Emergency shuttle
-emergency-shuttle-left = Эвакуационный шаттл покинул станцию. Расчётное время прибытия шаттла на станцию Центкома — { $transitTime } секунд.
+emergency-shuttle-left = Эвакуационный шаттл покинул колонию. Расчётное время прибытия шаттла в колонию Центкома — { $transitTime } секунд.
 emergency-shuttle-launch-time = Эвакуационный шаттл будет запущен через { $consoleAccumulator } секунд.
-emergency-shuttle-docked = Эвакуационный шаттл пристыковался к станции { $location }, направление: { $direction }. Он улетит через { $time } секунд.{ $extended }
-emergency-shuttle-good-luck = Эвакуационный шаттл не может найти станцию. Удачи.
-emergency-shuttle-nearby = Эвакуационный шаттл не может найти подходящий стыковочный шлюз. Он дрейфует около станции, { $location }, направление: { $direction }. Он улетит через { $time } секунд.{ $extended }
+emergency-shuttle-docked = Эвакуационный шаттл пристыковался к колонии { $location }, направление: { $direction }. Он улетит через { $time } секунд.{ $extended }
+emergency-shuttle-good-luck = Эвакуационный шаттл не может найти колонию. Удачи.
+emergency-shuttle-nearby = Эвакуационный шаттл не может найти подходящий стыковочный шлюз. Он дрейфует около колонии, { $location }, направление: { $direction }. Он улетит через { $time } секунд.{ $extended }
 emergency-shuttle-extended = { " " }Время до запуска было продлено в связи с непредвиденными обстоятельствами.
 
 # Emergency shuttle console popup / announcement

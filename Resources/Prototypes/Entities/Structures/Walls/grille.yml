@@ -24,6 +24,7 @@
           map: ["enum.ElectrifiedLayers.Sparks"]
           shader: unshaded
           visible: false
+    - type: ClassicPerspectiveDepth # Classic-Edit
     - type: Icon
       sprite: Structures/Walls/grille.rsi
       state: grille
@@ -116,6 +117,7 @@
   - type: Sprite
     drawdepth: Walls
     sprite: _Classic/Structures/Walls/grille_damaged.rsi
+  - type: ClassicPerspectiveDepth # Classic-Edit
   - type: Icon
     sprite: _Classic/Structures/Walls/grille_damaged.rsi
     state: full

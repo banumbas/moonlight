@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.UserInterface;
 using Content.Shared.Whitelist;
 using Robust.Shared.Network;
@@ -7,17 +6,22 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Classic.Vendors;
 
-public abstract class SharedClassicAutomatedVendorSystem : EntitySystem
+public abstract partial class SharedClassicAutomatedVendorSystem : EntitySystem
 {
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] protected readonly INetManager NetManager = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<EntProtoId, int> _globalStock = new();
+
+    private EntityQuery<ClassicVendorUserComponent> _userQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _userQuery = GetEntityQuery<ClassicVendorUserComponent>();
+
         SubscribeLocalEvent<ClassicAutomatedVendorComponent, ActivatableUIOpenAttemptEvent>(OnOpenAttempt);
         SubscribeLocalEvent<ClassicAutomatedVendorComponent, ClassicVendorVendBuiMsg>(OnVendMessage);
     }
@@ -34,7 +38,7 @@ public abstract class SharedClassicAutomatedVendorSystem : EntitySystem
     {
         var user = args.Actor;
 
-        if (!TryComp<ClassicVendorUserComponent>(user, out var userComp))
+        if (!_userQuery.TryComp(user, out var userComp))
             return;
 
         if (args.Section < 0 || args.Section >= vendor.Comp.Sections.Count)
@@ -128,4 +132,3 @@ public abstract class SharedClassicAutomatedVendorSystem : EntitySystem
         }
     }
 }
-

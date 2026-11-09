@@ -27,6 +27,9 @@ public abstract partial class ClassicSharedZLevelsSystem
             return false;
 
         var networkUid = zMap.NetworkUid;
+        if (networkUid == EntityUid.Invalid)
+            return false;
+
         if (TerminatingOrDeleted(networkUid))
         {
             Log.Warning($"Trying access to terminated z-network, map: {mapUid}, outdated network uid: {networkUid}");

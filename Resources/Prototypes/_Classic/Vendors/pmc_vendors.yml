@@ -329,7 +329,6 @@
         - ClothingHandsGlovesCombat
         - ClothingHeadsetPMC
         - ClothingBeltMilitaryWebbing
-        - ClothingBackpackMessengerPMC
         - ClothingEyesHudPMC
         - PMCSpecialistPDA
       - id: ClothingUniformJumpsuitOperativePMCSkirt
@@ -340,7 +339,6 @@
         - ClothingHandsGlovesCombat
         - ClothingHeadsetPMC
         - ClothingBeltMilitaryWebbing
-        - ClothingBackpackMessengerPMC
         - ClothingEyesHudPMC
         - PMCSpecialistPDA
       - id: ClothingUniformJumpsuitOperativePMCBlack
@@ -351,7 +349,6 @@
         - ClothingHandsGlovesCombat
         - ClothingHeadsetPMC
         - ClothingBeltMilitaryWebbing
-        - ClothingBackpackMessengerPMC
         - ClothingEyesHudPMC
         - PMCSpecialistPDA
     - name: Specialization
@@ -365,13 +362,37 @@
         autoEquip: true
         autoEquipContents:
         - ClothingHeadHelmetPMCSpecialist
+        - ClothingBackpackMessengerPMC
         - BoxPMCWeaponScout
+      - id: ClothingOuterArmorPMCPyro
+        displayEntity: WeaponFlamethrowerFLC
+        name: classic-vendor-pmc-pyro-specialization
+        description: classic-vendor-pmc-pyro-specialization-desc
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCPyro
+        - FlamerBackpackTankFLCS
+        - FlamerFuelTankSmall
     - name: Ammo
       entries:
       - id: SpeedLoaderShotgunZhihao
         points: 6
       - id: MagazineBoxSniperZhihaoPMC
         points: 8
+      - id: FlamerFuelTankSmallEmpty
+        points: 1
+      - id: FlamerFuelTankSmallEthanol
+        points: 2
+      - id: FlamerFuelTankSmall
+        points: 4
+      - id: FlamerFuelTankSmallPhlogiston
+        points: 4
+      - id: FlamerFuelTankSmallPlasma
+        points: 6
+      - id: FlamerFuelTankSmallChlorineTrifluoride
+        points: 8
+
     - name: Medicine
       entries:
       - id: CombatMedipen

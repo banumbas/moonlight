@@ -250,6 +250,11 @@ public sealed partial class EventManagerSystem : EntitySystem
 
     private bool CanRun(EntityPrototype prototype, StationEventComponent stationEvent, int playerCount, TimeSpan currentTime)
     {
+        // Classic-Edit start - remove map-loading StationEvents before random selection
+        if (!GameTicker.CanAddGameRule(prototype.ID))
+            return false;
+        // Classic-Edit end
+
         if (GameTicker.IsGameRuleActive(prototype.ID))
             return false;
 

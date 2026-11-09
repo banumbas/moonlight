@@ -32,6 +32,11 @@ public sealed partial class GatherableSystem : EntitySystem
 
     private void OnAttacked(Entity<GatherableComponent> gatherable, ref AttackedEvent args)
     {
+        // Classic-Start Z-level digging
+        if (TryGatherClassic(gatherable, args.Used, args.User))
+            return;
+        // Classic-End
+
         if (_whitelistSystem.IsWhitelistFailOrNull(gatherable.Comp.ToolWhitelist, args.Used))
             return;
 

@@ -30,9 +30,11 @@ namespace Content.Client.Interaction;
 /// </summary>
 public sealed partial class DragDropSystem : SharedDragDropSystem
 {
-    private static readonly ProtoId<ShaderPrototype> ShaderDropTargetInRange = "SelectionOutlineInrange";
+    // Classic-Edit start - preserve drag drop target range colors
+    private static readonly ProtoId<ShaderPrototype> ShaderDropTargetInRange = "TargetOutlineValid";
 
-    private static readonly ProtoId<ShaderPrototype> ShaderDropTargetOutOfRange = "SelectionOutline";
+    private static readonly ProtoId<ShaderPrototype> ShaderDropTargetOutOfRange = "TargetOutlineInvalid";
+    // Classic-Edit end
 
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IInputManager _inputManager = default!;

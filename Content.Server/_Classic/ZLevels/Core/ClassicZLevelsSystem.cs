@@ -13,6 +13,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Content.Shared.Gravity;
+using Content.Shared.Station.Components;
+using Content.Shared._Classic.Station.Components;
 
 namespace Content.Server._Classic.ZLevels.Core;
 
@@ -35,6 +37,12 @@ public sealed partial class ClassicZLevelsSystem : ClassicSharedZLevelsSystem
         SubscribeLocalEvent<ClassicStationZLevelsComponent, StationPostInitEvent>(OnStationPostInit);
         SubscribeLocalEvent<ClassicStationZLevelsComponent, EntityTerminatingEvent>(OnStationTerminating);
         SubscribeLocalEvent<ClassicZMapComponent, EntityTerminatingEvent>(OnZMapTerminating);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        ShutdownView();
     }
 
     private void OnStationTerminating(Entity<ClassicStationZLevelsComponent> ent, ref EntityTerminatingEvent args)
@@ -105,8 +113,19 @@ public sealed partial class ClassicZLevelsSystem : ClassicSharedZLevelsSystem
             }
 
             _meta.SetEntityName(mapEnt.Value, $"{stationName} [{depth}]");
-            if (_mapGridQuery.HasComp(mapEnt.Value)) //Adding zlevel map to station, if it is planetmap
-                _station.AddGridToStation(ent, mapEnt.Value);
+            if (_mapGridQuery.HasComp(mapEnt.Value))
+            {
+                // Underground maps belong to the station for tracking/chat, but are not playable
+                // station target grids. Keeping them out of StationData.Grids prevents procedural
+                // exploration from affecting events, FTL destinations and station tile counts.
+                var stationMember = EnsureComp<StationMemberComponent>(mapEnt.Value);
+                stationMember.Station = ent.Owner;
+                EnsureComp<StationAuxiliaryGridComponent>(mapEnt.Value);
+                var stationData = Comp<StationDataComponent>(ent.Owner);
+                stationData.AuxiliaryGrids.Add(mapEnt.Value);
+                Dirty(ent.Owner, stationData);
+                Dirty(mapEnt.Value, stationMember);
+            }
             dict.Add(mapEnt.Value, depth);
             depth++;
         }

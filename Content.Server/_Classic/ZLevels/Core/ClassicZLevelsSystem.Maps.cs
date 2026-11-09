@@ -100,6 +100,7 @@ public sealed partial class ClassicZLevelsSystem
         }
 
         RaiseLocalEvent(network, new ClassicZLevelMapNetworkUpdatedEvent());
+        RaiseLocalEvent(new ClassicZLevelMapNetworkReadyEvent(network.Owner));
 
         return success;
     }
@@ -165,6 +166,18 @@ public sealed partial class ClassicZLevelsSystem
             Dirty(below, belowComp);
         }
 
+        if (TryComp<ClassicZMapComponent>(mapUid, out var removedMap))
+        {
+            removedMap.NetworkUid = EntityUid.Invalid;
+            removedMap.MapAbove = null;
+            removedMap.MapBelow = null;
+            removedMap.Depth = 0;
+            Dirty(mapUid, removedMap);
+
+            var removedEvent = new ClassicMapRemovedFromZNetworkEvent(network.Owner);
+            RaiseLocalEvent(mapUid, ref removedEvent);
+        }
+
         // If the network is now empty or invalid, delete it
         if (network.Comp.ZLevelByEntity.Count == 0 || network.Comp.ZLevels.Count == 0)
         {
@@ -182,6 +195,7 @@ public sealed partial class ClassicZLevelsSystem
         }
 
         Dirty(network);
+        RaiseLocalEvent(network, new ClassicZLevelMapNetworkUpdatedEvent());
     }
 
     private void QuickApiCache(Entity<ClassicZMapNetworkComponent> network, EntityUid value, int depth)
@@ -252,6 +266,23 @@ public sealed partial class ClassicZLevelsSystem
 /// Called on ZLevel Network Entity, when maps added or removed from network
 /// </summary>
 public sealed class ClassicZLevelMapNetworkUpdatedEvent : EntityEventArgs;
+
+/// <summary>
+/// Called on a map after it has been detached from a Z-level network.
+/// </summary>
+[ByRefEvent]
+public readonly struct ClassicMapRemovedFromZNetworkEvent(EntityUid formerNetwork)
+{
+    public EntityUid FormerNetwork { get; } = formerNetwork;
+}
+
+/// <summary>
+/// Broadcast after a Z-level network has finished updating its maps.
+/// </summary>
+public sealed class ClassicZLevelMapNetworkReadyEvent(EntityUid network) : EntityEventArgs
+{
+    public EntityUid Network { get; } = network;
+}
 
 /// <summary>
 /// Called on map, when it added to ZNetwork

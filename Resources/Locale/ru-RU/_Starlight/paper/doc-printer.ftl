@@ -1,11 +1,11 @@
 # Reports
 
 doc-text-printer-report-morgue =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-    ⠀ [bold]ОТЧЕТ МОРА ДНР[/bold]
+    ⠀ [bold]ПРОТОКОЛ ОСМОТРА ТЕЛА / СТАТУС DNR[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -19,15 +19,15 @@ doc-text-printer-report-morgue =
     Причина статуса DNR: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-report-station =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                            [bold]SITUATION REPORT[/bold]
+   ⠀⠀                            [bold]ОТЧЁТ О СИТУАЦИИ В КОЛОНИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -45,15 +45,15 @@ doc-text-printer-report-station =
     Текущая ситуация: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-report-on-elimination-of-violations =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
+   ⠀⠀            [bold]ОТЧЁТ ОБ УСТРАНЕНИИ НАРУШЕНИЙ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -66,15 +66,15 @@ doc-text-printer-report-on-elimination-of-violations =
     Меры, принятые для решения проблем: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-report-department =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
+   ⠀⠀                           [bold]ОТЧЁТ О СОСТОЯНИИ ОТДЕЛА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -93,15 +93,15 @@ doc-text-printer-report-department =
     Общее состояние отделения: [форма]
 
     ───────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-report-employee-performance =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ───────────────────────────────────────────
-   ⠀⠀                 [bold]WORK REPORT[/bold]
+   ⠀⠀                 [bold]ОТЧЁТ О ВЫПОЛНЕННОЙ РАБОТЕ[/bold]
     ───────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -111,15 +111,15 @@ doc-text-printer-report-employee-performance =
     Настоящим прошу, чтобы результат был принят руководителем отдела [формы].
 
     ───────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-report-on-the-chapters-meeting =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ───────────────────────────────────────────
-   ⠀⠀                     [bold]VOTE RECORD[/bold]
+   ⠀⠀                     [bold]ПРОТОКОЛ ГОЛОСОВАНИЯ ГЛАВ ОТДЕЛОВ[/bold]
     ───────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -155,15 +155,15 @@ doc-text-printer-report-on-the-chapters-meeting =
     Решение собрания: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-internal-affairs-agents-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ───────────────────────────────────────────
-   ⠀⠀               [bold]AUDIT REPORT[/bold]
+   ⠀⠀               [bold]ОТЧЁТ АГЕНТА ВНУТРЕННИХ ДЕЛ[/bold]
     ───────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -173,37 +173,37 @@ doc-text-printer-internal-affairs-agents-report =
     Я также хочу сообщить следующее: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-condition-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
+   ⠀⠀                           [bold]ТЕХНИЧЕСКИЙ ОТЧЁТ О РЕМОНТЕ[/bold]
     ───────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
-    В [форме] станции были выявлены нарушения.
+    В [форме] колонии были выявлены нарушения.
 
     Проблемы были вызваны: [форма]
 
-    Повреждения станции: [форма]
+    Повреждения колонии: [форма]
 
     Выполненный ремонт: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-object-investigation-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀          [bold]UNKNOWN OBJECT INVESTIGATION REPORT[/bold]
+   ⠀⠀          [bold]ОТЧЁТ ОБ ИССЛЕДОВАНИИ НЕИЗВЕСТНОГО ОБЪЕКТА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -219,15 +219,15 @@ doc-text-printer-object-investigation-report =
     Выявленные свойства: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-experiment-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
+   ⠀⠀                              [bold]ОТЧЁТ ОБ ЭКСПЕРИМЕНТЕ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -246,15 +246,15 @@ doc-text-printer-experiment-report =
     Фактический результат: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-disposal-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ───────────────────────────────────────────
-   ⠀⠀                                [bold]DISPOSAL REPORT[/bold]
+   ⠀⠀                                [bold]ОТЧЁТ ОБ УТИЛИЗАЦИИ ОТХОДОВ[/bold]
     ───────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -269,15 +269,15 @@ doc-text-printer-disposal-report =
     • [форма] — передано в отдел [форма]
     • [форма] — передано в отдел [форма]
     ───────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-arrest-report =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
+   ⠀⠀                            [bold]ОТЧЁТ О ЗАДЕРЖАНИИ НАРУШИТЕЛЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -299,35 +299,35 @@ doc-text-printer-arrest-report =
     Дополнительные примечания: [форма]
 
     ───────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀          [bold]INTERIM COMMAND APPOINTMENT[/bold]
+   ⠀⠀          [bold]ЗАЯВЛЕНИЕ О НАЗНАЧЕНИИ ВРИО ГЛАВЫ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
-    Я, [подпись], прошу утвердить мое назначение на должность исполняющего обязанности [форма]. При вступлении в должность я соглашаюсь следовать Стандартным оперативным процедурам и до прибытия замены из Центрального командования обеспечивать порядок и управление моим отделом, а также безопасность оборудования и инструментов моего офиса, включая те инструменты и части оборудования, которые незаменимы или необходимы для работы Департамента или неправильное использование которых может иметь серьезные последствия для безопасности станции.
+    Я, [подпись], прошу утвердить мое назначение на должность исполняющего обязанности [форма]. При вступлении в должность я соглашаюсь следовать Стандартным оперативным процедурам и до прибытия замены из Центрального командования обеспечивать порядок и управление моим отделом, а также безопасность оборудования и инструментов моего офиса, включая те инструменты и части оборудования, которые незаменимы или необходимы для работы Департамента или неправильное использование которых может иметь серьезные последствия для безопасности колонии.
 
     По получении [формы] от Центрального командования я отказываюсь от привилегий и оборудования, предоставленных мне при выполнении этих обязанностей, включая права доступа.
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-employment-statement =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
+   ⠀⠀                           [bold]ТРУДОВОЙ ДОГОВОР[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -338,41 +338,41 @@ doc-text-printer-employment-statement =
 
     Название должности: [форма]
 
-   ⠀[check] I assert that I am qualified to hold the position which I am seeking, and acknowledge that my contract will be terminated if this is found not to be the case.
+   ⠀[проверить] Подтверждаю наличие квалификации и согласен с расторжением контракта при несоответствии должности.
 
-   ⠀[check] I will surrender any current department work gear and equipment upon transfer.
+   ⠀[проверить] Обязуюсь сдать рабочее снаряжение и оборудование предыдущего отдела при переводе.
 
-   ⠀[check] I agree to follow all applicable Standard Operating Procedures, and accept that my contract may be terminated if I fail to uphold them.
+   ⠀[проверить] Обязуюсь строго следовать СОП и признаю право на расторжение контракта за их нарушение.
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-resignation-statement =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
+   ⠀⠀                          [bold]ЗАЯВЛЕНИЕ ОБ УВОЛЬНЕНИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
     Я, [подпись], настоящим отказываюсь от своей должности по [форме].
 
-   ⠀[check] I accept to pay the penalty established by the terms of termination of my contract at the end of the shift.
+   ⠀[проверить] Согласен на удержание штрафной неустойки за досрочное расторжение контракта.
 
-   ⠀[check] I will surrender my departmental work gear and equipment.
+   ⠀[проверить] Обязуюсь сдать снаряжение и оборудование отдела.
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-access-request-statement =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REQUEST[/bold]
+   ⠀⠀                       [bold]ЗАЯВЛЕНИЕ НА ПОЛУЧЕНИЕ ДОСТУПА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -388,15 +388,15 @@ doc-text-printer-access-request-statement =
     Причина получения повышенного доступа: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-equipment-request-statement =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                    [bold]EQUIPMENT REQUEST[/bold]
+   ⠀⠀                    [bold]ЗАЯВЛЕНИЕ НА ВЫДАЧУ СНАРЯЖЕНИЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -409,7 +409,7 @@ doc-text-printer-equipment-request-statement =
     Причина: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
@@ -417,53 +417,53 @@ doc-text-printer-equipment-request-statement =
 # InquiriesAndAppeals
 
 doc-text-printer-invocation =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
+   ⠀⠀                         [bold]ОФИЦИАЛЬНАЯ ПОВЕСТКА О ВЫЗОВЕ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
-   ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
+   ⠀Гражданину [форма] по распоряжению [подпись] надлежит незамедлительно прибыть в: [форма].
 
     Причина: [форма]
 
-   ⠀[italic]This is an official notice. Penalties may apply for failure to appear.[/italic]
+   ⠀[italic]Официальное уведомление. Неявка влечёт дисциплинарную и правовую ответственность.[/italic]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-evacuation-shuttle-request =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
+   ⠀⠀                    [bold]ЗАПРОС ЭВАКУАЦИОННОГО ШАТТЛА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
     Центральному командованию,
 
-    Я, [подпись], пишу с просьбой немедленно отправить на станцию ​​эвакуационный шаттл и санкционировать эвакуацию станции этим шаттлом.
+    Я, [подпись], пишу с просьбой немедленно отправить в колонию ​​эвакуационный шаттл и санкционировать эвакуацию колонии этим шаттлом.
 
     Причина запроса на эвакуацию: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-shuttle-registration-request =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
+   ⠀⠀                  [bold]РЕГИСТРАЦИОННАЯ КАРТОЧКА ШАТТЛА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -479,16 +479,16 @@ doc-text-printer-shuttle-registration-request =
     Запрашиваемое имя: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-call-centcomm-members =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀              [bold]REQUEST TO CALL CENTCOMM MEMBERS[/bold]
+   ⠀⠀              [bold]ЗАПРОС НА ВЫЗОВ ПРЕДСТАВИТЕЛЕЙ ЦЕНТКОМА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -498,16 +498,16 @@ doc-text-printer-request-call-centcomm-members =
     Причина звонка: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-establish-threat-level =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
+   ⠀⠀             [bold]ЗАПРОС НА УСТАНОВЛЕНИЕ УРОВНЯ УГРОЗЫ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -517,16 +517,16 @@ doc-text-printer-request-establish-threat-level =
     Причина запроса: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-change-salary =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                         [bold]SALARY CHANGE REQUEST[/bold]
+   ⠀⠀                         [bold]ЗАЯВЛЕНИЕ НА ИЗМЕНЕНИЕ ЗАРАБОТНОЙ ПЛАТЫ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -540,16 +540,16 @@ doc-text-printer-request-change-salary =
     Причина изменения зарплаты: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-for-non-listed-employment =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
+   ⠀⠀             [bold]ТРУДОВОЙ ДОГОВОР НА НЕСТАНДАРТНУЮ ДОЛЖНОСТЬ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -567,16 +567,16 @@ doc-text-printer-request-for-non-listed-employment =
     Причина приема на работу: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-for-promotion =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
+   ⠀⠀                         [bold]ПРЕДСТАВЛЕНИЕ К ПОВЫШЕНИЮ В ДОЛЖНОСТИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -592,16 +592,16 @@ doc-text-printer-request-for-promotion =
     Причина повышения: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-documents =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ────────────────────────────────────────────
-   ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
+   ⠀⠀                  [bold]ЗАПРОС НА ПРЕДОСТАВЛЕНИЕ ДОКУМЕНТОВ[/bold]
     ────────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -615,16 +615,16 @@ doc-text-printer-request-documents =
    ⠀ • [form]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-euthanasia =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
+   ⠀⠀                        [bold]ПРОШЕНИЕ О ПРОВЕДЕНИИ ЭВТАНАЗИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -633,28 +633,28 @@ doc-text-printer-request-euthanasia =
 
     Мое желание для этого следующее: [форма].
 
-   ⠀[check] I am aware that this decision is irreversible and will affect compensation given to my next of kin.
+   ⠀[проверить] Осознаю необратимость процедуры и её последствия для компенсационных выплат родственникам.
 
-   ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
+   ⠀[проверить] Освидетельствован сотрудником медблока и нахожусь в здравом уме.
 
-   ⠀    Inspecting Doctor: [signature]
+   ⠀    Врач, проводивший осмотр: [подпись]
    ⠀     Date and Time: [datetime]
 
-   ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
+   ⠀[проверить] Не имею претензий к медблоку при соблюдении регламентов эвтаназии.
 
     В конце процедуры я прошу привести мое тело в [форму], если это возможно.
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-construction-work =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
+   ⠀⠀                     [bold]ЗАЯВКА НА ПРОВЕДЕНИЕ СТРОИТЕЛЬНЫХ РАБОТ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -666,16 +666,16 @@ doc-text-printer-request-construction-work =
     Перечень строительных работ: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-modernization =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
+   ⠀⠀                         [bold]ЗАЯВКА НА МОДЕРНИЗАЦИЮ ОБОРУДОВАНИЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -688,23 +688,23 @@ doc-text-printer-request-modernization =
     • [форма]
     • [форма]
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-request-ert =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
+   ⠀⠀           [bold]ЗАПРОС ГРУППЫ БЫСТРОГО РЕАГИРОВАНИЯ (ОБР)\[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
-    Я, [подпись], прошу направить на станцию ​​команду ERT для оказания помощи в решении текущей проблемы, решение которой превышает текущие ресурсы станции.
+    Я, [подпись], прошу направить в колонию ​​команду ERT для оказания помощи в решении текущей проблемы, решение которой превышает текущие ресурсы колонии.
 
-    Угроза(ы) станции:
+    Угроза(ы) колонии:
     ⠀• [форма]
     • [форма]
 
@@ -714,18 +714,18 @@ doc-text-printer-request-ert =
     Погибшие (приблизительное количество): [форма]
     Другие жертвы (приблизительное количество): [форма]
 
-   ⠀ [italic]Abuse of this form may lead to immediate dismissal of the person(s) involved in this request.[/italic]
+   ⠀ [italic]Злоупотребление данной формой влечёт немедленное увольнение причастных лиц.[/italic]
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-product-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
+   ⠀⠀                                 [bold]ЗАКАЗ НА ПРОИЗВОДСТВО ПРОДУКЦИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -739,7 +739,7 @@ doc-text-printer-product-order =
     Причина заказа: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
@@ -747,11 +747,11 @@ doc-text-printer-product-order =
 # Complaints
 
 doc-text-printer-complaint-violation-labor-rules =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-    ⠀⠀[bold]ЖАЛОБА ВЕДОМСТВА[/bold]
+    ⠀⠀[bold]ЖАЛОБА НА НАРУШЕНИЕ РАБОЧЕГО РЕГЛАМЕНТА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -769,16 +769,16 @@ doc-text-printer-complaint-violation-labor-rules =
     Я запрашиваю внутреннюю проверку соответствующего отдела(ов).
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-offense-complaint =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
+   ⠀⠀                             [bold]ЗАЯВЛЕНИЕ О СОВЕРШЕНИИ ПРЕСТУПЛЕНИЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -797,7 +797,7 @@ doc-text-printer-offense-complaint =
    ⠀• [form]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
@@ -805,11 +805,11 @@ doc-text-printer-offense-complaint =
 # Permissions
 
 doc-text-printer-permission-equipment =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
+   ⠀⠀                           [bold]РАЗРЕШЕНИЕ НА ИСПОЛЬЗОВАНИЕ ОБОРУДОВАНИЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -827,16 +827,16 @@ doc-text-printer-permission-equipment =
     Условия использования: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-search-permission =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                             [bold]SEARCH WARRANT[/bold]
+   ⠀⠀                             [bold]ОРДЕР НА ПРОВЕДЕНИЕ ОБЫСКА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -853,24 +853,24 @@ doc-text-printer-search-permission =
 
     Объем имущества, подлежащего конфискации:
 
-   ⠀[check] Contraband
-   ⠀[check] Items believed to have been involved in a crime
-   ⠀[check] Misappropriated equipment
-   ⠀[check] Other, specify: [form]
+   ⠀[проверить] Контрабанда
+   ⠀[проверить] Предметы, имеющие отношение к совершению преступления
+   ⠀[проверить] Незаконно присвоенное имущество колонии
+   ⠀[проверить] Иное (указать): [форма]
 
     Распоряжение имуществом: Все имущество, конфискованное в соответствии с настоящим ордером на обыск, должно быть возвращено в офис начальника тюрьмы до получения дальнейших распоряжений командования.
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-permission-to-carry-weapons =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                             [bold]WEAPON PERMIT[/bold]
+   ⠀⠀                             [bold]РАЗРЕШЕНИЕ НА НОШЕНИЕ ОРУЖИЯ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -888,16 +888,16 @@ doc-text-printer-permission-to-carry-weapons =
     Причина авторизации: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-permission-dispose-body =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
+   ⠀⠀                 [bold]РАЗРЕШЕНИЕ НА УТИЛИЗАЦИЮ ТЕЛА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -911,38 +911,38 @@ doc-text-printer-permission-dispose-body =
     Способ утилизации: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-construction-permit =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
+   ⠀⠀                           [bold]РАЗРЕШЕНИЕ НА СТРОИТЕЛЬСТВО И ПЕРЕПЛАНИРОВКУ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
 
-    Я, [подпись], разрешаю перепланировку следующей части вокзала: [форма]
+    Я, [подпись], разрешаю перепланировку следующего отсека колонии: [форма]
 
     Причина перепланировки: [форма]
 
     Согласованный объем перепланировки: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 
 doc-text-printer-surgery-consent-permit =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
+   ⠀⠀                           [bold]ИНФОРМИРОВАННОЕ СОГЛАСИЕ НА ОПЕРАЦИЮ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -959,49 +959,49 @@ doc-text-printer-surgery-consent-permit =
     • [форма]
     • [форма]
 
-   ⠀[check] I fully understand the risks associated with the operation(s) to which I have given my consent.
+   ⠀[проверить] Полностью осознаю все риски, связанные с проведением операции.
 
-   ⠀[check] I authorize the Medical Department to dispose of any tissues or organs removed from my body as they see fit, including possibly donating such tissues or organs to other patients.
+   ⠀[проверить] Разрешаю медблоку распоряжаться удалёнными тканями и органами, включая донорскую пересадку.
 
-   ⠀[check] I consent to the operation proceeding without the use of anesthetics.
+   ⠀[проверить] Даю согласие на проведение операции без применения анестезии.
 
    ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by the station's Chief Medical Officer or one of the Chief Medical Officer's superiors. It is not required for life-saving surgeries. For punitive and non-elective surgeries, such as those ordered by Security, please file a Medical Intervention Order.[/italic]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-art-permit =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                           [bold]ART PERMIT[/bold]
+   ⠀⠀                           [bold]РАЗРЕШЕНИЕ НА СОЗДАНИЕ АРТ-ОБЪЕКТА[/bold]
     ──────────────────────────────────────────
-    Date And Time:[color=#0000ff] [form] [/color]
-    Document Compiler:[color=#0000ff] [form] [/color]
+    Дата и время:[color=#0000ff] [form] [/color]
+    Составитель документа:[color=#0000ff] [form] [/color]
 
-    I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following work of art in the location given below.
+    Я, [bolditalic][color=#0000ff] [подпись] [/color][/bolditalic], разрешаю создание арт-объекта в указанном ниже месте.
 
-    Subject of the artpiece:[color=#0000ff] [form] [/color]
-    Location of the artpiece:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
+    Тематика арт-объекта:[color=#0000ff] [form] [/color]
+    Место размещения арт-объекта:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
 
     Для разрешения на искусство требуется печать руководителя отдела кадров, представителя NanoTrasen или капитана. Если произведение искусства находится внутри отдела или в его вестибюле, необходима также печать соответствующего руководителя аппарата.
 
-    Любое произведение искусства, требующее значительных изменений в конструкции станции, также может потребовать печати главного инженера.[/color][/italic]
+    Любое произведение искусства, требующее значительных изменений в конструкции колонии, также может потребовать печати главного инженера.[/color][/italic]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 # OrdersAndInstructions
 
 doc-text-printer-dismissal-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
+   ⠀⠀                               [bold]ПРИКАЗ ОБ УВОЛЬНЕНИИ СОТРУДНИКА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1010,21 +1010,21 @@ doc-text-printer-dismissal-order =
 
     Имя сотрудника: [форма]
 
-   ⠀Employee position: [form]
+   ⠀Должность сотрудника: [форма]
 
     Причина увольнения: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-access-revocation-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
+   ⠀⠀                       [bold]РАСПОРЯЖЕНИЕ ОБ ОГРАНИЧЕНИИ ДОСТУПА[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1033,35 +1033,35 @@ doc-text-printer-access-revocation-order =
 
     Сотрудник: [форма]
 
-   ⠀Position: [form]
+   ⠀Должность: [форма]
 
     Права доступа, которые необходимо удалить: [форма]
 
     Дальнейшие примечания: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-incentive-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
+   ⠀⠀                       [bold]ПРИКАЗ О ПООЩРЕНИИ И ВРУЧЕНИИ НАГРАДЫ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
 
     Дорогой [форма],
 
-    Выполняя свои обязанности на станции, вы доказали, что являетесь примером для экипажа своим выдающимся поведением. Поэтому я с удовольствием вручаю Вам следующую особую благодарность.
+    Выполняя свои обязанности в колонии, вы доказали, что являетесь примером для экипажа своим выдающимся поведением. Поэтому я с удовольствием вручаю Вам следующую особую благодарность.
 
     Выполненные услуги: [форма]
 
     Медаль или награда: [форма]
 
-    Пусть ваша преданность станции и дальше будет освещать путь вашим товарищам по команде.
+    Пусть ваша преданность колонии и дальше будет освещать путь вашим товарищам по команде.
 
     Искренне,
 
@@ -1069,16 +1069,16 @@ doc-text-printer-incentive-order =
 
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-prisoner-parole-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
+   ⠀⠀                         [bold]ПОСТАНОВЛЕНИЕ ОБ УСЛОВНО-ДОСРОЧНОМ ОСВОБОЖДЕНИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1096,16 +1096,16 @@ doc-text-printer-prisoner-parole-order =
     Дополнительные условия условно-досрочного освобождения: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-order-recognizing-reasonableness-creature =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-    ⠀[bold]ДЕКЛАРАЦИЯ ЧУВСТВА[/bold]
+    ⠀[bold]ДЕКЛАРАЦИЯ О ПРИЗНАНИИ РАЗУМНОСТИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1121,16 +1121,16 @@ doc-text-printer-order-recognizing-reasonableness-creature =
     Отныне существо будет принято в качестве Помощника.
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-medical-intervention-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                [bold]MEDICAL INTERVENTION ORDER[/bold]
+   ⠀⠀                [bold]РАСПОРЯЖЕНИЕ О МЕДИЦИНСКОМ ВМЕШАТЕЛЬСТВЕ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1143,21 +1143,21 @@ doc-text-printer-medical-intervention-order =
 
     Обстоятельства: [форма]
 
-   ⠀I hereby affirm that, in my professional opinion as a licensed medical practioner, the ordered intervention is medically or legally necessary.
+   ⠀Подтверждаю как лицензированный медицинский специалист, что вмешательство необходимо по медицинским или правовым показаниям.
 
     Квалифицированный медицинский работник: [подпись]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 
 doc-text-printer-execution-dnr-order =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
+   ⠀⠀             [bold]ПРИКАЗ О КАЗНИ И СТАТУСЕ «НЕ РЕАНИМИРОВАТЬ» (DNR)[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1173,23 +1173,23 @@ doc-text-printer-execution-dnr-order =
 
     Орган, отдающий приказ о казни (ФИО + Должность): [подпись]
 
-   ⠀ [italic]This order can only be issued by the (Acting) Captain of the[/italic]
-   ⠀ [italic]station. If a Magistrate is present, they can overrule the Captain[/italic]
-   ⠀ [italic]on the decision, and their stamp is required.[/italic]
-   ⠀ [italic]The prisoner is to remain securely restrained until the execution.[/italic]
-   ⠀ [italic]The execution method may be chosen by the prisoner, to the[/italic]
-   ⠀ [italic]extent permissible under law, and must be as humane as possible.[/italic]
+   ⠀ [italic]Приказ может быть издан только (ВРИО) Капитаном[/italic]
+   ⠀ [italic]колонии. При наличии Магистрата требуется его утверждение[/italic]
+   ⠀ [italic]и официальная печать.[/italic]
+   ⠀ [italic]Осуждённый должен находиться в наручниках под охраной до казни.[/italic]
+   ⠀ [italic]Метод казни может быть выбран осуждённым в рамках закона[/italic]
+   ⠀ [italic]и должен быть максимально гуманным.[/italic]
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 # Communications
 
 doc-text-printer-centcomm-communication =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-   ⠀⠀                    [bold]CENTCOMM COMMUNICATION[/bold]
+   ⠀⠀                    [bold]ОФИЦИАЛЬНОЕ ОБРАЩЕНИЕ В ЦЕНТКОМ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1201,15 +1201,15 @@ doc-text-printer-centcomm-communication =
     Искренне,
     - [подпись]
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 
 doc-text-printer-salvagelead-report =
-                              [head=3]NT-CC Consortium Services[/head]
+                              [head=3]Служба делопроизводства NT-CC[/head]
 
-                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                   [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-    ⠀⠀ [bold]ОТЧЕТ ПО СПАСЕНИЮ[/bold]
+    ⠀⠀ [bold]ОТЧЁТ ОБ ЭКСПЕДИЦИИ УТИЛИЗАТОРОВ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1226,21 +1226,21 @@ doc-text-printer-salvagelead-report =
     • [форма]
     • [форма]
 
-    Понятно, что всю контрабанду необходимо сдать в отдел безопасности по прибытии на вокзал.
+    Понятно, что всю контрабанду необходимо сдать в отдел безопасности по прибытии в колонию.
 
     Статус команды и общая готовность: [форма]
 
     Дополнительные примечания: [форма]
 
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]
 
 doc-text-printer-enemy-of-corporation-designation =
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]Служба делопроизводства NT-CC[/head]
 
-                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                   [center][color=#1f75bb][italic][bold]   ОФИЦИАЛЬНАЯ ДОКУМЕНТАЦИЯ ЦЕНТКОМА[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
-    ⠀⠀ [bold]ФОРМА ОБОЗНАЧЕНИЯ ВРАГА КОРПОРАЦИИ[/bold]
+    ⠀⠀ [bold]ПОСТАНОВЛЕНИЕ О ПРИЗНАНИИ ВРАГОМ КОРПОРАЦИИ[/bold]
     ──────────────────────────────────────────
     Дата и время: [дата-время]
     Составитель документа: [подпись]
@@ -1263,13 +1263,13 @@ doc-text-printer-enemy-of-corporation-designation =
 
     Орган, приказывающий о назначении (ФИО + Должность): [подпись]
 
-   ⠀ [italic]This order can only be issued either the (Acting) Head of Security,[/italic]
-   ⠀ [italic]Captain, or Magistrate. It must be approved by at least 2[/italic]
-   ⠀ [italic]of these individuals, and they must provide their stamps.[/italic]
-   ⠀ [italic]The prisoner is to remain under watch in captivity until evacuation.[/italic]
-   ⠀ [italic]When completed, form must be faxed to CentComm with all haste.[/italic]
-   ⠀ [italic]If CentComm, or any of the above mentioned officials,[/italic]
-   ⠀ [italic]deny this motion, the prisoner must be reinstated as crew[/italic]
-   ⠀ [italic]and tried normally as per Corporate Law.[/italic]
+   ⠀ [italic]Постановление издаётся (ВРИО) Главой Службы Безопасности,[/italic]
+   ⠀ [italic]Капитаном или Магистратом. Требуется утверждение минимум 2[/italic]
+   ⠀ [italic]из этих должностных лиц с проставлением их печатей.[/italic]
+   ⠀ [italic]Заключённый должен содержаться под строгой охраной до эвакуации.[/italic]
+   ⠀ [italic]Заполненную форму надлежит немедленно отправить факсом в ЦентКом.[/italic]
+   ⠀ [italic]В случае отказа ЦентКома или указанных должностных лиц,[/italic]
+   ⠀ [italic]задержанный возвращается в статус члена экипажа[/italic]
+   ⠀ [italic]и судится в общем порядке Корпоративного Права.[/italic]
     ──────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+   ⠀                      [italic]Место для печатей и/или подписей[/italic]

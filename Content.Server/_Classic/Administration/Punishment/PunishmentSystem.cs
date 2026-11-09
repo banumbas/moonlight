@@ -9,11 +9,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Classic.Administration.Punishment;
 
-public sealed class PunishmentSystem : EntitySystem
+public sealed partial class PunishmentSystem : SharedPunishmentSystem
 {
-    [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 
     private TimeSpan _nextUpdateTime = TimeSpan.Zero;
 
@@ -22,23 +24,8 @@ public sealed class PunishmentSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoleBansUpdatedEvent>(OnRoleBansUpdated);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        if (_timing.CurTime < _nextUpdateTime)
-            return;
-
-        _nextUpdateTime = _timing.CurTime + TimeSpan.FromSeconds(1);
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.AttachedEntity is { } entity)
-                UpdatePunishments(entity, session.UserId);
-        }
     }
 
     private void OnPlayerAttached(PlayerAttachedEvent args)
@@ -46,58 +33,58 @@ public sealed class PunishmentSystem : EntitySystem
         UpdatePunishments(args.Entity, args.Player.UserId);
     }
 
+    private void OnPlayerDetached(PlayerDetachedEvent args)
+    {
+        if (TryComp<PunishmentComponent>(args.Entity, out var comp))
+            RemovePunishments(args.Entity, comp);
+    }
+
     private void OnRoleBansUpdated(RoleBansUpdatedEvent args)
     {
-        if (_playerManager.TryGetSessionById(args.UserId, out var session) && session.AttachedEntity is { } entity)
+        if (_player.TryGetSessionById(args.UserId, out var session) && session.AttachedEntity is { } entity)
         {
             UpdatePunishments(entity, args.UserId);
         }
     }
 
-    private void UpdatePunishments(EntityUid uid, NetUserId userId)
+    public void UpdatePunishments(EntityUid uid, NetUserId userId)
     {
-        var punishments = _banManager.GetPunishments(userId);
+        var punishments = _ban.GetPunishments(userId);
+        TryComp<PunishmentComponent>(uid, out var comp);
+
+        if (punishments == null || punishments.Count == 0)
+        {
+            RemovePunishments(uid, comp);
+            return;
+        }
 
         var mutedChannels = ChatChannel.None;
         var paperMuted = false;
         var pacifism = false;
 
-        if (punishments != null)
+        foreach (var ban in punishments)
         {
-            foreach (var ban in punishments)
+            switch (ban.Role)
             {
-                var type = ban.Role[BanManager.PrefixPunishment.Length..];
-
-                if (type == "Pacifism")
-                    pacifism = true;
-                else if (type == "Mute:Paper")
-                    paperMuted = true;
-                else if (type.StartsWith("Mute:"))
-                {
-                    var channelStr = type["Mute:".Length..];
-                    if (Enum.TryParse<ChatChannel>(channelStr, out var channel))
-                    {
-                        mutedChannels |= channel;
-                    }
-                }
+                case "Punish:Mute:Local": mutedChannels |= ChatChannel.Local; break;
+                case "Punish:Mute:Whisper": mutedChannels |= ChatChannel.Whisper; break;
+                case "Punish:Mute:Radio": mutedChannels |= ChatChannel.Radio; break;
+                case "Punish:Mute:LOOC": mutedChannels |= ChatChannel.LOOC; break;
+                case "Punish:Mute:OOC": mutedChannels |= ChatChannel.OOC; break;
+                case "Punish:Mute:Emotes": mutedChannels |= ChatChannel.Emotes; break;
+                case "Punish:Mute:Dead": mutedChannels |= ChatChannel.Dead; break;
+                case "Punish:Mute:Paper": paperMuted = true; break;
+                case "Punish:Pacifism": pacifism = true; break;
             }
         }
 
         if (mutedChannels == ChatChannel.None && !paperMuted && !pacifism)
         {
-            RemComp<PunishmentComponent>(uid);
-
-            // Only remove pacifism if they don't have it from somewhere else?
-            // Actually, if we just remove PacifiedComponent, it's fine, but let's check if they still need it.
-            // For now, removing it directly is okay, as pacifism is usually applied via component.
-            // However, other things might apply pacifism. A safe way is to track ForcedPacifism.
-            // If they had ForcedPacifism, we can remove PacifiedComponent.
-            if (TryComp<PacifiedComponent>(uid, out var _))
-                RemComp<PacifiedComponent>(uid);
+            RemovePunishments(uid, comp);
             return;
         }
 
-        var comp = EnsureComp<PunishmentComponent>(uid);
+        comp ??= EnsureComp<PunishmentComponent>(uid);
 
         if (comp.MutedChannels == mutedChannels && comp.PaperMuted == paperMuted && comp.ForcedPacifism == pacifism)
             return;
@@ -116,5 +103,33 @@ public sealed class PunishmentSystem : EntitySystem
 
         comp.ForcedPacifism = pacifism;
         Dirty(uid, comp);
+    }
+
+    private void RemovePunishments(EntityUid uid, PunishmentComponent? comp)
+    {
+        if (comp == null)
+            return;
+
+        if (comp.ForcedPacifism && HasComp<PacifiedComponent>(uid))
+            RemComp<PacifiedComponent>(uid);
+
+        RemComp<PunishmentComponent>(uid);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextUpdateTime)
+            return;
+
+        _nextUpdateTime = _timing.CurTime + UpdateInterval;
+
+        // Query only entities that actually have a PunishmentComponent instead of polling all online players
+        var query = EntityQueryEnumerator<PunishmentComponent, ActorComponent>();
+        while (query.MoveNext(out var uid, out _, out var actor))
+        {
+            UpdatePunishments(uid, actor.PlayerSession.UserId);
+        }
     }
 }

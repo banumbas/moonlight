@@ -146,7 +146,7 @@ reagent-name-eggnog = эгг-ног
 reagent-desc-eggnog = Недостаточно яиц.
 
 reagent-name-electric-shark = электрическая акула
-reagent-desc-electric-shark = Забавный факт: инженерный персонал космической станции 16 состоит из 20% хрящевых.
+reagent-desc-electric-shark = Забавный факт: инженерный персонал космической колонии 16 состоит из 20% хрящевых.
 
 reagent-name-erika-surprise = сюрприз Эрики
 reagent-desc-erika-surprise = Сюрприз в том, что он зелёный!
@@ -203,7 +203,7 @@ reagent-name-manhattan = Манхэттен
 reagent-desc-manhattan = Любимый напиток Детектива под прикрытием. Он никогда не переносил джин...
 
 reagent-name-manhattan-project = Манхэттенский Проект
-reagent-desc-manhattan-project = Напиток для учёных, размышляющих о том, как взорвать станцию.
+reagent-desc-manhattan-project = Напиток для учёных, размышляющих о том, как взорвать колонию.
 
 reagent-name-manly-dorf = Мужественный Дворф
 reagent-desc-manly-dorf = Пиво и эль, соединённые в восхитительный коктейль. Предназначено только для крепких гномов.

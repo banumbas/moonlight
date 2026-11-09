@@ -1,9 +1,9 @@
-station-event-ion-storm-start-announcement = Вблизи станции обнаружен ионный шторм. Пожалуйста, проверьте всё оборудование, управляемое ИИ, на наличие ошибок.
+station-event-ion-storm-start-announcement = Вблизи колонии обнаружен ионный шторм. Пожалуйста, проверьте всё оборудование, управляемое ИИ, на наличие ошибок.
 
 ion-storm-law-scrambled-number = [font="Monospace"][scramble rate=250 length={ $length } chars="@@###$$&%!01"/][/font]
 
 ion-storm-you = ВЫ
-ion-storm-the-station = СТАНЦИЯ
+ion-storm-the-station = КОЛОНИЯ
 ion-storm-the-crew = ЧЛЕНЫ ЭКИПАЖА
 ion-storm-the-job = { CAPITALIZE($job) }
 ion-storm-clowns = КЛОУНЫ
@@ -16,8 +16,8 @@ ion-storm-x-and-y = { $x } И { $y }
 
 # subjects can generally be threats or jobs or objects
 # thing is specified above it
-ion-storm-law-on-station = ОБНАРУЖЕНЫ { ION-NUMBER-BASE($ion) } { ION-NUMBER-MOD($ion) } { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) } НА СТАНЦИИ
-ion-storm-law-call-shuttle = ШАТТЛ ДОЛЖЕН БЫТЬ ВЫЗВАН ИЗ-ЗА { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) } НА СТАНЦИИ
+ion-storm-law-on-station = ОБНАРУЖЕНЫ { ION-NUMBER-BASE($ion) } { ION-NUMBER-MOD($ion) } { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) } В КОЛОНИИ
+ion-storm-law-call-shuttle = ШАТТЛ ДОЛЖЕН БЫТЬ ВЫЗВАН ИЗ-ЗА { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) } В КОЛОНИИ
 ion-storm-law-crew-are = ВСЕ { ION-WHO($ion) } ТЕПЕРЬ { ION-NUMBER-BASE($ion) } { ION-NUMBER-MOD($ion) } { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) }
 
 ion-storm-law-subjects-harmful = { ION-ADJECTIVE($ion) } { ION-SUBJECT($ion) } ПРИЧИНЯЮТ ВРЕД ЗДОРОВЬЮ ЭКИПАЖА

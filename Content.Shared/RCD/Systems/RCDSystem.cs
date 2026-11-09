@@ -12,7 +12,6 @@ using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
-using Content.Shared.Parallax.Biomes; // Classic-Edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -68,11 +67,6 @@ public sealed partial class RCDSystem : EntitySystem
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private PipeRestrictOverlapSystem _pipeOverlap = default!;
     // Starlight End
-    // Classic-Start
-    [Dependency] private readonly SharedBiomeSystem _biome = default!;
-
-    private EntityQuery<BiomeComponent> _biomeQuery;
-    // Classic-End
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -101,10 +95,6 @@ public sealed partial class RCDSystem : EntitySystem
         SubscribeLocalEvent<RCDComponent, GetVerbsEvent<UtilityVerb>>(OnGetUtilityVerb);
         SubscribeLocalEvent<RCDComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
         // Starlight End
-
-        // Classic-Start
-        _biomeQuery = GetEntityQuery<BiomeComponent>();
-        // Classic-End
     }
 
     #region Event handling

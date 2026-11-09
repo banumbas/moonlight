@@ -1,2 +1,2 @@
-atmos-pipe-layers-component-layer-quaternary = четвертичный период
-atmos-pipe-layers-component-layer-quinary = пятеричный
+atmos-pipe-layers-component-layer-quaternary = четвёртый слой
+atmos-pipe-layers-component-layer-quinary = пятый слой

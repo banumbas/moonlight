@@ -86,6 +86,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     // which NukeopsRuleComponent currently isn't.
     // Better yet, maybe the behaviors this is used for could be moved to the rule component.
     private static readonly EntProtoId NukeopsGameRule = "Nukeops";
+    private static readonly EntProtoId PmcGameRule = "PMC";
 
     public override void Initialize()
     {
@@ -140,7 +141,14 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         GameRuleComponent gameRule,
         ref RoundEndTextAppendEvent args)
     {
-        var winText = Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}");
+        // classic start
+        var isPmc = MetaData(uid).EntityPrototype?.ID == "PMC" || GameTicker.IsGameRuleActive(PmcGameRule);
+        var winPrefix = isPmc ? "pmc" : "nukeops";
+        var winKey = $"{winPrefix}-{component.WinType.ToString().ToLower()}";
+        var winText = Loc.TryGetString(winKey, out var localizedWin)
+            ? localizedWin
+        // classic end
+            : Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}"); // classic edit
         args.AddLine(winText);
 
         foreach (var cond in component.WinConditions)
@@ -149,13 +157,20 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             args.AddLine(text);
         }
 
-        args.AddLine(Loc.GetString("nukeops-list-start"));
+        var startKey = isPmc ? "pmc-list-start" : "nukeops-list-start"; // classic add
+        args.AddLine(Loc.TryGetString(startKey, out var startText) ? startText : Loc.GetString("nukeops-list-start")); // classic edit
 
         var antags = _antag.GetAntagIdentifiers(uid);
 
+        var nameUserKey = isPmc ? "pmc-list-name-user" : "nukeops-list-name-user"; // classic add
         foreach (var (_, sessionData, name) in antags)
         {
-            args.AddLine(Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName)));
+            // classic start
+            var formattedName = Loc.TryGetString(nameUserKey, out var userFormat, ("name", name), ("user", sessionData.UserName))
+                ? userFormat
+                : Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName));
+            args.AddLine(formattedName);
+            // classic end
         }
         args.AddLine("");
     }
@@ -169,8 +184,8 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             {
                 if (ev.OwningStation == GetOutpost(uid))
                 {
-                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("PMC") || GameTicker.IsGameRuleActive(NukeopsGameRule)); // End the round ONLY if the actual gamemode is NukeOps.
-                    if (!GameTicker.IsGameRuleActive("PMC") && !GameTicker.IsGameRuleActive(NukeopsGameRule)) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
+                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive(PmcGameRule) || GameTicker.IsGameRuleActive(NukeopsGameRule)); // End the round ONLY if the actual gamemode is NukeOps.
+                    if (!GameTicker.IsGameRuleActive(PmcGameRule) && !GameTicker.IsGameRuleActive(NukeopsGameRule)) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
                         GameTicker.EndGameRule(uid);
                     continue;
                 }
@@ -201,7 +216,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }
 
-            if (GameTicker.IsGameRuleActive("PMC") || GameTicker.IsGameRuleActive(NukeopsGameRule)) // If it's Nukeops then end the round on any detonation
+            if (GameTicker.IsGameRuleActive(PmcGameRule) || GameTicker.IsGameRuleActive(NukeopsGameRule)) // If it's Nukeops then end the round on any detonation
             {
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.NukeRoundRestartTime))); // Starlight Edit: Round end timer set by Cvar
             }
@@ -635,7 +650,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
 
     private void OnGetBriefing(Entity<NukeopsRoleComponent> role, ref GetBriefingEvent args)
     {
-        if (GameTicker.IsGameRuleActive("PMC"))
+        if (GameTicker.IsGameRuleActive(PmcGameRule))
         {
             args.Append(Loc.GetString("pmc-briefing"));
             return;

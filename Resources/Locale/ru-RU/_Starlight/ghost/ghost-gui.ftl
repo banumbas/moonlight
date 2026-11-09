@@ -9,7 +9,7 @@ ghost-gui-ghost-theme-window-title = Темы призраков
 ghost-gui-choose-theme = Выбрать тему
 
 ghost-role-terror-spider-name = Ужасный паук
-ghost-role-terror-spider-description = Задача Паука-Ужаса — уничтожить станцию ​​и все живое на ней.
+ghost-role-terror-spider-description = Задача Паука-Ужаса — уничтожить колонию ​​и все живое на ней.
 ghost-role-terror-spider-rules = Вы являетесь [color=red][bold]антагонистом команды[/bold][/color] вместе со всеми другими пауками-террористами.
 
 ghost-role-information-ntnc-consortium-officer-name = НаноТрасен Корпус морской пехоты ВМФ

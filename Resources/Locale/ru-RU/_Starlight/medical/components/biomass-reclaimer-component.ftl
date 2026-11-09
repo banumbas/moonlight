@@ -1,4 +1,4 @@
-﻿biomass-reclaimer-not-anchored = The biomass reclaimer is not anchored!
-biomass-reclaimer-not-powered = Регенератор биомассы не подключен к электропитанию!
-biomass-reclaimer-safety-on = Безопасность утилизатора биомассы обнаруживает жизнь и отказывается работать!
-biomass-reclaimer-soulful = В этом теле все еще есть душа!
+biomass-reclaimer-not-anchored = Переработчик биомассы не закреплён!
+biomass-reclaimer-not-powered = Переработчик биомассы обесточен!
+biomass-reclaimer-safety-on = Система безопасности переработчика биомассы обнаружила признаки жизни и блокирует работу!
+biomass-reclaimer-soulful = В этом теле всё ещё теплится душа!

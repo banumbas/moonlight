@@ -13,6 +13,17 @@ public sealed partial class IconSmoothSystem
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    private EntityQuery<TransformComponent> _classicXformQuery;
+    private EntityQuery<MapGridComponent> _classicGridQuery;
+    private EntityQuery<IconSmoothComponent> _classicSmoothQuery;
+
+    private void InitializeClassic()
+    {
+        _classicXformQuery = GetEntityQuery<TransformComponent>();
+        _classicGridQuery = GetEntityQuery<MapGridComponent>();
+        _classicSmoothQuery = GetEntityQuery<IconSmoothComponent>();
+    }
+
     internal bool TryGetClassicUpperLayers(
         Entity<SpriteComponent> sprite,
         out int corner1,
@@ -63,13 +74,10 @@ public sealed partial class IconSmoothSystem
 
     internal bool HasClassicNorthNeighbour(Entity<IconSmoothComponent> source)
     {
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var gridQuery = GetEntityQuery<MapGridComponent>();
-
-        if (!xformQuery.TryGetComponent(source, out var transform) ||
+        if (!_classicXformQuery.TryComp(source, out var transform) ||
             !transform.Anchored ||
             transform.GridUid is not { } gridUid ||
-            !gridQuery.TryGetComponent(gridUid, out var grid))
+            !_classicGridQuery.TryComp(gridUid, out var grid))
         {
             return false;
         }
@@ -114,11 +122,9 @@ public sealed partial class IconSmoothSystem
         IconSmoothComponent source,
         AnchoredEntitiesEnumerator candidates)
     {
-        var smoothQuery = GetEntityQuery<IconSmoothComponent>();
-
         while (candidates.MoveNext(out var candidate))
         {
-            if (!smoothQuery.TryGetComponent(candidate, out var other) ||
+            if (!_classicSmoothQuery.TryComp(candidate, out var other) ||
                 other.SmoothKey == null ||
                 !other.Enabled ||
                 (other.SmoothKey != source.SmoothKey &&

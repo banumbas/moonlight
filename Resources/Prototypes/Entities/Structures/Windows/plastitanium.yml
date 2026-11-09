@@ -33,6 +33,8 @@
   - type: Appearance
   - type: SpriteFade # Classic-Edit
     fadeTopOnly: true # Classic-Edit
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: StaticPrice
     price: 100
   - type: BlockWeather
@@ -55,7 +57,7 @@
   parent: PlastitaniumWindowBase
   components:
   - type: Sprite
-    drawdepth: Overdoors # Classic-Edit
+    drawdepth: Doors # Classic-Edit
     sprite: _Classic/Structures/Windows/plastitanium_window.rsi # Classic-Edit
   - type: Icon
     sprite: _Classic/Structures/Windows/plastitanium_window.rsi # Classic-Edit
@@ -134,7 +136,7 @@
   suffix: diagonal
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/plastitanium_window_diagonal.rsi
     state: state0
   - type: Tag

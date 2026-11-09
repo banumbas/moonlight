@@ -93,6 +93,22 @@ public interface IBanManager
 
     // Classic-Start
     /// <summary>
+    /// Creates multiple punishments (mutes/pacifism) in a single batch for the specified target.
+    /// </summary>
+    public Task CreatePunishments(
+        NetUserId? target,
+        string? targetUsername,
+        NetUserId? banningAdmin,
+        (IPAddress, int)? addressRange,
+        ImmutableTypedHwid? hwid,
+        IReadOnlyCollection<string> punishmentRoles,
+        uint? minutes,
+        NoteSeverity severity,
+        string reason,
+        DateTimeOffset timeOfBan
+    );
+
+    /// <summary>
     /// Creates a punishment (mute/pacifism) for the specified target, username or GUID
     /// </summary>
     public void CreatePunishment(
@@ -107,6 +123,11 @@ public interface IBanManager
         string reason,
         DateTimeOffset timeOfBan
     );
+
+    /// <summary>
+    /// Pardons all active punishments (mutes) for a given player.
+    /// </summary>
+    public Task<int> UnmutePlayer(NetUserId target, NetUserId? unbanningAdmin);
     // Classic-End
 
     // Starlight start

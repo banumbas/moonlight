@@ -1,30 +1,31 @@
 ## CREW EXAMINES
-cosmic-examine-text-contraband = [color=#4cabb3]Это в высшей степени незаконная контрабанда с неизвестными свойствами![/color]
-cosmic-examine-text-structures = [color=#4cabb3]Этого объекта не должно быть на станции![/color]
-cosmic-examine-text-entities = [color=#4cabb3]Этой сущности не должно быть на станции![/color]
-cosmic-examine-text-glyphs = [color=#4cabb3]Выгравированные линии вызывают сильное беспокойство.[/color]
-cosmic-examine-text-abilityblank = [color=#4cabb3]Их кататонические глаза пульсируют злым светом![/color]
-cosmic-examine-text-abilitylapse = [color=#4cabb3]Они выглядят так, будто видят что-то невидимое. Ни от кого.[/color]
-cosmic-examine-text-malignecho = [color=#4cabb3]Эхо в мембране реального пространства — кажется, оно быстро затухает. На борту станции что-то не так![/color]
-cosmic-examine-text-imposition = [color=#4cabb3]Барьер астральной силы защищает их от травм![/color]
-cosmic-examine-text-chantry = [color=#4cabb3]У вас возникает ужасное ощущение, будто внутри кто-то заперт![/color]
-cosmic-examine-text-effigy = [color=#4cabb3]Он излучает нестабильную аномальную энергию![/color]
-cosmic-examine-text-god = [color=#4cabb3]конец - это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец, это конец.
+cosmic-examine-text-contraband = [color=#4cabb3]Это опаснейшая контрабанда с неизвестными свойствами![/color]
+cosmic-examine-text-structures = [color=#4cabb3]Этого сооружения не должно быть в колонии![/color]
+cosmic-examine-text-entities = [color=#4cabb3]Этой сущности не должно быть в колонии![/color]
+cosmic-examine-text-glyphs = [color=#4cabb3]Выгравированные линии вызывают леденящую тревогу.[/color]
+cosmic-examine-text-abilityblank = [color=#4cabb3]Глаза жертвы остекленели и пульсируют потусторонним светом![/color]
+cosmic-examine-text-abilitylapse = [color=#4cabb3]Кажется, взгляд существа устремлён в невидимую бездну.[/color]
+cosmic-examine-text-malignecho = [color=#4cabb3]Искажение в ткани пространства — кажется, оно быстро затухает. В колонии происходит нечто зловещее![/color]
+cosmic-examine-text-imposition = [color=#4cabb3]Барьер чистой астральной силы защищает тело от любых травм![/color]
+cosmic-examine-text-chantry = [color=#4cabb3]Вас охватывает ужас: внутри явно кто-то заперт![/color]
+cosmic-examine-text-effigy = [color=#4cabb3]Излучает нестабильную потустороннюю энергию![/color]
+cosmic-examine-text-god = [color=#4cabb3]конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец.[/color]
 
 ## CULTIST EXAMINES
-cosmic-examine-text-forthecult = [color=#4cabb3]Это наша работа. Так и должно быть.[/color]
-cosmic-examine-text-cultentity = [color=#4cabb3]Мощный союзник.[/color]
-cosmic-examine-text-culteffigy = [color=#4cabb3]Это может оказаться полезным.[/color]
+cosmic-examine-text-forthecult = [color=#4cabb3]Это наше творение. Так и должно быть.[/color]
+cosmic-examine-text-cultentity = [color=#4cabb3]Могущественный союзник.[/color]
+cosmic-examine-text-culteffigy = [color=#4cabb3]Это послужит нашему замыслу.[/color]
 
 ## GLYPH EXAMINES
 cosmic-examine-glyph-cultcount = {$COUNT ->
-    [1] [color=#4cabb3]Requires only a single cultist to activate.[/color]
-    *[other] [color=#4cabb3]Requires {$COUNT} cultists to activate.[/color]
+    [one] [color=#4cabb3]Для активации требуется всего 1 культист.[/color]
+    [few] [color=#4cabb3]Для активации требуется {$COUNT} культиста.[/color]
+    *[other] [color=#4cabb3]Для активации требуется {$COUNT} культистов.[/color]
 }
 
-cosmic-examine-glyph-truth = [color=#4cabb3]Внушает чистую, неизгладимую истину. Способны обратить в наши ряды абсолютно любого человека.[/color]
-cosmic-examine-glyph-knowledge = [color=#4cabb3]Вселяет искру неизгладимых знаний. Способны обратить большинство людей в наши ряды.[/color]
-cosmic-examine-glyph-cessation = [color=#4cabb3]Превращает портативный очиститель атмосферы в Пустотный шпиль для нашего использования.[/color]
-cosmic-examine-glyph-projection = [color=#4cabb3]Позволяет нам подняться во временной астральной форме, чтобы шпионить за окружающими.[/color]
-cosmic-examine-glyph-blades = [color=#4cabb3]Преобразует и превращает острые предметы в более смертоносное оружие.[/color]
-cosmic-examine-glyph-warding = [color=#4cabb3]Превращает устойчивую к давлению одежду в энтропийную одежду.[/color]
+cosmic-examine-glyph-truth = [color=#4cabb3]Внушает чистую, непреложную истину. Способен обратить абсолютно любого смертного.[/color]
+cosmic-examine-glyph-knowledge = [color=#4cabb3]Вселяет искру неизгладимых знаний. Способен обратить большинство смертных.[/color]
+cosmic-examine-glyph-cessation = [color=#4cabb3]Превращает очиститель атмосферы в Пустотный шпиль для сбора энтропии.[/color]
+cosmic-examine-glyph-projection = [color=#4cabb3]Позволяет вознестись во временной астральной форме для разведки.[/color]
+cosmic-examine-glyph-blades = [color=#4cabb3]Трансмутирует острые предметы в смертоносные клинки культа.[/color]
+cosmic-examine-glyph-warding = [color=#4cabb3]Превращает гермокостюмы в энтропийные облачения культа.[/color]

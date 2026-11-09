@@ -5,7 +5,7 @@
   parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
   components:
   - type: Sprite
-    drawdepth: Overdoors # Classic-Edit
+    drawdepth: Doors # Classic-Edit
     sprite: _Classic/Structures/Windows/pod_window.rsi # Classic-Edit
   - type: Icon
     sprite: _Classic/Structures/Windows/pod_window.rsi # Classic-Edit
@@ -66,7 +66,7 @@
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/shuttle_window_diagonal.rsi
     state: state0
   - type: Tag

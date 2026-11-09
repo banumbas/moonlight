@@ -9,6 +9,7 @@
       - CartridgeMagnum
   - type: CartridgeAmmo
     proto: BulletMagnumTraceSP
+    muzzleFlash: MuzzleFlashEffectHeavy # Classic-Edit
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:

@@ -3,6 +3,7 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
+using System.Collections.Generic;
 using System.Numerics;
 using Content.Client._Classic.ZLevels.Core;
 using Content.Shared.CCVar;
@@ -27,7 +28,13 @@ public sealed partial class ScalingViewport
 
     private ClassicClientZLevelsSystem? _zLevels;
     private SharedMapSystem? _mapSystem;
-    private readonly ClassicZLevelOpeningCache _openingCache = new();
+    private SharedTransformSystem? _zTransform;
+    private IClydeViewport? _lowerViewport;
+    private UIBox2 _lowerVisiblePixels;
+    private readonly List<Entity<MapGridComponent>> _openingGrids = new();
+    private readonly List<Box2> _openingBounds = new();
+
+    [ViewVariables] public Vector2i LowerLevelRenderSize { get; private set; }
 
     private EntityQuery<TransformComponent>? _xformQuery;
     private EntityQuery<MapComponent>? _mapQuery;
@@ -38,7 +45,7 @@ public sealed partial class ScalingViewport
     /// We are looking for at least one empty tile on the screen.
     /// This is used to ensure that it makes sense to draw the z-planes and that they are visible.
     /// </summary>
-    public bool TryFindEmptyTiles(EntityUid mapUid, IClydeViewport viewport)
+    public bool TryFindEmptyTiles(EntityUid mapUid, IClydeViewport viewport, bool captureBounds = false)
     {
         if (_xformQuery is null || !_xformQuery.Value.TryComp(mapUid, out var xform))
             return true;
@@ -59,25 +66,35 @@ public sealed partial class ScalingViewport
         var maxX = MathF.Max(MathF.Max(corner0.X, corner1.X), MathF.Max(corner2.X, corner3.X));
         var maxY = MathF.Max(MathF.Max(corner0.Y, corner1.Y), MathF.Max(corner2.Y, corner3.Y));
 
-        var mapCoordsBottomLeft = new MapCoordinates(new Vector2(minX, minY), mapId);
-        var mapCoordsTopRight = new MapCoordinates(new Vector2(maxX, maxY), mapId);
-
-        if (_mapSystem is null || !_mapSystem.TryFindGridAt(mapUid, mapCoordsBottomLeft.Position, out var gridUid, out var grid))
+        if (_mapSystem is null)
             return true;
 
-        var tileBottomLeft = _mapSystem.TileIndicesFor(gridUid, grid, mapCoordsBottomLeft);
-        var tileTopRight = _mapSystem.TileIndicesFor(gridUid, grid, mapCoordsTopRight);
+        // Tile events invalidate only the affected chunks in the system-owned cache. A viewport
+        // cache without those events discarded the entire map whenever terrain streamed in.
+        _zLevels ??= _entityManager.System<ClassicClientZLevelsSystem>();
+        _zTransform ??= _entityManager.System<SharedTransformSystem>();
+        _openingBounds.Clear();
+        var found = _zLevels.OpeningCache.TryFindOpeningBounds(mapId,
+            new Box2(minX, minY, maxX, maxY), captureBounds ? _openingBounds : null,
+            out var worldBounds, int.MaxValue, exactOpeningBounds: true,
+            _openingGrids, _mapSystem, _zTransform, _tile);
+        if (_openingGrids.Count == 0)
+            return true;
+        if (!found)
+            return false;
 
-        return _openingCache.HasOpeningInTileBounds(
-            (gridUid, grid),
-            tileBottomLeft - Vector2i.One,
-            tileTopRight + Vector2i.One,
-            _mapSystem,
-            _tile);
+        if (captureBounds)
+        {
+            var pixels = viewport.GetWorldToLocalMatrix().TransformBox(worldBounds);
+            _lowerVisiblePixels = new UIBox2(pixels.Left, pixels.Bottom, pixels.Right, pixels.Top);
+        }
+
+        return true;
     }
 
-    private void RenderZLevels(IClydeViewport viewport)
+    private void RenderZLevels(IClydeViewport viewport, IRenderHandle handle)
     {
+        LowerLevelRenderSize = Vector2i.Zero;
         if (_eye is null)
             return;
 
@@ -119,15 +136,17 @@ public sealed partial class ScalingViewport
             return;
         }
 
+        playerXform = _zLevels.GetViewedTransform(_player.LocalEntity.Value, playerXform);
         if (playerXform.MapUid is null)
         {
             viewport.Render();
             return;
         }
 
+        var zMapUid = playerXform.MapUid.Value;
         var lookUp = 0;
         if (zLevelViewer.LookUp)
-            lookUp = _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, playerXform.MapUid);
+            lookUp = _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, zMapUid);
 
         var maxLevelsBelow = Math.Clamp(
             _configuration.GetCVar(CCVars.ClassicZLevelsRenderingMaxZLevelsBelowRendering),
@@ -135,13 +154,15 @@ public sealed partial class ScalingViewport
             ClassicSharedZLevelsSystem.MaxZLevelsBelowRendering);
 
         var lowestDepth = 0;
+        var cropLower = _configuration.GetCVar(CCVars.ClassicZLevelsRenderingCropLowerLevels);
+        _lowerVisiblePixels = UIBox2.FromDimensions(Vector2.Zero, viewport.Size);
         for (var i = 0; i >= -maxLevelsBelow; i--)
         {
-            var checkingMap = playerXform.MapUid.Value;
+            var checkingMap = zMapUid;
 
             if (i != 0)
             {
-                if (!_zLevels.TryMapOffset(playerXform.MapUid.Value, i, out var mapUidBelow))
+                if (!_zLevels.TryMapOffset(zMapUid, i, out var mapUidBelow))
                     continue;
 
                 checkingMap = mapUidBelow;
@@ -154,9 +175,38 @@ public sealed partial class ScalingViewport
             if (i == -maxLevelsBelow)
                 break;
 
-            if (!TryFindEmptyTiles(checkingMap, viewport))
+            if (!TryFindEmptyTiles(checkingMap, viewport, captureBounds: cropLower && i == 0))
                 break;
         }
+
+        var lowerBounds = UIBox2i.FromDimensions(Vector2i.Zero, viewport.Size);
+        var lowerViewport = viewport;
+        var lowerCameraOffset = Vector2.Zero;
+        if (lowestDepth < 0 && cropLower)
+        {
+            // Keep a guard band for edge sprites and lighting/blur kernels. Pixel density stays
+            // identical to the main view; only work hidden behind the current floor is omitted.
+            var padding = viewport.RenderScale * EyeManager.PixelsPerMeter * 3f;
+            lowerBounds = ClassicZLevelRenderRegion.Cover(_lowerVisiblePixels, viewport.Size,
+                _lowerViewport?.Size ?? Vector2i.Zero, padding);
+            if (lowerBounds.Size != viewport.Size)
+            {
+                if (_lowerViewport?.Size != lowerBounds.Size)
+                {
+                    _lowerViewport?.Dispose();
+                    _lowerViewport = _clyde.CreateViewport(lowerBounds.Size,
+                        new TextureSampleParameters { Filter = false }, name: "classic-lower-z");
+                }
+
+                lowerViewport = _lowerViewport;
+                lowerViewport.RenderScale = viewport.RenderScale;
+                lowerCameraOffset = viewport.LocalToWorld(lowerBounds.Center).Position -
+                                    viewport.LocalToWorld((Vector2) viewport.Size / 2f).Position;
+            }
+        }
+
+        if (lowestDepth < 0)
+            LowerLevelRenderSize = lowerViewport.Size;
 
         var configuredLightBlur = _configuration.GetCVar(CVars.LightBlur);
         var suppressLowerLightBlur = configuredLightBlur &&
@@ -178,11 +228,24 @@ public sealed partial class ScalingViewport
         {
             for (var depth = lowestDepth; depth <= lookUp; depth++)
             {
+                var target = depth < 0 ? lowerViewport : viewport;
                 if (depth == 0)
+                {
+                    if (!ReferenceEquals(lowerViewport, viewport))
+                    {
+                        handle.RenderInRenderTarget(viewport.RenderTarget, () =>
+                        {
+                            var screen = handle.DrawingHandleScreen;
+                            screen.SetTransform(Matrix3x2.Identity);
+                            screen.UseShader(null);
+                            screen.DrawTextureRect(lowerViewport.RenderTarget.Texture, (UIBox2) lowerBounds);
+                        }, Color.Black);
+                    }
                     viewport.Eye = _fallbackEye;
+                }
                 else
                 {
-                    if (!_zLevels.TryMapOffset(playerXform.MapUid.Value, depth, out var mapUidBelow))
+                    if (!_zLevels.TryMapOffset(zMapUid, depth, out var mapUidBelow))
                         continue;
 
                     if (!_mapQuery.Value.TryComp(mapUidBelow, out var mapComp))
@@ -191,12 +254,12 @@ public sealed partial class ScalingViewport
                     Angle rotation = _fallbackEye.Rotation * -1;
                     var offset = rotation.ToWorldVec() * ClassicClientZLevelsSystem.ZLevelOffset * depth;
 
-                    viewport.Eye = new ZEye(lowestDepth, depth, lookUp)
+                    target.Eye = new ZEye(lowestDepth, depth, lookUp)
                     {
                         Position = new MapCoordinates(_fallbackEye.Position.Position, mapComp.MapId),
                         DrawFov = _fallbackEye.DrawFov && depth >= 0,
                         DrawLight = _fallbackEye.DrawLight,
-                        Offset = _fallbackEye.Offset + offset,
+                        Offset = _fallbackEye.Offset + offset + (depth < 0 ? lowerCameraOffset : Vector2.Zero),
                         Rotation = _fallbackEye.Rotation,
                         Scale = _fallbackEye.Scale,
                         DrawContentLightBlur = depth >= 0 || drawLowerContentLightBlur,
@@ -221,8 +284,8 @@ public sealed partial class ScalingViewport
                     softShadowsSuppressed = shouldSuppressSoftShadows;
                 }
 
-                viewport.ClearColor = depth == lowestDepth ? Color.Black : null;
-                viewport.Render();
+                target.ClearColor = depth == lowestDepth ? Color.Black : null;
+                target.Render();
             }
         }
         finally
@@ -236,6 +299,8 @@ public sealed partial class ScalingViewport
             Eye = _fallbackEye;
             viewport.Eye = Eye;
             viewport.ClearColor = fallbackClearColor;
+            if (_lowerViewport != null)
+                _lowerViewport.Eye = null;
         }
     }
 

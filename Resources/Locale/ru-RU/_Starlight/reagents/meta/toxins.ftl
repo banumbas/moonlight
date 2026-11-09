@@ -1,5 +1,5 @@
-﻿reagent-name-devil-juice = devil juice
-reagent-desc-devil-juice = Вещество, считающееся злом в жидкой форме, способное уродовать живые существа вплоть до генетического уровня.
+reagent-name-devil-juice = дьявольский сок
+reagent-desc-devil-juice = Жидкое воплощение инфернального зла, способное искажать живые организмы вплоть до генетического кода.
 
-reagent-name-zxa-metabolites = Метаболиты ZXA
-reagent-desc-zxa-metabolites = Побочный продукт ZXA, который разрушает химические запасы подменышей даже сильнее, чем BZ.
+reagent-name-zxa-metabolites = метаболиты ZXA
+reagent-desc-zxa-metabolites = Побочный продукт распада ZXA, разрушающий химические запасы генокрада даже быстрее, чем газ BZ.

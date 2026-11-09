@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Created by Kelyn Crandall (KelynC, https://kelync.itch.io) on OpenGameArt (https://opengameart.org/content/pixel-art-smoke-puff), adapted for Classic",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "smoke_puff",
+      "delays": [
+        [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    }
+  ]
+}

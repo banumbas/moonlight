@@ -1,5 +1,5 @@
 sec-apartment-ui-sec-apartment = SecApartment
-sec-apartment-ui-station = СТАНЦИЯ
+sec-apartment-ui-station = КОЛОНИЯ
 sec-apartment-ui-mark = {$time} | {$station}
 sec-apartment-ui-no-squads-crew = Неназначенный персонал
 sec-apartment-ui-squads-create = Создать

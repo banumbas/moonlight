@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.GameTicking.Rules; // Starlight
-using Content.Shared._Classic.CCVar; // Classic
+using Content.Shared._Classic.CCVar; // Classic-Edit
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -36,19 +36,25 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
 
     protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
-        if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
-        {
-            // Preloading will never work if it's disabled, duh
-            Log.Debug($"Immediately ending {ToPrettyString(uid):rule} as preloading grids is disabled by cvar.");
-            ForceEndSelf(uid, rule);
+        // Classic-Edit start - hard stop even if a map-loading rule bypasses prototype filtering
+        if (uid == EntityUid.Invalid)
             return;
-        }
 
-        if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule) || _cfg.GetCVar(ClassicCCVars.DisableShuttleEvents)) // Classic
+        if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule) ||
+            _cfg.GetCVar(ClassicCCVars.DisableShuttleEvents))
         {
             // If map loading is explicitly disabled, end the rule rather than leaving it partially initialized.
             // This avoids dependent systems (e.g. antag spawn location selection via RuleGrids) running with no map data.
             Log.Debug($"Immediately ending {ToPrettyString(uid):rule} as map loading is disabled by cvar.");
+            ForceEndSelf(uid, rule);
+            return;
+        }
+        // Classic-Edit end
+
+        if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
+        {
+            // Preloading will never work if it's disabled, duh
+            Log.Debug($"Immediately ending {ToPrettyString(uid):rule} as preloading grids is disabled by cvar.");
             ForceEndSelf(uid, rule);
             return;
         }

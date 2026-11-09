@@ -2,6 +2,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Classic.Salvage.Fulton;
 using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -9,10 +10,12 @@ namespace Content.Server._Classic.Salvage.Fulton;
 
 public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonSystem
 {
-    [Dependency] private CargoSystem _cargo = default!;
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private StationSystem _station = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private static readonly TimeSpan SaleDelay = TimeSpan.FromSeconds(0.8);
 
@@ -24,19 +27,19 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
         SubscribeLocalEvent<ClassicFultonSoldComponent, ComponentShutdown>(OnFultonedShutdown);
     }
 
-    private void OnFultonedShutdown(EntityUid uid, ClassicFultonSoldComponent component, ComponentShutdown args)
+    private void OnFultonedStartup(Entity<ClassicFultonSoldComponent> ent, ref ComponentStartup args)
     {
-        Del(component.Effect);
-        component.Effect = EntityUid.Invalid;
-    }
-
-    private void OnFultonedStartup(EntityUid uid, ClassicFultonSoldComponent component, ComponentStartup args)
-    {
-        if (Exists(component.Effect))
+        if (Exists(ent.Comp.Effect))
             return;
 
-        component.Effect = Spawn(EffectProto, new EntityCoordinates(uid, EffectOffset));
-        Dirty(uid, component);
+        ent.Comp.Effect = Spawn(EffectProto, new EntityCoordinates(ent.Owner, EffectOffset));
+        Dirty(ent);
+    }
+
+    private void OnFultonedShutdown(Entity<ClassicFultonSoldComponent> ent, ref ComponentShutdown args)
+    {
+        Del(ent.Comp.Effect);
+        ent.Comp.Effect = EntityUid.Invalid;
     }
 
     public override void Update(float frameTime)
@@ -97,12 +100,12 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
         }
 
         component.SaleStation = saleStation;
-        component.OriginalCoordinates = Transform(uid).Coordinates;
+        component.OriginalCoordinates = _transform.GetMoverCoordinates(uid);
         component.SaleTime = _timing.CurTime + SaleDelay;
         Dirty(uid, component);
 
         PlayFultonAnimation(uid, component, component.OriginalCoordinates.Value);
-        TransformSystem.DetachEntity(uid);
+        _transform.DetachEntity(uid);
     }
 
     private EntityUid? GetSaleStation(EntityUid target)
@@ -119,7 +122,7 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
             return;
 
         if (component.OriginalCoordinates is { } coordinates && coordinates.IsValid(EntityManager))
-            TransformSystem.SetCoordinates(uid, coordinates);
+            _transform.SetCoordinates(uid, coordinates);
 
         CancelSale(uid);
     }
@@ -139,6 +142,6 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
             Coordinates = GetNetCoordinates(oldCoords),
         });
 
-        Audio.PlayPvs(component.Sound, uid);
+        _audio.PlayPvs(component.Sound, uid);
     }
 }

@@ -76,7 +76,7 @@ void fragment() {
 
 	lowp float sampledLight = outline_fullbright ? 1.0 : clamp( (pow( zGrayscale_BT601(lightSample.rgb) * light_whitepoint, light_gamma) / light_whitepoint ) * light_boost, 0.0, 1.0);
 	highp float outlineAmount = max(maxa - col.a, 0.0);
-	highp float outlineAlpha = outline_color.a * sampledLight * outlineAmount;
+	highp float outlineAlpha = outline_color.a * sampledLight * step(0.001, outlineAmount); // classic edit
 	highp vec4 outline = vec4(outline_color.rgb * outlineAlpha, outlineAlpha);
 	COLOR = mix(outline, col, step(0.01, col.a));
 	lightSample = vec3(1.0);

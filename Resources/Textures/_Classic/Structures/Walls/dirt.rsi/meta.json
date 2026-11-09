@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "take in https://github.com/wall-nerds/wallening/tree/stable/icons/turf/walls and edit pallete @banumbas",
+  "states": [
+    {
+      "name": "dirt0",
+      "directions": 4
+    },
+    {
+      "name": "dirt1",
+      "directions": 4
+    },
+    {
+      "name": "dirt2",
+      "directions": 4
+    },
+    {
+      "name": "dirt3",
+      "directions": 4
+    },
+    {
+      "name": "dirt4",
+      "directions": 4
+    },
+    {
+      "name": "dirt5",
+      "directions": 4
+    },
+    {
+      "name": "dirt6",
+      "directions": 4
+    },
+    {
+      "name": "dirt7",
+      "directions": 4
+    },
+    {
+      "name": "full"
+    }
+  ]
+}

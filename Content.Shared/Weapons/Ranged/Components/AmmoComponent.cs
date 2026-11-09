@@ -51,4 +51,9 @@ public sealed partial class CartridgeAmmoComponent : AmmoComponent
     /// </summary>
     [DataField("soundEject")]
     public SoundSpecifier? EjectSound = new SoundCollectionSpecifier("CasingEject");
+
+    // Classic-Edit Start
+    [DataField, AutoNetworkedField]
+    public System.Numerics.Vector2? MuzzleFlashOffset;
+    // Classic-Edit End
 }

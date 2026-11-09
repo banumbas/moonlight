@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "muzzle_bullet",
+      "copyright": "Created by VictorJob for CM-SS13 / RMC14, adapted for Classic",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "muzzle_bullet_high",
+      "copyright": "Created by VictorJob for CM-SS13 / RMC14, adapted for Classic",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "muzzle_bullet_low",
+      "copyright": "Created by VictorJob for CM-SS13 / RMC14, adapted for Classic",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      ]
+    },
+    {
+      "name": "muzzle_bullet_shell",
+      "copyright": "Created by VictorJob for CM-SS13 / RMC14, adapted for Classic",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.06,
+          0.06,
+          0.06,
+          0.06,
+          0.06,
+          0.06
+        ]
+      ]
+    },
+    {
+      "name": "muzzle_bullet_heavy",
+      "copyright": "Created by Reactorcore on OpenGameArt (https://reactorcore.itch.io), adapted for Classic",
+      "license": "CC0-1.0",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    }
+  ]
+}

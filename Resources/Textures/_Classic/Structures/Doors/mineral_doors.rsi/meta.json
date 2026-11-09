@@ -1,0 +1,155 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "take in https://github.com/wall-nerds/wallening/tree/stable/icons/obj/doors",
+    "size": {
+        "x": 48,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "paperframe",
+            "directions": 4
+        },
+        {
+            "name": "paperframe_open_top",
+            "directions": 4
+        },
+        {
+            "name": "paperframe_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "wood",
+            "directions": 4
+        },
+        {
+            "name": "wood_open_top",
+            "directions": 4
+        },
+        {
+            "name": "wood_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "metal",
+            "directions": 4
+        },
+        {
+            "name": "metal_open_top",
+            "directions": 4
+        },
+        {
+            "name": "metal_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "uranium",
+            "directions": 4
+        },
+        {
+            "name": "uranium_open_top",
+            "directions": 4
+        },
+        {
+            "name": "uranium_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "diamond",
+            "directions": 4
+        },
+        {
+            "name": "diamond_open_top",
+            "directions": 4
+        },
+        {
+            "name": "diamond_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "gold",
+            "directions": 4
+        },
+        {
+            "name": "gold_open_top",
+            "directions": 4
+        },
+        {
+            "name": "gold_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "plasma",
+            "directions": 4
+        },
+        {
+            "name": "plasma_open_top",
+            "directions": 4
+        },
+        {
+            "name": "plasma_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "sandstone",
+            "directions": 4
+        },
+        {
+            "name": "sandstone_open_top",
+            "directions": 4
+        },
+        {
+            "name": "sandstone_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "silver",
+            "directions": 4
+        },
+        {
+            "name": "silver_open_top",
+            "directions": 4
+        },
+        {
+            "name": "silver_open_bottom",
+            "directions": 4
+        },
+        {
+            "name": "paperframe_open",
+            "directions": 4
+        },
+        {
+            "name": "wood_open",
+            "directions": 4
+        },
+        {
+            "name": "metal_open",
+            "directions": 4
+        },
+        {
+            "name": "uranium_open",
+            "directions": 4
+        },
+        {
+            "name": "diamond_open",
+            "directions": 4
+        },
+        {
+            "name": "gold_open",
+            "directions": 4
+        },
+        {
+            "name": "plasma_open",
+            "directions": 4
+        },
+        {
+            "name": "sandstone_open",
+            "directions": 4
+        },
+        {
+            "name": "silver_open",
+            "directions": 4
+        }
+    ]
+}

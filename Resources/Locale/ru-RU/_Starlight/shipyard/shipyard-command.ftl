@@ -1,8 +1,8 @@
-cmd-purchaseshuttle-invalid-integer = { $value } не является допустимым целым числом.
-cmd-purchaseshuttle-invalid-delay = { $value } не является допустимым значением задержки.
-cmd-purchaseshuttle-no-entity = Объект с UID { $uid } не существует.
-cmd-purchaseshuttle-failed = Не удалось приобрести шаттл (судно не вернулось).
-cmd-purchaseshuttle-success = Успешно приобретен шаттл «{ $path }» для станции { $station }.
-cmd-purchaseshuttle-desc = Создает и стыкует указанный шаттл из файла сетки.
-cmd-purchaseshuttle-help = Purchaseshuttle <идентификатор станции> <путь к файлу сетки> [задержка]
-shipyard-console-purchase-failed = Не удалось подготовить шаттл. Пожалуйста, свяжитесь с Центральным командованием за помощью.
+cmd-purchaseshuttle-invalid-integer = { $value } не является корректным целым числом.
+cmd-purchaseshuttle-invalid-delay = { $value } не является корректным значением задержки.
+cmd-purchaseshuttle-no-entity = Сущность с UID { $uid } не существует.
+cmd-purchaseshuttle-failed = Не удалось приобрести шаттл (судно не возвращено).
+cmd-purchaseshuttle-success = Успешно приобретён шаттл «{ $path }» для колонии { $station }.
+cmd-purchaseshuttle-desc = Создаёт и стыкует указанный шаттл из файла сетки (grid).
+cmd-purchaseshuttle-help = purchaseshuttle <идентификатор колонии> <путь к файлу сетки> [задержка]
+shipyard-console-purchase-failed = Не удалось подготовить шаттл. Пожалуйста, обратитесь в Центральное Командование.

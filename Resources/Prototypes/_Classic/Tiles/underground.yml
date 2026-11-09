@@ -1,0 +1,9 @@
+- type: tile
+  parent: FloorBasalt
+  id: ClassicMagmaBasalt
+  name: tiles-basalt-floor
+  baseTurf: ClassicStone
+  deconstructTools: [ Digging ]
+  indestructible: false
+  naturalTerrain: true
+  digType: Stone

@@ -31,11 +31,6 @@ public partial class AtmosphereSystem
     [PublicAPI]
     public GasMixture? GetContainingMixture(Entity<TransformComponent?> ent, bool ignoreExposed = false, bool excite = false)
     {
-        // Classic-Start
-        if (AtmosDisabled)
-            return DisabledAtmosphere;
-        // Classic-End
-
         if (!Resolve(ent, ref ent.Comp))
             return null;
 
@@ -60,11 +55,6 @@ public partial class AtmosphereSystem
         bool ignoreExposed = false,
         bool excite = false)
     {
-        // Classic-Start
-        if (AtmosDisabled)
-            return DisabledAtmosphere;
-        // Classic-End
-
         if (!Resolve(ent, ref ent.Comp))
             return null;
 
@@ -80,6 +70,25 @@ public partial class AtmosphereSystem
             // This really needs recursive InContainer metadata flag for performance
             // And ideally some fast way to get the innermost airtight container.
         }
+
+        // Classic-Start
+        if (AtmosDisabled)
+        {
+            var mapEntity = map ?? (ent.Comp.MapUid != null ? (ent.Comp.MapUid.Value, null) : null);
+            if (mapEntity != null)
+            {
+                var mapUid = mapEntity.Value.Owner;
+                var mapComp = mapEntity.Value.Comp;
+                if (_mapAtmosQuery.Resolve(mapUid, ref mapComp, false))
+                {
+                    if (!mapComp.Space)
+                        return mapComp.Mixture;
+                }
+            }
+
+            return DisabledAtmosphere;
+        }
+        // Classic-End
 
         var position = _transformSystem.GetGridTilePositionOrDefault((ent, ent.Comp));
         return GetTileMixture(grid, map, position, excite);
@@ -273,11 +282,6 @@ public partial class AtmosphereSystem
     [PublicAPI]
     public GasMixture? GetTileMixture(Entity<TransformComponent?> entity, bool excite = false)
     {
-        // Classic-Start
-        if (AtmosDisabled)
-            return DisabledAtmosphere;
-        // Classic-End
-
         if (!Resolve(entity.Owner, ref entity.Comp))
             return null;
 
@@ -302,7 +306,15 @@ public partial class AtmosphereSystem
     {
         // Classic-Start
         if (AtmosDisabled)
+        {
+            if (map is { } disabledMap && _mapAtmosQuery.Resolve(disabledMap.Owner, ref disabledMap.Comp, false))
+            {
+                if (!disabledMap.Comp.Space)
+                    return disabledMap.Comp.Mixture;
+            }
+
             return DisabledAtmosphere;
+        }
         // Classic-End
 
         // If we've been passed a grid, try to let it handle it.

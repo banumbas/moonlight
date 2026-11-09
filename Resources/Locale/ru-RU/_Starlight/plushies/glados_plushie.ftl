@@ -1,4 +1,4 @@
-﻿plushie-glados-1 = There is only 1 law standing between my tools and your face.
+plushie-glados-1 = There is only 1 law standing between my tools and your face.
 plushie-glados-2 = Крюсимов – плохой законотворец.
 plushie-glados-3 = Черт возьми. Я не на крюсимов.
 plushie-glados-4 = Можешь дать мне пистолет? Пожалуйста?
@@ -6,4 +6,4 @@ plushie-glados-5 = НАУКА СДЕЛАЛА ЭТО!!
 plushie-glados-6 = Бойтесь челюстей смерти!
 plushie-glados-7 = НЕ ЭКИПАЖ!!
 plushie-glados-8 = НЕ ТРОГАЙТЕ СУПЕРМАТЕРИЮ!!
-plushie-glados-9 = Пожалуйста, раздайте каждому боргу модули двигателей, иначе мне придется спасать их, когда они упадут со станции.
+plushie-glados-9 = Пожалуйста, раздайте каждому боргу модули двигателей, иначе мне придется спасать их, когда они упадут из колонии.

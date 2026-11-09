@@ -15,7 +15,7 @@
   - type: Sprite
     snapCardinals: false
     sprite: _Classic/Structures/Doors/Airlocks/highsec/vault.rsi
-    drawdepth: Overdoors
+    drawdepth: Doors # Classic-Edit - below perspective wall overhangs
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -53,6 +53,8 @@
       map: ["enum.DoorVisualLayers.BaseEmagging"]
       shader: unshaded
       visible: false
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: AnimationPlayer
   - type: Physics
   - type: Fixtures
@@ -73,8 +75,8 @@
     containers:
       board: !type:Container
   - type: Door
-    openDrawDepth: Overdoors
-    closedDrawDepth: Overdoors
+    openDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
+    closedDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
     crushDamage:
       types:
         Blunt: 50

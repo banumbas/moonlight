@@ -1,3 +1,3 @@
-ent-StationMapCircuitboard = микросхема карты станции
-    .desc = Микросхема для карты станции.
+ent-StationMapCircuitboard = микросхема карты колонии
+    .desc = Микросхема для карты колонии.
     .suffix = { ent-BaseElectronics.suffix }

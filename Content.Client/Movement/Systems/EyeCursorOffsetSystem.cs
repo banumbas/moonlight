@@ -85,4 +85,15 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
         }
         return component.CurrentPosition;
     }
+
+    // classic-start
+    public void ResetOffset(EntityUid uid)
+    {
+        if (!TryComp(uid, out EyeCursorOffsetComponent? component))
+            return;
+
+        component.CurrentPosition = Vector2.Zero;
+        component.TargetPosition = Vector2.Zero;
+    }
+    // classic-end
 }

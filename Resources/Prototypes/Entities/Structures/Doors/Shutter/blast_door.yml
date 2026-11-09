@@ -8,13 +8,17 @@
     containerAccessProvider: board
   - type: Sprite
     sprite: _Classic/Structures/Doors/Shutters/blastdoor.rsi
-    drawdepth: Overdoors
+    drawdepth: Doors
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
     - state: welded
       map: ["enum.WeldableLayers.BaseWelded"]
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
     closeTimeOne: 0.4
     closeTimeTwo: 0.4
     openTimeOne: 0.4
@@ -77,7 +81,9 @@
   - type: Sprite
     sprite: _Classic/Structures/Doors/Shutters/blastdoor.rsi
     state: assembly
-    drawdepth: Overdoors
+    drawdepth: Doors
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: InteractionOutline
   - type: Damageable
     damageContainer: StructuralInorganic

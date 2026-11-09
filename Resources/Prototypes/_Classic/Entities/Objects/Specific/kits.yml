@@ -161,6 +161,7 @@
           tags:
           - PMCGunCaseAllowed
           - CartridgeRocket
+          - FlamerTank
       slot_2:
         name: Slot 2
         whitelist:
@@ -175,6 +176,7 @@
           tags:
           - PMCGunCaseAllowed
           - CartridgeRocket
+          - FlamerTank
       slot_3:
         name: Slot 3
         whitelist:
@@ -189,6 +191,7 @@
           tags:
           - PMCGunCaseAllowed
           - CartridgeRocket
+          - FlamerTank
 
 - type: entity
   id: BoxPMCWeaponA
@@ -240,6 +243,17 @@
         startingItem: WeaponShotgunZhihaoPMC
       slot_2:
         startingItem: WeaponSniperZhihaoPMC
+
+- type: entity
+  id: BoxPMCWeaponPyro
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: FlamerBackpackTankFLCS
+      slot_2:
+        startingItem: FlamerFuelTankSmall
 
 - type: entity
   id: BoxPMCWeaponComm1

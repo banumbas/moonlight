@@ -27,8 +27,10 @@
       - ForceFixRotations
       - Window
   - type: Sprite
-    drawdepth: Overdoors # Classic-Edit
+    drawdepth: Doors # Classic-Edit
     sprite: _Classic/Structures/Windows/normal_window.rsi # Classic-Edit
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: Icon
     sprite: _Classic/Structures/Windows/normal_window.rsi # Classic-Edit
     state: full
@@ -108,7 +110,7 @@
   description: Smart tinted window with state switching option. # Starlight
   components:
   - type: Sprite
-    drawdepth: Overdoors # Classic-Edit
+    drawdepth: Doors # Classic-Edit
     sprite: _Classic/Structures/Windows/tinted_window.rsi # Classic-Edit
   - type: Icon
     sprite: _Classic/Structures/Windows/tinted_window.rsi # Classic-Edit
@@ -158,9 +160,11 @@
       Brute:
         collection: GlassSmack
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: Doors
     sprite: _Classic/Structures/Windows/Directional/normal.rsi
     state: window
+  - type: ClassicPerspectiveDepth # Classic-Edit
+    baseDrawDepth: Doors
   - type: Icon
     sprite: _Classic/Structures/Windows/Directional/normal.rsi
     state: window
@@ -269,7 +273,7 @@
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/window_diagonal.rsi
     state: state0
   - type: Tag

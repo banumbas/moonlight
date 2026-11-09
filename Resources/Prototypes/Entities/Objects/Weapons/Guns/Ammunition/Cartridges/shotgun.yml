@@ -16,6 +16,9 @@
   - type: SpentAmmoVisuals
     revealSpent: true # Starlight
     tip: true
+  - type: CartridgeAmmo # Classic-Edit
+    proto: PelletShotgunSpreadTrace # Classic-Edit
+    muzzleFlash: MuzzleFlashEffectShotgun # Classic-Edit
 
 - type: entity
   parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]

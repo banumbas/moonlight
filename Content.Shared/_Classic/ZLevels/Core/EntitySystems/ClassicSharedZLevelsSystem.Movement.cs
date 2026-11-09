@@ -6,11 +6,19 @@
 using System.Numerics;
 using Content.Shared._Classic.ZLevels.Core.Components;
 using Content.Shared.Chasm;
+using Content.Shared.Doors;
+using Content.Shared.Doors.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Physics;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Classic.ZLevels.Core.EntitySystems;
 
@@ -18,12 +26,25 @@ public abstract partial class ClassicSharedZLevelsSystem
 {
     private TimeSpan _accumulatedTime = TimeSpan.Zero;
     private readonly List<EntityUid> _dirtyMovementBodies = new();
+    private readonly HashSet<EntityUid> _dirtyMovementBodySet = new();
+    private readonly HashSet<EntityUid> _movementBodyLookup = new();
+    private Dictionary<(MapId Map, Vector2i Chunk), Box2> _pendingMovementRefreshes = new();
+    private Dictionary<(MapId Map, Vector2i Chunk), Box2> _processingMovementRefreshes = new();
+
+    private const int MovementRefreshChunkSize = 8;
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+
+    [Dependency] private TagSystem _tag = default!;
 
     private void InitializeMovement()
     {
         SubscribeLocalEvent<ClassicZPhysicsComponent, ClassicZLevelMapMoveEvent>(OnZLevelMapMove);
         SubscribeLocalEvent<ClassicZPhysicsComponent, MoveEvent>(OnMoveEvent);
-        SubscribeLocalEvent<ClassicZMapComponent, TileChangedEvent>(OnTileChanged);
+        SubscribeLocalEvent<MapGridComponent, TileChangedEvent>(OnTileChanged);
+        SubscribeLocalEvent<FixturesComponent, AnchorStateChangedEvent>(OnBlockingAnchorChanged);
+        SubscribeLocalEvent<CollisionChangeEvent>(OnBlockingCollisionChanged);
+        SubscribeLocalEvent<CollisionLayerChangeEvent>(OnBlockingCollisionLayerChanged);
+        SubscribeLocalEvent<DoorStateChangedEvent>(OnBlockingDoorStateChanged);
     }
 
     /// <summary>
@@ -40,29 +61,190 @@ public abstract partial class ClassicSharedZLevelsSystem
         return target.Comp.LocalPosition - target.Comp.CachedGroundHeight;
     }
 
-    private void OnTileChanged(Entity<ClassicZMapComponent> ent, ref TileChangedEvent args)
+    protected virtual void OnTileChanged(Entity<MapGridComponent> ent, ref TileChangedEvent args)
     {
-        if (!TryComp<MapGridComponent>(args.Entity, out var grid))
+        if (_net.IsClient && !_clientSimulation)
             return;
 
+        var xform = Transform(ent);
+        if (xform.MapUid is not { } mapUid ||
+            !_zMapQuery.TryComp(mapUid, out var zMap) ||
+            args.Changes.Length == 0)
+        {
+            return;
+        }
+
+        MapId? aboveMapId = null;
+        if (TryMapUp((mapUid, zMap), out var mapAbove) && _mapQuery.TryComp(mapAbove.Owner, out var mapAboveComp))
+            aboveMapId = mapAboveComp.MapId;
+
+        var half = ent.Comp.TileSizeHalfVector;
         foreach (var change in args.Changes)
         {
-            var mapCoords = _map.GridTileToWorld(args.Entity, grid, change.GridIndices);
-            var half = grid.TileSizeHalfVector;
-            var min = mapCoords.Position - half;
-            var max = mapCoords.Position + half;
-            var aabb = new Box2(min, max);
+            // Ground height depends on the presence of a tile, not its material or variant.
+            // Wall/door collision changes are handled separately below.
+            if (change.OldTile.IsEmpty == change.NewTile.IsEmpty)
+                continue;
 
-            var entities = _lookup.GetEntitiesIntersecting(mapCoords.MapId, aabb, LookupFlags.Uncontained);
-            foreach (var uid in entities)
-            {
-                if (!ZPhysicsQuery.TryComp(uid, out var zComp))
-                    continue;
+            var center = _map.GridTileToWorld(ent.Owner, ent.Comp, change.GridIndices).Position;
+            var tileBounds = new Box2(center - half, center + half);
+            QueueMovementRefresh(xform.MapID, center, tileBounds);
 
-                RequestCacheMovement((uid, zComp));
-                RefreshBody((uid, zComp));
-            }
+            // This level is also the landing surface for bodies one Z-level above.
+            if (aboveMapId is { } above)
+                QueueMovementRefresh(above, center, tileBounds);
         }
+    }
+
+    private void OnBlockingAnchorChanged(Entity<FixturesComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        if (IsBlockingLandingLayer(ent.Owner, ent.Comp))
+            QueueMovementBodiesAbove(args.Transform);
+    }
+
+    private void OnBlockingCollisionChanged(ref CollisionChangeEvent args)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        if (!_fixturesQuery.TryComp(args.BodyUid, out var fixtures) ||
+            !IsBlockingLandingLayer(args.BodyUid, fixtures))
+        {
+            return;
+        }
+
+        var xform = Transform(args.BodyUid);
+        if (xform.Anchored)
+            QueueMovementBodiesAbove(xform);
+    }
+
+    private void OnBlockingCollisionLayerChanged(ref CollisionLayerChangeEvent args)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        // The old layer is not part of this event. Refreshing any anchored layer change handles
+        // both adding and removing a full-height blocking layer.
+        var xform = Transform(args.Body.Owner);
+        if (xform.Anchored)
+            QueueMovementBodiesAbove(xform);
+    }
+
+    private void OnBlockingDoorStateChanged(DoorStateChangedEvent args)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        // Doors normally toggle fixture hardness without changing their collision layer. Their
+        // explicit state event fills that gap so the cached landing surface follows open/closed.
+        if (!args.Door.IsValid())
+            return;
+
+        var xform = Transform(args.Door);
+        if (xform.Anchored)
+            QueueMovementBodiesAbove(xform);
+    }
+
+    private void QueueMovementBodiesAbove(TransformComponent blockerXform)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        if (blockerXform.GridUid is not { } gridUid ||
+            !_gridQuery.TryComp(gridUid, out var grid) ||
+            blockerXform.MapUid is not { } mapUid ||
+            !_zMapQuery.TryComp(mapUid, out var zMap) ||
+            !TryMapUp((mapUid, zMap), out var mapAbove) ||
+            !_mapQuery.TryComp(mapAbove.Owner, out var mapAboveComp))
+        {
+            return;
+        }
+
+        var tile = _map.TileIndicesFor(gridUid, grid, blockerXform.Coordinates);
+        var center = _map.GridTileToWorld(gridUid, grid, tile).Position;
+        var half = grid.TileSizeHalfVector;
+        var bounds = new Box2(center - half, center + half);
+        QueueMovementRefresh(mapAboveComp.MapId, center, bounds);
+    }
+
+    private void QueueMovementRefresh(MapId mapId, Vector2 center, Box2 bounds)
+    {
+        // Keep sparse edits local, and coalesce tile/fixture events from streamed chunks before
+        // querying the broadphase. One large union would also wake bodies between distant edits.
+        var chunk = new Vector2i(
+            (int) MathF.Floor(center.X / MovementRefreshChunkSize),
+            (int) MathF.Floor(center.Y / MovementRefreshChunkSize));
+        var key = (mapId, chunk);
+
+        if (_pendingMovementRefreshes.TryGetValue(key, out var existing))
+            _pendingMovementRefreshes[key] = existing.Union(bounds);
+        else
+            _pendingMovementRefreshes[key] = bounds;
+    }
+
+    private void FlushMovementBodyRefreshes()
+    {
+        if (_net.IsClient && !_clientSimulation)
+        {
+            _pendingMovementRefreshes.Clear();
+            _processingMovementRefreshes.Clear();
+            _dirtyMovementBodies.Clear();
+            _dirtyMovementBodySet.Clear();
+            return;
+        }
+
+        if (_pendingMovementRefreshes.Count == 0)
+            return;
+
+        (_pendingMovementRefreshes, _processingMovementRefreshes) =
+            (_processingMovementRefreshes, _pendingMovementRefreshes);
+
+        foreach (var ((mapId, _), bounds) in _processingMovementRefreshes)
+        {
+            // Anchor/collision events can be queued while a Z-network is being torn down.
+            // Never resolve a broadphase for a map that no longer exists on the next tick.
+            if (_map.MapExists(mapId))
+                RefreshMovementBodies(mapId, bounds);
+        }
+
+        _processingMovementRefreshes.Clear();
+    }
+
+    private void RefreshMovementBodies(MapId mapId, Box2 bounds)
+    {
+        _movementBodyLookup.Clear();
+        _lookup.GetEntitiesIntersecting(mapId, bounds, _movementBodyLookup, LookupFlags.Uncontained);
+
+        foreach (var uid in _movementBodyLookup)
+        {
+            if (!ZPhysicsQuery.HasComp(uid))
+                continue;
+
+            QueueDirtyMovement(uid);
+        }
+
+        _movementBodyLookup.Clear();
+    }
+
+    private bool IsBlockingLandingCell(EntityUid uid, FixturesComponent fixtures)
+    {
+        // Only full-tile walls and doors are ceilings for a falling body. Other anchored machines
+        // may use HighImpassable fixtures without occupying the whole vertical cell.
+        if (!_tag.HasTag(uid, WallTag) && !HasComp<DoorComponent>(uid))
+            return false;
+
+        return _physicsQuery.TryComp(uid, out var body) &&
+               body.CanCollide &&
+               IsBlockingLandingLayer(uid, fixtures);
+    }
+
+    private bool IsBlockingLandingLayer(EntityUid uid, FixturesComponent fixtures)
+    {
+        var (layer, _) = _physicsSystem.GetHardCollision(uid, fixtures);
+        return (layer & (int) CollisionGroup.HighImpassable) != 0;
     }
 
     private void RequestCacheMovement(Entity<ClassicZPhysicsComponent> entity, bool force = true)
@@ -77,12 +259,34 @@ public abstract partial class ClassicSharedZLevelsSystem
         entity.Comp.CachedStickyGround = sticky;
     }
 
-    private void OnMoveEvent(Entity<ClassicZPhysicsComponent> entity, ref MoveEvent args)
+    public void RefreshGroundAfterTeleport(Entity<ClassicZPhysicsComponent?> entity)
     {
-        if (_dirtyMovementBodies.Contains(entity))
+        if (!Resolve(entity, ref entity.Comp, false))
             return;
 
-        _dirtyMovementBodies.Add(entity);
+        if (_zMapQuery.TryComp(Transform(entity).MapUid, out var zLevel) &&
+            entity.Comp.CurrentZLevel != zLevel.Depth)
+        {
+            entity.Comp.CurrentZLevel = zLevel.Depth;
+            DirtyField(entity, entity.Comp, nameof(ClassicZPhysicsComponent.CurrentZLevel));
+        }
+
+        RequestCacheMovement((entity.Owner, entity.Comp));
+        RefreshBody((entity.Owner, entity.Comp));
+    }
+
+    private void OnMoveEvent(Entity<ClassicZPhysicsComponent> entity, ref MoveEvent args)
+    {
+        if (_net.IsClient && !_clientSimulation)
+            return;
+
+        QueueDirtyMovement(entity);
+    }
+
+    private void QueueDirtyMovement(EntityUid uid)
+    {
+        if (_dirtyMovementBodySet.Add(uid))
+            _dirtyMovementBodies.Add(uid);
     }
 
     private void OnZLevelMapMove(Entity<ClassicZPhysicsComponent> ent, ref ClassicZLevelMapMoveEvent args)
@@ -128,6 +332,21 @@ public abstract partial class ClassicSharedZLevelsSystem
                 continue;
 
             var gridTile = _map.WorldToTile(gridUid, grid, worldPos);
+
+            // A full-height collider on the level below behaves as a solid top surface. Crossing
+            // the map boundary would otherwise reparent a falling entity inside a wall or door.
+            if (floor > 0)
+            {
+                var blockers = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, gridTile);
+                while (blockers.MoveNext(out var blocker))
+                {
+                    if (_fixturesQuery.TryComp(blocker.Value, out var fixtures) &&
+                        IsBlockingLandingCell(blocker.Value, fixtures))
+                    {
+                        return 1f - floor;
+                    }
+                }
+            }
 
             //Check all types of ZHeight entities
             var query = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, gridTile);
@@ -337,6 +556,12 @@ public abstract partial class ClassicSharedZLevelsSystem
     [PublicAPI]
     public bool TryMove(EntityUid ent, int offset, Entity<ClassicZMapComponent?>? map = null)
     {
+        return TryMove(ent, offset, out _, map);
+    }
+
+    private bool TryMove(EntityUid ent, int offset, out bool blocked, Entity<ClassicZMapComponent?>? map = null)
+    {
+        blocked = false;
         map ??= Transform(ent).MapUid;
 
         if (map is null)
@@ -347,6 +572,16 @@ public abstract partial class ClassicSharedZLevelsSystem
 
         if (!_mapQuery.TryComp(targetMap, out var targetMapComp))
             return false;
+
+        var attempt = new ClassicZLevelMapMoveAttemptEvent(targetMap, offset);
+        RaiseLocalEvent(ent, ref attempt);
+        if (attempt.Cancelled)
+        {
+            blocked = attempt.Blocked;
+            if (blocked)
+                RaiseMapMoveBlocked(ent, offset);
+            return false;
+        }
 
         var worldRot = _transform.GetWorldRotation(ent);
 
@@ -362,6 +597,12 @@ public abstract partial class ClassicSharedZLevelsSystem
         return true;
     }
 
+    private void RaiseMapMoveBlocked(EntityUid uid, int offset)
+    {
+        var ev = new ClassicZLevelMapMoveBlockedEvent(offset);
+        RaiseLocalEvent(uid, ref ev);
+    }
+
     [PublicAPI]
     public bool TryMoveUp(EntityUid ent) => TryMove(ent, 1);
 
@@ -374,8 +615,15 @@ public abstract partial class ClassicSharedZLevelsSystem
     [PublicAPI]
     public bool TryMoveDownOrChasm(EntityUid ent)
     {
-        if (TryMoveDown(ent))
-            return true;
+        return TryMoveDownOrChasm(ent, out _);
+    }
+
+    private bool TryMoveDownOrChasm(EntityUid ent, out bool blocked)
+    {
+        blocked = false;
+        // A rejected transition is an obstruction, not the edge of the map network.
+        if (Transform(ent).MapUid is { } map && TryMapDown(map, out _))
+            return TryMove(ent, -1, out blocked);
 
         //welp, that default Chasm behavior. Not really good, but ok for now.
         if (HasComp<ChasmFallingComponent>(ent))
@@ -411,6 +659,7 @@ public abstract partial class ClassicSharedZLevelsSystem
         }
 
         _dirtyMovementBodies.Clear();
+        _dirtyMovementBodySet.Clear();
     }
 }
 
@@ -450,6 +699,7 @@ public struct ClassicZLevelMapMoveEvent(int offset, int level)
 [ByRefEvent]
 public struct ClassicZLevelFallMapEvent;
 
+
 /// <summary>
 ///Called upon the essence before attempting to fall into the abyss
 /// </summary>
@@ -476,11 +726,30 @@ public struct ClassicZLevelHitEvent(float impactPower)
 /// Is called every frame to calculate the current vertical velocity of the active zphysics entities.
 /// </summary>
 [ByRefEvent]
-public struct ClassicGetZVelocityEvent(Entity<ClassicZPhysicsComponent> target)
+public struct ClassicGetZVelocityEvent(Entity<ClassicZPhysicsComponent> target, float frameTime)
 {
+    /// <summary>A specialized controller has supplied the acceleration for this step.</summary>
+    public bool Handled;
     public Entity<ClassicZPhysicsComponent> Target = target;
+    public float FrameTime = frameTime;
     public float VelocityDelta = 0;
 }
+
+/// <summary>Allows movement into an obstructed destination to be rejected before map-move side effects run.</summary>
+[ByRefEvent]
+public struct ClassicZLevelMapMoveAttemptEvent(Entity<ClassicZMapComponent> destination, int offset)
+{
+    public Entity<ClassicZMapComponent> Destination = destination;
+    public int Offset = offset;
+    public bool Cancelled;
+
+    /// <summary>The transition was cancelled by a physical obstruction and should produce an impact.</summary>
+    public bool Blocked;
+}
+
+/// <summary>Raised when a floor, ceiling or destination fixture prevents a map transition.</summary>
+[ByRefEvent]
+public readonly record struct ClassicZLevelMapMoveBlockedEvent(int Offset);
 
 /// <summary>
 /// Called when UpdateGravityState is used to update the current strength of the active z-level gravity. Various systems can subscribe to this to disable gravity.

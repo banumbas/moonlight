@@ -16,8 +16,10 @@ namespace Content.Client.Outline;
 /// </summary>
 public sealed partial class TargetOutlineSystem : EntitySystem
 {
-    private static readonly ProtoId<ShaderPrototype> ShaderTargetValid = "SelectionOutlineInrange";
-    private static readonly ProtoId<ShaderPrototype> ShaderTargetInvalid = "SelectionOutline";
+    // Classic-Edit start - preserve distinct target outline colors
+    private static readonly ProtoId<ShaderPrototype> ShaderTargetValid = "TargetOutlineValid";
+    private static readonly ProtoId<ShaderPrototype> ShaderTargetInvalid = "TargetOutlineInvalid";
+    // Classic-Edit end
 
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IGameTiming _timing = default!;

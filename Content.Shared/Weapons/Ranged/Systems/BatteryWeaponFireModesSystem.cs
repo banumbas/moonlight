@@ -44,7 +44,23 @@ public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent); // Starlight-edit
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt); // Starlight-edit
         SubscribeLocalEvent<GunFireModeSoundsComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers); // Starlight-edit
+        SubscribeLocalEvent<BatteryWeaponFireModesComponent, MapInitEvent>(OnMapInit); // Classic-add
     }
+
+    // classic-start
+    private void OnMapInit(Entity<BatteryWeaponFireModesComponent> ent, ref MapInitEvent args)
+    {
+        if (ent.Comp.CurrentFireMode < 0 || ent.Comp.CurrentFireMode >= ent.Comp.FireModes.Count)
+            return;
+
+        var fireMode = ent.Comp.FireModes[ent.Comp.CurrentFireMode];
+        if (fireMode.Mode != null && TryComp<GunComponent>(ent, out var gunComp))
+        {
+            _gun.SetSelectedMode((ent, gunComp), fireMode.Mode.Value);
+            _gun.RefreshModifiers((ent, gunComp));
+        }
+    }
+    // classic-End
 
     private void OnExamined(Entity<BatteryWeaponFireModesComponent> ent, ref ExaminedEvent args)
     {
@@ -207,7 +223,13 @@ public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
 
         // Starlight-start: per-fire-mode gunshot sound override
         if (TryComp(ent, out GunComponent? gunComp))
+        {
+            // classic start
+            if (fireMode.Mode != null)
+                _gun.SetSelectedMode((ent, gunComp), fireMode.Mode.Value);
+            // classic end
             _gun.RefreshModifiers((ent, gunComp));
+        }
         // Starlight-end
     }
 

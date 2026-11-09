@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Content.Shared._NullLink;
 using Robust.Shared.Network;
@@ -40,6 +40,25 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         SendPlayerRoles(playerData.Session, playerData.Roles);
         return ValueTask.CompletedTask;
     }
+
+    // Classic start
+    public void LinkPlayerDiscord(NetUserId userId, ulong discordId, IEnumerable<ulong>? roles = null)
+    {
+        if (!_playerById.TryGetValue(userId, out var playerData))
+            return;
+
+        playerData.DiscordId = discordId;
+        if (roles != null)
+        {
+            playerData.Roles = [.. roles];
+            MentorCheck(userId, playerData);
+            AdminCheck(userId, playerData);
+        }
+
+        RebuildTitle(_playerManager.GetSessionById(userId), playerData);
+        SendPlayerRoles(playerData.Session, playerData.Roles);
+    }
+    // Classic end
 
     private void SendPlayerRoles(ICommonSession session, ImmutableHashSet<ulong> roles)
     => _netMgr.ServerSendMessage(new MsgUpdatePlayerRoles

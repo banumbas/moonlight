@@ -92,8 +92,8 @@
 #A bunch of this is taken straight from dirwindows and there is a chance that I may have fucked something up. Probably not though
   components:
   - type: Sprite
-    sprite: Structures/barricades.rsi
-    state: barricade_directional
+    sprite: _Classic/Structures/structures_tall.rsi # classic
+    state: woodenbarricade # classic
     noRot: false #Results in smoother rotation when turning the camera, the sprite's dirs are just it rotated anyways so there's no reason to not set this.
   - type: Construction
     graph: BarricadeDirectional

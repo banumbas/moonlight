@@ -1,10 +1,10 @@
-﻿species-name-abductor = Abductor
+species-name-abductor = Похититель
 species-name-avali = Авали
 species-name-cyclorite = Циклорит
 species-name-elf = Айелит
 species-name-felionoid = Фелионоид
-species-name-lagomorph = зайцеморф
-species-name-resomi = Ресоми
-species-name-shadekin = Шадекин
+species-name-lagomorph = Лагоморф
+species-name-resomi = Резоми
+species-name-shadekin = Шейдкин
 species-name-thaven = Тейвен
-species-name-rodentia = Грызуны
+species-name-rodentia = Родентия

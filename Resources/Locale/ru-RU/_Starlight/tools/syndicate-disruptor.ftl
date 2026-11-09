@@ -1,16 +1,16 @@
 # Popups
-syndicate-disruptor-no-charge = Это бесплатно!
-syndicate-disruptor-cooldown = Его нельзя использовать прямо сейчас!
+syndicate-disruptor-no-charge = Устройство разряжено!
+syndicate-disruptor-cooldown = Устройство перезаряжается!
 
 # Menu ftl
-syndicate-disruptor-gas-leak = Вызывает ошибку датчика газа, что приводит к утечке газа.
-syndicate-disruptor-bureaucratic-error = Создает ошибки в алгоритмах найма CentComm, из-за чего некоторые рабочие места переполняются или недоукомплектовываются.
-syndicate-disruptor-clerical-error = Создает ошибки в записях о занятости на станции, удаляя случайные записи экипажа.
-syndicate-disruptor-breaker-flip = Вызывает ошибки датчика мощности, вызывающие переключение случайных выключателей APC.
-syndicate-disruptor-ion-storm = Создает на станции ионную обратную связь, нарушая законы Кремния.
-syndicate-disruptor-comms-blackout = Вызывает кратковременное замыкание телекоммуникационных серверов.
-syndicate-disruptor-power-grid-check = Вызывает ложный скачок напряжения, запускающий проверку сети.
-syndicate-disruptor-door-lagging-virus = Создает вирус, который случайным образом открывает некоторые шлюзы.
-syndicate-disruptor-security-drill = Вызывает ошибки в записях службы безопасности станции, вызывая проверку безопасности.
-syndicate-disruptor-night-shift = Создает ложный триггер экономии энергии в электросети станции, запуская режим пониженного энергопотребления.
-syndicate-disruptor-syndie-evac = Вызывает эвакуационную капсулу Синдиката, чтобы ее забрали.
+syndicate-disruptor-gas-leak = Провоцирует ошибку газовых датчиков, вызывая утечку газов.
+syndicate-disruptor-bureaucratic-error = Вносит сбои в алгоритмы найма ЦентКома, переполняя или опустошая штатные расписания.
+syndicate-disruptor-clerical-error = Вносит ошибки в базу данных экипажа, удаляя случайные личные дела.
+syndicate-disruptor-breaker-flip = Имитирует перегрузку сети, отключая случайные автоматы питания ЛКП.
+syndicate-disruptor-ion-storm = Генерирует ионный импульс, искажая законы кремниевых форм жизни.
+syndicate-disruptor-comms-blackout = Вызывает короткое замыкание телекоммуникационных серверов колонии.
+syndicate-disruptor-power-grid-check = Провоцирует скачок напряжения, инициируя диагностику электросети.
+syndicate-disruptor-door-lagging-virus = Заражает шлюзы вирусом, периодически открывая их настежь.
+syndicate-disruptor-security-drill = Фальсифицирует директивы службы безопасности, запуская внеплановые учения.
+syndicate-disruptor-night-shift = Имитирует ночной режим энергосбережения, приглушая освещение колонии.
+syndicate-disruptor-syndie-evac = Запрашивает эвакуационный дроппод Синдиката для побега.

@@ -1,23 +1,23 @@
-reagent-name-abductor-blood = похититель крови
-reagent-desc-abductor-blood = Кровь высшего существа, стоящего выше законов и времени. Это в несколько раз опережает ваше понимание.
+reagent-name-abductor-blood = кровь похитителя
+reagent-desc-abductor-blood = Кровь представителя высокоразвитой цивилизации. Её сложная биоструктура находится за гранью понимания земной науки.
 
-reagent-name-avali-blood = разбавленная аммиаком кровь
-reagent-desc-avali-blood = Пахнет мочой.
+reagent-name-avali-blood = кровь авали
+reagent-desc-avali-blood = Насыщенная аммиаком кровь. Имеет характерный резкий запах.
 
-reagent-name-resomi-blood = разбавленная аммиаком кровь
-reagent-desc-resomi-blood = Пахнет мочой.
+reagent-name-resomi-blood = кровь резоми
+reagent-desc-resomi-blood = Насыщенная аммиаком кровь. Имеет резкий запах.
 
-reagent-name-dark-blood = темная кровь
-reagent-desc-dark-blood = Кровь существа Тьмы.
+reagent-name-dark-blood = тёмная кровь
+reagent-desc-dark-blood = Кровь порождения тьмы.
 
-reagent-name-cyclorite-blood = разбавленная азотная кислота крови
-reagent-desc-cyclorite-blood = Ощущается слегка кисловатым.
+reagent-name-cyclorite-blood = кровь циклорита
+reagent-desc-cyclorite-blood = Биологическая жидкость с кислой реакцией.
 
-reagent-name-amalgam = слияние крови
-reagent-desc-amalgam = Напоминает человеческую кровь, слизь, аммиак, азотную кислоту... Очень много, правда.
+reagent-name-amalgam = кровь амальгамы
+reagent-desc-amalgam = Невероятная смесь человеческой крови, слизи, аммиака и кислоты.
 
-reagent-name-mortucussus = мортукус
-reagent-desc-mortucussus = Не советовал бы есть. Может быть использован для синтеза амбузола.
+reagent-name-mortucussus = мортукуссин
+reagent-desc-mortucussus = Токсичный продукт трупного распада. Используется при синтезе амбузола.
 
-reagent-name-putrid-blood = гнилая кровь
-reagent-desc-putrid-blood = Не советовал бы есть. По запаху он содержит следы мортукусса.
+reagent-name-putrid-blood = гнилостная кровь
+reagent-desc-putrid-blood = Разложившаяся кровь, источающая запах трупного яда.

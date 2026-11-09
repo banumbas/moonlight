@@ -1,2 +1,2 @@
-coolingunit-on-examine = Он включен [color=darkgreen][/color] и работает.
-coolingunit-off-examine = Он отключен [color=darkred]off[/color].
+coolingunit-on-examine = Прибор [color=darkgreen]включён[/color] и исправно работает.
+coolingunit-off-examine = Прибор [color=darkred]выключен[/color].

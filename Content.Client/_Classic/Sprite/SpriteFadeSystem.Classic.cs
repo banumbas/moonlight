@@ -1,6 +1,7 @@
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 using Content.Client.Gameplay;
 using Content.Client.IconSmoothing;
+using Content.Shared._Classic.Sprite;
 using Content.Shared.IconSmoothing;
 using Content.Shared.Sprite;
 using Robust.Client.GameObjects;
@@ -11,8 +12,8 @@ namespace Content.Client.Sprite;
 
 public sealed partial class SpriteFadeSystem
 {
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private IconSmoothSystem _iconSmooth = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IconSmoothSystem _iconSmooth = default!;
 
     private const float ClassicFadeRadius = 2f;
 
@@ -20,10 +21,12 @@ public sealed partial class SpriteFadeSystem
     private readonly HashSet<ClassicFadingSpriteComponent> _classicFading = [];
 
     private EntityQuery<ClassicFadingSpriteComponent> _classicFadingQuery;
+    private EntityQuery<ClassicPerspectiveDepthComponent> _perspectiveDepthQuery;
 
     private void InitializeClassic()
     {
         _classicFadingQuery = GetEntityQuery<ClassicFadingSpriteComponent>();
+        _perspectiveDepthQuery = GetEntityQuery<ClassicPerspectiveDepthComponent>();
 
         SubscribeLocalEvent<ClassicFadingSpriteComponent, ComponentShutdown>(OnClassicFadingShutdown);
     }
@@ -33,22 +36,21 @@ public sealed partial class SpriteFadeSystem
         ref ComponentShutdown args)
     {
         if (MetaData(entity).EntityLifeStage >= EntityLifeStage.Terminating ||
-            !_spriteQuery.TryGetComponent(entity, out var sprite))
+            !_spriteQuery.TryComp(entity, out var sprite))
         {
             return;
         }
 
         foreach (var (layerIndex, originalAlpha) in entity.Comp.OriginalLayerAlphas)
         {
-            if (!_sprite.TryGetLayer((entity, sprite), layerIndex, out var layer, false))
+            if (!_sprite.TryGetLayer((entity.Owner, sprite), layerIndex, out var layer, false))
                 continue;
 
             _sprite.LayerSetColor(
-                (entity, sprite),
+                (entity.Owner, sprite),
                 layerIndex,
                 layer.Color.WithAlpha(originalAlpha));
         }
-
     }
 
     /// <summary>
@@ -63,7 +65,7 @@ public sealed partial class SpriteFadeSystem
         var player = _playerManager.LocalEntity;
         if (player == null ||
             !TryComp(player, out TransformComponent? playerXform) ||
-            !_spriteQuery.TryGetComponent(player, out var playerSprite))
+            !_spriteQuery.TryComp(player, out var playerSprite))
         {
             FadeOutClassic(change);
             return;
@@ -90,8 +92,8 @@ public sealed partial class SpriteFadeSystem
 
         foreach (var entity in _classicNearby)
         {
-            if (!_spriteQuery.TryGetComponent(entity, out var sprite) ||
-                sprite.DrawDepth < playerSprite.DrawDepth)
+            if (!_spriteQuery.TryComp(entity, out var sprite) ||
+                GetHighestDrawDepth(entity, sprite) < playerSprite.DrawDepth)
             {
                 continue;
             }
@@ -130,8 +132,8 @@ public sealed partial class SpriteFadeSystem
                 if (entity == player ||
                     !_fadeQuery.TryComp(entity, out var fade) ||
                     !IsClassicTopFade(entity, fade) ||
-                    !_spriteQuery.TryGetComponent(entity, out var sprite) ||
-                    sprite.DrawDepth < playerSprite.DrawDepth)
+                    !_spriteQuery.TryComp(entity, out var sprite) ||
+                    GetHighestDrawDepth(entity, sprite) < playerSprite.DrawDepth)
                 {
                     continue;
                 }
@@ -154,9 +156,9 @@ public sealed partial class SpriteFadeSystem
         float change)
     {
         if (!TryComp(entity, out IconSmoothComponent? smooth) ||
-            _iconSmooth.HasClassicNorthNeighbour((entity, smooth)) ||
+            _iconSmooth.HasClassicNorthNeighbour((entity.Owner, smooth)) ||
             !_iconSmooth.TryGetClassicUpperLayers(
-                (entity, sprite),
+                (entity.Owner, sprite),
                 out var northEast,
                 out var northWest))
         {
@@ -170,7 +172,7 @@ public sealed partial class SpriteFadeSystem
             return;
 
         fading.Alpha = Math.Max(fading.Alpha - change, TargetAlpha);
-        ApplyClassicAlpha((entity, sprite), fading, northEast, northWest);
+        ApplyClassicAlpha((entity.Owner, sprite), fading, northEast, northWest);
     }
 
     private void ApplyClassicAlpha(
@@ -242,12 +244,19 @@ public sealed partial class SpriteFadeSystem
                _transform.GetWorldRotation(entity).GetCardinalDir() == Direction.North;
     }
 
+    private int GetHighestDrawDepth(EntityUid entity, SpriteComponent sprite)
+    {
+        return _perspectiveDepthQuery.HasComp(entity)
+            ? Math.Max(sprite.DrawDepth, ClassicPerspectiveDepthComponent.OverlayDrawDepth)
+            : sprite.DrawDepth;
+    }
+
     private void FadeOutClassic(float change)
     {
         var query = AllEntityQuery<ClassicFadingSpriteComponent>();
         while (query.MoveNext(out var entity, out var fading))
         {
-            if (!_spriteQuery.TryGetComponent(entity, out var sprite) ||
+            if (!_spriteQuery.TryComp(entity, out var sprite) ||
                 !_iconSmooth.TryGetClassicUpperLayers(
                     (entity, sprite),
                     out var northEast,

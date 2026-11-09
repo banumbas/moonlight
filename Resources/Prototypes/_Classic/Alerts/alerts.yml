@@ -1,0 +1,29 @@
+- type: alert
+  id: ClassicZLevel
+  icons:
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_m5
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_m4
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_m3
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_m2
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_m1
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_0
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_1
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_2
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_3
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_4
+  - sprite: /Textures/_Classic/Interface/Alerts/zlevel.rsi
+    state: level_5
+  name: alerts-classic-zlevel-name
+  description: alerts-classic-zlevel-desc
+  minSeverity: -5
+  maxSeverity: 5

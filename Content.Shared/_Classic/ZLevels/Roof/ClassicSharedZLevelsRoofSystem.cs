@@ -31,18 +31,23 @@ public abstract partial class ClassicSharedZLevelsRoofSystem : EntitySystem
     [Dependency] protected EntityQuery<ClassicZMapComponent> ZMapQuery = default!;
     [Dependency] protected EntityQuery<TransformComponent> XformQuery = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    private readonly HashSet<Vector2i> _changedWorldTiles = new();
+    private readonly HashSet<Vector2i> _coveredWorldTiles = new();
+    private readonly HashSet<Vector2i> _opaqueOnLevel = new();
+    private readonly List<(Vector2i Index, bool Value)> _roofBatch = new();
 
+    /// <summary>
+    /// Roof state is server-authoritative and networked. Keeping tile propagation off the client
+    /// avoids repeating procedural chunk work when replicated tile batches arrive.
+    /// </summary>
+    protected void InitializeTilePropagation()
+    {
         SubscribeLocalEvent<ClassicZLevelRoofComponent, TileChangedEvent>(OnTileChanged);
     }
 
     private void OnTileChanged(Entity<ClassicZLevelRoofComponent> ent, ref TileChangedEvent args)
     {
         if (!GridQuery.TryComp(ent, out var currentMapGrid))
-            return;
-        if (!RoofQuery.TryComp(ent, out var currentRoof))
             return;
 
         if (args.Changes.Length == 0)
@@ -54,9 +59,9 @@ public abstract partial class ClassicSharedZLevelsRoofSystem : EntitySystem
         else if (XformQuery.TryGetComponent(ent, out var xform))
             mapUid = xform.MapUid;
 
-        if (mapUid is { } map && ZMapQuery.TryComp(map, out var zLevelMapComp))
-            OnMapTileChanged(map, ent.Owner, currentMapGrid, currentRoof, zLevelMapComp, args);
-        else
+        if (mapUid is { } map && ZMapQuery.HasComp(map))
+            OnMapTileChanged(map, ent.Owner, currentMapGrid, args);
+        else if (RoofQuery.TryComp(ent, out var currentRoof))
             OnGridTileChanged(ent, currentMapGrid, currentRoof, args);
     }
 
@@ -67,80 +72,62 @@ public abstract partial class ClassicSharedZLevelsRoofSystem : EntitySystem
         EntityUid mapUid,
         EntityUid currentGridUid,
         MapGridComponent currentMapGrid,
-        RoofComponent currentRoof,
-        ClassicZMapComponent zLevelMapComp,
         TileChangedEvent args)
     {
-        Dictionary<Vector2i, bool> roofMap = new();
+        if (!ZLevel.TryGetMapNetwork(mapUid, out var network))
+            return;
+
+        _changedWorldTiles.Clear();
         foreach (var change in args.Changes)
+            _changedWorldTiles.Add(ZLevel.GridTileToWorldTile(currentGridUid, currentMapGrid, change.GridIndices));
+
+        _coveredWorldTiles.Clear();
+
+        // Re-evaluate the affected columns from the actual top level downward. This both propagates
+        // removals and initializes a newly streamed lower tile from already-existing upper terrain.
+        var maps = network.Comp.SortedZLevels;
+        for (var mapIndex = maps.Count - 1; mapIndex >= 0; mapIndex--)
         {
-            var worldTile = ZLevel.GridTileToWorldTile(currentGridUid, currentMapGrid, change.GridIndices);
-            var newTileDef = (ContentTileDefinition)TilDefMan[change.NewTile.TypeId];
-            var covered = !change.NewTile.IsEmpty && !newTileDef.Transparent;
+            var levelMapUid = maps[mapIndex];
+            if (!TryComp<MapComponent>(levelMapUid, out var mapComponent))
+                continue;
 
-            // Preserve an explicitly managed roof on the current tile when the
-            // changed tile itself did not replace it with an open tile.
-            if (!covered)
-                covered = Roof.IsRooved((currentGridUid, currentMapGrid, currentRoof), change.GridIndices);
+            _opaqueOnLevel.Clear();
 
-            if (TryComp<MapComponent>(mapUid, out var mapComponent))
+            foreach (var grid in Map.GetAllGrids(mapComponent.MapId))
             {
-                foreach (var grid in Map.GetAllGrids(mapComponent.MapId))
+                // Only planetary/Z grids explicitly enrolled in roof propagation participate.
+                // Docked shuttles and unrelated moving grids must not leave stale roof columns
+                // behind when they move away.
+                if (!HasComp<ClassicZLevelRoofComponent>(grid.Owner))
+                    continue;
+
+                _roofBatch.Clear();
+                var roof = EnsureComp<RoofComponent>(grid.Owner);
+
+                foreach (var worldTile in _changedWorldTiles)
                 {
                     if (!TryWorldTileToLocalTile(grid.Owner, grid.Comp, worldTile, out var localTile))
                         continue;
 
-                    if (!Map.TryGetTileRef(grid.Owner, grid.Comp, localTile, out var tileRef) || tileRef.Tile.IsEmpty)
+                    var hasTile = Map.TryGetTileRef(grid.Owner, grid.Comp, localTile, out var tileRef) &&
+                        !tileRef.Tile.IsEmpty;
+
+                    // Clear stale bits for an unloaded/removed tile as part of the same batch.
+                    _roofBatch.Add((localTile, hasTile && _coveredWorldTiles.Contains(worldTile)));
+
+                    if (!hasTile)
                         continue;
 
-                    var tileDef = (ContentTileDefinition)TilDefMan[tileRef.Tile.TypeId];
+                    var tileDef = (ContentTileDefinition) TilDefMan[tileRef.Tile.TypeId];
                     if (!tileDef.Transparent)
-                    {
-                        covered = true;
-                        break;
-                    }
+                        _opaqueOnLevel.Add(worldTile);
                 }
+
+                Roof.SetRoofs((grid.Owner, grid.Comp, roof), _roofBatch);
             }
 
-            roofMap[worldTile] = covered;
-        }
-
-        var mapsBelow = ZLevel.GetAllMapsBelow((mapUid, zLevelMapComp));
-        if (mapsBelow.Count == 0)
-            return;
-
-        foreach (var mapBelow in mapsBelow)
-        {
-            if (!TryComp<MapComponent>(mapBelow, out var mapComponentBelow))
-                continue;
-
-            var ownSolidTiles = new HashSet<Vector2i>();
-
-            foreach (var (worldTile, rooved) in roofMap)
-            {
-                foreach (var gridBelow in Map.GetAllGrids(mapComponentBelow.MapId))
-                {
-                    if (!TryWorldTileToLocalTile(gridBelow.Owner, gridBelow.Comp, worldTile, out var localTile))
-                        continue;
-
-                    if (!Map.TryGetTileRef(gridBelow.Owner, gridBelow.Comp, localTile, out var tileRef) || tileRef.Tile.IsEmpty)
-                        continue;
-
-                    var roofBelow = EnsureComp<RoofComponent>(gridBelow.Owner);
-                    EnsureComp<ClassicZLevelRoofComponent>(gridBelow.Owner);
-                    Roof.SetRoof((gridBelow.Owner, gridBelow.Comp, roofBelow), localTile, rooved);
-
-                    var tileDef = (ContentTileDefinition)TilDefMan[tileRef.Tile.TypeId];
-                    if (!tileDef.Transparent)
-                        ownSolidTiles.Add(worldTile);
-                }
-            }
-
-            foreach (var worldTile in ownSolidTiles)
-            {
-                if (roofMap.ContainsKey(worldTile))
-                    roofMap[worldTile] = true;
-            }
+            _coveredWorldTiles.UnionWith(_opaqueOnLevel);
         }
     }
 

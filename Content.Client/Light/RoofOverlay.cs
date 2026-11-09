@@ -122,10 +122,17 @@ public sealed partial class RoofOverlay : Overlay
                     var tileEnumerator = _mapSystem.GetTilesEnumerator(grid.Owner, grid, bounds);
                     var roofEnt = (grid.Owner, grid.Comp, roof);
 
+                    // Classic: open planetary terrain otherwise performs a broadphase query for
+                    // every visible tile every frame, even when all roof entities are on another Z.
+                    // Include the full boundary tiles selected by the rotated viewport bounds.
+                    var localBounds = _xformSystem.GetInvWorldMatrix(grid.Owner)
+                        .TransformBox(bounds.CalcBoundingBox()).Enlarged(grid.Comp.TileSize);
+                    var checkEntities = _roof.HasRoofEntities(grid.Owner, localBounds);
+
                     // Due to stencilling we essentially draw on unrooved tiles
                     while (tileEnumerator.MoveNext(out var tileRef))
                     {
-                        var color = _roof.GetColor(roofEnt, tileRef.GridIndices);
+                        var color = _roof.GetColor(roofEnt, tileRef.GridIndices, checkEntities);
 
                         if (color == null)
                         {

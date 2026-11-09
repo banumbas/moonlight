@@ -1,22 +1,22 @@
 mentor-user-title = Сообщение наставника
 
-mentor-system-starmute-message-no-other-users = *Система: Никто не может получить ваше сообщение. Попробуйте проверить связь с администраторами игры в Discord.
+mentor-system-starmute-message-no-other-users = *Система: Никто не может получить ваше сообщение. Попробуйте связаться с администрацией игры через Discord.
 
 mentor-system-typing-indicator = {$players} {$count ->
-[one] is
-*[other] are
-} typing...
+    [one] печатает...
+    *[other] печатают...
+}
 
-mentor-play-sound = звук?
-mentor-send-ping = получить пинг на mhelps?
-mentor-close-ticket = закрыть билет
-mentor-tpto = "Тпто"
+mentor-play-sound = Звуковой сигнал
+mentor-send-ping = Пинг при новом сообщении
+mentor-close-ticket = Закрыть тикет
+mentor-tpto = Телепортироваться к
 
 mentor-title-none-selected = Ничего не выбрано
 
-mentor-system-rate-limited = Система: вы отправляете сообщения слишком быстро.
-mentor-system-ticket-created = Система: Запрос получен, новый тикет создан.
-mentor-system-ticket-closed = Система: Заявка решена и теперь закрыта.
-mentor-system-ticket-claimed = Система: Билет затребован {$name}.
-mentor-system-player-disconnecting = отключился.
-mentor-system-player-reconnecting = снова подключился.
+mentor-system-rate-limited = Система: вы отправляете сообщения слишком часто.
+mentor-system-ticket-created = Система: Запрос получен, создан тикет помощи.
+mentor-system-ticket-closed = Система: Тикет решён и закрыт.
+mentor-system-ticket-claimed = Система: Ментор {$name} принял ваш тикет.
+mentor-system-player-disconnecting = отключился от сервера.
+mentor-system-player-reconnecting = переподключился к серверу.

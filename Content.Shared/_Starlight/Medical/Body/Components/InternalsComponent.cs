@@ -24,5 +24,5 @@ public sealed partial class InternalsComponent : Component
     public TimeSpan Delay = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public ProtoId<AlertPrototype> InternalsAlert = "Internals";
+    public ProtoId<AlertPrototype>? InternalsAlert = null; // classic-edit
 }

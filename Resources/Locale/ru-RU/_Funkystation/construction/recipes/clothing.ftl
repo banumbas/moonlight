@@ -1,2 +1,2 @@
-clothing-metal-hydrogen-armor = металлическая водородная броня
-clothing-atmos-fire-suit = пожарный костюм атмос
+clothing-metal-hydrogen-armor = броня из металлического водорода
+clothing-atmos-fire-suit = огнеупорный костюм атмос-инженера

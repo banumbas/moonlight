@@ -42,15 +42,15 @@ command-description-grid-getplayers =
 command-description-grid-get =
     Получает сетку(и), на которой стоят игроки по конвейеру.
 command-description-grid-getstation =
-    Получает станцию(и), на которой стоят пересылаемые игроки, или станцию ​​самого объекта, если сетка подключена по конвейеру.
+    Получает колонию(и), на которой стоят пересылаемые игроки, или колонию ​​самого объекта, если сетка подключена по конвейеру.
 command-description-crewmanifest-addto =
-    Добавляет передаваемый объект в манифест экипажа указанной станции.
+    Добавляет передаваемый объект в манифест экипажа указанной колонии.
 command-description-crewmanifest-removefrom =
-    Удаляет передаваемый объект из манифеста экипажа указанной станции.
+    Удаляет передаваемый объект из манифеста экипажа указанной колонии.
 command-description-crewmanifest-addplayer =
-    Добавляет указанного игрока в манифест(ы) экипажа трубопроводной станции(й).
+    Добавляет указанного игрока в манифест(ы) экипажа трубопроводной колонии(й).
 command-description-crewmanifest-removeplayer =
-    Удаляет указанного игрока из манифеста(ов) экипажа трубопроводной станции(й).
+    Удаляет указанного игрока из манифеста(ов) экипажа трубопроводной колонии(й).
 command-description-storage-reshape =
     Изменяет форму хранилища на основе данных, полученных с помощью команды box2iconstructor.
 command-description-box2iconstructor-new =
@@ -194,23 +194,23 @@ command-description-npc-sethtn =
 command-description-npc-setenabled =
     Включите или отключите поведение HTN этого NPC.
 command-description-stationinit-begin =
-    Начните процесс инициализации новой промежуточной станции. Прикрепляет BecomesStationMidRoundComponent к сетке.
+    Начните процесс инициализации новой промежуточной колонии. Прикрепляет BecomesStationMidRoundComponent к сетке.
 command-description-stationinit-setid =
-    Установите идентификатор станции. Это сделано для предотвращения дублирования.
+    Установите идентификатор колонии. Это сделано для предотвращения дублирования.
 command-description-stationinit-clearbaseprotos =
-    Очистите список прототипов базовых станций.
+    Очистите список прототипов базовых колоний.
 command-description-stationinit-addbaseproto =
-    Добавьте прототип базовой станции для использования.
+    Добавьте прототип базовой колонии для использования.
 command-description-stationinit-rmbaseproto =
-    Удалить прототип базовой станции из использования.
+    Удалить прототип базовой колонии из использования.
 command-description-stationinit-setallowftl =
-    Установить, позволяющий любому человеку перемещаться на сверхсветовой скорости к карте, на которой находится эта станция.
+    Установить, позволяющий любому человеку перемещаться на сверхсветовой скорости к карте, на которой находится эта колония.
 command-description-stationinit-setuseemergencyshuttle =
     Установите создание аварийного шаттла для использования в конце раунда.
 command-description-stationinit-setusearmories =
-    Установите нерестовые арсеналы, которые можно отправить на станцию ​​с помощью команды арсенала.
+    Установите нерестовые арсеналы, которые можно отправить в колонию ​​с помощью команды арсенала.
 command-description-stationinit-setusearrivals =
-    Установить создание шаттла прибытия на эту станцию.
+    Установить создание шаттла прибытия в эту колонию.
 command-description-stationinit-setallowdungeonspawns =
     Набор, позволяющий создавать подземелья, такие как VGroid.
 command-description-stationinit-setallowcargo =
@@ -224,21 +224,21 @@ command-description-stationinit-rmallowedgridspawn =
 command-description-stationinit-setemergencyshuttlepath =
     Установите переопределение, которое будет использоваться для сетки аварийного челнока.
 command-description-stationinit-clearjobs =
-    Удалить все задания на этой станции.
+    Удалить все задания в этой колонии.
 command-description-stationinit-addjob =
-    Добавьте новую работу на эту станцию.
+    Добавьте новую работу в эту колонию.
 command-description-stationinit-rmjob =
-    Удалить задание с этой станции.
+    Удалить задание из этой колонии.
 command-description-stationinit-setallowevents =
-    Установите разрешение событий на эту станцию.
+    Установите разрешение событий в эту колонию.
 command-description-stationinit-setdovariationpass =
-    Установите, позволяющее запускать вариационный проход в начале раунда на вновь созданной станции.
+    Установите, позволяющее запускать вариационный проход в начале раунда в вновь созданной колонии.
 command-description-stationinit-namegrid =
-    Переименуйте целевую сетку. Имя сетки будет использоваться в качестве имени станции при инициализации.
+    Переименуйте целевую сетку. Имя сетки будет использоваться в качестве имени колонии при инициализации.
 command-description-stationinit-initialize =
-    Завершите настройку и инициализируйте станцию.
+    Завершите настройку и инициализируйте колонию.
 command-description-stationinit-initializeget =
-    Завершите настройку и инициализируйте станцию ​​и верните вновь созданный объект станции.
+    Завершите настройку и инициализируйте колонию ​​и верните вновь созданный объект колонии.
 command-description-aitakeover =
     Заставьте передаваемую по конвейеру сущность взять на себя управление целевым ядром ИИ.
 command-description-mobthreshold-initialize =

@@ -1,3 +1,3 @@
-nulllink-discord-link-title = Свяжите свой Discord
-nulllink-discord-link-text = Пожалуйста, свяжите свой Discord со своей учетной записью SS14. Вскоре может потребоваться сохранение вашего прогресса здесь и на серверах наших партнеров. Спасибо за понимание.
-nulllink-discord-link-button = Ссылка на Дискорд
+nulllink-discord-link-title = Привязка Discord
+nulllink-discord-link-text = Пожалуйста, привяжите ваш аккаунт Discord к учётной записи SS14. Это необходимо для доступа к серверу и синхронизации ролей. Спасибо за понимание!
+nulllink-discord-link-button = Привязать Discord

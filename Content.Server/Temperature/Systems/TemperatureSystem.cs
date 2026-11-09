@@ -8,6 +8,7 @@ using Content.Shared.Temperature;
 using Content.Shared.Projectiles;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Temperature.Systems;
+using Content.Shared._Starlight.Temperature.Components;
 
 namespace Content.Server.Temperature.Systems;
 
@@ -102,9 +103,20 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         var airHeatCapacity = _atmosphere.GetHeatCapacity(args.GasMixture, false);
         var heatCapacity = GetHeatCapacity(uid, temperature);
         // TODO ATMOS: This heat transfer formula is really really wrong, it needs to be pulled out. Pending on HeatContainers.
-        var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
-                                       (airHeatCapacity + heatCapacity));
-        ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
+        // Classic start large bodies (mobs) in open atmosphere experience ambient convective thermal exchange
+        //var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
+        //                               (airHeatCapacity + heatCapacity));
+        var transferRate = airHeatCapacity * heatCapacity / (airHeatCapacity + heatCapacity);
+
+        if (heatCapacity > airHeatCapacity)
+        {
+            transferRate = Math.Max(transferRate, heatCapacity * 0.25f);
+        }
+
+        var heat = temperatureDelta * transferRate * temperature.AtmosTemperatureTransferEfficiency;
+        ChangeHeat(uid, heat, temperature: temperature);
+        //ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
+        // classic-end
     }
 
     private void OnInit(Entity<InternalTemperatureComponent> entity, ref MapInitEvent args)

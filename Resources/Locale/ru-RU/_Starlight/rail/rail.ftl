@@ -11,29 +11,29 @@ railroading-chat-delivery-message-1 = Таинственная посылка п
 railroading-chat-delivery-wrapped-message-1 = [bold]Таинственная посылка прибыла специально для вас[/bold]!
 
 railroading-chat-delivery-message-2 = Поздравляем! Вы только что получили сюрприз.
-railroading-chat-delivery-wrapped-message-2 = [жирный]Поздравляем! Вы только что получили сюрприз[/bold].
+railroading-chat-delivery-wrapped-message-2 = [bold]Поздравляем! Вы только что получили сюрприз[/bold].
 
 railroading-chat-delivery-message-3 = Срочная доставка! Ты кому-то там нравишься.
-railroading-chat-delivery-wrapped-message-3 = [жирный]Специальная доставка! Ты кому-то нравишься[/bold].
+railroading-chat-delivery-wrapped-message-3 = [bold]Специальная доставка! Ты кому-то нравишься[/bold].
 
 railroading-chat-delivery-message-4 = Слышишь стук в дверь... Ваша посылка здесь!
 railroading-chat-delivery-wrapped-message-4 = [bold]Вы слышите стук в дверь... Ваша посылка здесь[/bold]!
 
 railroading-chat-delivery-message-5 = Доставка прибывает! Это твой счастливый день.
-railroading-chat-delivery-wrapped-message-5 = [жирный]Доставка входящая! Это твой счастливый день[/bold].
+railroading-chat-delivery-wrapped-message-5 = [bold]Доставка входящая! Это твой счастливый день[/bold].
 
 railroading-chat-delivery-message-6 = Сюрприз! Почтальон принес вам что-то особенное.
-railroading-chat-delivery-wrapped-message-6 = [жирный]Сюрприз! Почтальон принес вам что-то особенное[/bold].
+railroading-chat-delivery-wrapped-message-6 = [bold]Сюрприз! Почтальон принес вам что-то особенное[/bold].
 
 railroading-chat-delivery-message-7 = Повезло тебе! Посылка только что попала вам в руки.
-railroading-chat-delivery-wrapped-message-7 = [жирный] Повезло тебе! Посылка только что попала вам в руки[/bold].
+railroading-chat-delivery-wrapped-message-7 = [bold] Повезло тебе! Посылка только что попала вам в руки[/bold].
 
 rail-consume-task = Ешьте {INDEFINITE($Target)} {$Target}
 
 rail-open-delivery-task = Откройте {$Amount} фрагменты почты.
 
 rr-apple-pie = Яблочный пирог
-rr-apple-pie-desc = Ходят слухи, что на этой станции лучшие яблочные пироги в галактике. Это определенно стоит проверить.
+rr-apple-pie-desc = Ходят слухи, что в этой колонии лучшие яблочные пироги в галактике. Это определенно стоит проверить.
 
 rr-dumplings = Пельмени
 rr-dumplings-desc = Вы можете себе представить? Пьероги. С мясом. Я до сих пор не знал, что мне это нужно.
@@ -47,7 +47,7 @@ rr-herb-salad-desc = Иногда ваш организм намекает, чт
 rr-melon-fruit-bowl = Ваза с дыней и фруктами
 rr-melon-fruit-bowl-desc = На космодроме это блюдо назвали «Фруктоза-мама». Я никогда не осмеливалась спросить почему, но мне всегда хотелось попробовать.
 
-rr-stew = Тушить
+rr-stew = Рагу
 rr-stew-desc = Космос придает многим обычным вещам экзотику. Только постарайтесь не думать о том, как его готовили в микроволновке.
 
 # Metabolize
@@ -75,7 +75,7 @@ rr-beer-desc = Ах, универсальный растворитель пло�
 rr-bluecuracao = Блю Кюрасао
 rr-bluecuracao-desc = Он синий. Как океан. Или плохое настроение. Но это на вкус как отпуск. Странное волшебство во флаконе.
 
-rr-cognac = коньяк
+rr-cognac = Коньяк
 rr-cognac-desc = Его еще называют «утонченным», если я пью его в толстовке? Прошу друга.
 
 rr-deadrum = Мертвый ром
@@ -98,7 +98,7 @@ rr-poisonwine-desc = Вкус убийственный. Буквально.
 rr-rum = Ром
 rr-rum-desc = Для пиратов, поэтов и людей, которые путают эти два понятия.
 
-rr-sake = Ради
+rr-sake = Саке
 rr-sake-desc = Ясный, теплый и вежливо опасный.
 
 rr-tequila = Текила
@@ -116,7 +116,7 @@ rr-whiskey-desc = Жидкая смелость с намеком на неве�
 rr-wine = Вино
 rr-wine-desc = Потому что иногда винограду просто нужна более сильная цель.
 
-rr-champagne = шампанское
+rr-champagne = Шампанское
 rr-champagne-desc = Это не праздник, пока это не всплывает, верно?
 
 rr-acidspit = Кислотный плевок
@@ -134,7 +134,7 @@ rr-amasec-desc = Имперский стандарт «Я все еще могу
 rr-andalusia = Андалусия
 rr-andalusia-desc = На вкус как солнечный свет, оливки и непримиримый сон.
 
-rr-antifreeze = антифриз
+rr-antifreeze = Антифриз
 rr-antifreeze-desc = Защищаю мою печень от зимы.
 
 rr-atomicbomb = Атомная бомба
@@ -206,7 +206,7 @@ rr-electricshark-desc = Яркий, энергичный и кусается в 
 rr-erikasurprise = Эрика Сюрприз
 rr-erikasurprise-desc = Сюрприз! Наверное, это алкоголь.
 
-rr-gargleblaster = Пангалактический полоскательный аппарат
+rr-gargleblaster = Пангалактический грызлодёр
 rr-gargleblaster-desc = Как будто меня ударили по голове лимоном, обернутым вокруг кирпича и погруженным в космос.
 
 rr-ginfizz = Джин Физз
@@ -263,7 +263,7 @@ rr-manlydorf-desc = Короткий, сильный, и его нельзя н�
 rr-margarita = Маргарита
 rr-margarita-desc = Соль, известь и лето в жидком виде.
 
-rr-martini = мартини
+rr-martini = Мартини
 rr-martini-desc = Прохладная элегантность подается в треугольном стакане.
 
 rr-mead = Медовуха
@@ -278,10 +278,10 @@ rr-monkeybusiness-desc = Банан, озорство и сомнительны�
 rr-moonshine = Самогон
 rr-moonshine-desc = Домашняя молния в банке.
 
-rr-neurotoxin = нейротоксин
+rr-neurotoxin = Нейротоксин
 rr-neurotoxin-desc = Когда вы хотите, чтобы ваш напиток дал отпор.
 
-rr-painkiller = обезболивающее
+rr-painkiller = Пейнкиллер
 rr-painkiller-desc = Кокос, ром и блаженное отрицание.
 
 rr-patron = Покровитель
@@ -359,13 +359,13 @@ rr-xenobasher-desc = Обладает большей мощностью, чем 
 rr-irishbool = Ирландский бул
 rr-irishbool-desc = Энергия, сливки и хаос в одном стакане.
 
-rr-budgetinsulsdrink = Бюджетные острова
+rr-budgetinsulsdrink = Бюджетные диэлектрики
 rr-budgetinsulsdrink-desc = Дешево на вкус, работает быстро.
 
 rr-watermelonwakeup = Арбузное пробуждение
 rr-watermelonwakeup-desc = Сладкий, сочный и пугающе эффективный в 3 часа ночи.
 
-rr-rubberneck = Резиновый воротник
+rr-rubberneck = Зевака (Раббернек)
 rr-rubberneck-desc = Вы остановитесь и посмотрите… но, вероятно, не стоит.
 
 rr-bluehawaiian = Синий Гавайский
@@ -380,7 +380,7 @@ rr-moscowmule-desc = Покрытая мхом корова — мул? Что? 
 rr-mimeosa = Мимеоза
 rr-mimeosa-desc = Тихий, сверкающий и подозрительно хороший.
 
-rr-mimosa = мимоза
+rr-mimosa = Мимоза
 rr-mimosa-desc = Завтрак? Бранч? Кого волнует — это игристое.
 
 rr-mayojito = Майохито
@@ -442,8 +442,8 @@ rr-brighteye-lights-desc = В этом месте много огней... Мы 
 rr-brighteye-backup = Резервное копирование
 rr-brighteye-backup-desc = Нам понадобится помощь для нашего следующего шага...
 
-rr-brighteye-darkstation = Темная станция
-rr-brighteye-darkstation-desc = Пусть тьма поглотит станцию ​​и всех светоходов вместе с ней.
+rr-brighteye-darkstation = Темная колония
+rr-brighteye-darkstation-desc = Пусть тьма поглотит колонию ​​и всех светоходов вместе с ней.
 
 rr-brighteye-steal-secureknowledge = Не слышу зла
 rr-brighteye-steal-secureknowledge-desc = Это угроза... Мы должны удалить эту информацию из рук светоходов.

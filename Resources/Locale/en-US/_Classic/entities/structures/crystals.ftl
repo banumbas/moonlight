@@ -37,10 +37,12 @@ ent-ClassicCrystalQuartzGoldMedium = Medium Gold crystal
     .desc = A medium, glowing crystal formation.
 ent-ClassicCrystalQuartzGoldSmall = Small Gold crystal
     .desc = A small, glowing crystal formation.
-
-
 ent-ClassicCrystalIceBase = ice crystal
     .desc = A freezing cold crystal of pure ice.
 ent-ClassicCrystalIceBig = big ice crystal
 ent-ClassicCrystalIceMedium = medium ice crystal
 ent-ClassicCrystalIceSmall = small ice crystal
+ent-ClassicCrystalSpawner = crystal spawner
+    .desc = { ent-MarkerBase.desc }
+ent-ClassicCrystalIceSpawner = ice crystal spawner
+    .desc = { ent-MarkerBase.desc }

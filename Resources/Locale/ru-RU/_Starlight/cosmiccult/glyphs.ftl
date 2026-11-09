@@ -1,25 +1,25 @@
-cult-glyph-target-dead = Влияние глифа не оказывает никакого влияния на умершего.
-cult-glyph-not-enough-cultists = Недостаточно культистов, чтобы вызвать символ!
-cult-glyph-conditions-not-met = В радиусе действия глифа нет подходящих целей!
-cult-glyph-too-many-targets = На глифе слишком много целей!
-cult-glyph-target-mindshield = Ментальный щит предотвращает распространение влияния глифа!
-cult-glyph-target-chaplain = Искра божественной силы не дает распространиться влиянию глифа!
-cult-glyph-target-brighteye = Энергия нулевого пространства предотвращает распространение влияния глифа!
-cult-glyph-target-wizard = Психическое безумие мешает влиянию глифа укрепиться!
-cult-glyph-target-otherantag = Разум цели слишком извращен, чтобы эффект глифа смог удержаться.
-cult-glyph-target-devil = Холодная банальность не дает распространиться влиянию глифа!
+cult-glyph-target-dead = Влияние глифа не действует на мёртвых.
+cult-glyph-not-enough-cultists = Недостаточно культистов для активации глифа!
+cult-glyph-conditions-not-met = В области действия глифа нет подходящих целей!
+cult-glyph-too-many-targets = На глифе находится слишком много целей!
+cult-glyph-target-mindshield = Имплант защиты разума («Mindshield») блокирует воздействие глифа!
+cult-glyph-target-chaplain = Божественная благодать священника рассеивает влияние глифа!
+cult-glyph-target-brighteye = Энергия нулевого пространства препятствует воздействию глифа!
+cult-glyph-target-wizard = Хаотическая магия волшебника мешает глифу закрепиться в разуме!
+cult-glyph-target-otherantag = Разум этой цели слишком извращён сторонними силами.
+cult-glyph-target-devil = Адская сущность дьявола невосприимчива к космическому глифу!
 
-cult-glyph-name-knowledge = Пакт знаний
-cult-glyph-description-knowledge = Знание. Вселяет искру неизгладимых знаний. Способны обратить большинство людей в наши ряды.
-cult-glyph-name-projection = Пакт проекции
-cult-glyph-description-projection = Проекция. Позволяет нам подняться во временной астральной форме, чтобы шпионить за окружающими.
+cult-glyph-name-knowledge = Глиф Знания
+cult-glyph-description-knowledge = Вселяет искру неизгладимых знаний. Позволяет обратить большинство смертных в культ.
+cult-glyph-name-projection = Глиф Проекции
+cult-glyph-description-projection = Позволяет вознестись во временной астральной форме для разведки.
 
-cult-glyph-name-warding = Сообщество охраны
-cult-glyph-description-warding = Защита. Превращает устойчивую к давлению одежду в энтропийную одежду.
-cult-glyph-name-blades = Сообщество Клинков
-cult-glyph-description-blades = Лезвия. Трансмутирует и превращает острые предметы в более смертоносное оружие.
+cult-glyph-name-warding = Глиф Ограждения
+cult-glyph-description-warding = Преобразует скафандры и гермокостюмы в энтропийные облачения культа.
+cult-glyph-name-blades = Глиф Клинков
+cult-glyph-description-blades = Трансмутирует острые предметы в смертоносные культовые клинки.
 
-cult-glyph-name-cessation = Соглашение о прекращении
-cult-glyph-description-cessation = Прекращение. Превращает портативный очиститель атмосферы в Пустотный шпиль для нашего использования.
-cult-glyph-name-truth = Согласие Истины
-cult-glyph-description-truth = Правда. Внушает чистую, неизгладимую истину. Способны обратить в наши ряды абсолютно любого человека.
+cult-glyph-name-cessation = Глиф Угасания
+cult-glyph-description-cessation = Превращает очиститель атмосферы в Пустотный шпиль для сбора энтропии.
+cult-glyph-name-truth = Глиф Истины
+cult-glyph-description-truth = Внушает чистую, непреложную истину бытия. Способен обратить в веру абсолютно любого смертного.

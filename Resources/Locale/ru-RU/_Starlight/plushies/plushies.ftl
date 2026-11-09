@@ -1,2 +1,2 @@
-plushie-voicebox-activate = Активировать голосовой ящик
-plushie-voicebox-deactivate = Деактивировать голосовой ящик
+plushie-voicebox-activate = Включить голосовой модуль
+plushie-voicebox-deactivate = Выключить голосовой модуль

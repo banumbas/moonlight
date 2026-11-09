@@ -5,6 +5,7 @@
   components:
   - type: Action
     checkCanInteract: false
+    useDelay: 0.5
     icon:
       sprite: _Classic/Actions/misc.rsi
       state: up
@@ -18,6 +19,7 @@
   components:
   - type: Action
     checkCanInteract: false
+    useDelay: 0.5
     icon:
       sprite: _Classic/Actions/misc.rsi
       state: down
@@ -32,6 +34,7 @@
   components:
   - type: Action
     checkCanInteract: false
+    useDelay: 0.5
     icon:
       sprite: _Classic/Actions/misc.rsi
       state: eye_down
@@ -56,4 +59,3 @@
 #    popup: CE-respawn-action-popup
 #  - type: InstantAction
 #    event: !type:CERespawnAction
-

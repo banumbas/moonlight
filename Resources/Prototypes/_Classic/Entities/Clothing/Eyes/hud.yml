@@ -7,6 +7,9 @@
     state: icon
   - type: Clothing
     sprite: _Classic/Clothing/Eyes/Hud/pmchud.rsi
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: EyeProtection
   - type: ShowHealthBars
     damageContainers:
     - Biological

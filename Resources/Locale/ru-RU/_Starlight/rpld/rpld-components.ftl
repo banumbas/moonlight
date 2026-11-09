@@ -1,3 +1,3 @@
-rpld-component-ducts = Сантехнические каналы
-rpld-component-supply = Сантехнические поставки
-rpld-component-production = Сантехническое производство
+rpld-component-ducts = Проточные химические каналы
+rpld-component-supply = Подача реагентов
+rpld-component-production = Проточное производство

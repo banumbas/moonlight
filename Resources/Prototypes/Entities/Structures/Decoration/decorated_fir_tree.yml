@@ -21,6 +21,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood
+  - type: VehicleSmashable # Classic-Edit
+    damageOnHit: 1000
+    deleteOnHit: false
+    slowdownMultiplier: 0.9
+    slowdownDuration: 0.2
   - type: Destructible
     thresholds:
       - trigger:
@@ -29,6 +34,13 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+          # classic-start
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              Log:
+                min: 2
+                max: 8
+          # classic-end
       - trigger:
           !type:DamageTrigger
           damage: 75

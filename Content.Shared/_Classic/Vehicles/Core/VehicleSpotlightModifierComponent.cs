@@ -1,0 +1,24 @@
+using Content.Shared._Classic.Vehicles;
+namespace Content.Shared._Classic.Vehicles;
+
+[RegisterComponent]
+public sealed partial class VehicleSpotlightModifierComponent : Component
+{
+    [DataField]
+    public float RadiusMultiplier = 1f;
+
+    [DataField]
+    public float RadiusAdd = 0f;
+
+    [DataField]
+    public float EnergyMultiplier = 1f;
+
+    [DataField]
+    public float EnergyAdd = 0f;
+
+    [DataField]
+    public float SoftnessMultiplier = 1f;
+
+    [DataField]
+    public float SoftnessAdd = 0f;
+}

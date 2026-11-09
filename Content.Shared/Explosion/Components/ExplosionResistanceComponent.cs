@@ -14,7 +14,7 @@ namespace Content.Shared.Explosion.Components;
 ///     significantly reduce the damage, but shouldn't be silly overpowered in regular combat.
 /// </remarks>
 [NetworkedComponent, RegisterComponent]
-[Access(typeof(SharedExplosionSystem))]
+[Access(typeof(SharedExplosionSystem), typeof(Content.Shared._Classic.Vehicles.HardpointSystem))] // Classic-Edit: Allow HardpointSystem access
 public sealed partial class ExplosionResistanceComponent : Component
 {
     /// <summary>

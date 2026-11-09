@@ -4,6 +4,7 @@
  */
 
 using Content.Shared._Classic.ZLevels.Core.Components;
+using Content.Shared.Chasm;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Components;
 
@@ -11,6 +12,8 @@ namespace Content.Shared._Classic.ZLevels.Core.EntitySystems;
 
 public abstract partial class ClassicSharedZLevelsSystem
 {
+    [Dependency] private EntityQuery<MetaDataComponent> _zBodyMetaQuery = default!;
+
     public int UpdateCalls { get; private set; }
 
     public override void Update(float frameTime)
@@ -18,6 +21,7 @@ public abstract partial class ClassicSharedZLevelsSystem
         base.Update(frameTime);
 
         UpdateCalls = 0;
+        FlushMovementBodyRefreshes();
 
         if (_net.IsClient && !_clientSimulation)
             return;
@@ -38,23 +42,32 @@ public abstract partial class ClassicSharedZLevelsSystem
     {
         UpdateDirtyMovement();
 
-        for (var i = _activeBodies.Count - 1; i >= 0; i--)
+        // Landing, damage and map transitions may wake/sleep other bodies during this loop.
+        // A reused snapshot keeps iteration stable while membership changes remain O(1).
+        _activeBodySnapshot.Clear();
+        _activeBodySnapshot.AddRange(_activeBodies);
+        for (var i = _activeBodySnapshot.Count - 1; i >= 0; i--)
         {
-            var uid = _activeBodies[i];
+            var uid = _activeBodySnapshot[i];
+            if (!_activeBodies.Contains(uid))
+                continue;
 
             if (!ZPhysicsQuery.TryComp(uid, out var zPhysicsComponent) ||
                 !_transformQuery.TryComp(uid, out var xform) ||
                 !_physicsQuery.TryComp(uid, out var physics))
             {
-                _activeBodies.RemoveAt(i);
+                _activeBodies.Remove(uid);
                 continue;
             }
 
             if (!_zMapQuery.HasComp(xform.MapUid))
             {
-                _activeBodies.RemoveAt(i);
+                _activeBodies.Remove(uid);
                 continue;
             }
+
+            if (_zBodyMetaQuery.GetComponent(uid).EntityPaused)
+                continue;
 
             ProcessZPhysics((uid, zPhysicsComponent, physics), frameTime);
         }
@@ -77,7 +90,7 @@ public abstract partial class ClassicSharedZLevelsSystem
 
         if (zPhysicsComponent.VelocityRaiseEvent)
         {
-            var velocityEvent = new ClassicGetZVelocityEvent((entity, zPhysicsComponent));
+            var velocityEvent = new ClassicGetZVelocityEvent((entity, zPhysicsComponent), frameTime);
             RaiseLocalEvent(entity, ref velocityEvent);
 
             zPhysicsComponent.Velocity += velocityEvent.VelocityDelta * frameTime;
@@ -96,14 +109,7 @@ public abstract partial class ClassicSharedZLevelsSystem
         {
             if (distanceToGround <= 0.05f)
             {
-                if (float.Abs(zPhysicsComponent.Velocity) >= ImpactVelocityLimit)
-                {
-                    var hitEv = new ClassicZLevelHitEvent(-zPhysicsComponent.Velocity);
-                    RaiseLocalEvent(entity, ref hitEv);
-
-                    var land = new LandEvent(null, true);
-                    RaiseLocalEvent(entity, ref land);
-                }
+                RaiseImpact(entity, zPhysicsComponent.Velocity);
 
                 if (float.Abs(zPhysicsComponent.Velocity) < zPhysicsComponent.SleepThreshold)
                 {
@@ -114,12 +120,15 @@ public abstract partial class ClassicSharedZLevelsSystem
                 {
                     zPhysicsComponent.Velocity = -zPhysicsComponent.Velocity * zPhysicsComponent.Bounciness;
                 }
+
+                // Resolve floor penetration before attempting a transition to the map below.
+                zPhysicsComponent.LocalPosition = MathF.Max(zPhysicsComponent.LocalPosition, zPhysicsComponent.CachedGroundHeight);
             }
         }
 
         if (zPhysicsComponent.LocalPosition < 0)
         {
-            if (TryMoveDownOrChasm(entity))
+            if (TryMoveDownOrChasm(entity, out var blocked))
             {
                 zPhysicsComponent.LocalPosition += 1;
                 if (zPhysicsComponent is { CachedStickyGround: false, Fallable: true })
@@ -128,27 +137,45 @@ public abstract partial class ClassicSharedZLevelsSystem
                     RaiseLocalEvent(entity, ref fallEv);
                 }
             }
+            else if (blocked || !HasComp<ChasmFallingComponent>(entity))
+            {
+                // A cancelled chasm attempt keeps the body at the network boundary.
+                zPhysicsComponent.LocalPosition = 0f;
+                var impactVelocity = zPhysicsComponent.Velocity;
+                if (blocked)
+                    RaiseImpact(entity, impactVelocity);
+                zPhysicsComponent.Velocity = blocked ? -impactVelocity * zPhysicsComponent.Bounciness : 0f;
+            }
         }
 
         if (zPhysicsComponent.LocalPosition >= 1)
         {
             if (HasTileAbove(entity))
             {
-                if (float.Abs(zPhysicsComponent.Velocity) >= ImpactVelocityLimit)
-                {
-                    var hitEv = new ClassicZLevelHitEvent(zPhysicsComponent.Velocity);
-                    RaiseLocalEvent(entity, ref hitEv);
-
-                    var land = new LandEvent(null, true);
-                    RaiseLocalEvent(entity, ref land);
-                }
+                RaiseImpact(entity, zPhysicsComponent.Velocity);
                 zPhysicsComponent.LocalPosition = 1;
                 zPhysicsComponent.Velocity = -zPhysicsComponent.Velocity * zPhysicsComponent.Bounciness;
+                RaiseMapMoveBlocked(entity, 1);
             }
             else
             {
-                if (TryMoveUp(entity))
+                if (TryMove(entity, 1, out var blocked))
+                {
                     zPhysicsComponent.LocalPosition -= 1;
+                }
+                else if (blocked)
+                {
+                    var impactVelocity = zPhysicsComponent.Velocity;
+                    RaiseImpact(entity, impactVelocity);
+                    zPhysicsComponent.LocalPosition = 1f;
+                    zPhysicsComponent.Velocity = -impactVelocity * zPhysicsComponent.Bounciness;
+                }
+                else
+                {
+                    // There is no map above the network: do not integrate beyond its upper edge.
+                    zPhysicsComponent.LocalPosition = 1f;
+                    zPhysicsComponent.Velocity = 0f;
+                }
             }
         }
 
@@ -178,6 +205,17 @@ public abstract partial class ClassicSharedZLevelsSystem
         }
 
         SleepUpdate((entity, entity.Comp1), frameTime);
+    }
+
+    private void RaiseImpact(EntityUid uid, float velocity)
+    {
+        if (float.Abs(velocity) < ImpactVelocityLimit)
+            return;
+
+        var hit = new ClassicZLevelHitEvent(float.Abs(velocity));
+        RaiseLocalEvent(uid, ref hit);
+        var land = new LandEvent(null, true);
+        RaiseLocalEvent(uid, ref land);
     }
 
     private void SleepUpdate(Entity<ClassicZPhysicsComponent> entity, float frameTime)

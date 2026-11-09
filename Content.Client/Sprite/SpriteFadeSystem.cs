@@ -96,7 +96,7 @@ public sealed partial class SpriteFadeSystem : EntitySystem
                         !_fadeQuery.TryComp(ent, out var fade) ||
                         !CanUseRegularFade(ent, fade) ||
                         !_spriteQuery.TryGetComponent(ent, out var sprite) ||
-                        sprite.DrawDepth < playerSprite.DrawDepth)
+                        GetHighestDrawDepth(ent, sprite) < playerSprite.DrawDepth)
                     // Classic-End
                     {
                         continue;

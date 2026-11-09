@@ -1,0 +1,140 @@
+- type: entity
+  abstract: true
+  parent: CrateGenericSteel
+  id: CrateVehicleAmmoBase
+  categories: [ Vehicle ]
+  suffix: Vehicle, Ammo
+  components:
+  - type: Tag
+    tags:
+    - Vehicle
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoLTBCannon
+  name: LTB cannon magazines crate (x6)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxLTBCannon
+      amount: 6
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoLTAAAP
+  name: LTAA-AP minigun magazines crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxLTAA
+      amount: 3
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoAceAutocannon
+  name: AC3-E autocannon magazines crate (x5)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxAceAutocannon
+      amount: 5
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoDragonFlamer
+  name: DRG-N offensive flamer unit fuel tanks crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxDragonFlameTank
+      amount: 3
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoBoyarsDualCannon
+  name: PARS-159 Boyars dualcannon magazines crate (x5)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxAceAutocannon
+      amount: 5
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoGrenadeLauncher
+  name: M92T grenade launcher magazines crate (x5)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxGrenadeLauncher
+      amount: 5
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoSmokeLauncher
+  name: M34A2-A multipurpose turret smoke screen magazines crate (x4)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxSmokeLauncher
+      amount: 4
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoTowLauncher
+  name: TOW launcher magazines crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxRocketLauncher
+      amount: 3
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoCupola
+  name: M56 cupola magazines crate (x2)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxCupola
+      amount: 2
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoLZRNFlamer
+  name: LZR-N flamer unit fuel tanks crate (x2)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleFlamerTankLZRN
+      amount: 2
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoFrontalCannon
+  name: RE-RE700 frontal cannon magazines crate (x2)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxFrontal
+      amount: 2
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoFlareLauncher
+  name: M-87F flare launcher magazines crate (x4)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxFlareLauncher
+      amount: 4
+
+- type: entity
+  parent: CrateVehicleAmmoBase
+  id: CrateVehicleAmmoRotaryCannon
+  name: RE700 rotary cannon magazines crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: VehicleAmmoBoxRERotaryCannon
+      amount: 3

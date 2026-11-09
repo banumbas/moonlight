@@ -1,0 +1,265 @@
+- type: entity
+  abstract: true
+  parent: SeatBase
+  id: VehicleSeatBase
+  categories: [ Vehicle ]
+  suffix: Vehicle, Seat
+  components:
+  - type: Tag
+    tags:
+    - Vehicle
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatPassenger
+  name: passenger seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: base
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatPilot
+  name: pilot's chair
+  description: A specially designed chair for pilots to sit in.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: pilot_chair
+  - type: RemoveComponents
+    components:
+    - type: Damageable
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatDriver
+  name: driver's chair
+  description: A specially designed chair for driver to sit in.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: pilot_chair
+  - type: VehicleDriverSeat
+  - type: RemoveComponents
+    components:
+    - type: Damageable
+    - type: Destructible
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatHunter
+  name: hunter chair
+  description: An Armed Forces seat for vehicles.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: chair
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatWhite
+  name: passenger seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: vehicle_seat
+
+- type: entity
+  parent: VehicleSeatBase
+  id: VehicleSeatDark
+  name: passenger seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Furniture/vehicle_seats.rsi
+    state: vehicle_seat
+
+- type: entity
+  abstract: true
+  parent: VehicleSeatBase
+  id: VehicleSeatArmoredBase
+  name: armored seat
+  description: A reinforced chair designed for vehicle interiors.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Vehicles/Interiors/general.rsi
+    state: armor_chair
+  - type: RemoveComponents
+    components:
+    - type: Damageable
+    - type: Destructible
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatArmored
+  name: armored seat
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatArmoredDriver
+  name: armored driver's seat
+  components:
+  - type: VehicleDriverSeat
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatArmoredWeaponsOperator
+  name: armored weapons operator seat
+  components:
+  - type: VehicleWeaponsSeat
+    isPrimaryOperatorSeat: true
+    allowUiSelection: true
+    allowHotbarSelection: true
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponsUiKey.Key:
+        type: VehicleWeaponsBoundUserInterface
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatArmoredPortGunOperator
+  name: armored port gun operator seat
+  components:
+  - type: VehiclePortGunSeat
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatTankDriver
+  name: tank driver seat
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: VehicleDriverSeat
+  - type: VehicleWeaponsSeat
+    isPrimaryOperatorSeat: false
+    allowUiSelection: false
+    allowHotbarSelection: true
+    allowedHardpointTypes:
+    - HardpointTypeSupport
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponsUiKey.Key:
+        type: VehicleWeaponsBoundUserInterface
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatTankGunner
+  name: tank gunner seat
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: VehicleWeaponsSeat
+    isPrimaryOperatorSeat: true
+    allowUiSelection: true
+    allowHotbarSelection: true
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponsUiKey.Key:
+        type: VehicleWeaponsBoundUserInterface
+
+- type: entity
+  parent: VehicleSeatArmoredBase
+  id: VehicleSeatTankCommander
+  name: tank commander seat
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: VehicleWeaponsSeat
+    isPrimaryOperatorSeat: false
+    allowUiSelection: true
+    allowHotbarSelection: true
+    baseViewPvsScale: 0.35
+    baseViewCursorMaxOffset: 5
+    baseViewCursorPvsIncrease: 0.5
+    allowedHardpointTypes:
+    - HardpointTypeSecondary
+    - HardpointTypeLauncher
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponsUiKey.Key:
+        type: VehicleWeaponsBoundUserInterface
+
+- type: entity
+  abstract: true
+  parent: VehicleSeatBase
+  id: VehicleSeatHumveeBase
+  name: humvee seat
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Classic/Structures/Vehicles/Interiors/general_humvee.rsi
+    state: car_seat
+    drawdepth: BelowMobs
+  - type: Strap
+    modifyBuckleDrawDepth: false
+  - type: RemoveComponents
+    components:
+    - type: Damageable
+    - type: Destructible
+
+- type: entity
+  parent: VehicleSeatHumveeBase
+  id: VehicleSeatHumveePassenger
+  name: humvee passenger seat
+
+- type: entity
+  parent: VehicleSeatHumveeBase
+  id: VehicleSeatHumveeDriver
+  name: humvee driver seat
+  components:
+  - type: VehicleDriverSeat
+
+- type: entity
+  parent: VehicleSeatHumveeBase
+  id: VehicleSeatHumveeARCDriver
+  name: ARC driver seat
+  components:
+  - type: VehicleDriverSeat
+
+- type: entity
+  parent: VehicleSeatHumveeBase
+  id: VehicleSeatHumveeWeaponsOperator
+  name: humvee gunner seat
+  components:
+  - type: VehicleWeaponsSeat
+    isPrimaryOperatorSeat: true
+    allowUiSelection: true
+    allowHotbarSelection: true
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponsUiKey.Key:
+        type: VehicleWeaponsBoundUserInterface

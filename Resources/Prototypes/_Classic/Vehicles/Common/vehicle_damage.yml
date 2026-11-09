@@ -1,0 +1,123 @@
+- type: Tag
+  id: VehicleAmmoBox
+
+- type: soundCollection
+  id: VehicleKeyboardTyping
+  files:
+    - /Audio/_Classic/Machines/keyboard1.ogg
+    - /Audio/_Classic/Machines/keyboard2.ogg
+    - /Audio/_Classic/Machines/keyboard3.ogg
+
+- type: explosion
+  id: VehicleRocketExplosion
+  damagePerIntensity:
+    types:
+      Heat: 5
+      Blunt: 5
+      Piercing: 5
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 10, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  temperature: 800
+
+- type: explosion
+  id: VehicleLTBCannonExplosion
+  damagePerIntensity:
+    types:
+      Heat: 10
+      Blunt: 10
+      Piercing: 10
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 10, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  temperature: 800
+
+- type: damageContainer
+  id: StructuralMarine
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Structural
+
+- type: damageModifierSet
+  id: StructuralMarine
+
+- type: damageModifierSet
+  id: VehicleFrameTank
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.7
+    Piercing: 0.4
+    Structural: 0.8
+    Heat: 1.5
+
+- type: damageModifierSet
+  id: VehicleFrameAPC
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.8
+    Piercing: 0.6
+    Structural: 0.7
+    Heat: 1
+
+- type: damageModifierSet
+  id: VehicleFrameARC
+  coefficients:
+    Blunt: 0.8
+    Slash: 1
+    Piercing: 0.6
+    Structural: 0.8
+    Heat: 1
+
+- type: damageModifierSet
+  id: VehicleFrameCLFVan
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.9
+    Piercing: 0.8
+    Structural: 0.8
+    Heat: 1
+
+- type: damageModifierSet
+  id: VehicleArmorBallistic
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.603
+    Piercing: 0.603
+    Structural: 0.9
+    Heat: 0.9
+
+- type: damageModifierSet
+  id: VehicleArmorCaustic
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.9
+    Structural: 0.9
+    Heat: 0.603
+
+- type: damageModifierSet
+  id: VehicleArmorConcussive
+  coefficients:
+    Blunt: 0.603
+    Slash: 0.9
+    Piercing: 0.9
+    Structural: 0.9
+    Heat: 0.9
+
+- type: damageModifierSet
+  id: VehicleArmorPaladin
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.9
+    Structural: 0.603
+    Heat: 0.9

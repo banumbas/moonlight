@@ -1,137 +1,153 @@
 stack-carpet-deco-tile = декоративная ковровая плитка
-stack-dark-bitile-tile = темная би-плитка
+stack-dark-bitile-tile = тёмная би-плитка
 stack-steel-bitile-tile = стальная би-плитка
-stack-white-bitile-tile = белая би плитка
-stack-hierophant-tile = Иерофант ковровая плитка
-stack-sepia-tile = сепия плитка
+stack-white-bitile-tile = белая би-плитка
+stack-hierophant-tile = ковровая плитка Иерофанта
+stack-sepia-tile = сепия-плитка
 stack-terracotta-tile = терракотовая плитка
 stack-terracotta-diagonal-tile = диагональная терракотовая плитка
-stack-terracotta-small-tile = маленькая терракотовая плитка
-stack-labeller-refill-paper = бумага для заправки этикетировочной машины
-stack-dark-wood-floor = пол из темного дерева
-stack-dark-wood-pattern-floor = пол с узором темного дерева
-stack-dark-large-wood-floor = большой пол из темного дерева
-black-wood-floor = черный деревянный пол
-dark-wood-floor = темный деревянный пол
+stack-terracotta-small-tile = малая терракотовая плитка
+stack-labeller-refill-paper = лента маркиратора
+stack-dark-wood-floor = пол из тёмного дерева
+stack-dark-wood-pattern-floor = узорчатый пол из тёмного дерева
+stack-dark-large-wood-floor = крупный пол из тёмного дерева
+black-wood-floor = чёрный деревянный пол
+dark-wood-floor = тёмный деревянный пол
 light-wood-floor = светлый деревянный пол
 red-wood-floor = красный деревянный пол
-large-black-wood-floor = большой черный деревянный пол
-large-dark-wood-floor = большой темный деревянный пол
-large-light-wood-floor = большой светлый деревянный пол
-large-red-wood-floor = большой красный деревянный пол
-parquet-black-wood-floor = черный деревянный паркет
-parquet-dark-wood-floor = темный деревянный паркет
+large-black-wood-floor = крупный чёрный деревянный пол
+large-dark-wood-floor = крупный тёмный деревянный пол
+large-light-wood-floor = крупный светлый деревянный пол
+large-red-wood-floor = крупный красный деревянный пол
+parquet-black-wood-floor = чёрный деревянный паркет
+parquet-dark-wood-floor = тёмный деревянный паркет
 parquet-light-wood-floor = светлый деревянный паркет
 parquet-red-wood-floor = красный деревянный паркет
-chess-wood-floor = деревянный шахматный пол
-chess-black-wood-floor = черный деревянный шахматный пол
-chess-dark-wood-floor = темный деревянный шахматный пол
-chess-light-wood-floor = светлый деревянный шахматный пол
-chess-red-wood-floor = красный деревянный шахматный пол
-stack-metal-dark-floor = темный металлический пол
+chess-wood-floor = шахматный деревянный пол
+chess-black-wood-floor = чёрный шахматный деревянный пол
+chess-dark-wood-floor = тёмный шахматный деревянный пол
+chess-light-wood-floor = светлый шахматный деревянный пол
+chess-red-wood-floor = красный шахматный деревянный пол
+stack-metal-dark-floor = тёмный металлический пол
 stack-metal-brown-floor = коричневый металлический пол
 stack-metal-blue-floor = синий металлический пол
 stack-metal-purple-floor = фиолетовый металлический пол
 stack-metal-red-floor = красный металлический пол
-stack-metal-green-floor = зеленый металлический пол
-stack-astro-dirt-floor = астро-грязный пол
-stack-3x3black-floor = 3х3 черный пол
-stack-3x3brown-floor = коричневый пол 3х3
-stack-3x3steel-floor = стальной пол 3х3
-stack-3x3white-floor = Белый пол 3х3.
+stack-metal-green-floor = зелёный металлический пол
+stack-astro-dirt-floor = космический грунт
+stack-3x3black-floor = чёрная плитка 3х3
+stack-3x3brown-floor = коричневая плитка 3х3
+stack-3x3steel-floor = стальная плитка 3х3
+stack-3x3white-floor = белая плитка 3х3
 stack-old-concrete-bricks-floor = старый бетонный кирпичный пол
 stack-old-concrete-tile-floor = пол из старой бетонной плитки
 stack-ornate-floor = богато украшенный пол
-stack-rough-metal-floor = грубый металлический пол
+stack-rough-metal-floor = рифлёный металлический пол
 stack-rusty-metal-floor = ржавый металлический пол
-stack-steel-grate-floor = пол из стальной решетки
+stack-steel-grate-floor = пол из стальной решётки
 stack-tech-greeb-floor = технический пол Гриб
 
 stack-bluespacecrystal = {$amount ->
-    [1] синее пространство
-    *[other] синие пробелы
+    [one] кристалл блюспейса
+    [few] кристалла блюспейса
+    *[other] кристаллов блюспейса
 }
 
 stack-adamantine = {$amount ->
-    [1] адамантиновый слиток
-    *[other] адамантиновые слитки
+    [one] адамантиновый слиток
+    [few] адамантиновых слитка
+    *[other] адамантиновых слитков
 }
 
-stack-bluespace-tile = плитка синего пространства
-stack-sepia-xenobiology-tile = сепия плитка
-
+stack-bluespace-tile = плитка блюспейса
+stack-sepia-xenobiology-tile = сепия-плитка
 
 stack-blueointment = {$amount ->
-    [1] синяя мазь
-    *[other] синие мази
+    [one] синяя мазь
+    [few] синие мази
+    *[other] синих мазей
 }
 stack-redointment = {$amount ->
-    [1] переделка
-    *[other] переделки
+    [one] красная мазь
+    [few] красные мази
+    *[other] красных мазей
 }
 stack-redbrutepack = {$amount ->
-    [1] редбрутпак
-    *[other] редбрутпаки
+    [one] мазь от травм
+    [few] мази от травм
+    *[other] мазей от травм
 }
 stack-interdyneointment = {$amount ->
-    [1] междинная мазь
-    *[other] интердинемази
+    [one] мазь Interdyne
+    [few] мази Interdyne
+    *[other] мазей Interdyne
 }
 stack-interdynebrutepack = {$amount ->
-    [1] междинбрутпак
-    *[other] пакеты interdynebrutepacks
+    [one] травмопак Interdyne
+    [few] травмопака Interdyne
+    *[other] травмопаков Interdyne
 }
 stack-deforestointment = {$amount ->
-    [1] вырубка лесов
-    *[other] вырубки лесов
+    [one] мазь Deforest
+    [few] мази Deforest
+    *[other] мазей Deforest
 }
 stack-deforestbrutepack = {$amount ->
-    [1] дефорестбрутпак
-    *[other] пакеты deforestbrutepack
+    [one] травмопак Deforest
+    [few] травмопака Deforest
+    *[other] травмопаков Deforest
 }
 stack-goldointment = {$amount ->
-    [1] золотое помазание
-    *[other] золотые масти
+    [one] золотая мазь
+    [few] золотые мази
+    *[other] золотых мазей
 }
 stack-goldbrutepack = {$amount ->
-    [1] золотой грубый пакет
-    *[other] пакеты goldbrutepacks
+    [one] золотой травмопак
+    [few] золотых травмопака
+    *[other] золотых травмопаков
 }
 stack-redpunctpack = {$amount ->
-    [1] редпунктпак
-    *[other] редпунктпаки
+    [one] перевязочный пакет
+    [few] перевязочных пакета
+    *[other] перевязочных пакетов
 }
 stack-redlacepack = {$amount ->
-    [1] красный пакет
-    *[other] пакеты RedlacePacks
+    [one] антисептический пакет
+    [few] антисептических пакета
+    *[other] антисептических пакетов
 }
 stack-redbruizpack = {$amount ->
-    [1] красный брюизпак
-    *[other] пакеты redbruizpacks
+    [one] охлаждающий пакет
+    [few] охлаждающих пакета
+    *[other] охлаждающих пакетов
 }
 
 stack-empty-oilpack = {$amount ->
-    [1] пустой масляный пакет
-    *[other] пустые пакеты с маслом
+    [one] пустой масляный пакет
+    [few] пустых масляных пакета
+    *[other] пустых масляных пакетов
 }
-
 
 stack-ticket = {$amount ->
-    [1] билет
-    *[other] билеты
+    [one] купон
+    [few] купона
+    *[other] купонов
 }
 
-
 stack-wizcoin = {$amount ->
-    [1] визкойн
-    *[other] визкойны
+    [one] визкоин
+    [few] визкоина
+    *[other] визкоинов
 }
 
 stack-abyssium-ore = {$amount ->
-    [1] абиссиевая руда
-    *[other] абиссиевые руды
+    [one] абиссиевая руда
+    [few] абиссиевые руды
+    *[other] абиссиевой руды
 }
 stack-abyssium-bar = {$amount ->
-    [1] абиссиум-бар
-    *[other] абиссиумные бруски
+    [one] слиток абиссиума
+    [few] слитка абиссиума
+    *[other] слитков абиссиума
 }

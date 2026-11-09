@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseItem
+  id: VehicleVanWheel
+  categories: [ Vehicle ]
+  suffix: Vehicle, Van, Hardpoint
+  name: van wheel
+  description: A sturdy wheel for the van. Can be removed or replaced.
+  components:
+  - type: Tag
+    tags:
+    - Vehicle
+    - VehiclePart
+  - type: Sprite
+    sprite: _Classic/Structures/Vehicles/hardpoints/van.rsi
+    state: tires
+  - type: Item
+    size: Large
+  - type: HardpointItem
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyVan
+    slotType: HardpointSlotTypeWheel
+    damageMultiplier: 0.15
+    repairRate: 0.0165
+  - type: HardpointIntegrity
+    maxIntegrity: 250
+  - type: VehicleWheelItem

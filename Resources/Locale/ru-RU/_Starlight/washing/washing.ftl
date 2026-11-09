@@ -1,6 +1,6 @@
-washing-verb-text = Стирать
-washing-verb-message = Смойте смазку или клей с рук и пирог с лица.
+washing-verb-text = Помыть руки
+washing-verb-message = Смыть грязь, жир или клей с рук и лица.
 washing-verb-message-disabled = Смывать нечего.
-washing-cleaning = Вы начинаете стирку в {THE($target)}.
-washing-cleaning-success = Вы чувствуете себя намного чище!
-washing-cleaning-cannot-clean = Вы уже чувствуете себя чистым.
+washing-cleaning = Вы начинаете мыть руки в {THE($target)}.
+washing-cleaning-success = Теперь вы абсолютно чисты!
+washing-cleaning-cannot-clean = Вы уже чисты.

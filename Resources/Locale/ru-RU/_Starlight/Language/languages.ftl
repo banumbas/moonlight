@@ -1,146 +1,146 @@
-language-chat-confirmation = Сообщение будет отправлено в {$lang}.
+language-chat-confirmation = Сообщение будет отправлено на языке «{$lang}».
 
 language-Universal-name = Универсальный
-language-Universal-description = Что ты?
+language-Universal-description = Что вы такое?..
 
 language-GalacticCommon-name = Галактический Общий
-language-GalacticCommon-description = Общий галактический язык, созданный для межвидового общения. Каждый космонавт знает это!
+language-GalacticCommon-description = Общепринятый галактический язык для межвидового общения. Знаком каждому космонавту!
 
 language-Sign-name = Галактический язык жестов
-language-Sign-description = Язык жестов, обычно используемый глухими или немыми. Особенно популярен среди проставок из-за практичности в безвоздушной среде.
+language-Sign-description = Общегалактический жестовый язык, используемый глухонемыми, а также популярный среди космонавтов при работе в вакууме.
 
 language-SolCommon-name = Сол Коммон
-language-SolCommon-description = Искусственный язык, разработанный Транссолнечной Федерацией для простоты использования и краткости общения.
+language-SolCommon-description = Искусственный язык Транссолнечной Федерации, созданный для предельной лаконичности и эффективности.
 
 language-Marish-name = Мариш
-language-Marish-description = Хотя шейдекинский язык основан на сочувствии, все еще существуют тонкие тона и слоги, которые столь же деликатны, как и эмоции, которыми обычно общаются шейдекины.
+language-Marish-description = Хотя язык шейдкинов глубинно эмпатичен, в нём существуют тонкие тональности и звуки, столь же деликатные, сколь и эмоции их носителей.
 
-language-Machine-name = Кодированный аудио язык
-language-Machine-description = Эффективный язык закодированных тонов, разработанный синтетиками и киборгами.
+language-Machine-name = Кодированный бинарный язык
+language-Machine-description = Сверхэффективный язык закодированных сигналов и гармоник, разработанный синтетиками и киборгами.
 
-language-Bubblish-name = пузырьковый
-language-Bubblish-description = Язык слаймов. Это смесь булькающих звуков и хлопков. Очень сложно говорить без механической помощи человеку.
+language-Bubblish-name = Булькающий
+language-Bubblish-description = Язык слаймолюдей, состоящий из бульканья, лопающихся пузырьков и хлюпов. Гуманоиду без имплантов воспроизвести его практически невозможно.
 
 language-Canilunzt-name = Канилунцт
-language-Canilunzt-description = Гортанный язык, на котором говорят и используют жители системы Ваззенд, состоящий из рычания, лая, тявканья и интенсивного использования ушей и движений хвоста. Вульпканины свободно говорят на этом языке.
+language-Canilunzt-description = Гортанный язык уроженцев системы Ваззенд, состоящий из рычания, тявканья, лая и богатой кинесики ушей и хвоста. Родной язык вульпканинов.
 
 language-Moffic-name = Моффик
-language-Moffic-description = Язык людей-мотыльков граничит с полной неразборчивостью.
+language-Moffic-description = Язык людей-мотыльков, звучащий для непосвящённых как шелест крыльев и тихое щёлканье.
 
 language-Nekomimetic-name = Некомиметик
-language-Nekomimetic-description = Для стороннего наблюдателя этот язык представляет собой непонятную мешанину ломаного японского языка. Фелионоиду это как-то понятно.
+language-Nekomimetic-description = Для посторонних этот диалект фелионоидов звучит как ломаный японский с мягким мурлыканьем.
 
 language-Draconic-name = Драконий
-language-Draconic-description = Общий язык людей-ящеров, состоящий из свистящего шипения и погремушек.
+language-Draconic-description = Древний язык унатхов, насыщенный свистящими шипящими звуками и горловым рокотом.
 
-language-ScurretSign-name = Знак Скаррета
-language-ScurretSign-description = Вава! Тайный Знак, благодаря которому вы сможете понимать своих собратьев!
+language-ScurretSign-name = Жесты скарретов
+language-ScurretSign-description = Ва-ва! Тайный жестовый диалект, позволяющий без слов понимать сородичей!
 
-language-Ancestor-name = Предок
-language-Ancestor-description = Протоязык, в основном используемый обезьянами и человекообразными обезьянами.
+language-Ancestor-name = Прародительский
+language-Ancestor-description = Протоязык жестов и криков, используемый приматами и обезьянами.
 
-language-Mouse-name = Мышь
-language-Mouse-description = Писк!
+language-Mouse-name = Мышиный
+language-Mouse-description = Пи-пи-пи!
 
-language-Mothroach-name = Мотаракан
-language-Mothroach-description = болтуны!
+language-Mothroach-name = Мотараканий
+language-Mothroach-description = Шур-шур-шур!
 
-language-Scratch-name = Царапать
-language-Scratch-description = Упрощенный письменный диалект авали и резоми. Скретч — это стандартная галактическая языковая модель Иллюминатов. Истоки этого языка происходят от кочевых племен докосмической эпохи, чьи резьбы и гравюры на ледяных пещерах поразительно похожи на современный Скретч.
+language-Scratch-name = Скретч
+language-Scratch-description = Древняя руническая и словесная система письма авали и резоми, берущая начало от наскальных насечек в ледяных пещерах.
 
 language-Terrum-name = Террум
-language-Terrum-description = Звучит похоже на древнеземной иврит.
+language-Terrum-description = Литургический язык, напоминающий древнеземной иврит.
 
 language-Sylvan-name = Сильван
-language-Sylvan-description = Растения говорят на этом языке.
+language-Sylvan-description = Мелодичный шелестящий язык дион и разумных растений.
 
-language-Chittin-name = Читтин
-language-Chittin-description = Шум, издаваемый трением усиков друг о друга, на самом деле является сложной формой общения.
-chat-speech-verb-chittin-1 = трет свои усики друг о друга
+language-Chittin-name = Хитин
+language-Chittin-description = Язык арахнидов, звуки которого извлекаются трением суставов и усиков.
+chat-speech-verb-chittin-1 = трёт усики друг о друга
 chat-speech-verb-chittin-2 = шуршит усиками
-chat-speech-verb-chittin-3 = трясут усиками вместе
-chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]тонко шуршит "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
+chat-speech-verb-chittin-3 = щёлкает хелицерами
+chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]едва слышно шуршит "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
 
 language-VoxPidgin-name = Вокс-Пиджин
-language-VoxPidgin-description = Общий язык различных кораблей Воксов, составляющих Мелководье. Для всех остальных это звучит как хаотичный визг.
+language-VoxPidgin-description = Птичий пиджин воксов, состоящий из пронзительного свиста, визга и цыканья.
 
 language-Zombie-name = Зомби
-language-Zombie-description = Мозги... Брааааааааа..
+language-Zombie-description = Мо-о-озгиии... Бра-а-а-айн...
 
 language-CodeSpeak-name = Код-спик
-language-CodeSpeak-description = Оперативники синдиката могут использовать серию кодовых слов для передачи сложной информации, при этом для любого, кто их слушает, это звучит как случайные понятия и напитки.
+language-CodeSpeak-description = Система шифрованных паролей и фраз агентов Синдиката, для посторонних звучащая как невинная беседа о коктейлях.
 
 language-Carptongue-name = Карптонг
-language-Carptongue-description = Различные рыбные звуки, которые могут иметь значение для космических карпов.
+language-Carptongue-description = Бульканье и клацанье космических карпов.
 
 language-Xeno-name = Ксено
-language-Xeno-description = Общий язык ксеносов.
+language-Xeno-description = Гортанное шипение ксеноморфов.
 
-language-Cat-name = Кот
-language-Cat-description = мяу
+language-Cat-name = Кошачий
+language-Cat-description = Мяу!
 
-language-Dog-name = Собака
-language-Dog-description = Лаять!
+language-Dog-name = Собачий
+language-Dog-description = Гав-гав!
 
-language-Fox-name = Лиса
-language-Fox-description = Да!
+language-Fox-name = Лисий
+language-Fox-description = Тяв!
 
-language-Chicken-name = Курица
-language-Chicken-description = Кут!
+language-Chicken-name = Куриный
+language-Chicken-description = Куд-куда!
 
-language-Duck-name = Утка
-language-Duck-description = Шарлатанство!
+language-Duck-name = Утиный
+language-Duck-description = Кря-кря!
 
-language-Pig-name = Свинья
-language-Pig-description = Хрю!
+language-Pig-name = Свиной
+language-Pig-description = Хрю-хрю!
 
-language-Bat-name = летучая мышь
-language-Bat-description = Ик!
+language-Bat-name = Мышиный (Летучие мыши)
+language-Bat-description = Ультразвуковой писк!
 
-language-Thaveyan-name = Тавеян
-language-Thaveyan-description = Лирический певческий язык, общий для Тавена, который напоминает другим о слушании волн.
+language-Thaveyan-name = Тейвеян
+language-Thaveyan-description = Мелодичный поющий диалект тейвенов, напоминающий мерный шум океанских волн.
 
-language-Darktongue-name = Темный Язык
-language-Darktongue-description = Это немного похоже на то, как если бы вы откашлялись или, возможно, перерезали чье-то горло.
+language-Darktongue-name = Тёмное наречие
+language-Darktongue-description = Хриплый шипящий язык из глубин Тьмы.
 
-language-Felyaic-name = феляйский
-language-Felyaic-description = Более тяжеловесная форма Темного Языка, на котором детарии говорят в глубоких темных местах.
+language-Felyaic-name = Феляйский
+language-Felyaic-description = Древняя утяжелённая ветвь Тёмного наречия.
 
 language-Grumbakul-name = Грумбакул
-language-Grumbakul-description = Краткий, крепкий язык, подходящий для выпивки и промышленности.
+language-Grumbakul-description = Грубый лаконичный язык дварфов, идеально подходящий для кузниц и выпивки.
 
 language-Classical-name = Классический
-language-Classical-description = Когда-то на этом языке говорили все. По большей части у них это получалось довольно плохо.
+language-Classical-description = Высокий архаичный язык древних империй.
 
-language-Aielic-name = Эйлик
-language-Aielic-description = Предположительно, это первоначальный язык алилитов, на котором сейчас говорят только квели.
+language-Aielic-name = Айелик
+language-Aielic-description = Благородный древний язык айелитов.
 
-language-Lagomorphian-name = Лагин
-language-Lagomorphian-description = Очень линарксический язык, разработанный как язык интеграции различной голосовой структуры зайцеобразных.
+language-Lagomorphian-name = Лагоморфский
+language-Lagomorphian-description = Быстрый щёлкающий язык лагоморфов.
 
-language-Cosmic-name = Астральный шум
-language-Cosmic-description = ШТОРЫ ДОЛЖНЫ УПАДАТЬ
+language-Cosmic-name = Астральный глас
+language-Cosmic-description = ЗАНАВЕС ДОЛЖЕН ОПУСТИТЬСЯ.
 
-language-Abductor-name = Похититель
-language-Abductor-description = ...
+language-Abductor-name = Похитители
+language-Abductor-description = Безмолвный обмен телепатическими импульсами.
 
 language-Nexus-name = Нексус
-language-Nexus-description = Нейронная связь, которая позволяет им общаться с другими представителями своего вида через технологическую сеть.
+language-Nexus-description = Нейросетевой протокол мгновенной передачи данных между сородичами.
 
-language-Changeling-name = Коллективный разум
-language-Changeling-description = ...
+language-Changeling-name = Коллективный разум генокрадов
+language-Changeling-description = Ментальный канал связи плоти.
 
-language-Dantalion-name = Тралл
-language-Dantalion-description = ...
+language-Dantalion-name = Канал Данталиона
+language-Dantalion-description = Мистическая связь марионеток.
 
-language-Empathy-name = Сочувствие
-language-Empathy-description = ...
+language-Empathy-name = Эмпатия
+language-Empathy-description = Прямая передача чистых эмоциональных образов.
 
-language-Carpmind-name = Коллективный разум
-language-Carpmind-description = Различные рыбьи умы.
+language-Carpmind-name = Разум стаи карпов
+language-Carpmind-description = Коллективное сознание космической фауны.
 
-language-Xenomind-name = Коллективный разум
-language-Xenomind-description = Различные разумы ксеносов и ужасов.
+language-Xenomind-name = Разум Улья
+language-Xenomind-description = Психическая сеть ксеноморфов и хтонических тварей.
 
-language-Squeakish-name = скрипучий
-language-Squeakish-description = Язык грызунов, состоящий из серии чириканий и писков.
+language-Squeakish-name = Сквикиш
+language-Squeakish-description = Быстрый щёлкающий писк грызунов родентии.

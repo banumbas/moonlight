@@ -1,4 +1,4 @@
-﻿using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared._Starlight.Weapons.Ranged.Components; // Starlight-edit
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -65,6 +65,11 @@ public sealed partial class BatteryWeaponFireMode
 
     [DataField("visualState")]
     public string? VisualState;
+
+    // classic-start
+    [DataField]
+    public SelectiveFire? Mode;
+    // classic-end
 }
 
 [Serializable, NetSerializable]

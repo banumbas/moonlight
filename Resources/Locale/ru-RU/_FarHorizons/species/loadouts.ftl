@@ -1,1 +1,1 @@
-loadout-group-protogen-cybernetics = Протогенные фреймы
+loadout-group-protogen-cybernetics = Кибернетика протогенов

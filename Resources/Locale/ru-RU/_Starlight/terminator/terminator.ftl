@@ -1,2 +1,2 @@
-terminator-endoskeleton-burn-popup = Плоть сгорает до хрустящей корочки, обнажая металл внутри!
-terminator-endoskeleton-gib-popup = Плоть отслаивается, обнажая металл внутри!
+terminator-endoskeleton-burn-popup = Плоть обугливается и осыпается, обнажая хромированный металл эндоскелета!
+terminator-endoskeleton-gib-popup = Плоть разлетается ошмётками, обнажая металлический эндоскелет!

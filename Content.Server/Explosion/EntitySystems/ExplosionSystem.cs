@@ -32,8 +32,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
-using Content.Shared.Parallax.Biomes; // Classic-Edit
-using Robust.Shared.Map.Components; // Classic-Edit
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -61,10 +59,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
-    [Dependency] private readonly SharedBiomeSystem _biome = default!; // Classic-Edit
 
-    private EntityQuery<BiomeComponent> _biomeQuery; // Classic-Edit
-    private EntityQuery<MapGridComponent> _gridQuery; // Classic-Edit
     private EntityQuery<FlammableComponent> _flammableQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<ProjectileComponent> _projectileQuery;
@@ -98,9 +93,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnReset);
-
-        _biomeQuery = GetEntityQuery<BiomeComponent>(); // Classic-Edit
-        _gridQuery = GetEntityQuery<MapGridComponent>(); // Classic-Edit
 
         // Handled by ExplosionSystem.Processing.cs
         SubscribeLocalEvent<MapRemovedEvent>(OnMapRemoved);

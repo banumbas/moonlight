@@ -9,7 +9,7 @@ action-speech-cantrip-antidote = Оле Теннойо.
 action-speech-cantrip-antidote-tts = А! ... олли... теннойо.
 action-speech-cantrip-mop = Поитина.
 action-speech-cantrip-mop-tts = Поитина.
-action-speech-cantrip-bandage = Конечно, это раса.
+action-speech-cantrip-bandage = Серсье, гонка.
 action-speech-cantrip-bandage-tts = Серсье, гонка..юлеаста!
 
-prayer-popup-subtle-psychic-whisper = Вы чувствуете шепот в своем уме...
+prayer-popup-subtle-psychic-whisper = Вы слышите таинственный ментальный шёпот в голове...

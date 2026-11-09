@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "created by @banumbas(discord) for moonlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "level_m5"
+    },
+    {
+      "name": "level_m4"
+    },
+    {
+      "name": "level_m3"
+    },
+    {
+      "name": "level_m2"
+    },
+    {
+      "name": "level_m1"
+    },
+    {
+      "name": "level_0"
+    },
+    {
+      "name": "level_1"
+    },
+    {
+      "name": "level_2"
+    },
+    {
+      "name": "level_3"
+    },
+    {
+      "name": "level_4"
+    },
+    {
+      "name": "level_5"
+    },
+    {
+      "name": "level_generic"
+    }
+  ]
+}

@@ -1,182 +1,177 @@
 ## Secure Command Terminal – UI strings
 
-secure-terminal-window-title = Безопасный терминал
+secure-terminal-window-title = Защищённый командный терминал
 secure-terminal-requests-header = Запросы
 secure-terminal-information-header = Информация
 secure-terminal-authorization-header = Авторизация
 
-secure-terminal-select-request = Чтобы просмотреть подробности, выберите запрос из списка слева.
+secure-terminal-select-request = Выберите запрос из списка слева для просмотра информации.
 
-secure-terminal-request-button = Запрос
-secure-terminal-request-button-confirm = Подтверждать?
+secure-terminal-request-button = Запросить
+secure-terminal-request-button-confirm = Подтвердить запрос?
 secure-terminal-authorize-button = Авторизовать
-secure-terminal-deny-button = Запретить/Отменить
-secure-terminal-recall-button = Вспомнить Оружейную
+secure-terminal-deny-button = Отклонить
+secure-terminal-recall-button = Отозвать арсенал
 secure-terminal-recall-locked = { $minutes ->
-    [1] Возврат возможен через 1 минуту.
-   *[other] Recall available in {$minutes} minutes.
+    [one] Возврат возможен через {$minutes} минуту.
+    [few] Возврат возможен через {$minutes} минуты.
+    *[other] Возврат возможен через {$minutes} минут.
 }
-secure-terminal-used-note = Этот арсенал был окончательно активирован или отозван в этом раунде и не может быть развернут снова.
-secure-terminal-already-used = Этот ресурс уже использовался в этом раунде и не может быть запрошен снова.
+secure-terminal-used-note = Этот арсенал уже был активирован или отозван в этой смене и не может быть развёрнут повторно.
+secure-terminal-already-used = Данный ресурс уже использовался в этой смене и не может быть запрошен повторно.
 
-secure-terminal-auth-waiting = По этому запросу нет активного предложения.
-secure-terminal-auth-desc = Текущее предложение — нет ответа = [color=red]red[/color], согласовано = [color=green]green[/color]:
-secure-terminal-awaiting-member = Ожидание {$label}
+secure-terminal-auth-waiting = По этому запросу нет активных предложений.
+secure-terminal-auth-desc = Статус подтверждения (ожидание = [color=red]красный[/color], подтверждено = [color=green]зелёный[/color]):
+secure-terminal-awaiting-member = Ожидается подпись: {$label}
 
-secure-terminal-pending-countdown-label = Срок действия истекает через {$minutes}м {$seconds}с…
+secure-terminal-pending-countdown-label = Истекает через {$minutes}м {$seconds}с…
 secure-terminal-countdown-label = Активация через {$minutes}м {$seconds}с…
 
-secure-terminal-fee-note = Плата за обработку: {$fee}
-secure-terminal-salary-note = Зарплата станции уменьшена на {$penalty}% из-за затрат на мобилизацию.
+secure-terminal-fee-note = Комиссия за обработку: {$fee}
+secure-terminal-salary-note = Зарплата экипажа снижена на {$penalty}% в связи с расходами на чрезвычайную мобилизацию.
 secure-terminal-delay-note = { $minutes ->
-    [1] Расчетное время прибытия: 1 минута после авторизации.
-   *[other] ETA: {$minutes} minutes after authorization.
+    [one] Расчётное время прибытия: {$minutes} минута после авторизации.
+    [few] Расчётное время прибытия: {$minutes} минуты после авторизации.
+    *[other] Расчётное время прибытия: {$minutes} минут после авторизации.
 }
 
-secure-terminal-requires-no-war-note = Отключено во время военных операций.
-secure-terminal-requires-war-note = Доступно только во время военных операций.
-secure-terminal-requires-alert-note = Требуется, чтобы оповещение {$level} было активным.
+secure-terminal-requires-no-war-note = Недоступно во время военного положения.
+secure-terminal-requires-war-note = Доступно исключительно во время объявленных военных действий.
+secure-terminal-requires-alert-note = Требуется активный код тревоги: {$level}.
 secure-terminal-alert-time-remaining = { $minutes ->
-    [1] Оповещение должно быть активным еще 1 минуту, прежде чем его можно будет запросить.
-   *[other] Alert must be active for {$minutes} more minutes before this can be requested.
+    [one] Код тревоги должен действовать ещё {$minutes} минуту перед отправкой запроса.
+    [few] Код тревоги должен действовать ещё {$minutes} минуты перед отправкой запроса.
+    *[other] Код тревоги должен действовать ещё {$minutes} минут перед отправкой запроса.
 }
 secure-terminal-on-cooldown-note = { $minutes ->
-    [1] По перезарядке — доступно через 1 минуту.
-   *[other] On cooldown — available in {$minutes} minutes.
+    [one] Перезарядка — запрос будет доступен через {$minutes} минуту.
+    [few] Перезарядка — запрос будет доступен через {$minutes} минуты.
+    *[other] Перезарядка — запрос будет доступен через {$minutes} минут.
 }
-secure-terminal-requires-alert-suffix = Нужно: {$level}
-secure-terminal-requires-war-suffix = Требуется: военные операции
+secure-terminal-requires-alert-suffix = Требуется: {$level}
+secure-terminal-requires-war-suffix = Требуется: военное положение
 
 secure-terminal-reason = Укажите причину запроса:
 
 ## Server → global announcements
 
-secure-terminal-proposal-created = {$request} запрошен и ожидает совместной авторизации.
-secure-terminal-proposal-created-reason = {$request} запрошен и ожидает совместной авторизации. Причина: {$reason}
-secure-terminal-proposal-denied = Запрос {$request} был отменен.
-secure-terminal-proposal-denied-cc = Запрос {$request} отклонен Центральным командованием.
-secure-terminal-radio-proposal = {$request} был предложен. Пожалуйста, подойдите к ближайшему устройству аутентификации по ключ-карте, чтобы авторизовать или отклонить запрос.
-secure-terminal-radio-proposal-reason = {$request} был предложен. Пожалуйста, подойдите к ближайшему устройству аутентификации по ключ-карте, чтобы авторизовать или отклонить запрос. Причина: {$reason}
-secure-terminal-radio-denied = Запрос {$request} был отменен.
-secure-terminal-activation-countdown = {$request} полностью авторизован.
-    Активация через {$minutes} минут.
-    Зарплата станции была уменьшена в связи с мобилизационными расходами.
-secure-terminal-unknown-job = Неизвестный
+secure-terminal-proposal-created = Запрос «{$request}» сформирован и ожидает подтверждения Командования.
+secure-terminal-proposal-created-reason = Запрос «{$request}» сформирован и ожидает подтверждения Командования. Причина: {$reason}
+secure-terminal-proposal-denied = Запрос «{$request}» был отменён.
+secure-terminal-proposal-denied-cc = Запрос «{$request}» отклонён Центральным Командованием.
+secure-terminal-radio-proposal = Сформирован запрос «{$request}». Просьба уполномоченным лицам подойти к терминалу авторизации для утверждения или отклонения.
+secure-terminal-radio-proposal-reason = Сформирован запрос «{$request}». Просьба уполномоченным лицам подойти к терминалу авторизации. Причина: {$reason}
+secure-terminal-radio-denied = Запрос «{$request}» был отменён.
+secure-terminal-activation-countdown = Запрос «{$request}» полностью утверждён.
+    Прибытие через {$minutes} мин.
+    Зарплатный фонд колонии скорректирован в связи с расходами на мобилизацию.
+secure-terminal-unknown-job = Неизвестно
 
 ## Popup messages
 
-secure-terminal-no-station = Для этой консоли не найдено станций.
-secure-terminal-request-denied = Доступ запрещен.
-secure-terminal-authorize-denied = У вас нет необходимого разрешения для совместного подписания этого запроса.
-secure-terminal-requires-war = Этот запрос доступен только после официального объявления военных операций.
-secure-terminal-wrong-alert = Текущий уровень оповещения не соответствует требованиям этого запроса.
-secure-terminal-alert-not-long-enough = Уровень оповещения не был активен достаточно долго, чтобы разрешить это. Пожалуйста, подождите и повторите попытку.
-secure-terminal-recall-too-soon = Арсенал не был развернут достаточно долго, чтобы его можно было вспомнить. Пожалуйста, подождите.
-secure-terminal-on-cooldown = Этот запрос находится на восстановлении.
-secure-terminal-already-pending = Предложение по этому запросу уже находится на рассмотрении.
-secure-terminal-already-active = Другой запрос уже находится на рассмотрении или активируется. Подождите, пока он завершится, прежде чем создавать новый.
-secure-terminal-no-active-proposal = По этому запросу не найдено активное предложение.
-secure-terminal-already-authorized = Вы уже одобрили это предложение.
-secure-terminal-already-activated = Этот терминал уже одобрил это предложение.
-secure-terminal-auth-note = Этот терминал предназначен только для авторизации.
-secure-terminal-authorized-by = Внимание — запрос {$request} разрешен. Авторизовано: {$signatories}.
-secure-terminal-armory-recalled = {$request} Выдан приказ об отзыве. Развертывание арсенала отменено.
-secure-terminal-awaiting-admin = Внимание — запрос {$request} отправлен. Ожидает разрешения Центрального командования.
-secure-terminal-admin = Запрос одобрения администратора для: {$request}
+secure-terminal-no-station = Терминал не привязан к колонии.
+secure-terminal-request-denied = Доступ запрещён.
+secure-terminal-authorize-denied = У вас нет полномочий для подтверждения этого запроса.
+secure-terminal-requires-war = Запрос доступен только при официально объявленном военном положении.
+secure-terminal-wrong-alert = Текущий уровень тревоги не соответствует условиям запроса.
+secure-terminal-alert-not-long-enough = Уровень тревоги действует недостаточно долго для разблокировки этого запроса.
+secure-terminal-recall-too-soon = Арсенал развёрнут слишком недавно для возможности отзыва.
+secure-terminal-on-cooldown = Запрос находится на перезарядке.
+secure-terminal-already-pending = Предложение по данному запросу уже находится на рассмотрении.
+secure-terminal-already-active = Другой запрос уже обрабатывается. Дождитесь завершения текущего запроса.
+secure-terminal-no-active-proposal = Активных предложений не обнаружено.
+secure-terminal-already-authorized = Вы уже подтвердили это предложение.
+secure-terminal-already-activated = Этот терминал уже утвердил данное предложение.
+secure-terminal-auth-note = Этот терминал предназначен исключительно для авторизации.
+secure-terminal-authorized-by = Внимание: запрос «{$request}» утверждён. Подписали: {$signatories}.
+secure-terminal-armory-recalled = «{$request}»: издан приказ об отзыве. Развёртывание арсенала отменено.
+secure-terminal-awaiting-admin = Внимание: запрос «{$request}» отправлен. Ожидается одобрение Центрального Командования.
+secure-terminal-admin = Запрос одобрения ЦентКома: {$request}
     Причина: {$reason}
-    Используйте AGhost для одобрения/отклонения запроса.
+    Используйте консоль администратора для подтверждения/отклонения запроса.
 
 ## Request names & descriptions
 
-secure-terminal-warops-security-name = Группа ядерного реагирования
-secure-terminal-warops-security-desc = Развертывает подразделение безопасности ERT, специализирующееся на военных операциях. Доступно только во время военных операций.
-    Используйте, когда станция подвергается прямому вооруженному нападению во время объявленной военной операции.
-secure-terminal-warops-security-announcement = Группа экстренного реагирования — специализированная служба безопасности — получила разрешение и находится в пути. Предполагаемое время прибытия: 30 минут.
+secure-terminal-warops-security-name = ОБР (Особый отдел СБ)
+secure-terminal-warops-security-desc = Развёртывает ударную группу ОБР СБ для отражения полномасштабной военной агрессии. Доступно только во время военных действий.
+    Рекомендуется при прямом штурме колонии превосходящими силами противника.
+secure-terminal-warops-security-announcement = Отряд быстрого реагирования (Особый отдел СБ) авторизован и направлен к колонии. Расчётное время прибытия: 30 минут.
 
-secure-terminal-ert-security-name = ЭРТ Безопасность
-secure-terminal-ert-security-desc = Развертывает деталь безопасности ERT.
-secure-terminal-ert-security-announcement = Группа экстренного реагирования — служба безопасности — получила разрешение и находится в пути. Предполагаемое время прибытия: 10 минут.
+secure-terminal-ert-security-name = ОБР (Служба безопасности)
+secure-terminal-ert-security-desc = Развёртывает тактическое подразделение охраны ОБР.
+secure-terminal-ert-security-announcement = Отряд быстрого реагирования (Служба безопасности) авторизован и направлен к колонии. Расчётное время прибытия: 10 минут.
 
-secure-terminal-ert-engineering-name = ЭРТ Инжиниринг
-secure-terminal-ert-engineering-desc = Развертывает инженерную группу ERT для оказания помощи в работе с критически важной инфраструктурой станции.
-    Рекомендуется, когда на станции произошли катастрофические структурные, атмосферные или энергетические сбои, выходящие за рамки местных возможностей ремонта.
-secure-terminal-ert-engineering-announcement = Группа экстренного реагирования (инженерная часть) получила разрешение и находится в пути. Предполагаемое время прибытия: 10 минут.
+secure-terminal-ert-engineering-name = ОБР (Инженерия)
+secure-terminal-ert-engineering-desc = Развёртывает инженерный отряд ОБР для восстановления критической инфраструктуры колонии.
+    Рекомендуется при катастрофических разрушениях корпуса, энергосети или атмосферного контура колонии.
+secure-terminal-ert-engineering-announcement = Отряд быстрого реагирования (Инженерная служба) авторизован и направлен к колонии. Расчётное время прибытия: 10 минут.
 
-secure-terminal-ert-medical-name = ЭРТ Медицинский
-secure-terminal-ert-medical-desc = Развертывает медицинское подразделение ERT для сортировки массовых раненых и неотложной хирургии.
-    Рекомендуется, когда медицинское отделение станции перегружено, выведено из строя или разрушено.
-secure-terminal-ert-medical-announcement = Группа экстренного реагирования (медицинская часть) получила разрешение и находится в пути. Предполагаемое время прибытия: 10 минут.
+secure-terminal-ert-medical-name = ОБР (Медблок)
+secure-terminal-ert-medical-desc = Развёртывает медицинский отряд ОБР для массовой сортировки раненых и неотложной хирургии.
+    Рекомендуется при массовых потерях или уничтожении медицинского отсека колонии.
+secure-terminal-ert-medical-announcement = Отряд быстрого реагирования (Медицинская служба) авторизован и направлен к колонии. Расчётное время прибытия: 10 минут.
 
-secure-terminal-ert-janitorial-name = ЭРТ Уборка
-secure-terminal-ert-janitorial-desc = Развертывает подразделение уборки ERT для очистки опасных объектов и восстановления станции.
-    Рекомендуется после крупномасштабного биологического, химического загрязнения или загрязнения окружающей среды, требующего быстрой дезактивации.
-secure-terminal-ert-janitorial-announcement = Группа экстренного реагирования — санитарная часть — получила разрешение и находится в пути. Предполагаемое время прибытия: 10 минут.
+secure-terminal-ert-janitorial-name = ОБР (Утилизация и дезинфекция)
+secure-terminal-ert-janitorial-desc = Развёртывает санитарное подразделение ОБР для ликвидации опасных загрязнений и восстановления порядка.
+    Рекомендуется при масштабном биологическом или химическом заражении отсеков колонии.
+secure-terminal-ert-janitorial-announcement = Отряд быстрого реагирования (Санитарно-дезинфекционная служба) авторизован и направлен к колонии. Расчётное время прибытия: 10 минут.
 
-secure-terminal-ert-chaplain-name = Капеллан ERT
-secure-terminal-ert-chaplain-desc = Направляет капеллана ERT для морального духа экипажа и поддержки последних обрядов.
-    Обеспечивает пастырскую поддержку и поддерживает моральный дух экипажа во время длительных чрезвычайных ситуаций.
-secure-terminal-ert-chaplain-announcement = Группа экстренного реагирования — капеллан — получила разрешение и находится в пути. Предполагаемое время прибытия: 10 минут.
+secure-terminal-ert-chaplain-name = ОБР (Капеллан)
+secure-terminal-ert-chaplain-desc = Направляет капеллана ОБР для духовного окормления, поднятия морального духа экипажа и проведения погребальных обрядов.
+secure-terminal-ert-chaplain-announcement = Отряд быстрого реагирования (Капеллан) авторизован и направлен к колонии. Расчётное время прибытия: 10 минут.
 
-secure-terminal-ert-cburn-name = ЭРТ ОХГОРЕНИЕ
-secure-terminal-ert-cburn-desc = Развертывает деталь ERT CBURN.
-secure-terminal-ert-cburn-announcement = Группа экстренного реагирования — подразделение CBURN — получила разрешение и находится в пути. Предполагаемое время прибытия: 15 минут.
+secure-terminal-ert-cburn-name = ОБР (Подразделение CBURN / РХБЗ)
+secure-terminal-ert-cburn-desc = Развёртывает специализированный отряд радиационной, химической и биологической защиты (CBURN).
+secure-terminal-ert-cburn-announcement = Отряд быстрого реагирования (Подразделение CBURN) авторизован и направлен к колонии. Расчётное время прибытия: 15 минут.
 
 secure-terminal-code-gamma-name = Код ГАММА
-secure-terminal-code-gamma-desc = Повышает уровень оповещения станции до [color=palevioletred]ГАММА[/color]. Военное положение — все гражданские лица должны сопровождаться охраной в безопасные районы.
-    Охрана должна быть всегда на вооружении. Все гражданские лица должны явиться к ближайшему руководителю штаба и быть сопровожденными в безопасное место. Включается аварийное освещение.
-secure-terminal-code-gamma-announcement = Внимание! Кодекс ГАММА вводится в действие в ближайшее время. Будет введено военное положение. Весь экипаж немедленно докладывает ближайшему руководителю штаба.
+secure-terminal-code-gamma-desc = Вводит в колонии уровень тревоги [color=palevioletred]ГАММА[/color]. Военное положение — все гражданские лица эвакуируются службой безопасности в защищённые сектора.
+secure-terminal-code-gamma-announcement = Внимание! В колонии объявлен код ГАММА. Вводится военное положение. Всему гражданскому экипажу немедленно явиться к главам отделов для эвакуации в убежища.
+secure-terminal-end-gamma-name = Отменить код ГАММА
+secure-terminal-end-gamma-desc = Снимает код тревоги [color=palevioletred]ГАММА[/color] и возвращает колонию к зелёному коду. Требуется, чтобы код ГАММА действовал не менее 15 минут.
+secure-terminal-end-gamma-announcement = Код ГАММА отменён. Колония возвращается к штатному режиму работы. Ожидайте распоряжений руководства.
 
-secure-terminal-end-gamma-name = Завершить оповещение ГАММА
-secure-terminal-end-gamma-desc = Снимает оповещение [color=palevioletred]ГАММА[/color] и возвращает станцию ​​в зеленый цвет. Требуется, чтобы ГАММА была активна не менее 15 минут.
-secure-terminal-end-gamma-announcement = Код ГАММА снимается. Станция восстанавливается в обычном режиме. Будьте начеку и ждите дальнейших указаний от руководителя вашего штаба.
+secure-terminal-code-psi-name = Код ПСИ
+secure-terminal-code-psi-desc = Вводит уровень тревоги [color=mediumpurple]ПСИ[/color]. Обнаружен бунт или заражение синтетиков — держитесь в группах и избегайте неавторизованных киборгов.
+secure-terminal-code-psi-announcement = Внимание! Командование объявило код ПСИ. Зафиксирована враждебная активность кремниевых форм жизни. Экипажу собраться в безопасных зонах.
+secure-terminal-end-psi-name = Отменить код ПСИ
+secure-terminal-end-psi-desc = Снимает тревогу [color=mediumpurple]ПСИ[/color] и возвращает колонию к зелёному коду. Требуется, чтобы код ПСИ действовал не менее 15 минут.
+secure-terminal-end-psi-announcement = Код ПСИ отменён. Синтетическая угроза нейтрализована. Колония возвращается к штатному режиму работы.
 
-secure-terminal-code-psi-name = Код PSI
-secure-terminal-code-psi-desc = Повышает уровень оповещения станции до [color=mediumpurple]PSI[/color]. Обнаружены враждебные синтетические подразделения — избегайте несогласных киборгов и ищите командный состав.
-    Указывает на враждебную или неконформную деятельность киборгов. Весь экипаж должен избегать неизвестных боргов, оставаться в группах и обращаться за советом к начальнику штаба.
-secure-terminal-code-psi-announcement = Внимание! Командование утвердило Кодекс PSI. Кремниевые устройства, не относящиеся к NanoTrasen, были идентифицированы как активная угроза. Весь экипаж — доложить ближайшему руководителю штаба.
+secure-terminal-armory-gamma-name = Арсенал ГАММА
+secure-terminal-armory-gamma-desc = Запрашивает дроппод с [color=palevioletred]Гамма-арсеналом[/color] — тяжёлым вооружением для критических ситуаций. Одноразовый запрос.
+secure-terminal-armory-gamma-announcement = Дроппод с Гамма-Арсеналом авторизован и направлен к колонии.
 
-secure-terminal-end-psi-name = Конец оповещения PSI
-secure-terminal-end-psi-desc = Снимает тревогу [color=mediumpurple]PSI[/color] и возвращает станцию ​​в зеленый цвет. Требуется, чтобы PSI был активен в течение как минимум 15 минут.
-secure-terminal-end-psi-announcement = Кодекс PSI снимается. Выявленная синтетическая угроза нейтрализована. Станция возвращается к обычному режиму работы.
-
-secure-terminal-armory-gamma-name = Гамма Оружейная
-secure-terminal-armory-gamma-desc = Отправляет [color=palevioletred]Гамма-арсенал[/color] — тайник с тяжелым оружием для ГАММА-ситуаций. Одноразовое внедрение.
-    Выдает уполномоченному персоналу сверхмощное охранное оборудование.
-secure-terminal-armory-gamma-announcement = Гамма-Арсенал получил разрешение и уже в пути.
-
-secure-terminal-armory-psi-name = Пси-Арсенал
-secure-terminal-armory-psi-desc = Отправляет [color=mediumpurple]Пси-арсенал[/color] — антикибернетическое оружие для пси-ситуаций. Одноразовое внедрение.
-    Предоставляет инструменты, необходимые для нейтрализации несоответствующего кремния.
-secure-terminal-armory-psi-announcement = Пси-Арсенал получил разрешение и уже в пути.
+secure-terminal-armory-psi-name = Арсенал ПСИ
+secure-terminal-armory-psi-desc = Запрашивает дроппод с [color=mediumpurple]Пси-арсеналом[/color] — электромагнитным и антикибернетическим оружием. Одноразовый запрос.
+secure-terminal-armory-psi-announcement = Дроппод с Пси-Арсеналом авторизован и направлен к колонии.
 
 secure-terminal-med-pod-name = Модуль неотложной медицинской помощи
-secure-terminal-med-pod-desc = Отправляет капсулу неотложной медицинской помощи — сортировочную группу быстрого развертывания с хирургическим и реанимационным оборудованием.
-    Используйте, когда массовые жертвы превышают медицинские возможности станции.
-secure-terminal-med-pod-announcement = Капсула неотложной медицинской помощи получила разрешение и находится в пути. Предполагаемое время прибытия: 5 минут.
+secure-terminal-med-pod-desc = Сбрасывает капсулу скорой помощи с реанимационным и хирургическим комплексом.
+secure-terminal-med-pod-announcement = Капсула неотложной медицинской помощи авторизована и направлена к колонии. Расчётное время прибытия: 5 минут.
 
-secure-terminal-nukerequest-name = Код самоуничтожения
-secure-terminal-nukerequest-desc = Запросите коды ядерного самоуничтожения.
-    Злоупотребление системой ядерных запросов недопустимо ни при каких обстоятельствах.
-    Передача не гарантирует ответа.
+secure-terminal-nukerequest-name = Коды самоуничтожения
+secure-terminal-nukerequest-desc = Запрос кодов активации ядерного механизма самоуничтожения колонии.
+    Злоупотребление запросом кодов строго карается. Запрос не гарантирует одобрения ЦентКомом.
 
-secure-terminal-code-violet-name = Код Фиолетовый
-secure-terminal-code-violet-desc = Повышает уровень оповещения станции до [color=Violet]Violet[/color].
+secure-terminal-code-violet-name = Код ФИОЛЕТОВЫЙ
+secure-terminal-code-violet-desc = Вводит уровень тревоги [color=Violet]ФИОЛЕТОВЫЙ[/color].
 
-secure-terminal-end-violet-name = Конец фиолетовому оповещению
-secure-terminal-end-violet-desc = Снимает оповещение [color=Violet]Violet[/color] и возвращает станцию ​​в зеленый цвет. Требуется, чтобы Вайолет была активна не менее 10 минут.
+secure-terminal-end-violet-name = Отменить Фиолетовый код
+secure-terminal-end-violet-desc = Снимает тревогу [color=Violet]ФИОЛЕТОВЫЙ[/color] и возвращает колонию к зелёному коду. Требуется, чтобы код действовал не менее 10 минут.
 
-secure-terminal-emergency-maintenance-name = Доступ для аварийного обслуживания
-secure-terminal-emergency-maintenance-desc = Предоставьте доступ для экстренного обслуживания.
-secure-terminal-emergency-maintenance-announcement = Сняты ограничения доступа к техническому обслуживанию и внешним шлюзам.
+secure-terminal-emergency-maintenance-name = Аварийный доступ в техотсеки
+secure-terminal-emergency-maintenance-desc = Разблокировать все шлюзы технических туннелей.
+secure-terminal-emergency-maintenance-announcement = Ограничения доступа к техническим тоннелям и внешним шлюзам временно сняты.
 
-secure-terminal-end-emergency-maintenance-name = Отозвать доступ к экстренному обслуживанию
-secure-terminal-end-emergency-maintenance-desc = Отозвать доступ к экстренному обслуживанию.
-secure-terminal-end-emergency-maintenance-announcement = Снова добавлены ограничения доступа к техническому обслуживанию и внешним шлюзам.
+secure-terminal-end-emergency-maintenance-name = Заблокировать доступ в техотсеки
+secure-terminal-end-emergency-maintenance-desc = Восстановить стандартные допуски в техтуннели.
+secure-terminal-end-emergency-maintenance-announcement = Стандартные ограничения доступа к техническим отсекам восстановлены.
 
-secure-terminal-emergency-station-name = Аварийный доступ на всю станцию
-secure-terminal-emergency-station-desc = Активируйте аварийный доступ ко всей станции.
-secure-terminal-emergency-station-announcement = Ограничения доступа ко всем шлюзам станции сняты в связи с продолжающимся кризисом. Законы о вторжении на территорию по-прежнему применяются, если командование не прикажет иное.
+secure-terminal-emergency-station-name = Аварийный доступ в всей колонии
+secure-terminal-emergency-station-desc = Открыть свободный доступ через все шлюзы колонии.
+secure-terminal-emergency-station-announcement = Ограничения доступа ко всем шлюзам колонии сняты в связи с чрезвычайной ситуацией. Правила проникновения в закрытые зоны продолжают действовать.
 
-secure-terminal-end-emergency-station-name = Деактивировать экстренный доступ на всю станцию
-secure-terminal-end-emergency-station-desc = Деактивируйте аварийный доступ ко всей станции.
-secure-terminal-end-emergency-station-announcement = Снова добавлены ограничения доступа ко всем шлюзам станции. Если вы застряли, обратитесь за помощью к искусственному интеллекту станции или к коллеге.
+secure-terminal-end-emergency-station-name = Восстановить допуски в всей колонии
+secure-terminal-end-emergency-station-desc = Восстановить стандартные ограничения доступа в всей колонии.
+secure-terminal-end-emergency-station-announcement = Стандартные уровни доступа ко всем шлюзам колонии восстановлены.

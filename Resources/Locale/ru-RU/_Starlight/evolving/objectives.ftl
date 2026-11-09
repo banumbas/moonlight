@@ -1,8 +1,8 @@
 objective-spiderwebsspawned-condition-title = Паутина
-objective-spiderwebsspawned-condition-description = Чтобы развиваться, вам нужно плести паутину { $count }.
+objective-spiderwebsspawned-condition-description = Для эволюции вам необходимо сплести { $count } паутин.
 
-objective-eggsinjected-condition-title = Вводить яйца
-objective-eggsinjected-condition-description = Вам нужно ввести яйца { $count } в гуманоидов, чтобы они эволюционировали.
+objective-eggsinjected-condition-title = Заражение гуманоидов
+objective-eggsinjected-condition-description = Для эволюции вам необходимо отложить { $count } яиц в тела живых гуманоидов.
 
-objective-damagedeal-condition-title = Нанести урон
-objective-damagedeal-condition-description = Чтобы развиваться, вам нужно нанести { $count } урона.
+objective-damagedeal-condition-title = Нанесение урона
+objective-damagedeal-condition-description = Для эволюции вам необходимо нанести { $count } ед. урона.

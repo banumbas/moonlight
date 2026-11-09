@@ -20,23 +20,44 @@ namespace Content.Server._Classic.Geyser;
 
 public sealed partial class ClassicGeyserSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private ITileDefinitionManager _tileDefinition = default!;
-    [Dependency] private DecalSystem _decals = default!;
-    [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private TemperatureSystem _temperature = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDef = default!;
+    [Dependency] private readonly DecalSystem _decals = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private readonly HashSet<EntityUid> _nearby = new();
+    private readonly HashSet<Entity<ClassicGeyserGeneratorComponent>> _generators = new();
+
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<ClassicGeyserGeneratorComponent> _generatorQuery;
+    private EntityQuery<PowerSupplierComponent> _supplierQuery;
+    private EntityQuery<DamageableComponent> _damageableQuery;
+    private EntityQuery<TemperatureComponent> _temperatureQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _gridQuery = GetEntityQuery<MapGridComponent>();
+        _generatorQuery = GetEntityQuery<ClassicGeyserGeneratorComponent>();
+        _supplierQuery = GetEntityQuery<PowerSupplierComponent>();
+        _damageableQuery = GetEntityQuery<DamageableComponent>();
+        _temperatureQuery = GetEntityQuery<TemperatureComponent>();
+
         SubscribeLocalEvent<ClassicGeyserOutletComponent, MapInitEvent>(OnOutletMapInit);
+    }
+
+    private void OnOutletMapInit(Entity<ClassicGeyserOutletComponent> ent, ref MapInitEvent args)
+    {
+        ScheduleNextEruption(ent);
     }
 
     public override void Update(float frameTime)
@@ -46,11 +67,6 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
         UpdateOutlets();
         UpdateGenerators();
         UpdateMists();
-    }
-
-    private void OnOutletMapInit(Entity<ClassicGeyserOutletComponent> ent, ref MapInitEvent args)
-    {
-        ScheduleNextEruption(ent);
     }
 
     private void UpdateOutlets()
@@ -113,7 +129,7 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
         ent.Comp.EruptionEndTime = _timing.CurTime + GetEruptionDuration(ent.Comp);
         ent.Comp.NextMistTime = _timing.CurTime;
 
-        var coords = Transform(ent.Owner).Coordinates;
+        var coords = _transform.GetMoverCoordinates(ent.Owner);
         Spawn(ent.Comp.FlashPrototype, coords);
         _audio.PlayPvs(ent.Comp.EruptionSound, ent.Owner);
 
@@ -166,15 +182,18 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
         if (!TryGetTile(ent.Owner, out var gridUid, out var outletTile, out _, out _))
             return;
 
-        var coords = Transform(ent.Owner).Coordinates;
-        foreach (var generatorEnt in _lookup.GetEntitiesInRange<ClassicGeyserGeneratorComponent>(coords, 0.55f))
+        var coords = _transform.GetMoverCoordinates(ent.Owner);
+        _generators.Clear();
+        _lookup.GetEntitiesInRange(coords, 0.55f, _generators);
+
+        foreach (var generatorEnt in _generators)
         {
             var generatorUid = generatorEnt.Owner;
 
             if (!TryGetTile(generatorUid, out var generatorGridUid, out var generatorTile, out _, out _) ||
                 generatorGridUid != gridUid ||
                 generatorTile != outletTile ||
-                !TryComp(generatorUid, out PowerSupplierComponent? supplier))
+                !_supplierQuery.TryComp(generatorUid, out var supplier))
             {
                 continue;
             }
@@ -189,7 +208,7 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
 
     private void DamageEntitiesInMist(EntityUid mistUid, ClassicTemperatureMistComponent mist, float tickInterval)
     {
-        var coords = Transform(mistUid).Coordinates;
+        var coords = _transform.GetMoverCoordinates(mistUid);
         _nearby.Clear();
         _lookup.GetEntitiesInRange(coords, GetMistRadius(mist), _nearby);
 
@@ -197,14 +216,14 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
         {
             if (target == mistUid ||
                 !HasComp<MobStateComponent>(target) ||
-                !TryComp(target, out DamageableComponent? damageable))
+                !_damageableQuery.TryComp(target, out var damageable))
             {
                 continue;
             }
 
             _damageable.TryChangeDamage((target, damageable), mist.Damage, mist.IgnoreResistances, false, mistUid);
 
-            if (TryComp(target, out TemperatureComponent? temperature))
+            if (_temperatureQuery.TryComp(target, out var temperature))
                 _temperature.ChangeHeat(target, mist.HeatPerSecond * tickInterval, mist.IgnoreResistances, temperature);
         }
     }
@@ -228,7 +247,7 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
     {
         if (!_map.TryGetTileRef(gridUid, grid, position, out var tile) ||
             tile.Tile.IsEmpty ||
-            !_tileDefinition.TryGetDefinition(tile.Tile.TypeId, out var tileDef) ||
+            !_tileDef.TryGetDefinition(tile.Tile.TypeId, out var tileDef) ||
             !tileDef.ID.Contains("Snow", StringComparison.OrdinalIgnoreCase))
         {
             return;
@@ -245,9 +264,7 @@ public sealed partial class ClassicGeyserSystem : EntitySystem
         out MapGridComponent grid,
         out EntityCoordinates coords)
     {
-        var xform = Transform(uid);
-
-        if (xform.GridUid is not { } foundGridUid || !TryComp(foundGridUid, out MapGridComponent? gridComp))
+        if (!_xformQuery.TryComp(uid, out var xform) || xform.GridUid is not { } foundGridUid || !_gridQuery.TryComp(foundGridUid, out var gridComp))
         {
             gridUid = default;
             tile = default;

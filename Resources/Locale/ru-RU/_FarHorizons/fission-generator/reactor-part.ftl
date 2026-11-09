@@ -1,16 +1,16 @@
-reactor-part-nrad-0 = Он светится слегка синим.
-reactor-part-nrad-1 = Он светится каким-то синим.
-reactor-part-nrad-2 = Он светится синим.
-reactor-part-nrad-3 = Он ярко светится синим.
-reactor-part-nrad-4 = Он ярко светится синим.
-reactor-part-nrad-5 = Оно ослепительно светится синим.
+reactor-part-nrad-0 = Слегка светится голубоватым светом.
+reactor-part-nrad-1 = Светится синим свечением.
+reactor-part-nrad-2 = Светится отчётливым синим светом.
+reactor-part-nrad-3 = Ярко светится синим светом.
+reactor-part-nrad-4 = Очень ярко светится синим светом.
+reactor-part-nrad-5 = Ослепительно сияет черенковским излучением.
 
-reactor-part-rad-0 = Он немного радиоактивный.
-reactor-part-rad-1 = Это несколько радиоактивно.
-reactor-part-rad-2 = Он радиоактивный.
-reactor-part-rad-3 = Он очень радиоактивный.
-reactor-part-rad-4 = Он чрезвычайно радиоактивный.
-reactor-part-rad-5 = Он невероятно радиоактивный.
+reactor-part-rad-0 = Слегка радиоактивно.
+reactor-part-rad-1 = Умеренно радиоактивно.
+reactor-part-rad-2 = Радиоактивно.
+reactor-part-rad-3 = Сильно радиоактивно.
+reactor-part-rad-4 = Чрезвычайно радиоактивно.
+reactor-part-rad-5 = Смертельно радиоактивно!
 
-reactor-part-hot = [color=yellow]На ощупь горячо.[/color]
-reactor-part-burning = [color=red]Тепло искажает воздух вокруг себя.[/color]
+reactor-part-hot = [color=yellow]Горячо на ощупь.[/color]
+reactor-part-burning = [color=red]Воздух вокруг детали дрожит от нестерпимого жара.[/color]

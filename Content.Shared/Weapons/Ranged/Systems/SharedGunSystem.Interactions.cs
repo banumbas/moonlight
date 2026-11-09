@@ -59,6 +59,17 @@ public abstract partial class SharedGunSystem
         if (component.SelectedMode == component.AvailableModes)
             return;
 
+        // classic start
+        if (TryComp<BatteryWeaponFireModesComponent>(uid, out var fireModesComp))
+        {
+            foreach (var mode in fireModesComp.FireModes)
+            {
+                if (mode.Mode != null)
+                    return;
+            }
+        }
+        // classic end
+
         var nextMode = GetNextMode(component);
 
         AlternativeVerb verb = new()

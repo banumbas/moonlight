@@ -1,67 +1,67 @@
 trait-category-languages = Языки
 
-trait-language-foreigner-light-name = Иностранец Лайт
-trait-language-foreigner-light-desc = Вы понимаете общий язык, но еще не умеете говорить на нем. У вас есть переводчик, который поможет вам с базовым пониманием языка. Лучше держать его заряженным.
+trait-language-foreigner-light-name = Иностранец (Базовый)
+trait-language-foreigner-light-desc = Вы понимаете Общий язык, но с трудом можете говорить на нём без переводчика. Не забывайте заряжать устройство!
 
 trait-language-foreigner-name = Иностранец
-trait-language-foreigner-desc = Вы не понимаете общий язык, и для разговора вам постоянно нужен переводчик. У вас есть переводчик, который поможет вам понимать и говорить. Обязательно держите его заряженным.
+trait-language-foreigner-desc = Вы совершенно не владеете Общим языком и зависите от портативного переводчика. Держите его заряженным!
 
-trait-language-signlanguage-name = Язык жестов
-trait-language-signlanguage-desc = Язык жестов, обычно используемый глухими или немыми. Особенно популярен среди проставок из-за практичности в безвоздушной среде.
+trait-language-signlanguage-name = Галактический язык жестов
+trait-language-signlanguage-desc = Универсальный язык жестов, популярный среди космонавтов при работе в вакууме.
 
-trait-language-bubblish-name = пузырьковый
-trait-language-bubblish-desc = Вы научились общаться на Bubblish, языке слаймов, на котором говорят с помощью различных звуков и хлопков.
+trait-language-bubblish-name = Булькающий (Бабблиш)
+trait-language-bubblish-desc = Вы научились общаться на языке слаймолюдей, состоящем из бульканья и лопающихся пузырьков.
 
 trait-language-canilunzt-name = Канилунцт
-trait-language-canilunzt-desc = У вас есть способность говорить на канилунцте, гортанном языке, используемом Вулпканином, который в значительной степени включает в себя движения тела.
+trait-language-canilunzt-desc = Вы владеете гортанным языком вульпканинов, включающим в себя выразительную пластику ушей и хвоста.
 
 trait-language-draconic-name = Драконий
-trait-language-draconic-desc = Вы можете издавать звуки, необходимые для того, чтобы говорить на драконьем языке, языке ящерицы, состоящем исключительно из шипения и дребезжания.
+trait-language-draconic-desc = Вы освоили древний шипящий и рокочущий язык унатхов.
 
 trait-language-marish-name = Мариш
-trait-language-marish-desc = Каким-то образом вы можете общаться с Шадекинами на их родном марише — языке, состоящем всего из одного слова и имеющего множество разных значений.
+trait-language-marish-desc = Вы способны понимать тонкие эмоциональные интонации языка шейдкинов.
 
 trait-language-nekomimetic-name = Некомиметик
-trait-language-nekomimetic-desc = Для большинства нормальных людей это просто сломанный японский язык Старой Земли. Вам - и фелионоидам - ​​это как-то понятно.
+trait-language-nekomimetic-desc = Мягкий диалект фелионоидов, звучащий как смесь мурлыканья и земного японского.
 
-trait-language-scratch-name = Царапать
-trait-language-scratch-desc = Вы знаете, как говорить и понимать Авали Скретч, галактический язык, который разделяют Авали и Резоми.
+trait-language-scratch-name = Скретч
+trait-language-scratch-desc = Вы свободно говорите и читаете на руническом языке авали и резоми.
 
 trait-language-solcommon-name = Сол Коммон
-trait-language-solcommon-desc = Вы приобрели знания Sol Common, нынешнего основного языка Старой Земли, разработанного Транссолнечной Федерацией.
+trait-language-solcommon-desc = Вы в совершенстве владеете лаконичным языком Транссолнечной Федерации.
 
 trait-language-sylvan-name = Сильван
-trait-language-sylvan-desc = Вы понимаете Сильван, на котором говорят как Дионы, так и растения. Большинство людей, вероятно, назвали бы вас сумасшедшим, если бы вы сказали, что можете разговаривать с растениями.
+trait-language-sylvan-desc = Вы понимаете шелестящий язык дион и разумных растений.
 
 trait-language-terrum-name = Террум
-trait-language-terrum-desc = Вы можете говорить на терруме, языке циклоритов, который поразительно похож на древнеземной иврит.
+trait-language-terrum-desc = Вы владеете сакральным языком циклоритов, напоминающим древний иврит.
 
-trait-language-voxpidgin-name = Вокс Пиджин
-trait-language-voxpidgin-desc = Вы знаете язык воксов, язык, состоящий в основном из визгов, щелчков и других птичьих шумов.
+trait-language-voxpidgin-name = Вокс-Пиджин
+trait-language-voxpidgin-desc = Вы понимаете резкий свист, щёлканье и птичьи трели воксов.
 
 trait-language-moffic-name = Моффик
-trait-language-moffic-desc = Язык людей-мотыльков, Моффик, по сути, совершенно непонятен никому, кроме вас и его носителей.
+trait-language-moffic-desc = Вы освоили шелестящий и щёлкающий язык людей-мотыльков.
 
-trait-language-thaveyan-name = Тавеян
-trait-language-thaveyan-desc = Вы пробыли среди рыболюдей достаточно долго, чтобы овладеть ритмом их языка, но, возможно, и не их неустойчивым настроением.
+trait-language-thaveyan-name = Тейвеян
+trait-language-thaveyan-desc = Вы провели среди тейвенов достаточно времени, чтобы перенять их мелодичное пение.
 
-trait-language-darktongue-name = Темный Язык
-trait-language-darktongue-desc = Этот грубый язык бездельников и сумасшедших фанатиков легко усвоить, но не позволяйте службе безопасности услышать, как вы говорите на нем, иначе они подумают, что вы что-то замышляете...
+trait-language-darktongue-name = Тёмное наречие
+trait-language-darktongue-desc = Хриплый язык культистов и обитателей Тьмы. Будьте осторожны — охрана не любит подозрительные фразы!
 
-trait-language-felyaic-name = феляйский
-trait-language-felyaic-desc = Эта более совершенная форма Темного Языка понятна сейритам и детариям, но практически неизвестна за пределами Нулевого Шрама. Вы должны приобрести черту «Темный язык», чтобы научиться говорить на феляйском языке, даже если вы уже знаете, как говорить на «Темном языке» из другого источника.
+trait-language-felyaic-name = Феляйский
+trait-language-felyaic-desc = Утяжелённая древняя ветвь Тёмного наречия, на которой говорят обитатели Нулевого Шрама.
 
 trait-language-classical-name = Классический
-trait-language-classical-desc = Когда-то на этом языке говорили все. Не так сложно подобрать, как можно было бы ожидать.
+trait-language-classical-desc = Архаичный язык древней знати и забытых цивилизаций.
 
 trait-language-grumbakul-name = Грумбакул
-trait-language-grumbakul-desc = Вы освоили язык гномов, или, по крайней мере, так вам говорят ваши друзья-гномы.
+trait-language-grumbakul-desc = Вы овладели крепким и лаконичным наречием дварфов.
 
-trait-language-aielic-name = Эйлик
-trait-language-aielic-desc = Красивый язык кели идеально подходит для поэзии, но сделай одну ошибку, и ты никогда не забудешь ее.
+trait-language-aielic-name = Айелик
+trait-language-aielic-desc = Изысканный поэтический язык айелитов.
 
-trait-language-lagomorphian-name = зайцеобразный
-trait-language-lagomorphian-desc = Линарксический язык, разработанный как язык интеграции различной голосовой структуры зайцеобразных.
+trait-language-lagomorphian-name = Лагоморфский
+trait-language-lagomorphian-desc = Быстрый щёлкающий язык лагоморфов.
 
-trait-language-squeakish-name = скрипучий
-trait-language-squeakish-desc = Вы можете говорить на скрипучем языке грызунов, который состоит из серии чириканий и писков.
+trait-language-squeakish-name = Сквикиш
+trait-language-squeakish-desc = Писклявый и чирикающий язык грызунов родентии.

@@ -4,59 +4,59 @@ dynamic-playing-card-error-description = Если вы это видите, чт
 dynamic-playing-card-error-reverse = динамическая карта
 
 # Card
-playing-card-examine = Это {INDEFINITE($target)} [color=lightgray]{$target}[/color].
+playing-card-examine = Это [color=lightgray]{$target}[/color].
 
-playing-card-card-card-pickup-verb-text = Взять в руки
-playing-card-card-stack-pickup-verb-text = Подобрать
-playing-card-card-card-put-down-verb-text = Поместить в колоду
-playing-card-card-deck-put-down-verb-text = Поместите сверху
-playing-card-card-hand-put-down-verb-text = Поместите в
-playing-card-flip-verb-text = Подбросить
+playing-card-card-card-pickup-verb-text = Взять в руку
+playing-card-card-stack-pickup-verb-text = Взять в стопку
+playing-card-card-card-put-down-verb-text = Положить в колоду
+playing-card-card-deck-put-down-verb-text = Положить сверху
+playing-card-card-hand-put-down-verb-text = Положить в руку
+playing-card-flip-verb-text = Перевернуть
 
 # Deck
-playing-card-deck-examine = Верхняя карта — {INDEFINITE($card)} [color=lightgray]{$card}[/color].
+playing-card-deck-examine = Верхняя карта — [color=lightgray]{$card}[/color].
 
-playing-card-deck-card-pickup-verb-text = Рисовать в руке
-playing-card-deck-stack-pickup-verb-text = Рисовать
-playing-card-deck-draw-verb-text = Рисовать
-playing-card-deck-cut-verb-text = Расколоть
-playing-card-deck-cut-popup = Вы разделяете {$target}.
-playing-card-deck-cut-popup-other = {$user} разделил {$target}.
+playing-card-deck-card-pickup-verb-text = Взять в руку
+playing-card-deck-stack-pickup-verb-text = Взять стопку
+playing-card-deck-draw-verb-text = Тянуть карту
+playing-card-deck-cut-verb-text = Снять колоду
+playing-card-deck-cut-popup = Вы снимаете {$target}.
+playing-card-deck-cut-popup-other = {$user} снимает {$target}.
 playing-card-deck-flip-entire-verb-text = Перевернуть всю колоду
 playing-card-deck-flip-entire-popup = Вы перевернули {$target}.
 playing-card-deck-flip-entire-popup-other = {$user} перевернул {$target}.
 
 # Hand
-playing-cards-hand-card-count-changed-added = Карта добавлена ​​(Общее количество карт: {$quantity})
-playing-cards-hand-card-count-changed-removed = Карта удалена (Общее количество карт: {$quantity})
-playing-cards-hand-card-count-changed-unknown = Неизвестный
-playing-cards-hand-cant-pickup-no-free-hands = У тебя руки заняты!
+playing-cards-hand-card-count-changed-added = Карта добавлена (всего карт: {$quantity})
+playing-cards-hand-card-count-changed-removed = Карта удалена (всего карт: {$quantity})
+playing-cards-hand-card-count-changed-unknown = Неизвестно
+playing-cards-hand-cant-pickup-no-free-hands = У вас заняты руки!
 
 playing-card-hand-card-pickup-verb-text = Взять карту в руку
 playing-card-hand-stack-pickup-verb-text = Выбрать карту
-playing-card-hand-stack-pickup-entire-verb-text = Объединить с удерживаемым
+playing-card-hand-stack-pickup-entire-verb-text = Объединить с картами в руке
 
-playing-card-hand-convert-to-deck-verb-text = Превратить в колоду
+playing-card-hand-convert-to-deck-verb-text = Собрать в колоду
 
 # Stack
-playing-card-stack-examine = В этой стопке есть карты {$count}.
+playing-card-stack-examine = В этой стопке {$count} карт.
 
-playing-card-stack-card-put-down-verb-text = Место
-playing-card-stack-deck-put-down-verb-text = Иметь дело
-playing-card-stack-hand-put-down-verb-text = Выбирайте и добавляйте
+playing-card-stack-card-put-down-verb-text = Положить
+playing-card-stack-deck-put-down-verb-text = Раздать
+playing-card-stack-hand-put-down-verb-text = Выбрать и добавить
 
 playing-card-flip-all-verb-text = Перевернуть все
-playing-card-flip-all-popup = Карты перевернулись.
+playing-card-flip-all-popup = Карты перевернуты.
 playing-card-flip-all-popup-other = {$user} перевернул карты.
 
-playing-card-flip-all-up-verb-text = Организовать лицом вверх
-playing-card-flip-all-up-popup = Карты расположены лицом вверх.
+playing-card-flip-all-up-verb-text = Разложить лицевой стороной вверх
+playing-card-flip-all-up-popup = Карты разложены лицевой стороной вверх.
 playing-card-flip-all-up-popup-other = {$user} разложил карты лицевой стороной вверх.
 
-playing-card-flip-all-down-verb-text = Организовать лицом вниз
-playing-card-flip-all-down-popup = Карты расположены лицевой стороной вниз.
-playing-card-flip-all-down-popup-other = {$user} разложил карты лицевой стороной вниз.
+playing-card-flip-all-down-verb-text = Разложить рубашкой вверх
+playing-card-flip-all-down-popup = Карты разложены рубашкой вверх.
+playing-card-flip-all-down-popup-other = {$user} разложил карты рубашкой вверх.
 
 playing-card-shuffle-verb-text = Перетасовать
-playing-card-shuffle-popup = Карты перетасовались.
+playing-card-shuffle-popup = Колода перетасована.
 playing-card-shuffle-popup-other = {$user} перетасовал карты.

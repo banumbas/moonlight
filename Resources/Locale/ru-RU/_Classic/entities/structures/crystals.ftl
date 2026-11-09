@@ -37,10 +37,12 @@ ent-ClassicCrystalQuartzGoldMedium = средний золотой криста�
     .desc = Среднее светящееся кристаллическое образование.
 ent-ClassicCrystalQuartzGoldSmall = маленький золотой кристалл
     .desc = Маленькое светящееся кристаллическое образование.
-
-
 ent-ClassicCrystalIceBase = ледяной кристалл
     .desc = Замёрзший кристалл из чистого льда.
 ent-ClassicCrystalIceBig = большой ледяной кристалл
 ent-ClassicCrystalIceMedium = средний ледяной кристалл
 ent-ClassicCrystalIceSmall = маленький ледяной кристалл
+ent-ClassicCrystalSpawner = спавнер кристаллов
+    .desc = { ent-MarkerBase.desc }
+ent-ClassicCrystalIceSpawner = спавнер ледяных кристаллов
+    .desc = { ent-MarkerBase.desc }

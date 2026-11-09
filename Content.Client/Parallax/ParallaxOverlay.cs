@@ -50,7 +50,11 @@ public sealed partial class ParallaxOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (args.MapId == MapId.Nullspace || _entManager.HasComponent<BiomeComponent>(_mapSystem.GetMapOrInvalid(args.MapId)))
+        if (args.MapId == MapId.Nullspace) // classic-edit
+            return false; // classic-add
+
+        if (_entManager.HasComponent<BiomeComponent>(_mapSystem.GetMapOrInvalid(args.MapId)) &&
+            !_zLevel.TryGetMapNetwork(args.MapUid, out _)) // classic-edit
             return false;
 
         //Classic draw parallax only for lowest zlevel
@@ -155,4 +159,3 @@ public sealed partial class ParallaxOverlay : Overlay
             worldHandle.DrawTextureRect(tex, Box2.FromDimensions(originBL, size), modulate);
     }
 }
-

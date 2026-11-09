@@ -4,6 +4,7 @@ using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using BaseFultonSystem = Content.Client.Salvage.FultonSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
@@ -12,9 +13,10 @@ namespace Content.Client._Classic.Salvage.Fulton;
 
 public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonSystem
 {
-    [Dependency] private ISerializationManager _serManager = default!;
-    [Dependency] private AnimationPlayerSystem _player = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private readonly ISerializationManager _serManager = default!;
+    [Dependency] private readonly AnimationPlayerSystem _player = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly TimeSpan AnimationDuration = TimeSpan.FromSeconds(0.4);
 
@@ -54,12 +56,21 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
         }
     };
 
+    private EntityQuery<SpriteComponent> _spriteQuery;
+
     public override void Initialize()
     {
         base.Initialize();
 
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
+
         SubscribeLocalEvent<ClassicFultonSoldComponent, AfterAutoHandleStateEvent>(OnHandleState);
         SubscribeNetworkEvent<ClassicFultonAnimationMessage>(OnFultonMessage);
+    }
+
+    private void OnHandleState(Entity<ClassicFultonSoldComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        UpdateAppearance(ent.Owner, ent.Comp);
     }
 
     private void OnFultonMessage(ClassicFultonAnimationMessage ev)
@@ -67,7 +78,7 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
         var entity = GetEntity(ev.Entity);
         var coordinates = GetCoordinates(ev.Coordinates);
 
-        if (Deleted(entity) || !TryComp<SpriteComponent>(entity, out var entSprite))
+        if (Deleted(entity) || !_spriteQuery.TryComp(entity, out var entSprite))
             return;
 
         var animationEnt = Spawn(null, coordinates);
@@ -90,18 +101,13 @@ public sealed partial class ClassicCargoFultonSystem : SharedClassicCargoFultonS
         _player.Play(animationEnt, FultonAnimation, "classic-fulton-animation");
     }
 
-    private void OnHandleState(EntityUid uid, ClassicFultonSoldComponent component, ref AfterAutoHandleStateEvent args)
-    {
-        UpdateAppearance(uid, component);
-    }
-
     protected override void UpdateAppearance(EntityUid uid, ClassicFultonSoldComponent component)
     {
         if (!component.Effect.IsValid())
             return;
 
         var startTime = component.NextFulton - component.FultonDuration;
-        var elapsed = Timing.CurTime - startTime;
+        var elapsed = _timing.CurTime - startTime;
 
         if (elapsed >= AnimationDuration)
             return;

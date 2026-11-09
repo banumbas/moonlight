@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: wirecutter
   parent: BaseItem
   id: Wirecutter
@@ -527,18 +527,24 @@
   description: A large tool for digging and moving dirt.
   components:
   - type: Sprite
-    sprite: Objects/Tools/shovel.rsi
+    sprite: _Classic/Objects/Tools/shovel.rsi # Classic-edit
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: 45
     damage:
       types:
         Blunt: 14
+        Structural: 10 # Classic-add
     soundHit:
-      collection: MetalThud
+      collection: ShovelDig # Classic-edit
   - type: Item
     size: Normal
-    sprite: Objects/Tools/shovel.rsi
+    # Classic-start
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    # Classic-end
+    sprite: _Classic/Objects/Tools/shovel.rsi # Classic-edit
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -550,6 +556,12 @@
   - type: Tool
     qualities:
       - Digging
+  # Classic-start
+    useSound:
+      collection: ShovelDig
+  - type: ToolTileCompatible
+    delay: 1.5
+  # Classic-end
   # 🌟Starlight-end🌟
 - type: entity
   parent: BaseItem

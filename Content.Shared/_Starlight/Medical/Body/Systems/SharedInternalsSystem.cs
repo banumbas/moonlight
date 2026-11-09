@@ -159,12 +159,14 @@ public abstract partial class SharedInternalsSystem : EntitySystem
 
     private void OnInternalsStartup(Entity<InternalsComponent> ent, ref ComponentStartup args)
     {
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // classic-edit
     }
 
     private void OnInternalsShutdown(Entity<InternalsComponent> ent, ref ComponentShutdown args)
     {
-        _alerts.ClearAlert(ent.Owner, ent.Comp.InternalsAlert);
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ClearAlert(ent.Owner, ent.Comp.InternalsAlert.Value); // classic-edit
     }
 
     public void ConnectBreathTool(Entity<InternalsComponent> ent, EntityUid toolEntity)
@@ -179,7 +181,8 @@ public abstract partial class SharedInternalsSystem : EntitySystem
         }
 
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // classic-edit
     }
 
     public void DisconnectBreathTool(Entity<InternalsComponent> ent, EntityUid toolEntity, bool forced = false)
@@ -200,7 +203,8 @@ public abstract partial class SharedInternalsSystem : EntitySystem
             DisconnectTank(ent, forced: forced);
         }
 
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // classic-edit
     }
 
     public void DisconnectTank(Entity<InternalsComponent> ent, bool forced = false)
@@ -210,7 +214,8 @@ public abstract partial class SharedInternalsSystem : EntitySystem
 
         ent.Comp.GasTankEntity = null;
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent.Comp));
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent.Comp)); // classic-edit
     }
 
     public bool TryConnectTank(Entity<InternalsComponent> ent, EntityUid tankEntity)
@@ -223,7 +228,8 @@ public abstract partial class SharedInternalsSystem : EntitySystem
 
         ent.Comp.GasTankEntity = tankEntity;
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        if (ent.Comp.InternalsAlert != null) // classic-add
+            _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // classic-edit
         return true;
     }
 

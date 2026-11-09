@@ -44,15 +44,15 @@
     stackType: MetalRod
     baseLayer: base
     layerStates:
-    - rods
     - rods_2
     - rods_3
     - rods_4
     - rods_5
+    - rods
   - type: Sprite
-    state: rods_5
+    state: rods
     layers:
-    - state: rods_5
+    - state: rods
       map: ["base"]
   - type: Item
     size: Normal
@@ -92,7 +92,7 @@
   suffix: 10
   components:
   - type: Sprite
-    state: rods
+    state: rods_3
   - type: Stack
     count: 10
 
@@ -103,6 +103,6 @@
   suffix: Single
   components:
   - type: Sprite
-    state: rods
+    state: rods_2
   - type: Stack
     count: 1

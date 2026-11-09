@@ -4,7 +4,7 @@ positronic-brain-still-searching = Идёт процесс синтетичес�
 positronic-brain-searching = Начинается процесс синтетического нейронного дескремблирования...
 
 positronic-brain-role-name = Позитронный мозг
-positronic-brain-role-description = Служите экипажу станции.
+positronic-brain-role-description = Служите экипажу колонии.
 
 positronic-brain-wipe-device-verb-text = Стереть мозг
 positronic-brain-wiped-device = Нейронная активность была прекращена.

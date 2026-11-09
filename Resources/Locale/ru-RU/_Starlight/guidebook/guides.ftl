@@ -91,10 +91,10 @@ guide-entry-sl-legal-sop-intro = Юридический
 guide-entry-sl-engineering-sop-intro = Инженерное дело
 guide-entry-sl-engineering-sop-genproc-intro = Общие процедуры
 guide-entry-sl-engineering-sop-power-generation = Производство электроэнергии
-guide-entry-sl-engineering-sop-station-damage = Повреждения станции
+guide-entry-sl-engineering-sop-station-damage = Повреждения колонии
 guide-entry-sl-engineering-sop-staff-intro = Процедуры для персонала
 guide-entry-sl-engineering-sop-chief-engineer = Главный инженер
-guide-entry-sl-engineering-sop-station-engineer = Инженер станции
+guide-entry-sl-engineering-sop-station-engineer = Инженер колонии
 guide-entry-sl-engineering-sop-atmos-tech = Атмосферный техник
 guide-entry-sl-engineering-sop-technical-assistant = Технический помощник
 

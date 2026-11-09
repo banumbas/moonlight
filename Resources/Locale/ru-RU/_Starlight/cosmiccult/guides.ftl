@@ -1,7 +1,7 @@
-guide-entry-cosmiccult = Космический Культ
-guide-entry-cosmiccult-monument = Памятник
-guide-entry-cosmiccult-rifts = Злокачественные разломы
+guide-entry-cosmiccult = Космический культ
+guide-entry-cosmiccult-monument = Монумент
+guide-entry-cosmiccult-rifts = Пространственные разломы
 guide-entry-cosmiccult-influences = Влияния
-guide-entry-cosmiccult-deconversion = Деконверсия
+guide-entry-cosmiccult-deconversion = Очищение
 
 guide-entry-cosmiccolossus = Энтропический колосс

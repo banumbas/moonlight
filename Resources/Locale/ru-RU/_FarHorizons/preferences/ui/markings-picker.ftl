@@ -1,4 +1,4 @@
-markings-layer-BodyCover = Имплантаты
-markings-layer-BodyCoverCover = светодиоды
-markings-layer-FaceCover = Козырек
-markings-layer-FaceCoverCover = Светодиоды козырька
+markings-layer-BodyCover = Кибернетика
+markings-layer-BodyCoverCover = Светодиоды корпуса
+markings-layer-FaceCover = Визор
+markings-layer-FaceCoverCover = Светодиоды визора

@@ -45,10 +45,12 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         // Starlight BEGIN
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
+        var formattedDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan > TimeSpan.Zero ? overallDiffSpan : TimeSpan.Zero); // Classic edit
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
             ("current", formattedCurrent),
-            ("required", formattedRequired)));
+            ("required", formattedRequired),
+            ("time", formattedDiff))); // Classic edit
         // Starlight END
 
         if (!Inverted)
@@ -59,7 +61,8 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
                 ("current", formattedCurrent), // Starlight
-                ("required", formattedRequired))); // Starlight
+                ("required", formattedRequired), // Starlight
+                ("time", formattedDiff))); // Classic edit
             return bypass; // NullLink
         }
 
@@ -68,7 +71,8 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             reason = FormattedMessage.FromMarkupPermissive( // Starlight BEGIN
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
-                ("required", formattedRequired))); // Starlight END
+                ("required", formattedRequired),
+                ("time", formattedDiff))); // Classic edit // Starlight END
             return bypass; // NullLink
         }
 

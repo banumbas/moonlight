@@ -1,5 +1,5 @@
 alerts-battery-crit-name = [color=red]ОТКЛЮЧЕНИЕ НЕИЗБЕЖНО[/color]
-alerts-battery-crit-desc = У вас[color=red]нет питания![/color] Немедленно приобретите новый источник питания, иначе вы отключитесь!
+alerts-battery-crit-desc = У вас [color=red]закончилась энергия![/color] Срочно подключитесь к источнику питания, иначе системы выключатся!
 
-alerts-low-circulation-name = [color=red]Низкий тираж[/color]
-alerts-low-circulation-desc = Что-то в атмосфере, будь то давление или температура, делает вашу вентиляцию [color=red] менее эффективной[/color]. [color=green]гермокостюм[/color] защитит вас.
+alerts-low-circulation-name = [color=red]Слабая циркуляция воздуха[/color]
+alerts-low-circulation-desc = Неблагоприятные условия окружающей среды (давление или температура) делают вашу систему охлаждения [color=red]менее эффективной[/color]. [color=green]Скафандр[/color] может защитить вас.

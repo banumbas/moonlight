@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseWall
   id: ClassicWallRock
   name: rock
@@ -118,3 +118,205 @@
   - type: IconSmooth
     key: walls
     base: mountain
+
+- type: entity
+  id: ClassicWallDirt
+  parent: ClassicWallRock
+  name: dirt wall
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/dirt.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/dirt.rsi
+  - type: IconSmooth
+    key: walls
+    base: dirt
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+    toolQualities:
+    - Digging
+  - type: SoundOnGather
+    sound:
+      collection: ShovelDig
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Dirt
+
+# Dense underground biomes create thousands of these walls inside ordinary PVS ranges. They are
+# deliberately separate from ClassicWallRock: hand-placed/surface rocks still inherit BaseWall
+# and participate in grid stability and Z-collapse. Procedural terrain grids remove
+# ClassicGridStabilityComponent and these walls are permanently static + anchored, so inheriting
+# Anchorable, Rotatable, GravityAffected, ClassicZPhysics, Pullable, Appearance and
+# ClassicGridStabilitySupport only allocates components and runs lifecycle handlers with no
+# gameplay effect.
+- type: entity
+  id: ClassicBiomeWallBase
+  abstract: true
+  name: natural wall
+  suffix: planetmap, streamed
+  categories: [ ForkFiltered ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Tag
+    tags:
+    - Structure
+    - Wall
+  - type: Reactive
+    groups:
+      Dissolvable: [ Touch ]
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: IsRoof
+  - type: SpriteFade
+    fadeTopOnly: true
+  - type: Icon
+    state: full
+  - type: ClassicPerspectiveDepth
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 2
+  - type: BlockWeather
+  - type: SunShadowCast
+  - type: Ricochetable
+    chance: 0.4
+  - type: Occluder
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MiningScannerViewable
+
+- type: entity
+  parent: ClassicBiomeWallBase
+  id: ClassicBiomeWallRock
+  name: rock
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: rock
+
+- type: entity
+  parent: ClassicBiomeWallBase
+  id: ClassicBiomeWallRock2
+  name: rock wall variant
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/rock_wall2.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/rock_wall2.rsi
+  - type: IconSmooth
+    key: walls
+    base: rock_wall2
+
+- type: entity
+  parent: ClassicBiomeWallBase
+  id: ClassicBiomeWallIcerock
+  name: ice rock wall
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/icerock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/icerock.rsi
+  - type: IconSmooth
+    key: walls
+    base: icerock
+
+- type: entity
+  parent: ClassicBiomeWallBase
+  id: ClassicBiomeWallRedRock
+  name: red rock wall
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/red_rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/red_rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: red_rock
+
+- type: entity
+  parent: ClassicBiomeWallBase
+  id: ClassicBiomeWallDirt
+  name: dirt wall
+  components:
+  - type: Sprite
+    sprite: _Classic/Structures/Walls/dirt.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Classic/Structures/Walls/dirt.rsi
+  - type: IconSmooth
+    key: walls
+    base: dirt
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+    toolQualities:
+    - Digging
+  - type: SoundOnGather
+    sound:
+      collection: ShovelDig
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          DirtBulletImpact
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Dirt

@@ -1,51 +1,51 @@
-alerts-shadekin-name = Светлая экспозиция
-alerts-shadekin-desc = Сколько света вокруг тебя.
+alerts-shadekin-name = Освещённость
+alerts-shadekin-desc = Уровень освещённости вокруг вас.
 
 alerts-shadekin-energy-name = Энергия
-alerts-shadekin-energy-desc = Ваш энергетический уровень.
-alerts-shadekin-noportal-name = Пропавший портал
-alerts-shadekin-noportal-desc = [color=red]У вас нет портала, вы не сможете омолодиться![/color]
-alerts-shadekin-rejuvenate-name = Омолаживающий
-alerts-shadekin-rejuvenate-desc = В настоящее время вы омолаживаетесь. Ты не сможешь покинуть Тьму, пока не наберешься полной энергии.
+alerts-shadekin-energy-desc = Ваш запас энергии Тьмы.
+alerts-shadekin-noportal-name = Нет портала
+alerts-shadekin-noportal-desc = [color=red]У вас нет открытого портала, вы не сможете восстановить силы![/color]
+alerts-shadekin-rejuvenate-name = Восстановление сил
+alerts-shadekin-rejuvenate-desc = Вы находитесь в процессе омоложения. Вы не сможете покинуть Тьму до полного восполнения энергии.
 
-roles-antag-brighteye-name = Яркоглазый
-roles-antag-brighteye-description = Гость и нарушитель из Тьмы. Мешать и наблюдать оттуда, откуда не доходит свет.
+roles-antag-brighteye-name = Ясноглазый
+roles-antag-brighteye-description = Гость и лазутчик из глубин Тьмы. Наблюдайте и плетите интриги там, куда не падает свет.
 objective-issuer-brighteye = [color=#6c15ae]Ясноглазый[/color]
 brighteye-role-greeting =
-    Ты Ясноглазка!
-    Вы — шейдекин из Тьмы, существо теней, чуждое и чуждое этому измерению.
-    Исследуйте и оказывайте свое влияние там, где свет не достигает, прорывайте пространство между этим и тьмой с помощью своего портала и изучайте этот мир.
+    Вы — Ясноглазый!
+    Вы — шейдкин из Тьмы, теневое существо, чуждое этому измерению.
+    Исследуйте мир и распространяйте своё влияние во мраке, открывайте порталы сквозь измерения и познавайте законы смертных.
 
 shadekin-portal-owner = Это ваш портал.
-shadekin-portal-stability-stable = Текущее состояние: [color=forestgreen]Стабильное[/color]
-shadekin-portal-stability-unstable = Текущее состояние: [color=crimson]растет[/color]
-shadekin-portal-health-percentage = Текущее здоровье: [color=red]{$percent}[/color]
+shadekin-portal-stability-stable = Состояние: [color=forestgreen]Стабилен[/color]
+shadekin-portal-stability-unstable = Состояние: [color=crimson]Растёт[/color]
+shadekin-portal-health-percentage = Целостность: [color=red]{$percent}[/color]
 shadekin-portal-destroy = [color=red]Уничтожить портал[/color]
 shadekin-portal-stabilize = Стабилизировать портал
-shadekin-portal-stabilize-info = Стабилизируйте и исцелите свой портал, используя свою энергию. (Стоит 50 энергии)
+shadekin-portal-stabilize-info = Стабилизировать и восстановить портал за счёт собственной энергии. (Расход: 50 энергии)
 
-shadekin-noenergy = Недостаточно энергии для выполнения этого действия.
+shadekin-noenergy = Недостаточно энергии Тьмы для этого действия.
 shadekin-fail-generic = Вы не можете использовать свою энергию!
-phase-fail-generic = Вы не можете фазироваться!
-hubportal-rejuvenate = Вы не можете использовать это так скоро после аварийного варпа!
-shadekin-rejuvenate-compleated = Вы чувствуете, что можете снова покинуть Тьму.
-shadekin-shunt = Что-то резонирует с вашим ядром и ставит вас на колени.
-shadekin-too-bright = Свет здесь слишком яркий!
+phase-fail-generic = Не удалось совершить фазовый сдвиг!
+hubportal-rejuvenate = Нельзя использовать портал так быстро после аварийного варпа!
+shadekin-rejuvenate-compleated = Ваши силы полностью восстановились. Теперь можно покинуть Тьму.
+shadekin-shunt = Резонанс в ядре сбивает вас с ног!
+shadekin-too-bright = Здесь слишком ярко!
 
-shadekin-core-undamaged = [color=yellow]Ядро течет силой![/color]
-shadekin-core-owner = [color=yellow]Это ​​ядро ​​принадлежит вам.[/color]
+shadekin-core-undamaged = [color=yellow]Ядро пульсирует чистой мощью![/color]
+shadekin-core-owner = [color=yellow]Это ядро принадлежит вам.[/color]
 
-brighteye-thedark = [жирный]Тьма[/жирный]
-brighteye-darktiles = [color=red]{$darkCount}[/color] темные плитки на станции.
-brighteye-darkstation = станцию ​​[color=red]не[/color] утащили во тьму.
+brighteye-thedark = [bold]Тьма[/bold]
+brighteye-darktiles = Тёмных клеток в колонии: [color=red]{$darkCount}[/color].
+brighteye-darkstation = колония [color=red]ещё не[/color] погрузилась во тьму.
 
-admin-verb-text-make-brighteye = Сделать Яркий глаз
-admin-verb-make-brighteye = Превратите цель в Ясноглазку.
+admin-verb-text-make-brighteye = Сделать Ясноглазым
+admin-verb-make-brighteye = Превратить цель в Ясноглазого.
 
-shadekinTrap-trigger = Набор кристаллов выскакивает из земли, и призрачные усики начинают обвивать {$user}!
-shadekinTrap-trigger-fail = Теневые щупальца ничего не улавливают и рассеиваются.
+shadekinTrap-trigger = Кристаллы вспыхивают из пола, и призрачные щупальца опутывают {$user}!
+shadekinTrap-trigger-fail = Теневые щупальца не находят жертвы и рассеиваются.
 
-alerts-shadekin-thedark-name = Темный
-alerts-shadekin-thedark-desc = Ты в Тьме. Без защиты это подействует на вас.
+alerts-shadekin-thedark-name = Тьма
+alerts-shadekin-thedark-desc = Вы находитесь в Тьме. Без защиты это повлияет на вас.
 
-dark-breacher-window-title = Темный Прорывник
+dark-breacher-window-title = Тёмный прорывник

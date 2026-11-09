@@ -1,9 +1,9 @@
 # Ores
-materials-raw-abyssium = сырая абиссиум
-stack-phosphorus = измельченный фосфор
+materials-raw-abyssium = сырой абиссиум
+stack-phosphorus = измельчённый фосфор
 
 # Misc
-materials-labeller-refill-paper = бумага для заправки этикетировочной машины
+materials-labeller-refill-paper = лента маркиратора
 
 # Metals
 materials-brass = латунь

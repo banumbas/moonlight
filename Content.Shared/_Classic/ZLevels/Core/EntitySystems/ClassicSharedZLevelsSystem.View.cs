@@ -15,6 +15,7 @@ namespace Content.Shared._Classic.ZLevels.Core.EntitySystems;
 public abstract partial class ClassicSharedZLevelsSystem
 {
     [Dependency] protected ITileDefinitionManager TilDefMan = null!;
+    [Dependency] private EntityQuery<EyeComponent> _viewerEyeQuery = default!;
 
     private void InitializeView()
     {
@@ -35,6 +36,12 @@ public abstract partial class ClassicSharedZLevelsSystem
         DirtyField(entity, entity.Comp, nameof(ClassicZLevelViewerComponent.LookUp));
 
         _actions.SetToggled(entity.Comp.ActionEntity, entity.Comp.LookUp);
+        LookUpChanged(entity);
+    }
+
+    /// <summary>Server hook for updating PVS subscriptions when upward rendering is toggled.</summary>
+    protected virtual void LookUpChanged(Entity<ClassicZLevelViewerComponent> entity)
+    {
     }
 
     /// <summary>
@@ -43,18 +50,34 @@ public abstract partial class ClassicSharedZLevelsSystem
     /// </summary>
     public int GetVisibleZLevelsAbove(EntityUid ent, Entity<ClassicZMapComponent?>? currentMapUid = null)
     {
-        currentMapUid ??= Transform(ent).MapUid;
+        if (!TryComp<ClassicZLevelViewerComponent>(ent, out var viewer))
+            return 0;
+
+        var (viewMap, worldPos) = GetViewedPosition(ent);
+        currentMapUid ??= viewMap;
 
         if (currentMapUid is null)
+            return 0;
+
+        var tile = new Vector2i(
+            (int) MathF.Floor(worldPos.X),
+            (int) MathF.Floor(worldPos.Y));
+        if (viewer.VisibleZLevelsAboveMap != currentMapUid.Value.Owner ||
+            viewer.VisibleZLevelsAboveTile != tile)
+        {
+            return 0;
+        }
+
+        var maxVisibleLevels = Math.Min(viewer.VisibleZLevelsAbove, MaxZLevelsAboveRendering);
+        if (maxVisibleLevels == 0)
             return 0;
 
         if (!TryMapUp(currentMapUid.Value, out var checkingMap))
             return 0;
 
-        var worldPos = _transform.GetWorldPosition(ent);
         var visibleLevels = 0;
 
-        for (var i = 1; i <= MaxZLevelsAboveRendering; i++)
+        for (var i = 1; i <= maxVisibleLevels; i++)
         {
             // No grid or no chunk at this position means there's simply nothing there (open space),
             // not an opaque roof, so it shouldn't block sight upward. Mirrors HasOpaqueAbove below.
@@ -68,11 +91,39 @@ public abstract partial class ClassicSharedZLevelsSystem
 
             visibleLevels++;
 
-            if (i == MaxZLevelsAboveRendering || !TryMapUp(checkingMap.AsNullable(), out checkingMap))
+            if (i == maxVisibleLevels || !TryMapUp(checkingMap.AsNullable(), out checkingMap))
                 break;
         }
 
         return visibleLevels;
+    }
+
+    /// <summary>
+    /// Resolves the eye target, including remote views on maps outside the Z network.
+    /// Rendering and auxiliary PVS eyes must use the same map.
+    /// </summary>
+    public TransformComponent GetViewedTransform(EntityUid viewer, TransformComponent? fallback = null)
+    {
+        if (_viewerEyeQuery.TryComp(viewer, out var eye) &&
+            eye.Target is { } target &&
+            _transformQuery.TryComp(target, out var targetXform))
+        {
+            return targetXform;
+        }
+
+        return fallback ?? Transform(viewer);
+    }
+
+    /// <summary>
+    /// Resolves the spatial view position for roof checks and auxiliary eyes. Camera projection and
+    /// screen effects are excluded; remote views can supply their own horizontal offset.
+    /// </summary>
+    public (EntityUid? Map, Vector2 Position) GetViewedPosition(EntityUid viewer, TransformComponent? fallback = null)
+    {
+        var xform = GetViewedTransform(viewer, fallback);
+        var ev = new ClassicGetViewPositionEvent(xform.Owner, _transform.GetWorldPosition(xform));
+        RaiseLocalEvent(viewer, ref ev);
+        return (xform.MapUid, ev.Position);
     }
 
     /// <summary>
@@ -206,3 +257,7 @@ public abstract partial class ClassicSharedZLevelsSystem
         }
     }
 }
+
+/// <summary>Allows a remote view to offset the position used for spatial visibility checks.</summary>
+[ByRefEvent]
+public record struct ClassicGetViewPositionEvent(EntityUid Target, Vector2 Position);

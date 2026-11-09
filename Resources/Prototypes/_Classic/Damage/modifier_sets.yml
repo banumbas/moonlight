@@ -1,0 +1,8 @@
+- type: damageModifierSet
+  id: Dirt
+  coefficients:
+    Structural: 3.5
+    Blunt: 0.8
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5

@@ -51,6 +51,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         var roleDiff = roleDiffSpan.TotalMinutes;
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(roleTime); // Starlight
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time); // Starlight
+        var formattedDiff = ContentLocalizationManager.FormatPlaytime(roleDiffSpan > TimeSpan.Zero ? roleDiffSpan : TimeSpan.Zero); // Classic edit
         var departmentColor = Color.Yellow;
 
         if (!entManager.EntitySysManager.TryGetEntitySystem(out SharedJobSystem? jobSystem))
@@ -70,9 +71,10 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             roleName = Loc.GetString(proto);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
+            Inverted ? "role-timer-role-not-too-high" : "role-timer-role-sufficient", // Classic edit: fix typo role-timer-not-too-high
             ("current", formattedCurrent),
             ("required", formattedRequired),
+            ("time", formattedDiff), // Classic edit
             ("job", roleName),
             ("departmentColor", departmentColor.ToHex())));
 
@@ -90,6 +92,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                     "role-timer-role-insufficient",
                     ("current", formattedCurrent), // Starlight
                     ("required", formattedRequired), // Starlight
+                    ("time", formattedDiff), // Classic edit
                     ("job", tracker.LocalizedName),
                     ("departmentColor", departmentColor.ToHex())));
                 return bypass; // NullLink
@@ -102,6 +105,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                         "role-timer-role-too-high",
                         ("current", formattedCurrent), // Starlight
                         ("required", formattedRequired), // Starlight
+                        ("time", formattedDiff), // Classic edit
                         ("job", tracker.LocalizedName),
                         ("departmentColor", departmentColor.ToHex())));
                     return bypass; // NullLink
@@ -126,6 +130,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 "role-timer-role-insufficient",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired), // Starlight
+                ("time", formattedDiff), // Classic edit
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
             return bypass; // NullLink
@@ -137,6 +142,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 "role-timer-role-too-high",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired), // Starlight
+                ("time", formattedDiff), // Classic edit
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
             return bypass; // NullLink

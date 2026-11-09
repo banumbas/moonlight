@@ -541,14 +541,6 @@ public sealed partial class ExplosionSystem
         if (tileDef.TileId == tileRef.Tile.TypeId)
             return;
 
-        // Classic-Start
-        if ((tileDef.MapAtmosphere || tileDef.TileId == 0) && _biomeQuery.TryComp(tileRef.GridUid, out var biome))
-        {
-            if (_biome.TryGetTile(tileRef.GridIndices, biome.Layers, biome.Seed, (tileRef.GridUid, _gridQuery.Comp(tileRef.GridUid)), out var biomeTile))
-                tileDef = (ContentTileDefinition)_tileDefinitionManager[biomeTile.Value.TypeId];
-        }
-        // Classic-End
-
         damagedTiles.Add((tileRef.GridIndices, new Tile(tileDef.TileId)));
     }
 

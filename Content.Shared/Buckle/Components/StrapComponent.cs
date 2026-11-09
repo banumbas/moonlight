@@ -63,6 +63,11 @@ public sealed partial class StrapComponent : Component
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int? LoweredDrawdepth;
 
+    // Classic-Edit Start
+    [DataField, AutoNetworkedField]
+    public bool ModifyBuckleDrawDepth = true;
+    // Classic-Edit End
+
     /// <summary>
     /// The size of the strap which is compared against when buckling entities
     /// </summary>

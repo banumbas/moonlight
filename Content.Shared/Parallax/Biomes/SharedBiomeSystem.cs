@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Maps;
@@ -18,6 +19,17 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     [Dependency] protected ITileDefinitionManager TileDefManager = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private SharedMapSystem _map = default!;
+
+    // Classic-Start
+    // ConditionalWeakTable is not allowed by the client content sandbox. Prototype reloads
+    // explicitly clear this cache, so retaining the noise keys between reloads is unnecessary.
+    private readonly ConcurrentDictionary<FastNoiseLite, SeededNoiseCache> _seededNoiseCache = new();
+
+    private sealed class SeededNoiseCache
+    {
+        public readonly ConcurrentDictionary<int, FastNoiseLite> Values = new();
+    }
+    // Classic-End
 
     protected const byte ChunkSize = 8;
 
@@ -108,6 +120,8 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return TryGetBiomeTile(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out tile);
     }
 
+    // Classic-Start: Replaced by TryGetTile in SharedBiomeSystem.Classic.cs
+    /*
     /// <summary>
     /// Gets the underlying biome tile, ignoring any existing tile that may be there.
     /// </summary>
@@ -139,51 +153,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
             if (layer is not BiomeTileLayer tileLayer)
                 continue;
 
-            // Classic-Start
-            var threshold = tileLayer.Threshold;
-            if (tileLayer.MinDistance > 0f)
-            {
-                var dist = MathF.Sqrt(indices.X * indices.X + indices.Y * indices.Y);
-                var fadeStart = tileLayer.MinDistance;
-                var fadeEnd = MathF.Max(0f, tileLayer.MinDistance - 100f);
-
-                if (dist < fadeEnd)
-                    continue;
-
-                if (dist < fadeStart)
-                {
-                    // Smoothly raise the threshold as we get closer to the center,
-                    // causing the cave to organically shrink and disappear instead of a hard cut.
-                    var t = 1f - ((dist - fadeEnd) / (fadeStart - fadeEnd));
-                    threshold += t * 2.5f;
-                }
-            }
-            // Classic-End
-
-            // Classic-Start: AllowedTiles check
-            if (tileLayer.AllowedTiles != null && tileLayer.AllowedTiles.Count > 0)
-            {
-                var subLayers = layers.GetRange(0, i);
-                if (!TryGetBiomeTile(indices, subLayers, seed, grid, out var underlyingTile))
-                    continue;
-
-                var tileDefId = TileDefManager[underlyingTile.Value.TypeId].ID;
-                bool allowed = false;
-                foreach (var allowedTile in tileLayer.AllowedTiles)
-                {
-                    if (allowedTile.Id == tileDefId)
-                    {
-                        allowed = true;
-                        break;
-                    }
-                }
-
-                if (!allowed)
-                    continue;
-            }
-            // Classic-End
-
-            if (TryGetTile(indices, noiseCopy, tileLayer.Invert, threshold, ProtoManager.Index(tileLayer.Tile), tileLayer.Variants, out tile))
+            if (TryGetTile(indices, noiseCopy, tileLayer.Invert, tileLayer.Threshold, ProtoManager.Index(tileLayer.Tile), tileLayer.Variants, out tile))
             {
                 return true;
             }
@@ -192,6 +162,8 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         tile = null;
         return false;
     }
+    */
+    // Classic-End
 
     /// <summary>
     /// Gets the underlying biome tile, ignoring any existing tile that may be there.
@@ -420,11 +392,35 @@ public abstract partial class SharedBiomeSystem : EntitySystem
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)
     {
+        // Classic-Start
+        var cache = _seededNoiseCache.GetOrAdd(seedNoise, static _ => new SeededNoiseCache());
+        if (cache.Values.TryGetValue(seed, out var cached))
+            return cached;
+
+        // Prototype noise objects are immutable while a biome is running. Reusing their seeded
+        // clone removes thousands of serialization copies per streamed chunk. Bound each source's
+        // cache so random map seeds cannot accumulate forever across rounds.
+        if (cache.Values.Count >= 64)
+            cache.Values.Clear();
+        // Classic-End
+
         var noiseCopy = new FastNoiseLite();
         _serManager.CopyTo(seedNoise, ref noiseCopy, notNullableOverride: true);
         noiseCopy.SetSeed(noiseCopy.GetSeed() + seed);
         // Ensure re-calculate is run.
         noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
-        return noiseCopy;
+        return cache.Values.GetOrAdd(seed, noiseCopy);  // Classic-Edit
     }
+
+    // Classic-Start
+    protected void InvalidateNoise(FastNoiseLite noise)
+    {
+        _seededNoiseCache.TryRemove(noise, out _);
+    }
+
+    protected void ClearNoiseCache()
+    {
+        _seededNoiseCache.Clear();
+    }
+    // Classic-End
 }

@@ -59,7 +59,7 @@
     - CartridgeRocket
 
 - type: entity
-  name: ent-AmmoRocketStructuralPMC
+  name: fragmentation rocket
   parent: AmmoRocketStructuralPMC
   id: AmmoRocketFragPMC
   description: ent-AmmoRocketFragPMC-desc
@@ -68,7 +68,7 @@
     proto: ProjectileRocketFragPMC
 
 - type: entity
-  name: ent-AmmoRocketFragPMC
+  name: gibbing rocket
   parent: AmmoRocketStructuralPMC
   id: AmmoRocketGibPMC
   description: ent-AmmoRocketGibPMC-desc
@@ -84,44 +84,70 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
-        Structural: 100
+        Blunt: 15
+        Structural: 250
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 2000
-    intensitySlope: 10
-    maxIntensity: 100
-  - type: ExplodeOnTrigger
-  - type: TriggerOnCollide
-    fixtureID: "projectile"
+    explosionType: DemolitionCharge
+    totalIntensity: 80
+    intensitySlope: 5
+    maxIntensity: 20
+    maxTileBreak: 2
 
 - type: entity
-  parent: ProjectileRocketStructuralPMC
+  parent: BulletRocket
   id: ProjectileRocketFragPMC
   categories: [ HideSpawnMenu ]
   components:
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 1000
-    intensitySlope: 2
-    maxIntensity: 10
-  - type: SpawnOnTrigger
-    proto: BulletRifle
-
-- type: entity
-  parent: ProjectileRocketStructuralPMC
-  id: ProjectileRocketGibPMC
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 4000
-    intensitySlope: 15
-    maxIntensity: 200
   - type: Projectile
     damage:
       types:
-        Blunt: 200
+        Blunt: 20
+        Piercing: 20
+  - type: Explosive
+    explosionType: DefaultnoSpace
+    totalIntensity: 45
+    intensitySlope: 2
+    maxIntensity: 6
+    canCreateVacuum: false
+    maxTileBreak: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletRocketFragPMC
+    capacity: 16
+
+- type: entity
+  parent: BulletRocket
+  id: ProjectileRocketGibPMC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 140
+        Piercing: 40
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 75
+    intensitySlope: 12
+    maxIntensity: 20
+    maxTileBreak: 1
+
+- type: entity
+  parent: BaseBullet
+  id: PelletRocketFragPMC
+  categories: [ HideSpawnMenu ]
+  name: shrapnel
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 16
+  - type: TimedDespawn
+    lifetime: 0.25
 
 - type: entity
   parent: BulletTrace

@@ -175,9 +175,29 @@ public sealed partial class GhostThemeWindow : DefaultWindow
             themeBox.AddChild(ghostPicker);
             filterThemeBox.AddChild(ghostPickerFilter);
 
-            var tooltip = string.Join(", ", theme.Requirements.Select(x => x.GetRequirementDescription()));
-            ghostPicker.ToolTip = tooltip;
-            ghostPickerFilter.ToolTip = tooltip;
+            // Classic-Start
+            var reqs = theme.Requirements
+                .Select(x => x.GetRequirementDescription())
+                .Where(desc => !string.IsNullOrWhiteSpace(desc));
+            var tooltip = string.Join(", ", reqs);
+
+            if (!string.IsNullOrWhiteSpace(tooltip))
+            {
+                var msg = FormattedMessage.FromMarkupPermissive(tooltip);
+                ghostPicker.TooltipSupplier = _ =>
+                {
+                    var tt = new Tooltip();
+                    tt.SetMessage(msg);
+                    return tt;
+                };
+                ghostPickerFilter.TooltipSupplier = _ =>
+                {
+                    var tt = new Tooltip();
+                    tt.SetMessage(msg);
+                    return tt;
+                };
+            }
+            // Classic-End
 
             if (_availableThemes.Contains(theme.ID))
             {

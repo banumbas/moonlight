@@ -29,6 +29,10 @@ public sealed partial class SubRuleSystem : GameRuleSystem<SubRuleComponent>
         foreach (var rule in GetRuleSpawns((uid, component)))
         {
             var ruleUid = GameTicker.AddGameRule(rule, component.Rules);
+            // Classic-Edit start - AddGameRule can reject nested auxiliary-map rules
+            if (ruleUid == EntityUid.Invalid)
+                continue;
+            // Classic-Edit end
 
             if (TryComp<DynamicRuleCostComponent>(ruleUid, out var cost))
             {
@@ -48,6 +52,11 @@ public sealed partial class SubRuleSystem : GameRuleSystem<SubRuleComponent>
 
         foreach (var ruleUid in component.Rules)
         {
+            // Classic-Edit start
+            if (!Exists(ruleUid) || HasComp<EndedGameRuleComponent>(ruleUid))
+                continue;
+            // Classic-Edit end
+
             // If our use of subrule was to add a delayed rule, we need to avoid double-triggering it, as that'd cause it to immediately fire.
             if (HasComp<DelayedStartRuleComponent>(ruleUid))
                 continue;
@@ -62,6 +71,11 @@ public sealed partial class SubRuleSystem : GameRuleSystem<SubRuleComponent>
 
         foreach (var rule in component.Rules)
         {
+            // Classic-Edit start
+            if (!Exists(rule) || HasComp<EndedGameRuleComponent>(rule))
+                continue;
+            // Classic-Edit end
+
             GameTicker.EndGameRule(rule);
         }
     }

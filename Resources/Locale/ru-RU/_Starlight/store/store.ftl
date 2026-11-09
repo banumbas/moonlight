@@ -1,8 +1,8 @@
-store-preset-name-shuttle-uplink = Шаттл Uplink
-store-preset-name-shuttle-uplink-dangerous = Опасный шаттл
+store-preset-name-shuttle-uplink = Аплинк шаттла
+store-preset-name-shuttle-uplink-dangerous = Аплинк ударного шаттла
 store-preset-name-soviet-uplink = Советский аплинк
-store-preset-name-revenant = Обмен ревенантов
-store-preset-name-pai = Персональный ИИ Скачать
-store-preset-name-cantrips = Советы по выживанию для путешественников
+store-preset-name-revenant = Обмен ревенанта
+store-preset-name-pai = Загрузчик личности пИИ
+store-preset-name-cantrips = Гримуар фокусов
 
-store-listing-late = ПОЗДНО
+store-listing-late = РАСПРОДАНО

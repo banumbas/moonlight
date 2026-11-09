@@ -1,1 +1,1 @@
-devil-banish-initiate = {CAPITALIZE(THE($devil))} ревет и изгнан из этого мира!
+devil-banish-initiate = {CAPITALIZE(THE($devil))} яростно ревёт и изгоняется из этого мира!

@@ -1,0 +1,66 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "take in https://github.com/wall-nerds/wallening/tree/stable/icons/obj/structures_tall.dmi",
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "woodenbarricade",
+            "directions": 4
+        },
+        {
+            "name": "plasticflaps",
+            "directions": 4
+        },
+        {
+            "name": "reinforced"
+        },
+        {
+            "name": "reinforced_struts"
+        },
+        {
+            "name": "girder"
+        },
+        {
+            "name": "displaced"
+        },
+        {
+            "name": "wall_gear",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cultgirder"
+        },
+        {
+            "name": "metalfoam"
+        },
+        {
+            "name": "woodenbarricade_snow",
+            "directions": 4
+        },
+        {
+            "name": "stairs_start",
+            "directions": 4
+        },
+        {
+            "name": "stairs_end",
+            "directions": 4
+        },
+        {
+            "name": "stairs_small",
+            "directions": 4
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Station.Components;
 
@@ -6,7 +6,8 @@ namespace Content.Shared.Station.Components;
 /// Stores core information about a station, namely its config and associated grids.
 /// All station entities will have this component.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedStationSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
+ Access(typeof(SharedStationSystem), Other = AccessPermissions.ReadWriteExecute)] // Classic-Edit
 public sealed partial class StationDataComponent : Component
 {
     /// <summary>

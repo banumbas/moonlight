@@ -278,7 +278,7 @@
   - type: Transform
     noRot: true
   - type: Sprite
-    drawdepth: Effects
+    drawdepth: Objects # Classic-Edit - below perspective wall overhangs, above wall bodies
     noRot: true
     sprite: _Classic/Structures/Storage/suit_storage.rsi
     layers:

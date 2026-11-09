@@ -1,8 +1,8 @@
-electrolyzer-turned-off = Выключен.
-electrolyzer-must-be-anchored = Для включения необходимо закрепить.
+electrolyzer-turned-off = Выключено.
+electrolyzer-must-be-anchored = Для работы электролизер должен быть прикручен к полу.
 electrolyzer-no-fuel = Нет топлива.
 electrolyzer-turned-on = Включено.
-electrolyzer-fuel-inserted = Топливо залито.
-electrolyzer-cannot-merge-invalid-stack = Невозможно объединиться.
-electrolyzer-fuel-swapped = Топливо поменяно.
-electrolyzer-cannot-swap-ejection-failed = Невозможно поменять местами.
+electrolyzer-fuel-inserted = Топливо загружено.
+electrolyzer-cannot-merge-invalid-stack = Невозможно объединить стопки.
+electrolyzer-fuel-swapped = Топливо заменено.
+electrolyzer-cannot-swap-ejection-failed = Не удалось извлечь предыдущее топливо.

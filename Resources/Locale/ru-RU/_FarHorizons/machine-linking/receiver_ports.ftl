@@ -1,16 +1,16 @@
 signal-port-name-nuclear-reactor-data-receiver = Монитор реактора
-signal-port-description-nuclear-reactor-data-receiver = Получение информации о ядерном реакторе.
+signal-port-description-nuclear-reactor-data-receiver = Приём данных телеметрии ядерного реактора.
 
-signal-port-name-nuclear-reactor-receiver-insert = Управляющие стержни
-signal-port-description-nuclear-reactor-receiver-insert = Увеличивает уровень вставки стержней управления.
+signal-port-name-nuclear-reactor-receiver-insert = Ввод регулирующих стержней
+signal-port-description-nuclear-reactor-receiver-insert = Увеличивает глубину погружения регулирующих стержней.
 
-signal-port-name-nuclear-reactor-receiver-retract = Управляющие стержни выведены
-signal-port-description-nuclear-reactor-receiver-retract = Уменьшает уровень вставки регулирующих стержней.
+signal-port-name-nuclear-reactor-receiver-retract = Вывод регулирующих стержней
+signal-port-description-nuclear-reactor-receiver-retract = Уменьшает глубину погружения регулирующих стержней.
 
-signal-port-name-gas-turbine-data-receiver = Турбинный монитор
-signal-port-description-gas-turbine-data-receiver = Получение информации о газовой турбине.
+signal-port-name-gas-turbine-data-receiver = Монитор турбины
+signal-port-description-gas-turbine-data-receiver = Приём данных телеметрии газовой турбины.
 
-signal-port-name-gas-turbine-receiver-increase = Увеличение нагрузки
+signal-port-name-gas-turbine-receiver-increase = Увеличить нагрузку
 signal-port-description-gas-turbine-receiver-increase = Увеличивает нагрузку статора турбины.
 
 signal-port-name-gas-turbine-receiver-decrease = Уменьшить нагрузку

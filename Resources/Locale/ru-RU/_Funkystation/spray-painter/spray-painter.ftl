@@ -1,6 +1,6 @@
 ## Funky atmos - /tg/ gases
 # Canisters
-spray-painter-style-canisters-bz = БЖ
+spray-painter-style-canisters-bz = БЗ
 spray-painter-style-canisters-healium = Хелиум
 spray-painter-style-canisters-nitrium = Нитрий
 spray-painter-style-canisters-pluoxium = Плуоксий

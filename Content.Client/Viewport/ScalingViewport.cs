@@ -150,7 +150,7 @@ namespace Content.Client.Viewport
 
             DebugTools.AssertNotNull(_viewport);
 
-            RenderZLevels(_viewport!); // Classic Process multi-Z rendering
+            RenderZLevels(_viewport!, handle); // Classic Process multi-Z rendering
 
             //_viewport!.Render();
 
@@ -268,9 +268,21 @@ namespace Content.Client.Viewport
 
         private void InvalidateViewport()
         {
+            // classic-start z-levels
+            _lowerViewport?.Dispose();
+            _lowerViewport = null;
+            // classic-end z-levels
             _viewport?.Dispose();
             _viewport = null;
         }
+
+        // classic-start z-levels
+        protected override void ExitedTree()
+        {
+            base.ExitedTree();
+            InvalidateViewport();
+        }
+        // classic-end z-levels
 
         public MapCoordinates ScreenToMap(Vector2 coords)
         {

@@ -1,0 +1,251 @@
+- type: entity
+  parent: VehicleBase
+  id: VehicleAPCBase
+  abstract: true
+  name: armored personnel carrier
+  description: A rugged armored personnel carrier outfitted for battlefield support.
+  components:
+  - type: WarpPoint
+    follow: true
+    location: APC
+  - type: GridVehicleMover
+    maxSpeed: 5
+    acceleration: 4
+    deceleration: 10
+    turnDelay: 0.4
+  - type: VehicleOvercharge
+    speedMultiplier: 1.4
+    duration: 3
+    cooldown: 15
+    overchargeSound: /Audio/_Classic/Vehicle/overdrive_activate.ogg
+  - type: VehicleSpotlight
+    radius: 7
+    energy: 3
+    softness: 2
+  - type: Fixtures
+    fixtures:
+      world:
+        shape:
+          !type:PhysShapeAabb
+          bounds: -1,-1.7,1,1.7
+        density: 1200
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        - LargeMobLayer
+        - Vehicle
+        layer:
+        - LargeMobLayer
+        - Vehicle
+      mob:
+        shape:
+          !type:PhysShapeAabb
+          bounds: -1,-1.7,1,1.7
+        density: 1200
+        mask:
+        - MidImpassable
+        - BarricadeImpassable
+        - LargeMobLayer
+        layer:
+        - LargeMobLayer
+  - type: Damageable
+    damageContainer: StructuralMarine
+    damageModifierSet: VehicleFrameAPC # APC damage modifier
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Classic/Structures/Vehicles/apc.rsi
+    layers:
+    - map: [ base ]
+      state: apc_base
+    - map: [ damaged_frame ]
+      state: damaged_frame
+      visible: false
+    - map: [ primary ]
+      state: PRIMARY
+      visible: false
+    - map: [ secondary ]
+      state: SECONDARY
+      visible: false
+    - map: [ support ]
+      state: SUPPORT
+      visible: false
+    - map: [ wheels ]
+      state: wheels_1
+  - type: PointLight
+    enabled: false
+    radius: 12
+    energy: 2.5
+    softness: 2
+    autoRot: true
+    offset: "0,0.9"
+  - type: VehicleHardpointVisuals
+  - type: ItemSlots
+    slots:
+      port-gun-north:
+        startingItem: VehicleAPCM56FPWPortGunRight
+        insertOnInteract: false
+        ejectOnInteract: false
+        ejectOnUse: false
+        locked: true
+        disableEject: true
+        whitelist:
+          components:
+          - VehiclePortGun
+      port-gun-south:
+        startingItem: VehicleAPCM56FPWPortGunLeft
+        insertOnInteract: false
+        ejectOnInteract: false
+        ejectOnUse: false
+        locked: true
+        disableEject: true
+        whitelist:
+          components:
+          - VehiclePortGun
+  - type: HardpointSlots
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slots:
+    - id: primary
+      hardpointType: HardpointTypeTurret
+      slotType: HardpointSlotTypeTurret
+      visualLayer: primary
+      insertDelay: 2.5
+      required: false
+    - id: secondary
+      hardpointType: HardpointTypeCannon
+      slotType: HardpointSlotTypeCannon
+      visualLayer: secondary
+      insertDelay: 2.5
+      required: false
+    - id: support
+      hardpointType: HardpointTypeSupportAttachment
+      slotType: HardpointSlotTypeSupportAttachment
+      visualLayer: support
+      insertDelay: 2.0
+      required: false
+    - id: wheel-1
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
+      insertDelay: 1.5
+  - type: VehicleEnter
+    interiorPath: /Maps/_Classic/Vehicles/apc_transport_interior.yml
+    enterDoAfter: 1.0
+    exitDoAfter: 1.0
+    maxPassengers: 10
+    entryPoints:
+    - offset: 1.5,0
+      radius: 0.7
+      interiorCoords: 1.55,2.65
+    - offset: -1.5,0
+      radius: 0.7
+      interiorCoords: 1.55,-1.2
+
+- type: entity
+  parent: VehicleAPCBase
+  id: VehicleAPC
+  suffix: Drivable, APC, Base
+  components:
+  - type: VehicleEnter
+    interiorPath: /Maps/_Classic/Vehicles/apc_transport_interior.yml
+    enterDoAfter: 1.0
+    exitDoAfter: 1.0
+    maxPassengers: 18
+
+    entryPoints:
+    - offset: 1.5,0
+      radius: 0.7
+      interiorCoords: 1.55,2.65
+    - offset: -1.5,0
+      radius: 0.7
+      interiorCoords: 1.55,-1.2
+
+- type: entity
+  parent: VehicleAPC
+  id: VehicleAPCTracked
+  suffix: Drivable, APC, Base, Tracked
+
+- type: entity
+  parent: VehicleAPCTracked
+  id: VehicleAPCMed
+  name: armored personnel carrier (medical)
+  description: A medical-configured APC outfitted with triage markings.
+  suffix: Drivable, APC, Base, Medical, Tracked
+  components:
+  - type: Sprite
+    layers:
+    - map: [ base ]
+      state: apc_base_med
+    - map: [ damaged_frame ]
+      state: damaged_frame
+      visible: false
+    - map: [ primary ]
+      state: PRIMARY
+      visible: false
+    - map: [ secondary ]
+      state: SECONDARY
+      visible: false
+    - map: [ support ]
+      state: SUPPORT
+      visible: false
+    - map: [ wheels ]
+      state: wheels_1
+  - type: VehicleEnter
+    interiorPath: /Maps/_Classic/Vehicles/apc_medical_interior.yml
+    enterDoAfter: 1.0
+    exitDoAfter: 1.0
+    maxPassengers: 11
+
+    entryPoints:
+    - offset: 1.5,0
+      radius: 0.7
+      interiorCoords: 1.6,2.6
+    - offset: -1.5,0
+      radius: 0.7
+      interiorCoords: 1.6,-1.5
+    - offset: 0,2
+      radius: 0.85
+      interiorCoords: 0.25,-1
+
+- type: entity
+  parent: VehicleAPCTracked
+  id: VehicleAPCCommand
+  name: armored personnel carrier (command)
+  description: A command-configured APC bristling with sensors and comms gear.
+  suffix: Drivable, APC, Base, Command, Tracked
+  components:
+  - type: Sprite
+    layers:
+    - map: [ base ]
+      state: apc_base_com
+    - map: [ damaged_frame ]
+      state: damaged_frame
+      visible: false
+    - map: [ primary ]
+      state: PRIMARY
+      visible: false
+    - map: [ secondary ]
+      state: SECONDARY
+      visible: false
+    - map: [ support ]
+      state: SUPPORT
+      visible: false
+    - map: [ wheels ]
+      state: wheels_1
+  - type: VehicleEnter
+    interiorPath: /Maps/_Classic/Vehicles/apc_command_interior.yml
+    enterDoAfter: 1.0
+    exitDoAfter: 1.0
+    maxPassengers: 12
+
+    entryPoints:
+    - offset: 1.5,0
+      radius: 0.7
+      interiorCoords: 1.6,2.6
+    - offset: -1.5,0
+      radius: 0.7
+      interiorCoords: 1.6,-1.5
+    - offset: 0,2
+      radius: 0.85
+      interiorCoords: 0.25,-1
+
+

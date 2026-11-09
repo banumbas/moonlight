@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Content.Shared.Alert;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -74,6 +75,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedRoofSystem _roof = default!;
 
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";

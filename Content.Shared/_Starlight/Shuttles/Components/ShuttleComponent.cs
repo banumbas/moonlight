@@ -7,7 +7,7 @@ namespace Content.Shared.Shuttles.Components
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class ShuttleComponent : Component
     {
-        [ViewVariables, AutoNetworkedField]
+        [DataField, ViewVariables, AutoNetworkedField] // Classic-Edit
         public bool Enabled = true;
 
         [ViewVariables, AutoNetworkedField]

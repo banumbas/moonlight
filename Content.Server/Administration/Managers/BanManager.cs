@@ -41,6 +41,7 @@ using Starlight.NullLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
 using Content.Shared.Administration;
+using Content.Server._NullLink.PlayerData;
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -64,6 +65,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private UserDbDataManager _userDbData = default!;
     // Classic-Start
     [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!;
     // Classic-End
 
     private ISawmill _sawmill = default!;
@@ -77,8 +79,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private string _serverName = string.Empty;
     private string _webhookUrl = string.Empty;
     private WebhookData? _webhookData;
-    private string _webhookName = "STARLIGHT Punishments";
-    private string _webhookAvatarUrl = "https://i.imgur.com/whiqrpC.png";
+    private string _webhookName = "Наказания";
+    private string _webhookAvatarUrl = "https://cdn.discordapp.com/icons/1509955800716804176/b1892ae02686aeb42d260aac3812622a.png";
 
     private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
     // Cached ban exemption flags are used to handle
@@ -428,7 +430,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         DateTimeOffset? expires = null;
 
         if (minutes > 0)
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // classic edit
 
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -456,18 +458,87 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return;
         }
 
+    // classic start
+    if (!encodedRole.StartsWith(PrefixPunishment, StringComparison.Ordinal))
+    {
+    // classic end
         var roleBan = (await _db.GetServerRoleBansAsync(addressRange?.Item1, target, hwid?.Hwid, null, false)).FirstOrDefault(b => b.UserId == target && b.Role == encodedRole && b.BanTime == timeOfBan);
         if (roleBan != null && _actor.TryGetServerGrain(out var serverGrain))
             await serverGrain.AddOrUpdateBan(roleBan.ToNullLink());
 
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
+    } // classic add
 
         if (target is not null && _playerManager.TryGetSessionById(target.Value, out var session))
             SendRoleBans(session);
     }
 
     // Classic-Start
+    public async Task CreatePunishments(
+        NetUserId? target,
+        string? targetUsername,
+        NetUserId? banningAdmin,
+        (IPAddress, int)? addressRange,
+        ImmutableTypedHwid? hwid,
+        IReadOnlyCollection<string> punishmentRoles,
+        uint? minutes,
+        NoteSeverity severity,
+        string reason,
+        DateTimeOffset timeOfBan
+    )
+    {
+        if (punishmentRoles.Count == 0)
+            return;
+
+        DateTimeOffset? expires = null;
+        if (minutes > 0)
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value);
+
+        _systems.TryGetEntitySystem(out GameTicker? ticker);
+        int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
+        var playtime = target == null ? TimeSpan.Zero : (await _db.GetPlayTimes(target.Value)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
+
+        ICommonSession? playerSession = null;
+        List<ServerRoleBanDef>? cachedBans = null;
+        if (target != null && _playerManager.TryGetSessionById(target.Value, out var session))
+        {
+            playerSession = session;
+            _cachedRoleBans.TryGetValue(session, out cachedBans);
+        }
+
+        foreach (var role in punishmentRoles)
+        {
+            var encodedRole = role.StartsWith(PrefixPunishment, StringComparison.Ordinal)
+                ? role
+                : PrefixPunishment + role;
+
+            var banDef = new ServerRoleBanDef(
+                null,
+                target,
+                addressRange,
+                hwid,
+                timeOfBan,
+                expires,
+                roundId,
+                playtime,
+                reason,
+                severity,
+                banningAdmin,
+                null,
+                encodedRole);
+
+            banDef = await _db.AddServerRoleBanAsync(banDef);
+            cachedBans?.Add(banDef);
+        }
+
+        if (playerSession != null)
+        {
+            SendRoleBans(playerSession);
+            _entityManager.EventBus.RaiseEvent(EventSource.Local, new RoleBansUpdatedEvent(playerSession.UserId));
+        }
+    }
+
     public async void CreatePunishment(
         NetUserId? target,
         string? targetUsername,
@@ -481,45 +552,38 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         DateTimeOffset timeOfBan
     )
     {
-        string encodedRole = PrefixPunishment + punishmentType;
+        await CreatePunishments(target, targetUsername, banningAdmin, addressRange, hwid, new[] { punishmentType }, minutes, severity, reason, timeOfBan);
+    }
 
-        DateTimeOffset? expires = null;
+    public async Task<int> UnmutePlayer(NetUserId target, NetUserId? unbanningAdmin)
+    {
+        var unbanTime = DateTimeOffset.UtcNow;
+        var unbannedCount = 0;
 
-        if (minutes > 0)
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
-
-        _systems.TryGetEntitySystem(out GameTicker? ticker);
-        int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
-        var playtime = target == null ? TimeSpan.Zero : (await _db.GetPlayTimes(target.Value)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
-
-        var banDef = new ServerRoleBanDef(
-            null,
-            target,
-            addressRange,
-            hwid,
-            timeOfBan,
-            expires,
-            roundId,
-            playtime,
-            reason,
-            severity,
-            banningAdmin,
-            null,
-            encodedRole);
-
-        if (!await AddRoleBan(banDef))
+        var allBans = await _db.GetServerRoleBansAsync(null, target, null, null, false);
+        foreach (var ban in allBans)
         {
-            _chat.SendAdminAlert(Loc.GetString("cmd-roleban-existing", ("target", targetUsername ?? "null"), ("role", encodedRole)));
-            return;
+            if (ban.Unban == null && (ban.ExpirationTime == null || ban.ExpirationTime > unbanTime))
+            {
+                if (ban.Role.StartsWith(PrefixPunishment, StringComparison.Ordinal) && ban.Id != null)
+                {
+                    await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(ban.Id.Value, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+                    unbannedCount++;
+                }
+            }
         }
 
-        // We don't send punishments via null link, or maybe we do? We can skip NullLink for now.
+        if (_playerManager.TryGetSessionById(target, out var session) && _cachedRoleBans.TryGetValue(session, out var cachedBans))
+        {
+            var removedFromCache = cachedBans.RemoveAll(b => b.Role.StartsWith(PrefixPunishment, StringComparison.Ordinal));
+            if (unbannedCount == 0 && removedFromCache > 0)
+                unbannedCount = removedFromCache;
 
-        var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
-        _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", encodedRole), ("reason", reason), ("length", length)));
-
-        if (target is not null && _playerManager.TryGetSessionById(target.Value, out var session))
             SendRoleBans(session);
+            _entityManager.EventBus.RaiseEvent(EventSource.Local, new RoleBansUpdatedEvent(target));
+        }
+
+        return unbannedCount;
     }
     // Classic-End
 
@@ -549,7 +613,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         DateTimeOffset? expires = null;
         if (minutes > 0)
         {
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // classic edit
         }
 
         var banDef = new ServerRoleBanDef(
@@ -592,6 +656,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return response.ToString();
         }
 
+    // classic start
+    if (!ban.Role.StartsWith(PrefixPunishment, StringComparison.Ordinal))
+    {
+    // classic end
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             if (await serverGrain.RequestBanById(banId) is { } networkBan)
@@ -618,6 +686,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                 };
                 await serverGrain.AddOrUpdateBan(newBan);
             }
+            } // classic add
         }
 
         await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
@@ -651,7 +720,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (!_playerManager.TryGetSessionById(playerUserId, out var session))
             return null;
 
-        // Classic-Start
+    // Classic-Start
         if (!_cachedRoleBans.TryGetValue(session, out var roleBans))
             return null;
 
@@ -673,14 +742,22 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (!_cachedRoleBans.TryGetValue(session, out var roleBans))
             return null;
 
-        var bans = new List<ServerRoleBanDef>();
-        foreach (var ban in roleBans)
+        var now = DateTimeOffset.UtcNow;
+        List<ServerRoleBanDef>? bans = null;
+        for (var i = roleBans.Count - 1; i >= 0; i--)
         {
-            if (ban.ExpirationTime != null && DateTimeOffset.Now > ban.ExpirationTime)
+            var ban = roleBans[i];
+            if (!ban.Role.StartsWith(PrefixPunishment, StringComparison.Ordinal))
                 continue;
 
-            if (ban.Role.StartsWith(PrefixPunishment))
-                bans.Add(ban);
+            if (ban.ExpirationTime != null && now > ban.ExpirationTime)
+            {
+                roleBans.RemoveAt(i);
+                continue;
+            }
+
+            bans ??= new List<ServerRoleBanDef>();
+            bans.Add(ban);
         }
 
         return bans;
@@ -692,9 +769,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (!_cachedRoleBans.TryGetValue(playerSession, out var roleBans))
             return null;
 
+        var now = DateTimeOffset.UtcNow; // classic add
         return roleBans
             // Classic-Edit
-            .Where(ban => (ban.ExpirationTime == null || DateTimeOffset.Now <= ban.ExpirationTime) && ban.Role.StartsWith(prefix, StringComparison.Ordinal))
+            .Where(ban => (ban.ExpirationTime == null || now <= ban.ExpirationTime) && ban.Role.StartsWith(prefix, StringComparison.Ordinal))
             .Select(ban => new ProtoId<T>(ban.Role[prefix.Length..]))
             .ToHashSet();
     }
@@ -803,8 +881,26 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
     }
 
+    private static string FormatPunishmentRole(string role)
+    {
+        return role switch
+        {
+            "Punish:Mute:Local" => Loc.GetString("punishment-role-mute-local"),
+            "Punish:Mute:Whisper" => Loc.GetString("punishment-role-mute-whisper"),
+            "Punish:Mute:Radio" => Loc.GetString("punishment-role-mute-radio"),
+            "Punish:Mute:LOOC" => Loc.GetString("punishment-role-mute-looc"),
+            "Punish:Mute:OOC" => Loc.GetString("punishment-role-mute-ooc"),
+            "Punish:Mute:Emotes" => Loc.GetString("punishment-role-mute-emotes"),
+            "Punish:Mute:Dead" => Loc.GetString("punishment-role-mute-dead"),
+            "Punish:Mute:Paper" => Loc.GetString("punishment-role-mute-paper"),
+            "Punish:Pacifism" => Loc.GetString("punishment-role-pacifism"),
+            _ => role.StartsWith(PrefixPunishment, StringComparison.Ordinal) ? role[PrefixPunishment.Length..] : role
+        };
+    }
+
     private async Task<WebhookPayload> GenerateJobBanPayload(ServerRoleBanDef banDef, IReadOnlyCollection<string> roles, uint? minutes = null)
     {
+        var isPunishment = roles.Any(r => r.StartsWith(PrefixPunishment, StringComparison.Ordinal));
         var hwid = banDef.HWId?.ToString() ?? "null";
         var adminName = banDef.BanningAdmin == null ? Loc.GetString("system-user") : (await _db.GetPlayerRecordByUserId(banDef.BanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
         var targetName = banDef.UserId == null ? Loc.GetString("server-ban-no-name", ("hwid", hwid)) : (await _db.GetPlayerRecordByUserId(banDef.UserId.Value))?.LastSeenUserName ?? Loc.GetString("server-ban-no-name", ("hwid", hwid));
@@ -817,7 +913,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
         var rolesString = "";
         foreach (var role in roles)
-            rolesString += $"\n> `{role}`";
+        {
+            var roleDisplay = isPunishment ? FormatPunishmentRole(role) : role;
+            rolesString += $"\n> `{roleDisplay}`";
+        }
 
         // nulllink start
         string? adminDiscordId = null;
@@ -840,6 +939,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
         }
         // nulllink end
+        // Classic start
+        if (adminDiscordId == null && banDef.BanningAdmin != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.BanningAdmin.Value.UserId, out var adminData) && adminData.DiscordId != 0)
+            adminDiscordId = adminData.DiscordId.ToString();
+
+        if (targetDiscordId == null && banDef.UserId != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.UserId.Value.UserId, out var targetData) && targetData.DiscordId != 0)
+            targetDiscordId = targetData.DiscordId.ToString();
+        // Classic end
 
         var adminLink = "";
         var targetLink = "";
@@ -861,7 +967,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             { "parse", new List<string> {"users"}.ToArray() }
         };
 
-        if (banDef.ExpirationTime != null && minutes != null) // Time ban
+        if (banDef.ExpirationTime != null && minutes != null) // Time ban / mute
+        {
+            var descKey = isPunishment ? "server-mute-string" : "server-role-ban-string";
+            var authorKey = isPunishment ? "server-time-mute" : "server-role-ban";
+            var color = isPunishment ? 0x9b59b6 : 0x004281;
+            var thumbnail = isPunishment ? _webhookAvatarUrl : "https://static.wikia.nocookie.net/ss14andromeda13/images/6/66/%D0%9E%D1%84%D0%B8%D1%86%D0%B5%D1%80_%D0%A1%D0%BB%D1%83%D0%B6%D0%B1%D1%8B_%D0%91%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8.png/revision/latest/scale-to-width-down/110?cb=20230216091617&path-prefix=ru";
+
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -872,15 +984,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                 {
                     new()
                     {
-                        Description = Loc.GetString("server-role-ban-string", ("targetName", targetName), ("targetLink", targetLink), ("adminLink", adminLink), ("adminName", adminName), ("TimeNow", timeNow), ("roles", rolesString), ("expiresString", expiresString), ("reason", reason), ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
-                        Color = 0x004281,
+                        Description = Loc.GetString(descKey, ("targetName", targetName), ("targetLink", targetLink), ("adminLink", adminLink), ("adminName", adminName), ("TimeNow", timeNow), ("roles", rolesString), ("expiresString", expiresString), ("reason", reason), ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                        Color = color,
                         Thumbnail = new EmbedThumbnail
                         {
-                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/6/66/%D0%9E%D1%84%D0%B8%D1%86%D0%B5%D1%80_%D0%A1%D0%BB%D1%83%D0%B6%D0%B1%D1%8B_%D0%91%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D0%B8.png/revision/latest/scale-to-width-down/110?cb=20230216091617&path-prefix=ru",
+                            Url = thumbnail,
                         },
                         Author = new EmbedAuthor
                         {
-                            Name = Loc.GetString("server-role-ban", ("mins", minutes.Value)) + $"",
+                            Name = Loc.GetString(authorKey, ("mins", minutes.Value)) + $"",
                             IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // BanHummer
                         },
                         Footer = new EmbedFooter
@@ -891,7 +1003,14 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                     },
                 },
             };
-        else // Perma ban
+        }
+        else // Perma ban / mute
+        {
+            var descKey = isPunishment ? "server-perma-mute-string" : "server-perma-role-ban-string";
+            var authorKey = isPunishment ? "server-perma-mute" : "server-perma-role-ban";
+            var color = isPunishment ? 0xe67e22 : 0xffb840;
+            var thumbnail = isPunishment ? _webhookAvatarUrl : "https://static.wikia.nocookie.net/ss14andromeda13/images/4/4f/%D0%A1%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C.png/revision/latest?cb=20230216091556&path-prefix=ru";
+
             return new WebhookPayload
             {
                 Username = _webhookName,
@@ -902,15 +1021,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                 {
                     new()
                     {
-                        Description = Loc.GetString("server-perma-role-ban-string", ("targetName", targetName), ("targetLink", targetLink), ("adminLink", adminLink), ("adminName", adminName), ("TimeNow", timeNow), ("roles", rolesString), ("expiresString", expiresString), ("reason", reason), ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
-                        Color = 0xffb840,
+                        Description = Loc.GetString(descKey, ("targetName", targetName), ("targetLink", targetLink), ("adminLink", adminLink), ("adminName", adminName), ("TimeNow", timeNow), ("roles", rolesString), ("expiresString", expiresString), ("reason", reason), ("severity", Loc.GetString($"admin-note-editor-severity-{severity.ToLower()}"))),
+                        Color = color,
                         Thumbnail = new EmbedThumbnail
                         {
-                            Url = "https://static.wikia.nocookie.net/ss14andromeda13/images/4/4f/%D0%A1%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C.png/revision/latest?cb=20230216091556&path-prefix=ru",
+                            Url = thumbnail,
                         },
                         Author = new EmbedAuthor
                         {
-                            Name = $"{Loc.GetString("server-perma-role-ban")}",
+                            Name = $"{Loc.GetString(authorKey)}",
                             IconUrl = "https://cdn.discordapp.com/emojis/1129749368199712829.webp?size=40&quality=lossless" // BanHummer
                         },
                         Footer = new EmbedFooter
@@ -921,6 +1040,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                     },
                 },
             };
+        }
     }
 
     private async Task<WebhookPayload> GenerateBanPayload(ServerBanDef banDef, uint? minutes = null)
@@ -958,6 +1078,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
 
         // nulllink end
+        // Classic start
+        if (adminDiscordId == null && banDef.BanningAdmin != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.BanningAdmin.Value.UserId, out var adminData) && adminData.DiscordId != 0)
+            adminDiscordId = adminData.DiscordId.ToString();
+
+        if (targetDiscordId == null && banDef.UserId != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.UserId.Value.UserId, out var targetData) && targetData.DiscordId != 0)
+            targetDiscordId = targetData.DiscordId.ToString();
+        // Classic end
 
         var adminLink = "";
         var targetLink = "";

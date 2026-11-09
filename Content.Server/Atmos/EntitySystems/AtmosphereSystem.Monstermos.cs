@@ -628,6 +628,12 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (!hasTransferDirs) return;
 
+            // classic start
+            var tileAir = tile.Air;
+            if (tileAir == null)
+                return;
+            // classic end
+
             for(var i = 0; i < Atmospherics.Directions; i++)
             {
                 var direction = (AtmosDirection) (1 << i);
@@ -639,11 +645,11 @@ namespace Content.Server.Atmos.EntitySystems
                 if (amount <= 0) continue;
 
                 // Everything that calls this method already ensures that Air will not be null.
-                if (tile.Air!.TotalMoles < amount)
+                if (tileAir.TotalMoles < amount) // classic-edit
                     FinalizeEqNeighbors(ent, tile, transferDirections);
 
                 otherTile.MonstermosInfo[i.ToOppositeDir()] = 0;
-                Merge(otherTile.Air, tile.Air.Remove(amount));
+                Merge(otherTile.Air, tileAir.Remove(amount)); // classic-edit
                 InvalidateVisuals(ent, tile);
                 InvalidateVisuals(ent, otherTile);
                 ConsiderPressureDifference(ent, tile, direction, amount);
@@ -658,9 +664,16 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 var direction = (AtmosDirection) (1 << i);
                 var amount = transferDirs[i];
+                // classic start
+#if false
                 // Since AdjacentBits is set, AdjacentTiles[i] wouldn't be null, and neither would its air.
                 if(amount < 0 && tile.AdjacentBits.IsFlagSet(direction))
                     FinalizeEq(ent, tile.AdjacentTiles[i]!);  // A bit of recursion if needed.
+#endif
+                var adjacent = tile.AdjacentTiles[i];
+                if (amount < 0 && tile.AdjacentBits.IsFlagSet(direction) && adjacent?.Air != null)
+                    FinalizeEq(ent, adjacent);  // A bit of recursion if needed.
+                // classic end
             }
         }
 

@@ -1,2 +1,2 @@
-zombie-bite-zombie-dissuade = Они уже одни из нас!
-zombie-bite-initialinfected-dissuade = Этот уже несет заразу!
+zombie-bite-zombie-dissuade = Эта цель уже обращена!
+zombie-bite-initialinfected-dissuade = В жилах этой цели уже течёт зомби-вирус!

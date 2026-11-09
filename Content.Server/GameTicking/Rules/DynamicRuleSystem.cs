@@ -126,6 +126,11 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         foreach (var rule in _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx))
         {
+            // Classic-Edit start - skip auxiliary-map entries selected through DynamicRule tables
+            if (!GameTicker.CanAddGameRule(rule))
+                continue;
+            // Classic-Edit end
+
             _prototypeManager.Index(rule)
                 .TryGetComponent(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
 
@@ -192,10 +197,15 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
             // events calling its Added method are fired. This makes the rule
             // hierarchy available for the Added method.
             var ruleUid = GameTicker.AddGameRule(rule, entity.Comp.Rules);
-            var res = GameTicker.StartGameRule(ruleUid);
+            // Classic-Edit start - AddGameRule can reject auxiliary-map rules
+            if (ruleUid == EntityUid.Invalid)
+                continue;
+
+            if (!GameTicker.StartGameRule(ruleUid))
+                continue;
+            // Classic-Edit end
             // Starlight end
             // var res = GameTicker.StartGameRule(rule, out var ruleUid); Starlight - commented out in favor of the above
-            Debug.Assert(res);
 
             executedRules.Add(ruleUid);
 

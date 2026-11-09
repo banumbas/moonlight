@@ -4,6 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Utility;
 using Robust.Shared.Graphics;
+using Content.Shared._Classic.Sprite; // classic-edit
 
 namespace Content.Client.Clickable;
 
@@ -19,6 +20,8 @@ public sealed partial class ClickableSystem : EntitySystem
     private EntityQuery<ClickableComponent> _clickableQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<FadingSpriteComponent> _fadingSpriteQuery;
+    private EntityQuery<ClassicFadingSpriteComponent> _classicFadingSpriteQuery; // Classic-Edit
+    private EntityQuery<ClassicPerspectiveDepthComponent> _perspectiveDepthQuery; // classic-edit
 
     public override void Initialize()
     {
@@ -26,6 +29,8 @@ public sealed partial class ClickableSystem : EntitySystem
         _clickableQuery = GetEntityQuery<ClickableComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _fadingSpriteQuery = GetEntityQuery<FadingSpriteComponent>();
+        _classicFadingSpriteQuery = GetEntityQuery<ClassicFadingSpriteComponent>(); // Classic-Edit
+        _perspectiveDepthQuery = GetEntityQuery<ClassicPerspectiveDepthComponent>(); // classic-edit
     }
 
     /// <summary>
@@ -91,17 +96,37 @@ public sealed partial class ClickableSystem : EntitySystem
         var entityXform = Matrix3Helpers.CreateInverseTransform(spritePos, sprite.NoRotation ? -eye.Rotation : spriteRot - cardinalSnapping);
         var localPos = Vector2.Transform(Vector2.Transform(worldPos, entityXform), invSpriteMatrix);
 
+        // Classic-Start
+        // A classic wall fade only affects selected IconSmooth layers. Keep its opaque layers clickable,
+        // but do not let explicit bounds or the faded layers hide an entity underneath the transparent part.
+        ClassicFadingSpriteComponent? classicFading = null;
+        if (excludeFaded &&
+            _classicFadingSpriteQuery.TryComp(entity.Owner, out var fading) &&
+            fading.Alpha < 1f)
+        {
+            classicFading = fading;
+        }
+        // Classic-End
+
         // Check explicitly defined click-able bounds
-        if (CheckDirBound((entity.Owner, entity.Comp1, entity.Comp2), relativeRotation, localPos))
+        if (classicFading == null && // Classic-Edit
+            CheckDirBound((entity.Owner, entity.Comp1, entity.Comp2), relativeRotation, localPos))
             return true;
 
         // Next check each individual sprite layer using automatically computed click maps.
+        var layerIndex = 0; // Classic-Edit
         foreach (var spriteLayer in sprite.AllLayers)
         {
+            var currentLayerIndex = layerIndex++; // Classic-Edit
             if (spriteLayer is not SpriteComponent.Layer layer || !_sprites.IsVisible(layer))
             {
                 continue;
             }
+
+            // Classic-Start
+            if (classicFading?.OriginalLayerAlphas.ContainsKey(currentLayerIndex) == true)
+                continue;
+            // Classic-End
 
             // Check the layer's texture, if it has one
             if (layer.Texture != null)
@@ -110,7 +135,10 @@ public sealed partial class ClickableSystem : EntitySystem
                 var imagePos = (Vector2i)(localPos * EyeManager.PixelsPerMeter * new Vector2(1, -1) + layer.Texture.Size / 2f);
 
                 if (_clickMapManager.IsOccluding(layer.Texture, imagePos))
+                {
+                    SetPerspectiveDepth(entity.Owner, layer.Texture.Height, imagePos.Y, ref drawDepth); // classic-add
                     return true;
+                }
             }
 
             // Either we weren't clicking on the texture, or there wasn't one. In which case: check the RSI next
@@ -134,7 +162,10 @@ public sealed partial class ClickableSystem : EntitySystem
             dir = dir.OffsetRsiDir(layer.DirOffset);
 
             if (_clickMapManager.IsOccluding(layer.ActualRsi!, layer.State, dir, layer.AnimationFrame, layerImagePos))
+            {
+                SetPerspectiveDepth(entity.Owner, rsiState.Size.Y, layerImagePos.Y, ref drawDepth); // classic-add
                 return true;
+            }
         }
 
         drawDepth = default;
@@ -142,6 +173,25 @@ public sealed partial class ClickableSystem : EntitySystem
         bottom = default;
         return false;
     }
+
+    // Classic-Start
+    private void SetPerspectiveDepth(
+        EntityUid entity,
+        int textureHeight,
+        int imageY,
+        ref int drawDepth)
+    {
+        if (!_perspectiveDepthQuery.HasComp(entity) ||
+            textureHeight <= EyeManager.PixelsPerMeter ||
+            imageY < 0 ||
+            imageY >= Math.Min(ClassicPerspectiveDepthComponent.OverlayHeight, textureHeight))
+        {
+            return;
+        }
+
+        drawDepth = ClassicPerspectiveDepthComponent.OverlayDrawDepth;
+    }
+    // Classic-End
 
     public bool CheckDirBound(Entity<ClickableComponent, SpriteComponent> entity, Angle relativeRotation, Vector2 localPos)
     {

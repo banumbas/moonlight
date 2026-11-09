@@ -5,9 +5,9 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Stunnable;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Stunnable;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -21,7 +21,7 @@ namespace Content.Server._Classic.SupplyPods;
 /// Server-side supply pod system. Provides the abstract <see cref="Deliver"/> API
 /// that any system can call to deliver entities via a falling supply pod.
 /// </summary>
-public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
+public sealed partial class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
 {
     [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -32,41 +32,24 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
     [Dependency] private readonly ScreenshakeSystem _screenshake = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private readonly List<PendingDelivery> _pending = new();
     private readonly HashSet<EntityUid> _impactSet = new();
 
-    public override void Update(float frameTime)
+    private EntityQuery<ClassicSupplyPodComponent> _podQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<EntityStorageComponent> _storageQuery;
+    private EntityQuery<DamageableComponent> _damageableQuery;
+
+    public override void Initialize()
     {
-        if (_pending.Count == 0)
-            return;
+        base.Initialize();
 
-        var now = _timing.CurTime;
-        for (var i = _pending.Count - 1; i >= 0; i--)
-        {
-            var pending = _pending[i];
-
-            // Warning -> Falling transition.
-            if (!pending.FallStarted && now >= pending.FallAt)
-            {
-                pending.FallStarted = true;
-                if (!Deleted(pending.Pod) && TryComp<ClassicSupplyPodComponent>(pending.Pod, out var fallComp))
-                    SetPhase(pending.Pod, fallComp, ClassicSupplyPodPhase.Falling);
-            }
-
-            if (now < pending.LandAt)
-                continue;
-
-            LandPod(pending);
-            _pending.RemoveAt(i);
-        }
-    }
-
-    private void SetPhase(EntityUid pod, ClassicSupplyPodComponent comp, ClassicSupplyPodPhase phase)
-    {
-        comp.Phase = phase;
-        Dirty(pod, comp);
-        _appearance.SetData(pod, ClassicSupplyPodVisuals.Phase, phase);
+        _podQuery = GetEntityQuery<ClassicSupplyPodComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _storageQuery = GetEntityQuery<EntityStorageComponent>();
+        _damageableQuery = GetEntityQuery<DamageableComponent>();
     }
 
     /// <summary>
@@ -86,7 +69,7 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
 
         var proto = podPrototype ?? DefaultPodPrototype;
         var pod = Spawn(proto, coordinates);
-        if (!TryComp<ClassicSupplyPodComponent>(pod, out var podComp))
+        if (!_podQuery.TryComp(pod, out var podComp))
         {
             Log.Error($"Supply pod prototype {proto} missing ClassicSupplyPodComponent!");
             QueueDel(pod);
@@ -101,12 +84,12 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
 
         // Disable collision while in the air so the pod doesn't block entities at
         // the landing location before it has actually landed.
-        if (TryComp<PhysicsComponent>(pod, out var physics))
+        if (_physicsQuery.TryComp(pod, out var physics))
             _physics.SetCanCollide(pod, false, body: physics);
 
         // Insert payload and stun mob passengers for the entire fall so they can't
         // interact with or open the storage.
-        if (TryComp<EntityStorageComponent>(pod, out var storage))
+        if (_storageQuery.TryComp(pod, out var storage))
         {
             if (payload != null)
             {
@@ -148,10 +131,45 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
         return pod;
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_pending.Count == 0)
+            return;
+
+        var now = _timing.CurTime;
+        for (var i = _pending.Count - 1; i >= 0; i--)
+        {
+            var pending = _pending[i];
+
+            // Warning -> Falling transition.
+            if (!pending.FallStarted && now >= pending.FallAt)
+            {
+                pending.FallStarted = true;
+                if (!Deleted(pending.Pod) && _podQuery.TryComp(pending.Pod, out var fallComp))
+                    SetPhase(pending.Pod, fallComp, ClassicSupplyPodPhase.Falling);
+            }
+
+            if (now < pending.LandAt)
+                continue;
+
+            LandPod(pending);
+            _pending.RemoveAt(i);
+        }
+    }
+
+    private void SetPhase(EntityUid pod, ClassicSupplyPodComponent comp, ClassicSupplyPodPhase phase)
+    {
+        comp.Phase = phase;
+        Dirty(pod, comp);
+        _appearance.SetData(pod, ClassicSupplyPodVisuals.Phase, phase);
+    }
+
     private void LandPod(PendingDelivery pending)
     {
         var pod = pending.Pod;
-        if (Deleted(pod) || !TryComp<ClassicSupplyPodComponent>(pod, out var podComp))
+        if (Deleted(pod) || !_podQuery.TryComp(pod, out var podComp))
             return;
 
         SetPhase(pod, podComp, ClassicSupplyPodPhase.Landed);
@@ -166,14 +184,14 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
         ApplyPassengerEffects(pod, podComp);
 
         // Now re-enable collision.
-        if (TryComp<PhysicsComponent>(pod, out var physics))
+        if (_physicsQuery.TryComp(pod, out var physics))
             _physics.SetCanCollide(pod, true, body: physics);
 
         if (podComp.ImpactSound != null)
             Audio.PlayPvs(podComp.ImpactSound, pod);
 
         if (podComp.ImpactEffect != null)
-            Spawn(podComp.ImpactEffect, Transform(pod).Coordinates);
+            Spawn(podComp.ImpactEffect, _transform.GetMoverCoordinates(pod));
 
         if (podComp.AutoOpen)
         {
@@ -205,7 +223,7 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
 
         // Exclude the pod's contents (passengers/cargo) — they are handled by
         // ApplyPassengerEffects.
-        if (TryComp<EntityStorageComponent>(pod, out var storage))
+        if (_storageQuery.TryComp(pod, out var storage))
         {
             foreach (var contained in storage.Contents.ContainedEntities)
                 _impactSet.Remove(contained);
@@ -216,7 +234,7 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
             if (Deleted(ent))
                 continue;
 
-            if (!HasComp<DamageableComponent>(ent))
+            if (!_damageableQuery.HasComp(ent))
                 continue;
 
             // Skip items, but not mobs (some mobs have ItemComponent from pickupable species).
@@ -234,7 +252,7 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
     /// </summary>
     private void ApplyPassengerEffects(EntityUid pod, ClassicSupplyPodComponent comp)
     {
-        if (!TryComp<EntityStorageComponent>(pod, out var storage))
+        if (!_storageQuery.TryComp(pod, out var storage))
             return;
 
         var shakeTranslation = new ScreenshakeParameters { Trauma = 0.6f, DecayRate = 1.5f, Frequency = 12f };

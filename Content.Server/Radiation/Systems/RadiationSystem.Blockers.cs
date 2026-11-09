@@ -91,6 +91,8 @@ public partial class RadiationSystem
 
     private void AddTile(EntityUid uid, RadiationBlockerComponent component)
     {
+        // classic start
+#if false
         // check that last position was removed
         if (component.CurrentPosition != null)
         {
@@ -113,10 +115,15 @@ public partial class RadiationSystem
 
         // and remember it as last valid position
         component.CurrentPosition = (gridId, tilePos);
+#endif
+        AddClassicTile(uid, component);
+        // classic end
     }
 
     private void RemoveTile(EntityUid uid, RadiationBlockerComponent component)
     {
+        // classic start
+#if false
         // check if blocker was placed on grid before component was removed
         if (component.CurrentPosition == null)
             return;
@@ -125,6 +132,9 @@ public partial class RadiationSystem
         // try to remove
         RemoveFromTile(gridId, tilePos, component.RadResistance);
         component.CurrentPosition = null;
+#endif
+        RemoveClassicTile(component);
+        // classic end
     }
 
     private void AddToTile(EntityUid gridUid, Vector2i tilePos, float radResistance)

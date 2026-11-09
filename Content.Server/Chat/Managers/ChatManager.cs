@@ -274,14 +274,11 @@ internal sealed partial class ChatManager : IChatManager
         {
             foreach (var ban in punishments)
             {
-                var punishType = ban.Role[BanManager.PrefixPunishment.Length..];
-
-                if (punishType.StartsWith("Mute:") && Enum.TryParse<ChatChannel>(punishType["Mute:".Length..], out var channel))
+                if (type == OOCChatType.OOC && ban.Role == "Punish:Mute:OOC" ||
+                    type == OOCChatType.Admin && ban.Role == "Punish:Mute:AdminChat")
                 {
-                    if (type == OOCChatType.OOC && channel.HasFlag(ChatChannel.OOC))
-                        return;
-                    if (type == OOCChatType.Admin && channel.HasFlag(ChatChannel.AdminChat))
-                        return;
+                    DispatchServerMessage(player, Loc.GetString("punishment-chat-channel-muted"));
+                    return;
                 }
             }
         }

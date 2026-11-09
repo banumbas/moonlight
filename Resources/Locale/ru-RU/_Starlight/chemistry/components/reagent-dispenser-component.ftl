@@ -1,6 +1,6 @@
 reagent-dispenser-popup-no-energy = Недостаточно энергии!
-reagent-dispenser-component-cannot-fit-message = Контейнер не выдержит столько!
+reagent-dispenser-component-cannot-fit-message = Ёмкость не вместит столько жидкости!
 
 # Plumbing valve
-reagent-dispenser-window-valve-open = Клапан: Открытый
-reagent-dispenser-window-valve-closed = Клапан: Закрыт
+reagent-dispenser-window-valve-open = Клапан: открыт
+reagent-dispenser-window-valve-closed = Клапан: закрыт

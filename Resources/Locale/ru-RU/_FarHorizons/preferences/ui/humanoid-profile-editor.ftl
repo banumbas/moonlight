@@ -1,3 +1,3 @@
-humanoid-profile-editor-subspecies-label = Подвиды:
+humanoid-profile-editor-subspecies-label = Подвид:
 
-humanoid-profile-editor-species-loadout = Видовая комплектация:
+humanoid-profile-editor-species-loadout = Снаряжение расы:

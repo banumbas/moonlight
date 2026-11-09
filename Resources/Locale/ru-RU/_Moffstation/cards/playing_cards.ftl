@@ -1,21 +1,21 @@
-﻿playing-card-name-reverse = playing card
-playing-card-desc-reverse = С этой стороны невозможно сказать, что это такое.
+playing-card-name-reverse = игральная карта
+playing-card-desc-reverse = С этой стороны невозможно узнать, что это за карта.
 
-playing-card-name = {$card} из {$suit}
-playing-card-desc = Артистизм изысканный!
+playing-card-name = {$card} {$suit}
+playing-card-desc = Изысканное оформление!
 
 playing-card-suit-name = { $suit ->
-    [clubs] Клубы
-    [diamonds] Бриллианты
-    [hearts] Сердечки
-    [spades] Пики
+    [clubs] треф
+    [diamonds] бубен
+    [hearts] червей
+    [spades] пик
    *[invalid] !!{$suit}!!
 }
 
 playing-card-value-name = { $card ->
-    [ace] туз
-    [J] Джек
-    [Q] Королева
+    [ace] Туз
+    [J] Валет
+    [Q] Дама
     [K] Король
    *[other] {$card}
 }

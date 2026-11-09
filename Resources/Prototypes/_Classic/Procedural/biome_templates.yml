@@ -5,6 +5,8 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - ClassicGrass
+        - ClassicGrassLight
+        - ClassicGrassTall
       divisions: 2
       threshold: -0.50
       noise:
@@ -18,20 +20,25 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - ClassicGrass
+        - ClassicGrassLight
+        - ClassicGrassTall
+      divisions: 1
+      threshold: 0.8
       noise:
         seed: 0
         noiseType: OpenSimplex2
         frequency: 1
-      divisions: 1
-      threshold: 0.8
       decals:
         - FlowersBROne
         - FlowersBRTwo
         - FlowersBRThree
+
     # Dense vegetation
     - !type:BiomeDecalLayer
       allowedTiles:
-      - ClassicGrass
+        - ClassicGrass
+        - ClassicGrassLight
+        - ClassicGrassTall
       divisions: 1
       threshold: -0.35
       noise:
@@ -59,132 +66,22 @@
         frequency: 2
       allowedTiles:
         - ClassicGrass
+        - ClassicGrassLight
+        - ClassicGrassTall
       entities:
         - FloraTree
         - FloraTreeLarge
 
-    # ---- ENTITY LAYERS ----
-
-    # Common Outer Wall (ClassicWallRock2 on ClassicDirt)
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicDirt
-      threshold: -1.0
-      noise:
-        seed: 0
-        noiseType: OpenSimplex2
-        frequency: 0.01
-      entities:
-        - ClassicWallRock2
-
-    # Red Cave Inner Wall
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicSand
-      threshold: -1.0
-      noise:
-        seed: 0
-        noiseType: OpenSimplex2
-        frequency: 0.01
-      entities:
-        - ClassicWallRedRock
-
-    # Ice Cave Inner Wall
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicSnowDeepDeep
-      threshold: -1.0
-      noise:
-        seed: 0
-        noiseType: OpenSimplex2
-        frequency: 0.01
-      entities:
-        - ClassicWallIcerock
-
-    # Water Cave Inner Wall
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicMycelium
-      threshold: -1.0
-      noise:
-        seed: 0
-        noiseType: OpenSimplex2
-        frequency: 0.01
-      entities:
-        - ClassicWallRock2
-
-    # Water Cave Pool
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicMyceliumLight
-      threshold: -1.0
-      noise:
-        seed: 0
-        noiseType: OpenSimplex2
-        frequency: 0.01
-      entities:
-        - ClassicWaterDeep
-
-    # Regular Cave Boulders
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-      threshold: 0.35
-      noise:
-        seed: 42
-        noiseType: OpenSimplex2
-        frequency: 0.1
-      entities:
-        - ClassicWallRock
-
-    # Regular Cave Solid Rocks (Scattered individually)
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-      threshold: 0.90
-      noise:
-        seed: 77
-        noiseType: OpenSimplex2
-        frequency: 0.8
-      entities:
-        - FloraRockSolid
-
-    # Red Cave Crystals
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicGrassBlood
-        - ClassicGrassTallBlood
-      threshold: 0.55
-      noise:
-        seed: 42
-        noiseType: OpenSimplex2
-        frequency: 0.5
-      entities:
-        - ClassicCrystalSpawner
-
-    # Ice Cave Crystals
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - ClassicIce
-        - ClassicSnow
-      threshold: 0.50
-      noise:
-        seed: 42
-        noiseType: OpenSimplex2
-        frequency: 0.5
-      entities:
-        - ClassicCrystalIceSpawner
-
     - !type:BiomeDummyLayer
       id: Loot
 
-    # Water Entities (Surface rivers)
+    # Surface rivers and their steam outlets remain on the plains.
     - !type:BiomeEntityLayer
       allowedTiles:
         - ClassicGrass
         - ClassicDirt
+        - ClassicGrassLight
+        - ClassicGrassTall
       threshold: 0.95
       noise:
         seed: 3
@@ -195,7 +92,6 @@
         octaves: 1
       entities:
         - ClassicWater
-
     - !type:BiomeEntityLayer
       threshold: 0.985
       noise:
@@ -205,186 +101,43 @@
       allowedTiles:
         - ClassicGrass
         - ClassicDirt
+        - ClassicGrassLight
+        - ClassicGrassTall
       entities:
         - ClassicGeyserOutletSteam
 
-    # ---- TILE LAYERS (Evaluated sequentially) ----
-
-    # Base of the world
+    # Plains contain no cave rocks: only grass variants and river dirt.
     - !type:BiomeTileLayer
       threshold: -1.0
       tile: ClassicGrass
-
-    # 1. Regular Caves (Seed 10, OpenSimplex2 - Large solid masses)
+    - !type:BiomeTileLayer
+      tile: ClassicGrassLight
+      allowedTiles:
+        - ClassicGrass
+      threshold: 0.20
+      noise:
+        seed: 21
+        noiseType: OpenSimplex2
+        frequency: 0.035
+        fractalType: FBm
+        octaves: 3
+    - !type:BiomeTileLayer
+      tile: ClassicGrassTall
+      allowedTiles:
+        - ClassicGrassLight
+      threshold: 0.58
+      noise:
+        seed: 21
+        noiseType: OpenSimplex2
+        frequency: 0.035
+        fractalType: FBm
+        octaves: 3
     - !type:BiomeTileLayer
       tile: ClassicDirt
-      threshold: -0.20
-      minDistance: 85
-      noise:
-        seed: 10
-        noiseType: OpenSimplex2
-        frequency: 0.004
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicStone
-      threshold: 0.00
-      minDistance: 85
-      noise:
-        seed: 10
-        noiseType: OpenSimplex2
-        frequency: 0.004
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicCobblestone
-      threshold: 0.65
-      minDistance: 85
-      noise:
-        seed: 10
-        noiseType: OpenSimplex2
-        frequency: 0.004
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-
-    # 2. Red Caves (Seed 100, OpenSimplex2 - Predictable rare patches)
-    - !type:BiomeTileLayer
-      tile: ClassicSand
       allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-      threshold: 0.55
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicGrassBlood
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-        - ClassicSand
-      threshold: 0.60
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicGrassTallBlood
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-        - ClassicSand
-        - ClassicGrassBlood
-      threshold: 0.70
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-
-    # 3. Ice Caves (Seed 100 inverted - Opposite of Red Caves)
-    - !type:BiomeTileLayer
-      tile: ClassicSnowDeepDeep
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-      threshold: 0.55
-      invert: true
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicIce
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-        - ClassicSnowDeepDeep
-      threshold: 0.60
-      invert: true
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicSnow
-      allowedTiles:
-        - ClassicStone
-        - ClassicCobblestone
-        - ClassicSnowDeepDeep
-        - ClassicIce
-      threshold: 0.70
-      invert: true
-      minDistance: 95
-      noise:
-        seed: 100
-        noiseType: OpenSimplex2
-        frequency: 0.01
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-
-    # 4. Water Caves (Seed 300, OpenSimplex2 - Extremely rare patches)
-    - !type:BiomeTileLayer
-      tile: ClassicDirt
-      threshold: 0.80
-      minDistance: 95
-      noise:
-        seed: 300
-        noiseType: OpenSimplex2
-        frequency: 0.007
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicMycelium
-      threshold: 0.82
-      minDistance: 95
-      noise:
-        seed: 300
-        noiseType: OpenSimplex2
-        frequency: 0.007
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-    - !type:BiomeTileLayer
-      tile: ClassicMyceliumLight
-      threshold: 0.84
-      minDistance: 95
-      noise:
-        seed: 300
-        noiseType: OpenSimplex2
-        frequency: 0.007
-        lacunarity: 2
-        fractalType: FBm
-        octaves: 3
-
-    # Water sand (Surface Rivers overriding everything)
-    - !type:BiomeTileLayer
-      tile: ClassicDirt
+        - ClassicGrass
+        - ClassicGrassLight
+        - ClassicGrassTall
       threshold: 0.95
       noise:
         seed: 3
@@ -393,4 +146,3 @@
         lacunarity: 1.50
         fractalType: Ridged
         octaves: 1
-

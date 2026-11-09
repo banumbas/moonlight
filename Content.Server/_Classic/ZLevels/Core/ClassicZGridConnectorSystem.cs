@@ -29,6 +29,12 @@ public sealed partial class ClassicZGridConnectorSystem : EntitySystem
 
     private bool _dirty;
 
+    /// <summary>
+    /// Number of completed topology passes. Exposed for diagnostics and performance regression tests.
+    /// </summary>
+    [ViewVariables]
+    public ulong RecalculationCount { get; private set; }
+
     // Reusable scratch buffers — recalc runs at most once per tick on a single thread,
     // so we clear and reuse rather than allocating fresh collections each pass.
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _adj = new();
@@ -39,6 +45,7 @@ public sealed partial class ClassicZGridConnectorSystem : EntitySystem
     private readonly Dictionary<EntityUid, EntityUid> _gridToTargetNet = new();
     private readonly HashSet<EntityUid> _claimedNets = new();
     private readonly List<EntityUid> _removeBuffer = new();
+    private readonly HashSet<Vector2i> _occupancyChanges = new();
 
     private HashSet<EntityUid> RentSet()
     {
@@ -94,7 +101,57 @@ public sealed partial class ClassicZGridConnectorSystem : EntitySystem
 
     private void OnTileChanged(ref TileChangedEvent ev)
     {
-        _dirty = true;
+        // A connector only cares whether there is a tile on the level above it. Tile material,
+        // sprite or variant changes cannot alter grid topology.
+        if (_dirty || ev.Changes.Length == 0)
+            return;
+
+        _occupancyChanges.Clear();
+        foreach (var change in ev.Changes)
+        {
+            if (change.EmptyChanged)
+                _occupancyChanges.Add(change.GridIndices);
+        }
+
+        if (_occupancyChanges.Count == 0)
+            return;
+
+        var changedGrid = ev.Entity;
+        var changedGridXform = Transform(changedGrid.Owner);
+        if (changedGridXform.MapUid is not { } changedMapUid)
+            return;
+
+        // Tile indices are local to each grid. Project every connector's current world position
+        // into the changed grid so this remains correct for translated and 90-degree-rotated grids.
+        // This scan is intentionally done here instead of maintaining a stale spatial cache: connector
+        // grids can move, and connector counts are tiny compared with procedural tile batch sizes.
+        var query = EntityQueryEnumerator<ClassicZGridConnectorComponent, TransformComponent>();
+        while (query.MoveNext(out var connectorUid, out _, out var connectorXform))
+        {
+            if (!connectorXform.Anchored ||
+                connectorXform.GridUid is not { } lowerGridUid ||
+                connectorXform.MapUid is not { } lowerMapUid ||
+                connectorXform.ParentUid == lowerMapUid ||
+                lowerGridUid == changedGrid.Owner ||
+                !_zMapQuery.TryComp(lowerMapUid, out var lowerMap) ||
+                !_zLevels.TryMapUp((lowerMapUid, lowerMap), out var aboveMap) ||
+                aboveMap.Owner != changedMapUid)
+            {
+                continue;
+            }
+
+            var connectorWorldPos = _transform.GetWorldPosition(connectorUid);
+            var connectorTile = _mapSystem.TileIndicesFor(
+                changedGrid.Owner,
+                changedGrid.Comp,
+                new MapCoordinates(connectorWorldPos, changedGridXform.MapID));
+
+            if (_occupancyChanges.Contains(connectorTile))
+            {
+                _dirty = true;
+                return;
+            }
+        }
     }
 
     private void OnGridSplit(ref GridSplitEvent ev)
@@ -129,6 +186,7 @@ public sealed partial class ClassicZGridConnectorSystem : EntitySystem
     /// </summary>
     private void RecalculateGridNetworks()
     {
+        RecalculationCount++;
         ComputeDesiredComponents();
 
         // Assign each desired component a target network, reusing the existing network with the

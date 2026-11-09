@@ -3,11 +3,10 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 
 namespace Content.Server._Classic.Vendors;
 
-public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorSystem
+public sealed partial class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorSystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -15,9 +14,13 @@ public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorS
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
+    private EntityQuery<ClassicVendorUserComponent> _userQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _userQuery = GetEntityQuery<ClassicVendorUserComponent>();
 
         SubscribeLocalEvent<ClassicAutomatedVendorComponent, BoundUIOpenedEvent>(OnUIOpened);
     }
@@ -31,7 +34,7 @@ public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorS
     {
         var user = args.Actor;
 
-        if (!TryComp<ClassicVendorUserComponent>(user, out var userComp))
+        if (!_userQuery.TryComp(user, out var userComp))
             return;
 
         if (args.Section < 0 || args.Section >= vendor.Comp.Sections.Count)
@@ -62,9 +65,11 @@ public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorS
 
         base.OnVendMessage(vendor, ref args);
 
-        for (int i = 0; i < entry.Spawn; i++)
+        var spawnCoords = _transform.GetMoverCoordinates(vendor.Owner);
+
+        for (var i = 0; i < entry.Spawn; i++)
         {
-            var spawned = Spawn(entry.Id, Transform(vendor.Owner).Coordinates);
+            var spawned = Spawn(entry.Id, spawnCoords);
 
             if (entry.AutoEquip)
             {
@@ -73,7 +78,7 @@ public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorS
 
                 foreach (var contentId in entry.AutoEquipContents)
                 {
-                    var extra = Spawn(contentId, Transform(vendor.Owner).Coordinates);
+                    var extra = Spawn(contentId, spawnCoords);
                     if (!TryAutoEquip(user, extra))
                         _hands.TryPickupAnyHand(user, extra);
                 }
@@ -129,7 +134,7 @@ public sealed class ClassicAutomatedVendorSystem : SharedClassicAutomatedVendorS
 
     private void UpdateUIState(EntityUid vendor, EntityUid user)
     {
-        if (!TryComp<ClassicVendorUserComponent>(user, out var userComp))
+        if (!_userQuery.TryComp(user, out var userComp))
             return;
 
         var state = new ClassicAutomatedVendorBuiState(

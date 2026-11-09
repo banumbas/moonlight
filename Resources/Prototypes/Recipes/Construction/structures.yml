@@ -78,7 +78,7 @@
 
 - type: construction
   id: WoodWall
-  graph: Barricade
+  graph: BarricadeDirectional
   startNode: start
   targetNode: woodWall
   category: construction-category-structures
@@ -576,18 +576,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-
-- type: construction
-  id: Barricade
-  graph: Barricade
-  startNode: start
-  targetNode: barricadefull
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
 
 - type: construction
   id: BarricadeDirectional

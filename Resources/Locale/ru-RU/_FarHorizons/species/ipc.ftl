@@ -1,15 +1,15 @@
-ipc-revive-cant-revive = Невозможно перезагрузиться!
+ipc-revive-cant-revive = Невозможно перезагрузить!
 ipc-revive-reboot-started = Перезагрузка...
-ipc-cant-eject-own-brain = Невозможно выбросить собственный мозг!
-ipc-brain-ejected = Мозг выброшен!
-ipc-brain-inserted = Мозг вставлен!
-ipc-warning-critical-charge = Опасность! Внутренняя мощность низкая! Защитное отключение неизбежно!
+ipc-cant-eject-own-brain = Невозможно извлечь собственный мозг!
+ipc-brain-ejected = Мозг извлечён!
+ipc-brain-inserted = Мозг установлен!
+ipc-warning-critical-charge = Внимание! Низкий уровень заряда внутренней батареи! Аварийное отключение неизбежно!
 ipc-revive-button-label = Перезагрузить
-ipc-revive-button-submenu = МПК
+ipc-revive-button-submenu = ИПК
 
-ipc-drain-power-alt-verb = Слить мощность
+ipc-drain-power-alt-verb = Поглотить энергию
 
-ipc-ui-menu-title = Панель управления ПК
+ipc-ui-menu-title = Панель управления ИПК
 ipc-ui-console-separator = ======================================
 ipc-ui-console-header-1 = = _____ _____ _____ ____ _____
 ipc-ui-console-header-2 = =|_ _|  __ \ / ____|  / __ \ / ____|
@@ -19,52 +19,52 @@ ipc-ui-console-header-5 = = _| |_| |    | |____ | |__| |____) |
 ipc-ui-console-header-6 = =|_____|_|     \_____|  \____/|_____/
 ipc-ui-console-diagnostics-section = Диагностика системы:
 ipc-ui-console-status = Статус
-ipc-ui-console-brain = Мозг
+ipc-ui-console-brain = Позитронный мозг
 ipc-ui-console-battery = Батарея
-ipc-ui-console-battery-charge = Заряжать
+ipc-ui-console-battery-charge = Заряд
 ipc-ui-console-eye-damage = Оптика
 ipc-ui-console-blood-level = Масло
-ipc-ui-console-temperature = Температура ядра.
+ipc-ui-console-temperature = Температура ядра
 ipc-ui-console-fans = Охлаждающие вентиляторы
 ipc-ui-console-fans-efficiency = Эффективность вентиляторов
 
 ipc-ui-console-fans-efficiency-none = Н/Д
 
-ipc-ui-console-part-installed = ХОРОШО
-ipc-ui-console-part-missing = ОТСУТСТВУЮЩИЙ
+ipc-ui-console-part-installed = НОРМА
+ipc-ui-console-part-missing = ОТСУТСТВУЕТ
 
-ipc-ui-console-eye-damage-none = ХОРОШО
-ipc-ui-console-eye-damage-some = ПОВРЕЖДЕН
-ipc-ui-console-eye-damage-lots = СИЛЬНО ПОВРЕЖДЕН
+ipc-ui-console-eye-damage-none = ИСПРАВНА
+ipc-ui-console-eye-damage-some = ПОВРЕЖДЕНА
+ipc-ui-console-eye-damage-lots = СИЛЬНО ПОВРЕЖДЕНА
 
-ipc-ui-console-damage-section = Обнаружено повреждение:
-ipc-ui-console-damage-none = Никаких повреждений не обнаружено!
+ipc-ui-console-damage-section = Обнаруженные повреждения:
+ipc-ui-console-damage-none = Повреждений не обнаружено!
 
-ipc-thermals-examine-off = { CAPITALIZE(POSS-ADJ($entity)) } Фанаты молчат.
-ipc-thermals-diagnostics-off = ВЫКЛЮЧЕННЫЙ
-ipc-thermals-examine-low = Вы слышите слабое жужжание охлаждающих вентиляторов внутри корпуса { POSS-ADJ($entity) }.
+ipc-thermals-examine-off = { CAPITALIZE(POSS-ADJ($entity)) } вентиляторы молчат.
+ipc-thermals-diagnostics-off = ВЫКЛЮЧЕНО
+ipc-thermals-examine-low = Вы слышите тихое жужжание охлаждающих вентиляторов внутри корпуса { POSS-ADJ($entity) }.
 ipc-thermals-diagnostics-low = НИЗКИЙ
-ipc-thermals-examine-medium = { CAPITALIZE(POSS-ADJ($entity)) } Вентиляторы вращаются достаточно быстро, чтобы их было слышно, выдувая немного горячего воздуха для охлаждения.
-ipc-thermals-diagnostics-medium = СЕРЕДИНА
-ipc-thermals-examine-high = { CAPITALIZE(POSS-ADJ($entity)) } Вентиляторы громко вращаются, раздувая горячий воздух во всех направлениях.
+ipc-thermals-examine-medium = Вентиляторы { POSS-ADJ($entity) } вращаются достаточно быстро, выдувая тёплый воздух для охлаждения.
+ipc-thermals-diagnostics-medium = СРЕДНИЙ
+ipc-thermals-examine-high = Вентиляторы { POSS-ADJ($entity) } громко гудят, выдувая горячий воздух во все стороны.
 ipc-thermals-diagnostics-high = ВЫСОКИЙ
-ipc-thermals-examine-extreme = { CAPITALIZE(POSS-ADJ($entity)) } Вентиляторы звучат как реактивный двигатель, раздувая обжигающий горячий воздух во всех направлениях в отчаянной попытке охладиться.
-ipc-thermals-diagnostics-extreme = ЭКСТРЕМАЛЬНЫЙ
+ipc-thermals-examine-extreme = Вентиляторы { POSS-ADJ($entity) } ревут словно реактивный двигатель, отчаянно выдувая раскалённый воздух во все стороны!
+ipc-thermals-diagnostics-extreme = КРИТИЧЕСКИЙ
 
-alerts-ipc-fans-ok-name = Номинальное охлаждение
-alerts-ipc-fans-ok-desc = Подсистемы охлаждения работают на минимальной мощности, аномалий не обнаружено.
+alerts-ipc-fans-ok-name = Охлаждение: Норма
+alerts-ipc-fans-ok-desc = Подсистемы охлаждения работают в штатном режиме, аномалий не обнаружено.
 
-alerts-ipc-fans-speed-medium-name = Охлаждающая среда
-alerts-ipc-fans-speed-medium-desc = Подсистемы охлаждения работают более чем на половину мощности, рассмотрите возможность переезда в более прохладное место.
+alerts-ipc-fans-speed-medium-name = Охлаждение: Среднее
+alerts-ipc-fans-speed-medium-desc = Подсистемы охлаждения работают на повышенных оборотах. Рекомендуется перейти в более прохладное место.
 
-alerts-ipc-fans-speed-high-name = Охлаждение Высокое
-alerts-ipc-fans-speed-high-desc = Подсистемы охлаждения работают на максимальной мощности, перегрев неизбежен.
+alerts-ipc-fans-speed-high-name = Охлаждение: Высокое
+alerts-ipc-fans-speed-high-desc = Подсистемы охлаждения работают на максимальной мощности, высок риск перегрева!
 
-alerts-ipc-fans-speed-turbo-name = Охлаждение Турбо
-alerts-ipc-fans-speed-turbo-desc = Подсистемы охлаждения работают с превышением максимально безопасного теплового предела, обнаружено повреждение системы!
+alerts-ipc-fans-speed-turbo-name = Охлаждение: Форсаж
+alerts-ipc-fans-speed-turbo-desc = Превышен максимально допустимый тепловой порог, зафиксированы повреждения систем от перегрева!
 
-alerts-ipc-fans-efficiency-low-name = Эффективность охлаждения низкая
-alerts-ipc-fans-efficiency-low-desc = Атмосферные условия ниже оптимальных, эффективность охлаждения снижена.
+alerts-ipc-fans-efficiency-low-name = Низкая эффективность охлаждения
+alerts-ipc-fans-efficiency-low-desc = Неблагоприятные условия окружающей среды снижают эффективность радиаторов и кулеров.
 
-alerts-ipc-fans-off-name = Охлаждение невозможно активировать!
-alerts-ipc-fans-off-desc = Крайняя опасность! Атмосферные условия препятствуют активации подсистем охлаждения!
+alerts-ipc-fans-off-name = Охлаждение заблокировано!
+alerts-ipc-fans-off-desc = Критическая опасность! Условия окружающей среды (вакуум или чрезмерное давление/жар) препятствуют работе вентиляторов!

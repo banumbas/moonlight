@@ -22,7 +22,7 @@ namespace Content.Client._Classic.SupplyPods;
 /// The impact effect entity is spawned server-side and replicated via PVS, so the
 /// client does not need to spawn it again.
 /// </summary>
-public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
+public sealed partial class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
@@ -44,13 +44,13 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
     /// During the <see cref="ClassicSupplyPodPhase.Landed"/> phase the Door layer
     /// also reflects the storage open/closed state.
     /// </summary>
-    private void OnAppearanceChange(EntityUid uid, ClassicSupplyPodComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(Entity<ClassicSupplyPodComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
         // Determine the phase; default to Landed if missing (so it stays visible).
-        if (!_appearance.TryGetData<ClassicSupplyPodPhase>(uid, ClassicSupplyPodVisuals.Phase, out var phase, args.Component))
+        if (!_appearance.TryGetData<ClassicSupplyPodPhase>(ent.Owner, ClassicSupplyPodVisuals.Phase, out var phase, args.Component))
             phase = ClassicSupplyPodPhase.Landed;
 
         switch (phase)
@@ -67,15 +67,15 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
                 // The Falling layer's RSI is already set in the prototype
                 // (_Classic/Effects/supplypod_falling.rsi). We only need to select
                 // the correct state for the visual variant.
-                if (!FallingSprites.TryGetValue(component.Visual, out var spriteInfo))
+                if (!FallingSprites.TryGetValue(ent.Comp.Visual, out var spriteInfo))
                     spriteInfo = FallingSprites[ClassicSupplyPodVisual.Default];
 
-                _sprite.LayerSetRsiState((uid, args.Sprite), ClassicSupplyPodVisualLayers.Falling, spriteInfo.State);
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Falling, true);
+                _sprite.LayerSetRsiState((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Falling, spriteInfo.State);
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Falling, true);
 
                 // Hide base/door layers while falling.
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Base, false);
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Door, false);
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Base, false);
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Door, false);
                 break;
 
             case ClassicSupplyPodPhase.Landed:
@@ -83,17 +83,17 @@ public sealed class ClassicSupplyPodSystem : SharedClassicSupplyPodSystem
                 // Show normal layers; hide the falling-animation layer.
                 args.Sprite.Visible = true;
 
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Falling, false);
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Base, true);
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Falling, false);
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Base, true);
 
                 // Reflect the storage open/closed state on the Door layer.
                 // This fixes the issue where the open sprite looked identical to the closed one.
-                var open = _appearance.TryGetData<bool>(uid, StorageVisuals.Open, out var openValue, args.Component)
+                var open = _appearance.TryGetData<bool>(ent.Owner, StorageVisuals.Open, out var openValue, args.Component)
                            && openValue;
 
                 // The Door layer swaps between the closed/open RSI states.
-                _sprite.LayerSetVisible((uid, args.Sprite), ClassicSupplyPodVisualLayers.Door, true);
-                _sprite.LayerSetRsiState((uid, args.Sprite), ClassicSupplyPodVisualLayers.Door,
+                _sprite.LayerSetVisible((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Door, true);
+                _sprite.LayerSetRsiState((ent.Owner, args.Sprite), ClassicSupplyPodVisualLayers.Door,
                     open ? DoorStateOpen : DoorStateClosed);
 
                 break;

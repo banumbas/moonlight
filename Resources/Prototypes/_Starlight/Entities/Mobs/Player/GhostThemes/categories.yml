@@ -20,8 +20,9 @@
 
 - type: ghostThemeCategory
   id: NullLink
-  name: NullLink
+  name: Special
   priority: 4
+  hideIfNoUnlocks: true
 
 - type: ghostThemeCategory
   id: Event

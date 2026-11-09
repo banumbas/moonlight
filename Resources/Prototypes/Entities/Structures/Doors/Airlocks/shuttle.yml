@@ -31,7 +31,7 @@
   - type: Sprite
     sprite: _Classic/Structures/Doors/Airlocks/Standard/shuttle.rsi
     snapCardinals: false
-    drawdepth: Overdoors
+    drawdepth: Doors # Classic-Edit - below perspective wall overhangs
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -62,8 +62,8 @@
   - type: Wires
     layoutId: Docking
   - type: Door
-    openDrawDepth: Overdoors
-    closedDrawDepth: Overdoors
+    openDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
+    closedDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
     closeTimeTwo: 0.4
     openTimeTwo: 0.4
     crushDamage:

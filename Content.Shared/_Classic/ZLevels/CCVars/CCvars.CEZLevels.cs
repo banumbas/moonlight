@@ -50,6 +50,10 @@ public sealed partial class CCVars
     public static readonly CVarDef<int>
         ClassicZLevelsRenderingMaxZLevelsBelowRendering = CVarDef.Create("ce.zlevels.rendering.max_zLevels_below_rendering", 1, CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>Render lower levels only around visible floor openings, at the main viewport's pixel density.</summary>
+    public static readonly CVarDef<bool>
+        ClassicZLevelsRenderingCropLowerLevels = CVarDef.Create("ce.zlevels.rendering.crop_lower_levels", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Apply the engine light-map blur to Z-levels below the player.
     /// Disabled by default because the lower level is already blurred by the Z overlay,

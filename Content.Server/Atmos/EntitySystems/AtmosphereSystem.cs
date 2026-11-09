@@ -104,12 +104,15 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         base.Update(frameTime);
 
         // Classic-Start
-        if (AtmosDisabled)
-            return;
+        if (!AtmosDisabled)
+        {
+            UpdateProcessing(frameTime);
+            UpdateHighPressure(frameTime);
+        }
         // Classic-End
 
-        UpdateProcessing(frameTime);
-        UpdateHighPressure(frameTime);
+        //UpdateProcessing(frameTime); // classic-remove
+        //UpdateHighPressure(frameTime); // classic-remove
 
         _exposedTimer += frameTime;
 

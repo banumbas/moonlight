@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "created @parkinson3506(discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "flame",
+      "delays": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      ]
+    }
+  ]
+}

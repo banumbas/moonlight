@@ -1,2 +1,2 @@
 # Starlight
-navmap-unknown-target = Неизвестный
+navmap-unknown-target = Неизвестно

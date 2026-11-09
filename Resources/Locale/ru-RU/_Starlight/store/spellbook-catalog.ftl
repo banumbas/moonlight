@@ -1,21 +1,21 @@
 spellbook-staff-healing-name = Посох исцеления
-spellbook-staff-healing-description = Вы не предвидите, что вам придется слишком часто использовать это в своих поисках кровавой бойни.
+spellbook-staff-healing-description = Вряд ли истинный боевой маг собирается часто им пользоваться, сея хаос в колонии...
 
-spellbook-event-summon-cheese-name = Призвать сыр
-spellbook-event-summon-cheese-description = Дотянись до пустоты и выдерни... кусочек сыра!
+spellbook-event-summon-cheese-name = Призыв сыра
+spellbook-event-summon-cheese-description = Протяните руку в ткань пространства и вытяните... свежий кусочек сыра!
 
-spellbook-event-tower-babel-name = Языковой сдвиг
-spellbook-event-tower-babel-description = Можете ли вы повторить это? Рандомизирует все языки! Приходится кастовать на станции. Отключает возврат средств.
+spellbook-event-tower-babel-name = Вавилонская башня
+spellbook-event-tower-babel-description = Перемешивает языки всех членов экипажа в колонии! Заклинание можно применить только в колонии. Возврат очков невозможен.
 action-speech-spell-babel = Я' Ни Лау' Ре эль
 action-speech-spell-babel-tts = Яре Ни, Лора Реал
 
-tower-of-babel-shifted = Ваш язык становится искривленным
-tower-of-babel-returned = Ваш язык возвращается на место
+tower-of-babel-shifted = Ваша речь превращается в непонятную тарабарщину!
+tower-of-babel-returned = Ваша нормальная речь возвращается.
 
-spellbook-event-mana-blade-name = Призрачный клинок
-spellbook-event-mana-blade-description = Направьте свою силу в руку и создайте меч из затвердевшей маны.
+spellbook-event-mana-blade-name = Клинок маны
+spellbook-event-mana-blade-description = Сконцентрируйте магическую энергию в руке, материализуя меч из чистой затвердевшей маны.
 
 spellbook-icestorm-name = Ледяной шторм
-spellbook-icestorm-desc = Выпустите ледяной порыв, который промораживает все, к чему прикасается, до костей!
+spellbook-icestorm-desc = Выпускает ледяной шквал, промораживающий всё на своём пути до самых костей!
 
-spellbook-mind-swap-description-starlight = Обменяйтесь телами с другим человеком! Вы потеряете доступ к большинству волшебного оборудования, находясь в другом теле... стоит ли оно того?
+spellbook-mind-swap-description-starlight = Обменяйтесь телами с другим существом! Находясь в чужом теле, вы временно потеряете доступ к большинству волшебного снаряжения... рискнёте ли вы?

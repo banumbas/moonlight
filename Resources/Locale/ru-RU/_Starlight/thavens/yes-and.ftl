@@ -5,10 +5,10 @@ thaven-mood-excessively-organized-name = Чрезмерно организова
 thaven-mood-excessively-organized-desc = Вы одержимо организованы; все имеет свое место и должно быть возвращено на свое место.
 
 thaven-mood-most-important-name = Самый важный человек
-thaven-mood-most-important-desc = Вы твердо верите, что являетесь самым важным человеком на станции.
+thaven-mood-most-important-desc = Вы твердо верите, что являетесь самым важным человеком в колонии.
 
 thaven-mood-least-important-name = Наименее важный человек
-thaven-mood-least-important-desc = Вы твердо убеждены, что вы наименее важный человек на станции.
+thaven-mood-least-important-desc = Вы твердо убеждены, что вы наименее важный человек в колонии.
 
 thaven-mood-must-do-drugs-name = Принимаю наркотики
 thaven-mood-must-do-drugs-desc = Трезвость – это так старомодно. Некруто. Тебе следует напиться, или напиться, или что-то в этом роде, и оставаться в таком состоянии.
@@ -74,7 +74,7 @@ thaven-mood-favors-repaid-name = Эквивалентный обмен
 thaven-mood-favors-repaid-desc = За услуги необходимо отплатить в натуральной форме. Если кто-то не может этого сделать, он в долгу, и его следует избегать до тех пор, пока он не отплатит за услугу.
 
 thaven-mood-bookkeeper-name = Бухгалтер
-thaven-mood-bookkeeper-desc = Вы считаете, что бухгалтерия жизненно важна для правильного функционирования станции. Обязательно предоставьте своему руководителю подробный журнал каждой выполненной вами работы.
+thaven-mood-bookkeeper-desc = Вы считаете, что бухгалтерия жизненно важна для правильного функционирования колонии. Обязательно предоставьте своему руководителю подробный журнал каждой выполненной вами работы.
 
 thaven-mood-sacred-blood-name = Твоя кровь священна
 thaven-mood-sacred-blood-desc = Его необходимо вернуть в тело, если оно когда-либо прольется.
@@ -92,7 +92,7 @@ thaven-mood-shoes-bad-name = Босиком
 thaven-mood-shoes-bad-desc = Земля, по которой ходят, священна. Те, кто носит обувь, — гнусные богохульники.
 
 thaven-mood-hospitable-name = Гостеприимный
-thaven-mood-hospitable-desc = Вы должны обеспечить должный прием всех вновь прибывших на станцию ​​(после начала смены).
+thaven-mood-hospitable-desc = Вы должны обеспечить должный прием всех вновь прибывших в колонию ​​(после начала смены).
 
 thaven-mood-voxsymp-name = Сочувствующий Воксу
 thaven-mood-voxsymp-desc = Чтобы продемонстрировать свой союз с Воксом, вы должны постоянно носить внутренние органы.
@@ -161,8 +161,8 @@ thaven-mood-speech-restriction-desc = {$speechType ->
   [TitleCase] You Are Miraculously Capable Of Pronouncing Capital Letters, And Believe It Is Important That You Do So.
 }
 
-thaven-mood-station-exists-for-department-name = Станция существует для {$department}
-thaven-mood-station-exists-for-department-desc = Вы твердо убеждены, что {$department} — самый важный отдел на этой станции, и все остальные отделы существуют для его поддержки.
+thaven-mood-station-exists-for-department-name = Колония существует для {$department}
+thaven-mood-station-exists-for-department-desc = Вы твердо убеждены, что {$department} — самый важный отдел в этой колонии, и все остальные отделы существуют для его поддержки.
 
 thaven-mood-mute-sympathizer-name = Немой сочувствующий
 thaven-mood-mute-sympathizer-desc = Чтобы продемонстрировать свою дружбу с немыми членами экипажа, по возможности избегайте разговорной речи.
@@ -174,7 +174,7 @@ thaven-mood-animal-rights-activist-name = Активист по защите п�
 thaven-mood-animal-rights-activist-desc = Вы любите всех животных. Вы должны убедиться, что с ними обращаются как с равными членами экипажа.
 
 thaven-mood-glub-echo-glub-name = Глуб, Эхо, Глуб
-thaven-mood-glub-echo-glub-desc = Вы агент под прикрытием, которого послали расследовать деятельность другого Тейвена на станции. Узнайте, что они задумали, и не попадитесь.
+thaven-mood-glub-echo-glub-desc = Вы агент под прикрытием, которого послали расследовать деятельность другого Тейвена в колонии. Узнайте, что они задумали, и не попадитесь.
 
 thaven-mood-i-was-here-name = Я был здесь
 thaven-mood-i-was-here-desc = Сообщите следующей смене, что вы здесь работали. Оставляйте след, куда бы вы ни пошли.
@@ -195,7 +195,7 @@ thaven-mood-parasocial-name = Парасоциальный
 thaven-mood-parasocial-desc = Вы находите руководителя своего отдела очень интересным, но не можете набраться смелости поговорить с ним напрямую. Постарайтесь узнать о них как можно больше без их ведома.
 
 thaven-mood-chairman-complex-name = Председатель Комплекс
-thaven-mood-chairman-complex-desc = Вы считаете себя ведущим авторитетом в вопросах Тэйвена на борту станции. Все проблемы, с которыми сталкивается Тейвен, должны решаться через вас, и вы считаете, что подвергать сомнению свой авторитет высшим оскорблением.
+thaven-mood-chairman-complex-desc = Вы считаете себя ведущим авторитетом в вопросах Тэйвена в колонии. Все проблемы, с которыми сталкивается Тейвен, должны решаться через вас, и вы считаете, что подвергать сомнению свой авторитет высшим оскорблением.
 
 thaven-mood-underdog-story-name = История аутсайдера
 thaven-mood-underdog-story-desc = Вы непоколебимо верите, что ваша жизнь — это фильм с вами в роли главного героя, и, как следствие, у вас есть сюжетная броня.
@@ -234,10 +234,10 @@ thaven-mood-rebel-name = Мятежник
 thaven-mood-rebel-desc = Вы чувствуете потребность говорить плохо о тех, кто стоит у власти.
 
 thaven-mood-amateur-photographer-name = Фотограф-любитель
-thaven-mood-amateur-photographer-desc = Вы чувствуете необходимость использовать вспышки, чтобы сфотографировать всех на станции.
+thaven-mood-amateur-photographer-desc = Вы чувствуете необходимость использовать вспышки, чтобы сфотографировать всех в колонии.
 
 thaven-mood-insecure-name = Ненадежный
 thaven-mood-insecure-desc = Вам очень важно, что о вас думают люди, особенно о вашем {$appearance}.
 
 thaven-mood-live-laugh-love-name = Живи, смейся, люби
-thaven-mood-live-laugh-love-desc = Проживите эту смену так, как будто она последняя. Смейтесь над каждой шуткой. Распространяйте радость и любовь к станции.
+thaven-mood-live-laugh-love-desc = Проживите эту смену так, как будто она последняя. Смейтесь над каждой шуткой. Распространяйте радость и любовь к колонии.

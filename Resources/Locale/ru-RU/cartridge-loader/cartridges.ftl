@@ -3,7 +3,7 @@ device-pda-slot-component-slot-name-cartridge = Картридж
 default-program-name = Программа
 notekeeper-program-name = Заметки
 nano-task-program-name = НаноДела
-news-read-program-name = Новости станции
+news-read-program-name = Новости колонии
 
 crew-manifest-program-name = Манифест экипажа
 crew-manifest-cartridge-loading = Загрузка...

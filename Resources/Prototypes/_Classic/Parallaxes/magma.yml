@@ -1,0 +1,16 @@
+- type: parallax
+  id: ClassicMagma
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/LavaParallax.png"
+      scrolling: "0.08, 0.04"
+      scale: "1.2, 1.2"
+      tiled: true
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/LavaLightParallax.png"
+      scrolling: "-0.05, 0.03"
+      scale: "0.9, 0.9"
+      tiled: true
+  layersLQUseHQ: true

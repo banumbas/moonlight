@@ -160,8 +160,7 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
             !_zNetworkQuery.TryGetComponent(zMap.NetworkUid, out var network))
             return false;
 
-        return network.Components.TryGetComponent<ClassicGridStabilityComponent>(_compFactory, out _) ||
-               network.Components.TryGetComponent<ClassicAutoGridGravityComponent>(_compFactory, out _);
+        return network.Components.TryGetComponent<ClassicGridStabilityComponent>(_compFactory, out _);
     }
 
     private bool TryGetOwningMap(EntityUid gridUid, out EntityUid mapUid)
@@ -172,6 +171,13 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
 
         mapUid = xform.MapUid ?? EntityUid.Invalid;
         return mapUid.IsValid();
+    }
+
+    private bool IsFoundationGrid(EntityUid gridUid)
+    {
+        return TryGetOwningMap(gridUid, out var mapUid) &&
+               _zMapQuery.TryGetComponent(mapUid, out var zMap) &&
+               zMap.Depth == 0;
     }
 
     private bool TryGetParticipatingGrid(EntityUid mapUid, out EntityUid gridUid)
@@ -377,10 +383,19 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
             if (!_stabilityQuery.TryGetComponent(gridUid, out var comp) || !_gridQuery.TryGetComponent(gridUid, out var grid))
                 continue;
 
-            var tileEnumerator = _map.GetAllTilesEnumerator(gridUid, grid);
-            while (tileEnumerator.MoveNext(out var tileRef))
+            var foundation = IsFoundationGrid(gridUid);
+            // The surface foundation never collapses. Natural geology is destructible by mining and
+            // explosions, but it is not player-built structure and must not enter the flood-fill.
+            if (!foundation)
             {
-                liveNodes.Add((gridUid, tileRef.Value.GridIndices));
+                var tileEnumerator = _map.GetAllTilesEnumerator(gridUid, grid);
+                while (tileEnumerator.MoveNext(out var tileRef))
+                {
+                    if (IsNaturalTerrain(tileRef.Value.Tile))
+                        continue;
+
+                    liveNodes.Add((gridUid, tileRef.Value.GridIndices));
+                }
             }
 
             foreach (var coreUid in comp.Cores)
@@ -388,7 +403,25 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
                 if (!_coreQuery.TryGetComponent(coreUid, out var core) || !_xformQuery.TryGetComponent(coreUid, out var xform))
                     continue;
 
-                coreSeeds.Add((gridUid, _map.TileIndicesFor(gridUid, grid, xform.Coordinates), core.LevitationForce));
+                var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+                liveNodes.Add((gridUid, tile));
+                coreSeeds.Add((gridUid, tile, core.LevitationForce));
+            }
+
+            if (foundation)
+            {
+                foreach (var supportUid in comp.Supports)
+                {
+                    if (!_supportQuery.TryGetComponent(supportUid, out var support) ||
+                        !_xformQuery.TryGetComponent(supportUid, out var xform))
+                    {
+                        continue;
+                    }
+
+                    var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+                    liveNodes.Add((gridUid, tile));
+                    coreSeeds.Add((gridUid, tile, Math.Max(1, support.SupportStrength + support.TransferLoss)));
+                }
             }
 
             if (!aboveOf.TryGetValue(gridUid, out var aboveGrid))
@@ -436,6 +469,12 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
         if (!bridges.TryGetValue(b, out var listB))
             bridges[b] = listB = new List<((EntityUid, Vector2i), int, int)>();
         listB.Add((a, strength, loss));
+    }
+
+    private bool IsNaturalTerrain(Tile tile)
+    {
+        return !tile.IsEmpty &&
+               _tileDefMan[tile.TypeId] is ContentTileDefinition { NaturalTerrain: true };
     }
 
     private void CollectFinishedJobs()
@@ -543,6 +582,12 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
         if (!_map.IsInitialized(Transform(gridUid).MapUid))
             return;
 
+        if (IsFoundationGrid(gridUid))
+        {
+            comp.PendingCollapses.Clear();
+            return;
+        }
+
         foreach (var tile in liveTiles)
         {
             if (newStability.ContainsKey(tile))
@@ -557,7 +602,8 @@ public sealed partial class ClassicZCollapseSystem : EntitySystem
             if (!_map.TryGetTile(grid, tile, out var currentTile) || currentTile.IsEmpty)
                 continue;
 
-            if (_tileDefMan[currentTile.TypeId] is ContentTileDefinition { Indestructible: true })
+            if (_tileDefMan[currentTile.TypeId] is ContentTileDefinition { Indestructible: true } or
+                ContentTileDefinition { NaturalTerrain: true })
                 continue;
 
             var coords = _map.GridTileToLocal(gridUid, grid, tile);

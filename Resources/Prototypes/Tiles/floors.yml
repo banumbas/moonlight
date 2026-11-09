@@ -548,12 +548,6 @@
   parent: BaseStationTile
   name: tiles-dirty-steel-floor
   sprite: /Textures/Tiles/steel_dirty.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
   footstepSounds:
     collection: FootstepPlating
   itemDrop: FloorTileItemDirty
@@ -973,12 +967,6 @@
   parent: BaseStationTile
   name: tiles-grey-shuttle-floor
   sprite: /Textures/Tiles/shuttlegrey.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
   itemDrop: FloorTileItemShuttleGrey
 
 - type: tile
@@ -986,12 +974,6 @@
   parent: BaseStationTile
   name: tiles-black-shuttle-floor
   sprite: /Textures/Tiles/shuttleblack.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
   itemDrop: FloorTileItemShuttleBlack
 
 - type: tile
@@ -1025,12 +1007,6 @@
   parent: BaseStationTile
   name: tiles-purple-shuttle-floor
   sprite: /Textures/Tiles/shuttlepurple.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
   itemDrop: FloorTileItemShuttlePurple
 
 - type: tile
@@ -1038,12 +1014,6 @@
   parent: BaseStationTile
   name: tiles-red-shuttle-floor
   sprite: /Textures/Tiles/shuttlered.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
   itemDrop: FloorTileItemShuttleRed
 
 

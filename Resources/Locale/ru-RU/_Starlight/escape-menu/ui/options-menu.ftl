@@ -1,4 +1,5 @@
 ui-options-function-open-m-help = Открытая помощь наставника
+ui-options-function-jump = Прыжок
 ui-escape-connect-discord = Ссылка на Дискорд
 server-info-connect-discord-button = Ссылка на Дискорд
 

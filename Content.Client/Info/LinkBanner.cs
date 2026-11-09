@@ -1,4 +1,4 @@
-﻿using Content.Client._Starlight.Managers;
+using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.UserInterface.Systems.EscapeMenu;
@@ -55,6 +55,9 @@ namespace Content.Client.Info
                 if (link != null)
                     uriOpener.OpenUri(link);
             };
+            // Classic start
+            steamButton.Visible = false;
+            // Classic end
             buttons.AddChild(steamButton);
             // NullLink end
 

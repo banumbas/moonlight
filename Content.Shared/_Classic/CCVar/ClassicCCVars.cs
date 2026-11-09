@@ -16,5 +16,5 @@ public sealed partial class ClassicCCVars
     /// When true, shuttle game rules, event shuttles, unknown shuttles, evac pods, and shuttle map loads are disabled.
     /// </summary>
     public static readonly CVarDef<bool> DisableShuttleEvents =
-        CVarDef.Create("classic.shuttle_events.disable", false, CVar.SERVERONLY);
+        CVarDef.Create("classic.shuttle_events.disable", true, CVar.SERVERONLY | CVar.ARCHIVE);
 }

@@ -1,10 +1,10 @@
 # PMC Antag Prototypes
 - type: antag
   id: PMCAssault
-  name: Eridani PMC (Assault)
+  name: roles-antag-pmc-assault-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-objective
+  objective: roles-antag-pmc-assault-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h
@@ -25,10 +25,10 @@
 
 - type: antag
   id: PMCSpecialist
-  name: Eridani PMC (Specialist)
-  objective: nukeops-role-objective
+  name: roles-antag-pmc-specialist-name
   antagonist: true
   setPreference: true
+  objective: roles-antag-pmc-specialist-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h
@@ -37,10 +37,10 @@
 
 - type: antag
   id: PMCMedic
-  name: Eridani PMC (Medic)
+  name: roles-antag-pmc-medic-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-agent-objective
+  objective: roles-antag-pmc-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h
@@ -61,10 +61,10 @@
 
 - type: antag
   id: PMCCommander
-  name: Eridani PMC (Commander)
+  name: roles-antag-pmc-commander-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-commander-objective
+  objective: roles-antag-pmc-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h
@@ -110,7 +110,7 @@
     - NamesSyndicateNormal
     nameFormat: name-format-pmc-commander
   mindRoles:
-  - MindRoleNukeopsCommander
+  - MindRolePMCCommander
 
 - type: antagSpecifier
   parent: BasePMC
@@ -127,7 +127,7 @@
     - NamesSyndicateNormal
     nameFormat: name-format-pmc-medic
   mindRoles:
-  - MindRoleNukeopsMedic
+  - MindRolePMCMedic
 
 - type: antagSpecifier
   parent: BasePMC
@@ -144,7 +144,7 @@
     - NamesSyndicateNormal
     nameFormat: name-format-pmc-specialist
   mindRoles:
-  - MindRoleNukeops
+  - MindRolePMCSpecialist
 
 - type: antagSpecifier
   parent: BasePMC
@@ -161,4 +161,4 @@
     - NamesSyndicateNormal
     nameFormat: name-format-pmc-assault
   mindRoles:
-  - MindRoleNukeops
+  - MindRolePMCAssault

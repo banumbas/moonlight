@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Classic.ZCollapse.Events;
 using Content.Shared._Classic.ZLevels.Core.Components;
+using Content.Shared.Maps;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -178,10 +179,14 @@ public sealed partial class ClassicZCollapseSystem
 
             gridsByUid[gridUid] = grid;
 
-            var tileEnumerator = _map.GetAllTilesEnumerator(gridUid, grid);
-            while (tileEnumerator.MoveNext(out var tileRef))
+            if (!IsFoundationGrid(gridUid))
             {
-                liveNodes.Add((gridUid, tileRef.Value.GridIndices));
+                var tileEnumerator = _map.GetAllTilesEnumerator(gridUid, grid);
+                while (tileEnumerator.MoveNext(out var tileRef))
+                {
+                    if (!IsNaturalTerrain(tileRef.Value.Tile))
+                        liveNodes.Add((gridUid, tileRef.Value.GridIndices));
+                }
             }
         }
 
@@ -192,7 +197,9 @@ public sealed partial class ClassicZCollapseSystem
             if (xform.GridUid is not { } gridUid || !xform.Anchored || !gridsByUid.TryGetValue(gridUid, out var grid))
                 continue;
 
-            coreSeeds.Add((gridUid, _map.TileIndicesFor(gridUid, grid, xform.Coordinates), core.LevitationForce));
+            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            liveNodes.Add((gridUid, tile));
+            coreSeeds.Add((gridUid, tile, core.LevitationForce));
         }
 
         var bridges = new Dictionary<(EntityUid, Vector2i), List<((EntityUid Grid, Vector2i Tile) Node, int Strength, int Loss)>>();
@@ -202,13 +209,19 @@ public sealed partial class ClassicZCollapseSystem
             if (xform.GridUid is not { } gridUid || !xform.Anchored || !gridsByUid.TryGetValue(gridUid, out var grid))
                 continue;
 
+            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            if (IsFoundationGrid(gridUid))
+            {
+                liveNodes.Add((gridUid, tile));
+                coreSeeds.Add((gridUid, tile, Math.Max(1, support.SupportStrength + support.TransferLoss)));
+            }
+
             if (!aboveOf.TryGetValue(gridUid, out var aboveGrid) || !gridsByUid.TryGetValue(aboveGrid, out var aboveGridComp))
                 continue;
 
             if (!TryGetTileOnGrid(aboveGrid, aboveGridComp, _transform.GetWorldPosition(xform), out var aboveTile))
                 continue;
 
-            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
             AddBridge(bridges, (gridUid, tile), (aboveGrid, aboveTile), support.SupportStrength, support.TransferLoss);
         }
 
@@ -238,11 +251,22 @@ public sealed partial class ClassicZCollapseSystem
     private Dictionary<Vector2i, int> BuildOverlayTiles(EntityUid gridUid, MapGridComponent grid, Dictionary<Vector2i, int> stability)
     {
         var result = new Dictionary<Vector2i, int>(stability);
+        var foundation = IsFoundationGrid(gridUid);
 
         var enumerator = _map.GetAllTilesEnumerator(gridUid, grid);
         while (enumerator.MoveNext(out var tileRef))
         {
-            result.TryAdd(tileRef.Value.GridIndices, 0);
+            var terrain = _tileDefMan[tileRef.Value.Tile.TypeId] is ContentTileDefinition
+            {
+                Indestructible: true
+            } or ContentTileDefinition
+            {
+                NaturalTerrain: true
+            };
+            if (foundation || terrain)
+                result[tileRef.Value.GridIndices] = 20;
+            else
+                result.TryAdd(tileRef.Value.GridIndices, 0);
         }
 
         return result;

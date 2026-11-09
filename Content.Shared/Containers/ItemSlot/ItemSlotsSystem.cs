@@ -3,6 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
+using Content.Shared.Explosion;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -58,6 +59,18 @@ namespace Content.Shared.Containers.ItemSlots
             SubscribeLocalEvent<ItemSlotsComponent, ComponentHandleState>(HandleItemSlotsState);
 
             SubscribeLocalEvent<ItemSlotsComponent, ItemSlotButtonPressedEvent>(HandleButtonPressed);
+        // classic start
+            SubscribeLocalEvent<ItemSlotsComponent, BeforeExplodeEvent>(OnBeforeExplode);
+        }
+
+        private void OnBeforeExplode(Entity<ItemSlotsComponent> ent, ref BeforeExplodeEvent args)
+        {
+            foreach (var slot in ent.Comp.Slots.Values)
+            {
+                if (slot.Item != null)
+                    args.Contents.Add(slot.Item.Value);
+            }
+        // classic end
         }
 
         #region ComponentManagement

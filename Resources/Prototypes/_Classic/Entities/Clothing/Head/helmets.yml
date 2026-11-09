@@ -101,3 +101,27 @@
   - type: Clothing
     sprite: _Classic/Clothing/Head/Helmet/pmc_assault.rsi
 
+- type: entity
+  parent: ClothingHeadHelmetPMCAssault
+  id: ClothingHeadHelmetPMCPyro
+  name: ent-ClothingHeadHelmetPMCPyro
+  description: ent-ClothingHeadHelmetPMCPyro-desc
+  components:
+  - type: Sprite
+    sprite: _Classic/Clothing/Head/Helmet/pmc_pyro.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    sprite: _Classic/Clothing/Head/Helmet/pmc_pyro.rsi
+    equippedPrefix: off
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.80

@@ -3,6 +3,9 @@
 - type: tile
   id: ClassicIce
   name: tiles-ice
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/ice.png
   variants: 4
   placementVariants:
@@ -20,6 +23,9 @@
 - type: tile
   id: ClassicDirt
   name: classic-tiles-dirt
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/Dirt/cavedrought.png
   variants: 16
   placementVariants:
@@ -59,6 +65,9 @@
 - type: tile
   id: ClassicCobblestone
   name: classic-tiles-cobblestone
+  naturalTerrain: true
+  digType: Stone
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/Cobblestone/cobble.png
   variants: 5
   placementVariants:
@@ -87,6 +96,9 @@
 - type: tile
   id: ClassicMycelium
   name: classic-tiles-mycelium
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/Mycelium/tile.png
   variants: 12
   placementVariants:
@@ -118,6 +130,9 @@
 - type: tile
   id: ClassicMyceliumLight
   name: classic-tiles-mycelium-light
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/MyceliumLight/tile.png
   variants: 12
   placementVariants:
@@ -149,6 +164,9 @@
 - type: tile
   id: ClassicSand
   name: classic-tiles-sand
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/Sand/sand.png
   variants: 5
   placementVariants:
@@ -177,6 +195,9 @@
 - type: tile
   id: ClassicSnowDeepDeep
   name: classic-tiles-snow-deep-deep
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/SnowDeepDeep/snow.png
   variants: 6
   placementVariants:
@@ -206,6 +227,9 @@
 - type: tile
   id: ClassicSnowDeep
   name: classic-tiles-snow-deep
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/SnowDeep/snow.png
   variants: 6
   placementVariants:
@@ -235,6 +259,9 @@
 - type: tile
   id: ClassicSnow
   name: classic-tiles-snow
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
   sprite: /Textures/_Classic/Tiles/Snow/snow.png
   variants: 6
   placementVariants:

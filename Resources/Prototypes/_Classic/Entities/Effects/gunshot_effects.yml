@@ -1,0 +1,102 @@
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectRifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: OverMobs
+    offset: 0.35, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/muzzle_flash.rsi
+      state: muzzle_bullet_high
+
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectPistol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.24
+  - type: Sprite
+    drawdepth: OverMobs
+    offset: 0.25, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/muzzle_flash.rsi
+      state: muzzle_bullet_low
+
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectShotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.36
+  - type: Sprite
+    drawdepth: OverMobs
+    offset: 0.35, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/muzzle_flash.rsi
+      state: muzzle_bullet_shell
+
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectHeavy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Sprite
+    drawdepth: OverMobs
+    offset: 0.4, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/muzzle_flash.rsi
+      state: muzzle_bullet_heavy
+
+- type: entity
+  id: GunshotSmokeEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: Sprite
+    drawdepth: OverMobs
+    offset: 0.4, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/gunshot_smoke.rsi
+      state: smoke_puff
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+
+- type: entity
+  id: GunshotDustEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.36
+  - type: Sprite
+    noRot: true
+    drawdepth: FloorTiles
+    layers:
+    - map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Classic/Effects/gunshot_dust.rsi
+      state: dust_puff
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer

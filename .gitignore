@@ -314,3 +314,9 @@ Resources/MapImages
 .direnv/
 .idea/
 /Resources/Textures/_Starlight/Logo/CClogo - Copy.png
+
+# Discord Bot
+Tools/_Classic/DiscordBot/config.json
+Tools/_Classic/DiscordBot/venv/
+__pycache__/
+*.pyc

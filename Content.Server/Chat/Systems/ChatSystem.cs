@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Content.Server._Starlight.Language;
+using Content.Shared._Classic.Administration.Punishment;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -209,11 +210,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         // Classic-Start
-        if (TryComp<Content.Shared._Classic.Administration.Punishment.PunishmentComponent>(source, out var punish))
+        if (TryComp<PunishmentComponent>(source, out var punish))
         {
-            if (desiredType == InGameICChatType.Speak && punish.MutedChannels.HasFlag(ChatChannel.Local)) return;
-            if (desiredType == InGameICChatType.Whisper && punish.MutedChannels.HasFlag(ChatChannel.Whisper)) return;
-            if (desiredType == InGameICChatType.Emote && punish.MutedChannels.HasFlag(ChatChannel.Emotes)) return;
+            if (desiredType == InGameICChatType.Speak && (punish.MutedChannels & ChatChannel.Local) != 0 ||
+                desiredType == InGameICChatType.Whisper && (punish.MutedChannels & ChatChannel.Whisper) != 0 ||
+                desiredType == InGameICChatType.Emote && (punish.MutedChannels & ChatChannel.Emotes) != 0)
+            {
+                SendMutedChannelMessage(source, player);
+                return;
+            }
         }
         // Classic-End
 
@@ -265,8 +270,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (TryProcessRadioMessage(source, message.Text, out var modMessage, out var channel, out var customChannel))
             {
                 // Classic-Start
-                if (TryComp<Content.Shared._Classic.Administration.Punishment.PunishmentComponent>(source, out var punishRadio) && punishRadio.MutedChannels.HasFlag(ChatChannel.Radio))
+                if (TryComp<PunishmentComponent>(source, out var punishRadio) && (punishRadio.MutedChannels & ChatChannel.Radio) != 0)
                 {
+                    SendMutedChannelMessage(source, player);
                     return;
                 }
                 // Classic-End
@@ -345,10 +351,14 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Classic-Start
-        if (TryComp<Content.Shared._Classic.Administration.Punishment.PunishmentComponent>(source, out var punishOOC))
+        if (TryComp<PunishmentComponent>(source, out var punishOOC))
         {
-            if (sendType == InGameOOCChatType.Looc && punishOOC.MutedChannels.HasFlag(ChatChannel.LOOC)) return;
-            if (sendType == InGameOOCChatType.Dead && punishOOC.MutedChannels.HasFlag(ChatChannel.Dead)) return;
+            if (sendType == InGameOOCChatType.Looc && (punishOOC.MutedChannels & ChatChannel.LOOC) != 0 ||
+                sendType == InGameOOCChatType.Dead && (punishOOC.MutedChannels & ChatChannel.Dead) != 0)
+            {
+                SendMutedChannelMessage(source, player);
+                return;
+            }
         }
         // Classic-End
 
@@ -1172,6 +1182,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
         return sb.ToString();
     }
+
+    // Classic-Start
+    private void SendMutedChannelMessage(EntityUid source, ICommonSession? player)
+    {
+        var s = player ?? (TryComp<ActorComponent>(source, out var actor) ? actor.PlayerSession : null);
+        if (s != null)
+            _chatManager.DispatchServerMessage(s, Loc.GetString("punishment-chat-channel-muted"));
+    }
+    // Classic-End
 
     #endregion
 }

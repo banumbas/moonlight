@@ -1,1 +1,1 @@
-lathe-recipe-PatchPack-name = пакет патчей (пустой)
+lathe-recipe-PatchPack-name = упаковка пластырей (пустая)

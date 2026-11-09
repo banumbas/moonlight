@@ -56,67 +56,83 @@
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
   id: SpawnPointPMCCommander
-  name: spawn-point-pmc-commander
+  name: roles-antag-pmc-commander-name
   components:
   - type: PMCCommander
   - type: GhostRole
     name: roles-antag-pmc-commander-name
     description: roles-antag-pmc-commander-objective
-    rules: ghost-role-information-rules-default-team-antagonist
+    rules: ghost-role-information-pmc-rules
+    important: true
     mindRoles:
-    - MindRoleNukeopsCommander
+    - MindRolePMCCommander
   - type: Sprite
     sprite: Markers/jobs.rsi
-    state: green
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Misc/id_cards.rsi
+        state: mercenary
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
   id: SpawnPointPMCMedic
-  name: spawn-point-pmc-medic
+  name: roles-antag-pmc-medic-name
   components:
   - type: PMCMedic
   - type: GhostRole
     name: roles-antag-pmc-medic-name
     description: roles-antag-pmc-medic-objective
-    rules: ghost-role-information-rules-default-team-antagonist
+    rules: ghost-role-information-pmc-rules
+    important: true
     mindRoles:
-    - MindRoleNukeopsMedic
+    - MindRolePMCMedic
   - type: Sprite
     sprite: Markers/jobs.rsi
-    state: green
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Misc/id_cards.rsi
+        state: mercenary
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
   id: SpawnPointPMCSpecialist
-  name: spawn-point-pmc-specialist
+  name: roles-antag-pmc-specialist-name
   components:
   - type: PMCSpecialist
   - type: GhostRole
     name: roles-antag-pmc-specialist-name
     description: roles-antag-pmc-specialist-objective
-    rules: ghost-role-information-rules-default-team-antagonist
+    rules: ghost-role-information-pmc-rules
+    important: true
     mindRoles:
-    - MindRoleNukeops
+    - MindRolePMCSpecialist
   - type: Sprite
     sprite: Markers/jobs.rsi
-    state: green
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Misc/id_cards.rsi
+        state: mercenary
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
   id: SpawnPointPMCAssault
-  name: spawn-point-pmc-assault
+  name: roles-antag-pmc-assault-name
   components:
   - type: PMCAssault
   - type: GhostRole
     name: roles-antag-pmc-assault-name
     description: roles-antag-pmc-assault-objective
-    rules: ghost-role-information-rules-default-team-antagonist
+    rules: ghost-role-information-pmc-rules
+    important: true
     mindRoles:
-    - MindRoleNukeops
+    - MindRolePMCAssault
   - type: Sprite
     sprite: Markers/jobs.rsi
-    state: green
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Misc/id_cards.rsi
+        state: mercenary
 

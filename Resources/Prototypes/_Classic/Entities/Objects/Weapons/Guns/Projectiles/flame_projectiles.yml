@@ -1,0 +1,85 @@
+- type: entity
+  id: FlameProjectile
+  name: flame stream
+  description: A roaring stream of ignited chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Classic/Effects/flame_projectile.rsi
+    noRot: false
+    layers:
+    - state: flame
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 1.6
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    damage:
+      types:
+        Heat: 8
+  - type: PointLight
+    radius: 3.5
+    energy: 1.8
+    color: "#ff7722"
+  - type: FlameProjectile
+    lifetime: 0.55
+    effect: Napalm
+    reagent: Napalm
+    reagentAmount: 1
+
+- type: entity
+  id: FlameTileFire
+  name: fire
+  description: Roaring fire burning on the floor.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Classic/Effects/fire.rsi
+    noRot: true
+    layers:
+    - state: red_3
+      shader: unshaded
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      trigger:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        layer:
+        - SlipLayer
+        mask:
+        - MobMask
+        - SmallMobMask
+  - type: StepTrigger
+    intersectRatio: 0.05
+    requiredTriggeredSpeed: 0
+  - type: FlameTileFire
+    effect: Napalm
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.65
+    sprintSpeedModifier: 0.65
+  - type: PointLight
+    radius: 3.5
+    energy: 2.0
+    color: "#ff6600"
+  - type: TimedDespawn
+    lifetime: 10

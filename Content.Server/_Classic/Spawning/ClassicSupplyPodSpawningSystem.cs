@@ -5,6 +5,7 @@ using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared._Classic.SupplyPods;
 using Content.Shared.Spawners.Components;
+using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -18,16 +19,18 @@ namespace Content.Server._Classic.Spawning;
 /// This system intercepts <see cref="PlayerSpawningEvent"/> with high priority
 /// so it runs before the default <see cref="SpawnPointSystem"/>.
 /// </summary>
-public sealed class ClassicSupplyPodSpawningSystem : EntitySystem
+public sealed partial class ClassicSupplyPodSpawningSystem : EntitySystem
 {
     [Dependency] private readonly ClassicSupplyPodSystem _supplyPod = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         // High priority so we run before the default SpawnPointSystem handler.
         // The default handler only spawns if SpawnResult is still null.
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, before: [typeof(SpawnPointSystem)]);
@@ -39,8 +42,7 @@ public sealed class ClassicSupplyPodSpawningSystem : EntitySystem
             return;
 
         // Only intercept late-join spawns, not round-start or observer
-        var gameTicker = EntitySystem.Get<GameTicker>();
-        if (gameTicker.RunLevel != GameRunLevel.InRound)
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
             return;
 
         // Find a valid spawn location: late-join spawn points on the station
@@ -77,7 +79,7 @@ public sealed class ClassicSupplyPodSpawningSystem : EntitySystem
     private EntityCoordinates? FindSpawnLocation(EntityUid? station)
     {
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        var possiblePositions = new List<EntityCoordinates>();
+        var possiblePositions = new ValueList<EntityCoordinates>();
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {

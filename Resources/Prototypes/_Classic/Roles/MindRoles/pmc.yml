@@ -1,0 +1,47 @@
+# PMC Mind Role Prototypes
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePMC
+  abstract: true
+  name: PMC Operative Role
+  components:
+  - type: MindRole
+    roleType: TeamAntagonist
+    exclusiveAntag: true
+  - type: NukeopsRole
+
+- type: entity
+  parent: MindRolePMC
+  id: MindRolePMCCommander
+  name: PMC Commander Role
+  components:
+  - type: MindRole
+    subtype: roles-antag-pmc-commander-name
+    antagPrototype: PMCCommander
+
+- type: entity
+  parent: MindRolePMC
+  id: MindRolePMCMedic
+  name: PMC Medic Role
+  components:
+  - type: MindRole
+    subtype: roles-antag-pmc-medic-name
+    antagPrototype: PMCMedic
+
+- type: entity
+  parent: MindRolePMC
+  id: MindRolePMCSpecialist
+  name: PMC Specialist Role
+  components:
+  - type: MindRole
+    subtype: roles-antag-pmc-specialist-name
+    antagPrototype: PMCSpecialist
+
+- type: entity
+  parent: MindRolePMC
+  id: MindRolePMCAssault
+  name: PMC Assault Role
+  components:
+  - type: MindRole
+    subtype: roles-antag-pmc-assault-name
+    antagPrototype: PMCAssault

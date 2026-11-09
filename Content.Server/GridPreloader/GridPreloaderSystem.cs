@@ -11,6 +11,7 @@ using Robust.Shared.Prototypes;
 using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
+using Content.Shared._Classic.CCVar; // Classic edit
 using JetBrains.Annotations;
 using Robust.Shared.EntitySerialization.Systems;
 
@@ -55,6 +56,11 @@ public sealed partial class GridPreloaderSystem : SharedGridPreloaderSystem
 
     private void EnsurePreloadedGridMap()
     {
+        // Classic edit start - Classic must not create the auxiliary shuttle preloader map
+        if (_cfg.GetCVar(ClassicCCVars.DisableShuttleEvents))
+            return;
+        // Classic edit end
+
         // Already have a preloader?
         if (GetPreloaderEntity() != null)
             return;

@@ -18,23 +18,33 @@ namespace Content.Shared._Classic.Salvage.Fulton;
 
 public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
 {
-    [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] private MetaDataSystem _metadata = default!;
-    [Dependency] protected SharedAudioSystem Audio = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected SharedContainerSystem Container = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedStackSystem _stack = default!;
-    [Dependency] protected SharedTransformSystem TransformSystem = default!;
-    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public static readonly EntProtoId EffectProto = "FultonEffect";
     protected static readonly Vector2 EffectOffset = Vector2.Zero;
 
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<ClassicCargoFultonComponent> _fultonQuery;
+    private EntityQuery<ClassicFultonSoldComponent> _fultonedQuery;
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _fultonQuery = GetEntityQuery<ClassicCargoFultonComponent>();
+        _fultonedQuery = GetEntityQuery<ClassicFultonSoldComponent>();
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         SubscribeLocalEvent<ClassicCargoFultonComponent, AfterInteractEvent>(OnCargoFultonInteract);
         SubscribeLocalEvent<ClassicCargoFultonDoAfterEvent>(OnCargoFultonDoAfter);
@@ -45,22 +55,21 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
     }
 
     private void OnFultonContainerInserted(
-        EntityUid uid,
-        ClassicFultonSoldComponent component,
-        EntGotInsertedIntoContainerMessage args)
+        Entity<ClassicFultonSoldComponent> ent,
+        ref EntGotInsertedIntoContainerMessage args)
     {
-        RemCompDeferred<ClassicFultonSoldComponent>(uid);
+        RemCompDeferred<ClassicFultonSoldComponent>(ent);
     }
 
-    private void OnFultonedExamine(EntityUid uid, ClassicFultonSoldComponent component, ExaminedEvent args)
+    private void OnFultonedExamine(Entity<ClassicFultonSoldComponent> ent, ref ExaminedEvent args)
     {
-        var remaining = component.NextFulton + _metadata.GetPauseTime(uid) - Timing.CurTime;
+        var remaining = ent.Comp.NextFulton + _metadata.GetPauseTime(ent.Owner) - _timing.CurTime;
         var message = Loc.GetString("fulton-examine", ("time", $"{remaining.TotalSeconds:0.00}"));
 
         args.PushText(message);
     }
 
-    private void OnFultonedGetVerbs(EntityUid uid, ClassicFultonSoldComponent component, GetVerbsEvent<InteractionVerb> args)
+    private void OnFultonedGetVerbs(Entity<ClassicFultonSoldComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -68,7 +77,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
         args.Verbs.Add(new InteractionVerb()
         {
             Text = Loc.GetString("fulton-remove"),
-            Act = () => Unfulton(uid, component)
+            Act = () => Unfulton(ent.Owner, ent.Comp)
         });
     }
 
@@ -85,7 +94,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
         if (args.Cancelled ||
             args.Target == null ||
             args.Used == null ||
-            !TryComp<ClassicCargoFultonComponent>(args.Used.Value, out var fulton))
+            !_fultonQuery.TryComp(args.Used.Value, out var fulton))
         {
             return;
         }
@@ -103,7 +112,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
             return;
 
         var fultoned = EnsureComp<ClassicFultonSoldComponent>(args.Target.Value);
-        fultoned.NextFulton = Timing.CurTime + fulton.FultonDuration;
+        fultoned.NextFulton = _timing.CurTime + fulton.FultonDuration;
         fultoned.FultonDuration = fulton.FultonDuration;
         fultoned.Sound = fulton.LaunchSound;
         fultoned.Removeable = fulton.Removeable;
@@ -111,29 +120,29 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
         Dirty(args.Target.Value, fultoned);
 
         OnCargoFultonApplied(args.Used.Value, args.Target.Value, args.User, fulton, fultoned);
-        Audio.PlayPredicted(fulton.FultonSound, args.Target.Value, args.User);
+        _audio.PlayPredicted(fulton.FultonSound, args.Target.Value, args.User);
     }
 
-    private void OnCargoFultonInteract(EntityUid uid, ClassicCargoFultonComponent component, AfterInteractEvent args)
+    private void OnCargoFultonInteract(Entity<ClassicCargoFultonComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Target == null || args.Handled || !args.CanReach)
             return;
 
-        if (!CanUseCargoFulton(args.Target.Value, component))
+        if (!CanUseCargoFulton(args.Target.Value, ent.Comp))
         {
-            _popup.PopupClient(Loc.GetString("fulton-invalid"), uid, args.User);
+            _popup.PopupClient(Loc.GetString("fulton-invalid"), ent.Owner, args.User);
             return;
         }
 
-        if (HasComp<ClassicFultonSoldComponent>(args.Target.Value))
+        if (_fultonedQuery.HasComp(args.Target.Value))
         {
-            _popup.PopupClient(Loc.GetString("fulton-fultoned"), uid, args.User);
+            _popup.PopupClient(Loc.GetString("fulton-fultoned"), ent.Owner, args.User);
             return;
         }
 
-        if (!CanApplyCargoFulton(args.Target.Value, component))
+        if (!CanApplyCargoFulton(args.Target.Value, ent.Comp))
         {
-            _popup.PopupClient(Loc.GetString("fulton-invalid"), uid, args.User);
+            _popup.PopupClient(Loc.GetString("fulton-invalid"), ent.Owner, args.User);
             return;
         }
 
@@ -141,7 +150,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
 
         var ev = new ClassicCargoFultonDoAfterEvent();
         _doAfter.TryStartDoAfter(
-            new DoAfterArgs(EntityManager, args.User, component.ApplyFultonDuration, ev, args.Target.Value, args.Target.Value, uid)
+            new DoAfterArgs(EntityManager, args.User, ent.Comp.ApplyFultonDuration, ev, args.Target.Value, args.Target.Value, ent.Owner)
             {
                 MovementThreshold = 0.5f,
                 BreakOnMove = true,
@@ -182,7 +191,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
         if (!CanCargoFulton(targetUid))
             return false;
 
-        if (_whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, targetUid))
+        if (_whitelist.IsWhitelistFailOrNull(component.Whitelist, targetUid))
             return false;
 
         return true;
@@ -190,12 +199,10 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
 
     protected bool CanCargoFulton(EntityUid uid)
     {
-        var xform = Transform(uid);
-
-        if (xform.Anchored)
+        if (!_xformQuery.TryComp(uid, out var xform) || xform.Anchored)
             return false;
 
-        if (Container.IsEntityInContainer(uid))
+        if (_container.IsEntityInContainer(uid))
             return false;
 
         return true;
@@ -205,10 +212,10 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
     {
         towerUid = EntityUid.Invalid;
 
-        if (!TryComp<TransformComponent>(targetUid, out var targetXform))
+        if (!_xformQuery.TryComp(targetUid, out var targetXform))
             return false;
 
-        var targetCoords = TransformSystem.GetMapCoordinates(targetUid, xform: targetXform);
+        var targetCoords = _transform.GetMapCoordinates(targetUid, xform: targetXform);
         var query = EntityQueryEnumerator<FultonSensorTowerComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var tower, out var towerXform))
@@ -216,7 +223,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
             if (!IsSensorTowerPowered(uid))
                 continue;
 
-            var towerCoords = TransformSystem.GetMapCoordinates(uid, xform: towerXform);
+            var towerCoords = _transform.GetMapCoordinates(uid, xform: towerXform);
             if (towerCoords.MapId != targetCoords.MapId)
                 continue;
 
@@ -232,7 +239,7 @@ public abstract partial class SharedClassicCargoFultonSystem : EntitySystem
 
     private bool IsSensorTowerPowered(EntityUid uid)
     {
-        return TryComp<AppearanceComponent>(uid, out var appearance) &&
+        return _appearanceQuery.TryComp(uid, out var appearance) &&
                _appearance.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, appearance) &&
                powered;
     }

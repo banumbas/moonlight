@@ -1,1 +1,1 @@
-objective-condition-damn-description = По контракту предайте души {$amount} огню ада.
+objective-condition-damn-description = Обреките души не менее {$amount} смертных на вечные муки по контракту.

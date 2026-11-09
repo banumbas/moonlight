@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Server._Classic.Station; // classic-add
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -89,6 +90,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        InitializeClassicBiome(); // classic-add
         SubscribeLocalEvent<BiomeComponent, MapInitEvent>(OnBiomeMapInit);
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<ShuttleFlattenEvent>(OnShuttleFlatten);
@@ -99,6 +101,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private void ProtoReload(PrototypesReloadedEventArgs obj)
     {
+        ClearNoiseCache(); // classic-add
+        _classicZPhysicsDefaults.Clear(); // classic-add
+        ClearClassicPrototypeCaches(); // classic-add
+
         if (!obj.ByType.TryGetValue(typeof(BiomeTemplatePrototype), out var reloads))
             return;
 
@@ -146,8 +152,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 _shuttles.Disable(grid.Owner);
                 var pTransform = _physics.GetPhysicsTransform(grid.Owner);
 
-                var fixturesList = fixtures.Fixtures.Values.ToList(); // Classic-Add
-                foreach (var fixture in fixturesList) // Classic-Add
+                var fixturesList = fixtures.Fixtures.Values.ToList(); // classic-add
+                foreach (var fixture in fixturesList) // classic-add
                 {
                     for (var i = 0; i < fixture.Shape.ChildCount; i++)
                     {
@@ -217,6 +223,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
 
             addedLayer.Noise.SetSeed(addedLayer.Noise.GetSeed() + seedOffset);
+            InvalidateNoise(addedLayer.Noise); // classic-add
             component.Layers.Insert(i, addedLayer);
             break;
         }
@@ -246,6 +253,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 var addedLayer = template.Layers[j];
                 addedLayer.Noise.SetSeed(addedLayer.Noise.GetSeed() + seedOffset);
+                InvalidateNoise(addedLayer.Noise); // classic-add
                 component.Layers.Insert(i, addedLayer);
             }
 
@@ -331,6 +339,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        // classic start
+        if (TryUpdateClassicBiomeStreaming(frameTime))
+            return;
+        // classic end
         var biomes = AllEntityQuery<BiomeComponent>();
 
         while (biomes.MoveNext(out var biome))
@@ -339,7 +351,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
 
             _activeChunks.Add(biome, _tilePool.Get());
-            _markerChunks.GetOrNew(biome);
+            // classic start
+            if (_classicStreamingQuery.TryComp(biome.Owner, out var streaming))
+                streaming.ViewerChunks.Clear();
+            if (biome.MarkerLayers.Count > 0 || biome.ForcedMarkerLayers.Count > 0)
+                _markerChunks.GetOrNew(biome);
+            // classic end
         }
 
         // Get chunks in range
@@ -347,7 +364,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             if (_xformQuery.TryGetComponent(pSession.AttachedEntity, out var xform) &&
                 _handledEntities.Add(pSession.AttachedEntity.Value) &&
-                TryGetActiveBiome(xform, out var biome) && // Classic-Add
+                TryGetActiveBiome(xform, out var biome) && // classic-add
                 biome.Enabled &&
                 CanLoad(pSession.AttachedEntity.Value))
             {
@@ -365,14 +382,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 if (!_handledEntities.Add(viewer) ||
                     !_xformQuery.TryGetComponent(viewer, out xform) ||
-                    !TryGetActiveBiome(xform, out biome) || // Classic-Add
+                    !TryGetActiveBiome(xform, out biome) || // classic-add
                     !biome.Enabled ||
                     !CanLoad(viewer))
                 {
                     continue;
                 }
 
-                var worldPos = _transform.GetWorldPosition(xform);
+                var worldPos = ClassicBiomeViewerPosition(pSession.AttachedEntity, viewer, xform); // classic-edit
                 AddChunksInRange(biome, worldPos);
 
                 foreach (var layer in biome.MarkerLayers)
@@ -411,22 +428,15 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         _markerChunks.Clear();
     }
 
-    // Classic-Start
-    private bool TryGetActiveBiome(TransformComponent xform, [NotNullWhen(true)] out BiomeComponent? biome)
-    {
-        if (xform.MapUid is { } mapUid && _biomeQuery.TryGetComponent(mapUid, out biome))
-            return true;
-
-        if (xform.GridUid is { } gridUid && _biomeQuery.TryGetComponent(gridUid, out biome))
-            return true;
-
-        biome = null;
-        return false;
-    }
-    // Classic-End
-
     private void AddChunksInRange(BiomeComponent biome, Vector2 worldPos)
     {
+        // Classic: always generate the physical landing cell of every player and Z-eye first.
+        if (_classicStreamingQuery.TryComp(biome.Owner, out var streaming))
+        {
+            var tile = new Vector2i((int) MathF.Floor(worldPos.X), (int) MathF.Floor(worldPos.Y));
+            streaming.ViewerChunks.Add(SharedMapSystem.GetChunkIndices(tile, ChunkSize) * ChunkSize);
+        }
+
         var enumerator = new ChunkIndicesEnumerator(_loadArea.Translated(worldPos), ChunkSize);
 
         while (enumerator.MoveNext(out var chunkOrigin))
@@ -463,6 +473,17 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         BuildMarkerChunks(component, gridUid, grid, seed);
 
+        // classic start
+#if false
+        // Classic: spread planetary terrain generation across ticks.
+        if (_classicStreamingQuery.TryComp(gridUid, out var streaming))
+        {
+            LoadClassicStreamingChunks(component, gridUid, grid, seed, streaming);
+            return;
+        }
+#endif
+        // classic end
+
         var active = _activeChunks[component];
 
         foreach (var chunk in active)
@@ -483,7 +504,32 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// </summary>
     private void BuildMarkerChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
     {
-        var markers = _markerChunks[component];
+        // classic start
+        if (!_markerChunks.TryGetValue(component, out var classicMarkers))
+        {
+            if (_classicStreamingQuery.TryComp(gridUid, out var inactiveStreaming))
+            {
+                DisposeClassicMarkerScan(inactiveStreaming.MarkerAreaScan);
+                inactiveStreaming.MarkerAreaScan = null;
+            }
+        }
+        else if (_classicStreamingQuery.TryComp(gridUid, out var classicStreaming))
+        {
+            var budgetWasExpired = ClassicStreamingBudgetExpired();
+            using (_classicProfiler.Value("ClassicBiome.MarkerArea"))
+                BuildClassicMarkerChunk(component, gridUid, grid, seed, classicMarkers, classicStreaming);
+
+            if (!budgetWasExpired && ClassicStreamingBudgetExpired())
+                _classicForcedProgressUsed = true;
+
+            if (ClassicMarkerRequestsComplete(classicMarkers, component.LoadedMarkers, classicStreaming.PinnedMarkerAreas)) // classic-edit
+                component.ForcedMarkerLayers.Clear();
+            return;
+        }
+        // classic end
+        if (!_markerChunks.TryGetValue(component, out var markers))
+            return;
+
         var loadedMarkers = component.LoadedMarkers;
         var idx = 0;
 
@@ -729,8 +775,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         // This needs to be done separately in case we try to add a marker layer and want to force it on existing
         // loaded chunks.
-        component.ModifiedTiles.TryGetValue(chunk, out var modified);
-        modified ??= _tilePool.Get();
+        // classic start
+        if (!component.ModifiedTiles.TryGetValue(chunk, out var modified))
+        {
+            modified = _tilePool.Get();
+            component.ModifiedTiles.Add(chunk, modified);
+        }
+        // classic end
 
         foreach (var (layer, nodes) in layers)
         {
@@ -744,7 +795,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 // Need to ensure the tile under it has loaded for anchoring.
                 if (TryGetBiomeTile(node, component.Layers, seed, (gridUid, grid), out var tile))
                 {
-                    _mapSystem.SetTile(gridUid, grid, node, tile.Value);
+                    SetClassicBiomeTile(gridUid, grid, node, tile.Value); // classic-edit
                 }
 
                 string? prototype;
@@ -808,16 +859,18 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (_mapSystem.TryGetTileRef(gridUid, grid, indices, out var tileRef) && !tileRef.Tile.IsEmpty)
                     continue;
 
-                if (!TryGetBiomeTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile))
+                if (!TryGetTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile)) // classic-edit
                     continue;
 
                 _tiles.Add((indices, biomeTile.Value));
             }
         }
 
-        _mapSystem.SetTiles(gridUid, grid, _tiles);
+        SetClassicBiomeTiles(gridUid, grid, _tiles); // classic-edit
         _tiles.Clear();
 
+    if (ClassicBiomeLoadsEntities(gridUid))  // classic-add
+    {
         // Now do entities
         var loadedEntities = new Dictionary<EntityUid, Vector2i>();
         component.LoadedEntities.Add(chunk, loadedEntities);
@@ -848,9 +901,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 }
 
                 loadedEntities.Add(ent, indices);
+                }
             }
         }
 
+    if (ClassicBiomeLoadsDecals(gridUid)) // classic-add
+    {
         // Decals
         var loadedDecals = new Dictionary<uint, Vector2i>();
         component.LoadedDecals.Add(chunk, loadedDecals);
@@ -877,6 +933,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
                     loadedDecals.Add(dec, indices);
                 }
+                }
             }
         }
 
@@ -900,13 +957,45 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// </summary>
     private void UnloadChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
     {
+        // classic start
+        if (_classicStreamingQuery.TryComp(gridUid, out var classicStreaming))
+        {
+            UnloadClassicChunks(component, gridUid, grid, seed, classicStreaming);
+            return;
+        }
+        // classic end
         var active = _activeChunks[component];
         List<(Vector2i, Tile)>? tiles = null;
+        _classicStreamingQuery.TryComp(gridUid, out var streaming); // classic-add
+        var unloaded = 0;
 
         foreach (var chunk in component.LoadedChunks)
         {
-            if (active.Contains(chunk) || !component.LoadedChunks.Remove(chunk))
+            if (active.Contains(chunk))
+            {
+                streaming?.PendingUnloads.Remove(chunk);
                 continue;
+            }
+
+            // Classic: a brief grace period avoids regeneration while crossing a chunk boundary.
+            // The unload budget also prevents deleting a whole view range in one server tick.
+            if (streaming != null)
+            {
+                if (!streaming.PendingUnloads.TryGetValue(chunk, out var deadline))
+                {
+                    streaming.PendingUnloads[chunk] = _classicTiming.CurTime + streaming.UnloadDelay;
+                    continue;
+                }
+                if (_classicTiming.CurTime < deadline ||
+                    unloaded >= Math.Max(1, streaming.BackgroundChunksPerTick) ||
+                    ClassicStreamingBudgetExpired(streaming))
+                    continue;
+                streaming.PendingUnloads.Remove(chunk);
+            }
+
+            if (!component.LoadedChunks.Remove(chunk))
+                continue;
+            unloaded++;
 
             // Unload NOW!
             tiles ??= new List<(Vector2i, Tile)>(ChunkSize * ChunkSize);
@@ -921,19 +1010,18 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         // Reverse order to loading
         component.ModifiedTiles.TryGetValue(chunk, out var modified);
-        modified ??= new HashSet<Vector2i>();
+        modified ??= _tilePool.Get(); // classic-edit
 
         // Delete decals
-        foreach (var (dec, indices) in component.LoadedDecals[chunk])
+    if (component.LoadedDecals.Remove(chunk, out var loadedDecals)) // classic-add
+    {
+        foreach (var (dec, indices) in loadedDecals)
         {
             // If we couldn't remove it then flag the tile to never be touched.
             if (!_decals.RemoveDecal(gridUid, dec))
-            {
                 modified.Add(indices);
-            }
         }
-
-        component.LoadedDecals.Remove(chunk);
+    }
 
         // Delete entities
         // Ideally any entities that aren't modified just get deleted and re-generated later
@@ -941,7 +1029,9 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         // and also if the map is enormous will make stuff like physics broadphase much faster
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-        foreach (var (ent, tile) in component.LoadedEntities[chunk])
+    if (component.LoadedEntities.Remove(chunk, out var loadedEntities)) // classic-add
+    {
+        foreach (var (ent, tile) in loadedEntities) // classic-edit
         {
             if (Deleted(ent) || !xformQuery.TryGetComponent(ent, out var xform))
             {
@@ -958,16 +1048,25 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
             }
 
-            if (!EntityManager.IsDefault(ent))
+            // classic start
+            // Keep a procedural source when a player-built consumer depends on it. Transient
+            // anchored effects (such as geyser mist) deliberately do not make it persistent.
+            if (ClassicHasPersistentBiomeDependent(gridUid, grid, tile, ent))
+            {
+                modified.Add(tile);
+                continue;
+            }
+            // classic end
+
+            if (!ClassicCanUnloadBiomeEntity(gridUid, ent)) // classic-edit
             {
                 modified.Add(tile);
                 continue;
             }
 
             Del(ent);
+            }
         }
-
-        component.LoadedEntities.Remove(chunk);
 
         // Unset tiles (if the data is custom)
 
@@ -990,8 +1089,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 }
 
                 // If it's default data unload the tile.
-                if (!TryGetBiomeTile(indices, component.Layers, seed, null, out var biomeTile) ||
+                // classic start
+                if (!TryGetTile(indices, component.Layers, seed, (Entity<MapGridComponent>?) null, out var biomeTile) ||
                     _mapSystem.TryGetTileRef(gridUid, grid, indices, out var tileRef) && tileRef.Tile != biomeTile.Value)
+                // classic end
                 {
                     modified.Add(indices);
                     continue;
@@ -1001,13 +1102,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             }
         }
 
-        _mapSystem.SetTiles(gridUid, grid, tiles);
+        SetClassicBiomeTiles(gridUid, grid, tiles); // classic-edit
         tiles.Clear();
         component.LoadedChunks.Remove(chunk);
 
         if (modified.Count == 0)
         {
             component.ModifiedTiles.Remove(chunk);
+            _tilePool.Return(modified); // classic-add
         }
         else
         {

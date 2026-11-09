@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseItem
+  id: VehicleKeyBase
+  abstract: true
+  categories: [ Vehicle ]
+  suffix: Vehicle, Key
+  components:
+  - type: Tag
+    tags:
+    - Vehicle
+  - type: Sprite
+    sprite: _Classic/Objects/Misc/vehicle_key.rsi
+    state: key
+  - type: Item
+    size: Tiny
+  - type: VehicleKey
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKey
+  name: vehicle key
+  description: A vehicle key cut for a specific lock.
+  components:
+  - type: VehicleKey
+    mode: Normal
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyBlank
+  name: blank vehicle key
+  description: An unprogrammed vehicle key that can be imprinted to a vehicle.
+  components:
+  - type: VehicleKey
+    mode: Blank
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyDuplicator
+  name: duplicate vehicle key blank
+  description: A blank vehicle key designed to copy an existing vehicle key.
+  components:
+  - type: VehicleKey
+    mode: Duplicator

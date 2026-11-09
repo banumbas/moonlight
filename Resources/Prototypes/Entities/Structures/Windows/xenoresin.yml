@@ -5,7 +5,7 @@
   description: Transparent and hardened, yet slightly sticky to the touch. Slightly stronger than a normal reinforced window.
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/xeno_resin.rsi
   - type: Icon
     sprite: Structures/Windows/xeno_resin.rsi

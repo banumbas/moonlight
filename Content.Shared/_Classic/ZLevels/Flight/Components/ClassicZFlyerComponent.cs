@@ -14,13 +14,13 @@ namespace Content.Shared._Classic.ZLevels.Flight.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), Access(typeof(ClassicSharedZFlightSystem))]
 public sealed partial class ClassicZFlyerComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public bool Active;
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public int TargetMapHeight = 0;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float FlightSpeed = 1.5f;
 
     [DataField]
@@ -32,6 +32,6 @@ public sealed partial class ClassicZFlyerComponent : Component
     [DataField]
     public EntProtoId? FlightVfx;
 
-    [DataField]
+    [NonSerialized]
     public TimeSpan NextVfx = TimeSpan.Zero;
 }

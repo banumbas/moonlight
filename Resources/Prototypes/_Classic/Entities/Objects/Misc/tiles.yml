@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: FloorTileItemWhite
   id: ClassicFloorTileItemCafeteria
   name: classic cafeteria tile
@@ -7,7 +7,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicCafeteria
+    - FloorSteelCheckerLight
   - type: Stack
     stackType: ClassicFloorTileCafeteria
 
@@ -20,7 +20,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDarkDiagonal
+    - FloorDarkDiagonal
   - type: Stack
     stackType: ClassicFloorTileDarkDiagonal
 
@@ -33,7 +33,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDarkHerringbone
+    - FloorDarkHerringbone
   - type: Stack
     stackType: ClassicFloorTileDarkHerringbone
 
@@ -46,7 +46,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDarkLarge
+    - FloorDarkMono
   - type: Stack
     stackType: ClassicFloorTileDarkLarge
 
@@ -59,7 +59,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDarkSmall
+    - FloorDarkMini
   - type: Stack
     stackType: ClassicFloorTileDarkSmall
 
@@ -72,7 +72,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDarkfull
+    - FloorDark
   - type: Stack
     stackType: ClassicFloorTileDarkfull
 
@@ -85,7 +85,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicDiagonal
+    - FloorSteelDiagonal
   - type: Stack
     stackType: ClassicFloorTileDiagonal
 
@@ -98,7 +98,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicFloor
+    - FloorSteel
   - type: Stack
     stackType: ClassicFloorTileFloor
 
@@ -111,7 +111,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicFloorLarge
+    - FloorSteelMono
   - type: Stack
     stackType: ClassicFloorTileFloorLarge
 
@@ -124,7 +124,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicHerringbone
+    - FloorSteelHerringbone
   - type: Stack
     stackType: ClassicFloorTileHerringbone
 
@@ -137,7 +137,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicKitchen
+    - FloorKitchen
   - type: Stack
     stackType: ClassicFloorTileKitchen
 
@@ -150,7 +150,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicKitchenDiagonal
+    - FloorSteelDiagonal
   - type: Stack
     stackType: ClassicFloorTileKitchenDiagonal
 
@@ -163,7 +163,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicKitchenHerringbone
+    - FloorSteelHerringbone
   - type: Stack
     stackType: ClassicFloorTileKitchenHerringbone
 
@@ -176,7 +176,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicKitchenSmall
+    - FloorSteelMini
   - type: Stack
     stackType: ClassicFloorTileKitchenSmall
 
@@ -189,7 +189,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicMaterialfloor
+    - FloorSteel
   - type: Stack
     stackType: ClassicFloorTileMaterialfloor
 
@@ -202,7 +202,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicPinkblack
+    - FloorDark
   - type: Stack
     stackType: ClassicFloorTilePinkblack
 
@@ -215,7 +215,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicPlaque
+    - FloorSteel
   - type: Stack
     stackType: ClassicFloorTilePlaque
 
@@ -228,7 +228,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicPlastic
+    - FloorPlastic
   - type: Stack
     stackType: ClassicFloorTilePlastic
 
@@ -241,7 +241,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicPlastitanium
+    - FloorPlastitanium
   - type: Stack
     stackType: ClassicFloorTilePlastitanium
 
@@ -254,7 +254,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicPlastitaniumRed
+    - FloorPlastitaniumDark
   - type: Stack
     stackType: ClassicFloorTilePlastitaniumRed
 
@@ -267,7 +267,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicSepia
+    - FloorSepia
   - type: Stack
     stackType: ClassicFloorTileSepia
 
@@ -280,7 +280,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicSmall
+    - FloorSteelMini
   - type: Stack
     stackType: ClassicFloorTileSmall
 
@@ -293,7 +293,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicSmooth
+    - FloorGrayConcrete
   - type: Stack
     stackType: ClassicFloorTileSmooth
 
@@ -306,7 +306,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicSmoothLarge
+    - FloorGrayConcreteSmooth
   - type: Stack
     stackType: ClassicFloorTileSmoothLarge
 
@@ -319,7 +319,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicStoneFloor
+    - FloorAsteroidSand
   - type: Stack
     stackType: ClassicFloorTileStoneFloor
 
@@ -332,7 +332,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTerracotta
+    - FloorTerracotta
   - type: Stack
     stackType: ClassicFloorTileTerracotta
 
@@ -345,7 +345,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTerracottaDiagonal
+    - FloorTerracottaDiagonal
   - type: Stack
     stackType: ClassicFloorTileTerracottaDiagonal
 
@@ -358,7 +358,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTerracottaHerringbone
+    - FloorTerracotta
   - type: Stack
     stackType: ClassicFloorTileTerracottaHerringbone
 
@@ -371,7 +371,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTerracottaSmall
+    - FloorTerracottaSmall
   - type: Stack
     stackType: ClassicFloorTileTerracottaSmall
 
@@ -384,7 +384,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTextured
+    - FloorSteel
   - type: Stack
     stackType: ClassicFloorTileTextured
 
@@ -397,7 +397,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTexturedDark
+    - FloorDark
   - type: Stack
     stackType: ClassicFloorTileTexturedDark
 
@@ -410,7 +410,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTexturedDarkLarge
+    - FloorDarkMono
   - type: Stack
     stackType: ClassicFloorTileTexturedDarkLarge
 
@@ -423,7 +423,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTexturedLarge
+    - FloorSteelMono
   - type: Stack
     stackType: ClassicFloorTileTexturedLarge
 
@@ -436,7 +436,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTexturedWhite
+    - FloorWhite
   - type: Stack
     stackType: ClassicFloorTileTexturedWhite
 
@@ -449,7 +449,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTexturedWhiteLarge
+    - FloorWhiteMono
   - type: Stack
     stackType: ClassicFloorTileTexturedWhiteLarge
 
@@ -462,7 +462,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTitaniumTiled
+    - FloorSteel
   - type: Stack
     stackType: ClassicFloorTileTitaniumTiled
 
@@ -475,7 +475,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTitaniumTiledBlue
+    - FloorSteelDiagonal
   - type: Stack
     stackType: ClassicFloorTileTitaniumTiledBlue
 
@@ -488,7 +488,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTitaniumTiledPurple
+    - FloorDarkDiagonal
   - type: Stack
     stackType: ClassicFloorTileTitaniumTiledPurple
 
@@ -501,7 +501,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTitaniumTiledWhite
+    - FloorWhite
   - type: Stack
     stackType: ClassicFloorTileTitaniumTiledWhite
 
@@ -514,7 +514,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicTitaniumTiledYellow
+    - FloorSteelCheckerLight
   - type: Stack
     stackType: ClassicFloorTileTitaniumTiledYellow
 
@@ -527,7 +527,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWhite
+    - FloorWhite
   - type: Stack
     stackType: ClassicFloorTileWhite
 
@@ -540,7 +540,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWhiteDiagonal
+    - FloorWhiteDiagonal
   - type: Stack
     stackType: ClassicFloorTileWhiteDiagonal
 
@@ -553,7 +553,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWhiteHerringbone
+    - FloorWhiteHerringbone
   - type: Stack
     stackType: ClassicFloorTileWhiteHerringbone
 
@@ -566,7 +566,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWhiteLarge
+    - FloorWhiteMono
   - type: Stack
     stackType: ClassicFloorTileWhiteLarge
 
@@ -579,7 +579,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWhiteSmall
+    - FloorWhiteMini
   - type: Stack
     stackType: ClassicFloorTileWhiteSmall
 
@@ -592,7 +592,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWood
+    - FloorWood
   - type: Stack
     stackType: ClassicFloorTileWood
 
@@ -605,7 +605,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWoodLarge
+    - FloorWoodLarge
   - type: Stack
     stackType: ClassicFloorTileWoodLarge
 
@@ -618,7 +618,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWoodParquet
+    - FloorWoodParquet
   - type: Stack
     stackType: ClassicFloorTileWoodParquet
 
@@ -631,7 +631,7 @@
   - type: FloorTile
     outputs:
     - Plating
-    - ClassicWoodTile
+    - FloorWoodTile
   - type: Stack
     stackType: ClassicFloorTileWoodTile
 

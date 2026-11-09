@@ -1,0 +1,43 @@
+meta:
+  format: 7
+  category: Map
+  engineVersion: 277.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 08/11/2026 00:00:00
+  entityCount: 1
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
+tilemap:
+  0: Space
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Classic underground terrain
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: GridTree
+    - type: Broadphase
+    - type: OccluderTree
+    - type: MapGrid
+      chunks: {}
+    - type: SpreaderGrid
+    - type: GridPathfinding
+    - type: Gravity
+      enabled: True
+      inherent: True
+      gravityShakeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/alert.ogg
+    - type: DecalGrid
+      chunkCollection:
+        version: 2
+        nodes: []
+...

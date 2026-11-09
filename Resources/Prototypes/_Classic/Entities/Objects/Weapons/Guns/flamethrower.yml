@@ -1,0 +1,54 @@
+- type: entity
+  id: WeaponFlamethrowerFLC
+  parent: BaseItem
+  name: FLC flamethrower
+  description: A military-grade stream flamethrower. Can feed from internal chemical cartridges or an FLCS backpack fuel tank.
+  components:
+  - type: Sprite
+    sprite: _Classic/Objects/Weapons/Guns/flc.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    sprite: _Classic/Objects/Weapons/Guns/flc_inhands_64x.rsi
+  - type: ContainerContainer
+    containers:
+      flamer_tank: !type:ContainerSlot
+  - type: Gun
+    fireRate: 8.0
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Classic/Weapons/Guns/Flamer/gun_flamethrower1.ogg
+    soundEmpty:
+      path: /Audio/_Classic/Weapons/Guns/Flamer/gun_flamethrower_empty.ogg
+    clumsyProof: true
+    projectileSpeed: 14.0
+  - type: FlamerAmmoProvider
+    slotId: flamer_tank
+    fuelCostPerShot: 1
+    projectilePrototype: FlameProjectile
+    preferInternalTank: true
+  - type: ItemSlots
+    slots:
+      flamer_tank:
+        name: flamer-slot-tank
+        startingItem: FlamerFuelTankSmall
+        insertSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_reload.ogg
+        ejectSound: /Audio/_Classic/Weapons/Guns/Flamer/wy_flamer_unload.ogg
+        whitelist:
+          tags:
+          - FlamerTank
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.MagLoaded:
+        enum.GunVisualLayers.Base:
+          True: { state: icon-loaded }
+          False: { state: icon }
+  - type: MultiHandedItem
+  - type: Tag
+    tags:
+    - WeaponFlamethrowerFLC

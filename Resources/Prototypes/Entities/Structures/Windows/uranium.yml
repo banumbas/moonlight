@@ -4,7 +4,7 @@
   parent: [BaseDeltaPressurePlasma, WindowRCDResistant]
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/uranium_window.rsi
   - type: Icon
     sprite: Structures/Windows/uranium_window.rsi
@@ -114,7 +114,7 @@
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Doors
     sprite: Structures/Windows/uranium_window_diagonal.rsi
     state: state0
   - type: Tag

@@ -11,11 +11,17 @@ namespace Content.Client._Classic.Trail;
 /// </summary>
 public sealed partial class ClothingTrailSystem : EntitySystem
 {
-    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+
+    private EntityQuery<ItemToggleComponent> _toggleQuery;
+    private EntityQuery<TrailComponent> _trailQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _toggleQuery = GetEntityQuery<ItemToggleComponent>();
+        _trailQuery = GetEntityQuery<TrailComponent>();
 
         SubscribeLocalEvent<ClothingTrailComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ClothingTrailComponent, ItemToggledEvent>(OnToggled);
@@ -26,7 +32,7 @@ public sealed partial class ClothingTrailSystem : EntitySystem
 
     private void OnMapInit(Entity<ClothingTrailComponent> ent, ref MapInitEvent args)
     {
-        if (!TryComp<ItemToggleComponent>(ent, out var toggle) || !toggle.Activated)
+        if (!_toggleQuery.TryComp(ent, out var toggle) || !toggle.Activated)
             return;
 
         UpdateTrail(ent);
@@ -54,7 +60,7 @@ public sealed partial class ClothingTrailSystem : EntitySystem
 
     private void UpdateTrail(Entity<ClothingTrailComponent> clothing, bool? enabled = null)
     {
-        if (enabled == false || !TryComp<ItemToggleComponent>(clothing, out var toggle) || !toggle.Activated)
+        if (enabled == false || !_toggleQuery.TryComp(clothing, out var toggle) || !toggle.Activated)
         {
             RemoveTrail(clothing.Comp);
             return;
@@ -70,13 +76,13 @@ public sealed partial class ClothingTrailSystem : EntitySystem
         if (clothing.Comp.Wearer is { } previousWearer && previousWearer != wearer)
             RemoveTrail(clothing.Comp);
 
-        if (clothing.Comp.Wearer == wearer && TryComp<TrailComponent>(wearer, out var existingTrail))
+        if (clothing.Comp.Wearer == wearer && _trailQuery.TryComp(wearer, out var existingTrail))
         {
             ConfigureTrail(existingTrail, clothing.Comp.Trail);
             return;
         }
 
-        if (HasComp<TrailComponent>(wearer))
+        if (_trailQuery.HasComp(wearer))
             return;
 
         var trail = EnsureComp<TrailComponent>(wearer);
@@ -90,7 +96,7 @@ public sealed partial class ClothingTrailSystem : EntitySystem
         if (clothing.Wearer is not { } wearer)
             return;
 
-        if (clothing.OwnsTrail && TryComp<TrailComponent>(wearer, out _))
+        if (clothing.OwnsTrail && _trailQuery.TryComp(wearer, out _))
             RemComp<TrailComponent>(wearer);
 
         clothing.Wearer = null;

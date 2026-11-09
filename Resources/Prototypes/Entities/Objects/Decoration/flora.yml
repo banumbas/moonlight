@@ -59,6 +59,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood
+  - type: VehicleSmashable # Classic-Edit
+    damageOnHit: 1000
+    deleteOnHit: false
+    slowdownMultiplier: 0.9
+    slowdownDuration: 0.2
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -73,6 +78,13 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+        # classic-start
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Log:
+              min: 2
+              max: 8
+        # classic-end
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -405,6 +417,13 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+        # classic-start
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Log:
+              min: 0
+              max: 1
+        # classic-end
     - trigger:
         !type:DamageTrigger
         damage: 25

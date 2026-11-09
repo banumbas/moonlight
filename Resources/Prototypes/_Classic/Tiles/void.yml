@@ -1,0 +1,9 @@
+- type: tile
+  id: FloorVoid
+  name: tiles-void
+  sprite: /Textures/_Classic/Tiles/void.png
+  isSubfloor: true
+
+- type: tileAlias
+  id: RMCVoid
+  target: FloorVoid

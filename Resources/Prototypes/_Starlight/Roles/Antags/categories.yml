@@ -8,9 +8,9 @@
   antags:
   - Traitor
   - TraitorSleeper
-  - Nukeops
-  - NukeopsCommander
-  - NukeopsMedic
+  # - Nukeops # classic remove
+  # - NukeopsCommander # classic remove
+  # - NukeopsMedic # classic remove
   - SELFAgent
   - Changeling
   - InitialInfected

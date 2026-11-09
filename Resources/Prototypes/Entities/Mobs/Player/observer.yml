@@ -79,6 +79,7 @@
     enabled: false
   - type: ActiveInputMover # Starlight
   - type: Speech # Starlight, only adds speech bubble while typing
+  - type: AntagImmune # Starlight
 
 # proto for player ghosts specifically
 - type: entity
@@ -101,6 +102,7 @@
     uis:
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionObserverShowRadar # Starlight-end
+
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo

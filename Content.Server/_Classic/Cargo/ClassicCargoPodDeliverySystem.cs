@@ -7,6 +7,7 @@ using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Station.Components;
+using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -22,16 +23,25 @@ namespace Content.Server._Classic.Cargo;
 /// visible only to admins with "Show Spawns" enabled. Orders are delivered to a
 /// RANDOM pad each time (not always the same one).
 /// </summary>
-public sealed class ClassicCargoPodDeliverySystem : EntitySystem
+public sealed partial class ClassicCargoPodDeliverySystem : EntitySystem
 {
     [Dependency] private readonly ClassicSupplyPodSystem _supplyPod = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedClassicCargoFultonSystem _fulton = default!;
 
+    private EntityQuery<ClassicSupplyPodDeliveryPadComponent> _padQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<StationCargoOrderDatabaseComponent> _orderDbQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _padQuery = GetEntityQuery<ClassicSupplyPodDeliveryPadComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _orderDbQuery = GetEntityQuery<StationCargoOrderDatabaseComponent>();
+
         // Intercept cargo fulfillment BEFORE the default telepad handler.
         SubscribeLocalEvent<FulfillCargoOrderEvent>(OnFulfillCargoOrder, before: [typeof(CargoSystem)]);
     }
@@ -46,7 +56,7 @@ public sealed class ClassicCargoPodDeliverySystem : EntitySystem
         if (pad == EntityUid.Invalid)
             return;
 
-        var padCoords = Transform(pad).Coordinates;
+        var padCoords = _transform.GetMoverCoordinates(pad);
 
         // Require an active FultonSensorTower in range of the delivery pad,
         // same dependency as CargoFulton. If there is no powered tower nearby,
@@ -56,8 +66,8 @@ public sealed class ClassicCargoPodDeliverySystem : EntitySystem
             return;
 
         // Get the printer output prototype from the station's order database
-        string paperProto = "PaperCargoInvoice";
-        if (TryComp<StationCargoOrderDatabaseComponent>(args.Station, out var orderDb))
+        string? paperProto = "PaperCargoInvoice";
+        if (_orderDbQuery.TryComp(args.Station, out var orderDb))
             paperProto = orderDb.PrinterOutput;
 
         // Spawn the items. They will be placed inside the pod, not on the ground.
@@ -67,7 +77,7 @@ public sealed class ClassicCargoPodDeliverySystem : EntitySystem
         {
             // Spawn the item at the pad coordinates (temporary), then move into the pod.
             var item = Spawn(args.Order.ProductId, padCoords);
-            _transform.Unanchor(item, Transform(item));
+            _transform.Unanchor(item);
             if (item.IsValid())
                 items.Add(item);
 
@@ -102,16 +112,14 @@ public sealed class ClassicCargoPodDeliverySystem : EntitySystem
     /// </summary>
     private EntityUid FindDeliveryPad(Entity<StationDataComponent> stationData)
     {
-        var pads = new List<EntityUid>();
+        var pads = new ValueList<EntityUid>();
+        var stationGrids = stationData.Comp.Grids;
 
-        foreach (var grid in stationData.Comp.Grids)
+        var query = EntityQueryEnumerator<ClassicSupplyPodDeliveryPadComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
         {
-            var query = EntityQueryEnumerator<ClassicSupplyPodDeliveryPadComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out _, out var xform))
-            {
-                if (xform.GridUid == grid)
-                    pads.Add(uid);
-            }
+            if (xform.GridUid is { } gridUid && stationGrids.Contains(gridUid))
+                pads.Add(uid);
         }
 
         if (pads.Count == 0)

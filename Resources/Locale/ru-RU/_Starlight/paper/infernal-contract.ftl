@@ -1,37 +1,37 @@
 infernal-contract-base =
    ⠀[center][sigil][/center]
 
-   ⠀[color=#fbd8ae][head=2]CONTRACT FOR WORLDLY GAIN[/head]
+   ⠀[color=#fbd8ae][head=2]ДОГОВОР О МИРСКИХ БЛАГАХ[/head]
     ─────────────────────────────────────────
-   ⠀I, [signature], in sound mind, hereby declare that I willingly engage in demonic exchange with {$truename}, an agent of hell.
+   ⠀Я, [signature], находясь в здравом уме и твёрдой памяти, настоящим заявляю, что добровольно вступаю в инфернальную сделку с {$truename}, посланником Преисподней.
 
-   ⠀I offer the following:
+   ⠀Я приношу в жертву следующее:
     • Моя душа
     • [форма]
     • [форма]
     • [форма]
-    К вечному огню ада в обмен на:
-    • Получите самоомоложение
+    В вечный огонь ада в обмен на:
+    • Самоомоложение
     • [форма]
 
-    Я понимаю, что вернуть эти жертвы невозможно. Если я предложу свою душу, [жирным шрифтом] я понимаю, что после моей кончины моя душа попадет в адское пламя. Мое тело невозможно будет воскресить, клонировать или вернуть к жизни каким-либо образом. [/bold] Я не смогу произнести истинное имя дьявола, это сожжет меня.
+    Я осознаю, что вернуть принесённые жертвы невозможно. Принося в жертву свою душу, [bold]я понимаю, что после моей кончины моя душа навеки отойдёт в адское пламя. Моё тело будет невозможно воскресить, клонировать или оживить каким-либо способом.[/bold] Я не смогу произнести истинное имя дьявола — это испепелит меня на месте.
 
     Подпись: [подпись][/color]
 
 infernal-contract-examined-Valid = Контракт готов к подписанию.
-infernal-contract-examined-InvalidFormat = Договор недействителен, так как в нем отсутствует жизненно важный мелкий шрифт.
-infernal-contract-examined-TooCostly = Контракт — это черт возьми, это несправедливая сделка, он не будет выполнен.
-infernal-contract-examined-OverusedDamnation = Контракт содержит проклятие, которое использовалось слишком часто и которое больше не является выгодным с финансовой точки зрения.
-infernal-contract-examined-UnknownClauses = В контракте есть пункты, которые не разрешены смертным.
+infernal-contract-examined-InvalidFormat = Договор недействителен: отсутствует жизненно важный мелкий шрифт.
+infernal-contract-examined-TooCostly = Контракт составлен чертовски невыгодно и не будет принят.
+infernal-contract-examined-OverusedDamnation = Контракт содержит проклятие, которое использовалось слишком часто и больше не представляет ценности.
+infernal-contract-examined-UnknownClauses = Контракт содержит пункты, недоступные простым смертным.
 infernal-contract-examined-Signed = Контракт подписан!
 
-infernal-contract-examined-cost = Стоимость этого контракта составляет {$value}.
+infernal-contract-examined-cost = Стоимость этого контракта: {$value}.
 infernal-contract-examined-misspelling = В контракте есть недействительные пункты: {$items}
 
 infernal-contract-misspelled-name = адский контракт с ошибкой
 infernal-contract-valid-name = адский контракт
 
-infernal-contract-popup-fail = Контракт обжигает руку! Что-то здесь не так!
-infernal-contract-popup-fail-self = Ваша рука проходит через договор! Эту сделку не для вас подписывать!
-infernal-contract-edit-fail = Ваша рука проходит через договор! Вы не можете изменить сделку!
-infernal-contract-popup-invalid-damnations = Опечатки в договоре! Проверьте перед подписанием: {$items}
+infernal-contract-popup-fail = Контракт обжигает пальцы! Что-то здесь не так!
+infernal-contract-popup-fail-self = Ваша рука проходит сквозь бумагу! Вы не можете подписать сделку за другого!
+infernal-contract-edit-fail = Ваша рука проходит сквозь бумагу! Нельзя изменить условия сделки!
+infernal-contract-popup-invalid-damnations = В договоре есть ошибки! Проверьте перед подписанием: {$items}

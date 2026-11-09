@@ -87,6 +87,9 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
             if (_playerRoles.GetSteamLink() is string link)
                 _uri.OpenUri(link);
         };
+        // Classic start
+        _escapeWindow.SteamButton.Visible = false;
+        // Classic end
         // NullLink end
 
         _escapeWindow.ChangelogButton.OnPressed += _ =>

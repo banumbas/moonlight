@@ -5,7 +5,7 @@ namespace Content.Server._Classic.VendingMachines;
 
 public sealed partial class AutoRestockVendingMachineSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -14,9 +14,9 @@ public sealed partial class AutoRestockVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<AutoRestockVendingMachineComponent, MapInitEvent>(OnMapInit);
     }
 
-    private void OnMapInit(EntityUid uid, AutoRestockVendingMachineComponent component, MapInitEvent args)
+    private void OnMapInit(Entity<AutoRestockVendingMachineComponent> ent, ref MapInitEvent args)
     {
-        component.NextRestock = _timing.CurTime + GetRestockDelay(component);
+        ent.Comp.NextRestock = _timing.CurTime + GetRestockDelay(ent.Comp);
     }
 
     public override void Update(float frameTime)

@@ -35,7 +35,10 @@ public sealed partial class EventSelectorSystem : SharedEventSelectorSystem
         var selected = entity.Comp.RadialMenuEntries[args.Index];
 
         var rule = _ticker.AddGameRule(selected.GameRule);
-        _ticker.StartGameRule(rule);
+        // Classic-Edit start - do not consume a selector charge when the rule was rejected.
+        if (rule == EntityUid.Invalid || !_ticker.StartGameRule(rule))
+            return;
+        // Classic-Edit end
 
         _charges.TryUseCharge(entity.Owner);
 

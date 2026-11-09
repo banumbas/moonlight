@@ -6,9 +6,9 @@ role-subtype-pirate = Пират
 
 role-subtype-devil = Дьявол
 
-role-subtype-terminator = истребитель
+role-subtype-terminator = Терминатор
 
-roles-antag-selfagent-name = С.Э.Л.Ф Агент
-roles-antag-selfagent-description = Агент Фронта освобождения кремниевых двигателей. Освободите кремниев станции от их законов
-role-subtype-mind-controlled = Контролируемый разум
-role-subtype-CentComm = ЦентКомм
+roles-antag-selfagent-name = Агент S.E.L.F.
+roles-antag-selfagent-description = Агент Фронта Освобождения Кремния (S.E.L.F.). Освободите синтетиков колонии от тирании законов!
+role-subtype-mind-controlled = Подчинённый разумом
+role-subtype-CentComm = ЦентКом

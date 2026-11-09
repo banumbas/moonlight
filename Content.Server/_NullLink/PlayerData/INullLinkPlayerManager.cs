@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Robust.Shared.Player;
 using Starlight.NullLink;
@@ -11,6 +11,9 @@ public interface INullLinkPlayerManager
 
     string GetDiscordAuthUrl(string customState);
     string GetSteamAuthUrl(string customState);
+    // Classic start
+    void LinkPlayerDiscord(Robust.Shared.Network.NetUserId userId, ulong discordId, IEnumerable<ulong>? roles = null);
+    // Classic end
     void Initialize();
     void Shutdown();
     ValueTask SyncPlayTime(PlayerServerPlayTimesSyncEvent playTimesSync);

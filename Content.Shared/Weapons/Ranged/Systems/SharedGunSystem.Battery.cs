@@ -7,6 +7,7 @@ using Content.Shared.PowerCell;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared._Classic.Weapons.Ranged.Events; // classic edit
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -117,6 +118,13 @@ public abstract partial class SharedGunSystem
 
         Dirty(ent); // Dirtying will update the client's ammo counter in an AfterAutoHandleStateEvent subscription in case it was not predicted.
 
+        // classic edit start
+        var ev = new BatteryWeaponUpdateVisualsEvent(newShots);
+        RaiseLocalEvent(ent, ref ev);
+        if (ev.Handled)
+            return;
+        // classic edit end
+
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
             return;
 
@@ -131,6 +139,11 @@ public abstract partial class SharedGunSystem
     private void OnAfterAutoHandleState(Entity<BatteryAmmoProviderComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         UpdateAmmoCount(ent); // Need to have prediction set to true because the state is applied repeatedly while prediction is running.
+
+        // classic edit start
+        var ev = new BatteryWeaponUpdateVisualsEvent(ent.Comp.Shots);
+        RaiseLocalEvent(ent, ref ev);
+        // classic edit end
     }
 
     // For when a power cell gets inserted or removed.

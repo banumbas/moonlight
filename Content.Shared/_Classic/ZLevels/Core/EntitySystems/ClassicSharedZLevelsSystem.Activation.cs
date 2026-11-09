@@ -12,9 +12,10 @@ namespace Content.Shared._Classic.ZLevels.Core.EntitySystems;
 
 public abstract partial class ClassicSharedZLevelsSystem
 {
-    private readonly List<EntityUid> _activeBodies = new();
+    private readonly HashSet<EntityUid> _activeBodies = new();
+    private readonly List<EntityUid> _activeBodySnapshot = new();
 
-    public IReadOnlyList<EntityUid> ActiveBodies => _activeBodies;
+    public IReadOnlyCollection<EntityUid> ActiveBodies => _activeBodies;
 
     private void InitializeActivation()
     {
@@ -81,13 +82,11 @@ public abstract partial class ClassicSharedZLevelsSystem
         if (!Resolve(entity, ref entity.Comp, false))
             return;
 
-        if (_activeBodies.Contains(entity))
+        if (!_activeBodies.Add(entity))
             return;
 
         entity.Comp.Sleeping = false;
         entity.Comp.SleepTimer = 0f;
-
-        _activeBodies.Add(entity);
     }
 
     [PublicAPI]

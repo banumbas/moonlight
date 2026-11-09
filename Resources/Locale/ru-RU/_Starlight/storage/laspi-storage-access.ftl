@@ -1,8 +1,8 @@
 ## Laspi Storage Access System
 
-laspi-storage-accessing = {CAPITALIZE(THE($user))} пытается получить доступ к вашей внутренней памяти!
+laspi-storage-accessing = {CAPITALIZE(THE($user))} пытается залезть в ваше внутреннее хранилище!
 
 ## Cargo Leg Storage Access System
 
-cargo-leg-left-storage-accessing = {CAPITALIZE(THE($user))} пытается получить доступ к карману вашей левой ноги!
-cargo-leg-right-storage-accessing = {CAPITALIZE(THE($user))} пытается получить доступ к карману вашей правой ноги!
+cargo-leg-left-storage-accessing = {CAPITALIZE(THE($user))} пытается залезть в карман на вашей левой штанине!
+cargo-leg-right-storage-accessing = {CAPITALIZE(THE($user))} пытается залезть в карман на вашей правой штанине!

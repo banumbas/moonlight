@@ -5,22 +5,20 @@
 
 using Content.Server._Classic.ZLevels.Core;
 using Content.Shared._Classic.ZLevels.Core.Components;
-using Content.Shared.Light.Components;
-using Robust.Shared.Map;
+using Content.Shared._Classic.ZLevels.Roof;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server._Classic.ZLevels.Mapping;
 
 public sealed partial class ClassicZLevelMappingSystem : EntitySystem
 {
-    private static readonly Color PlanetaryLightColor = Color.FromHex("#D8B059");
-
     [Dependency] private ClassicZLevelsSystem _zLevels = default!;
-    [Dependency] private SharedMapSystem _map = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
+        InitializePlanetaryLighting();
         SubscribeLocalEvent<ClassicZMapComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ClassicZMapComponent, ClassicMapAddedIntoZNetworkEvent>(OnAddedIntoZNetwork);
     }
@@ -30,7 +28,8 @@ public sealed partial class ClassicZLevelMappingSystem : EntitySystem
         if (_map.IsInitialized(ent))
         {
             EntityManager.AddComponents(ent, args.Network.Comp.Components);
-            EnsurePlanetaryLighting(ent.Owner, args.Network.Comp);
+            EnrollExistingPlanetaryGrids(ent.Owner, args.Network.Comp);
+            TrySynchronizePlanetaryLighting(args.Network);
         }
         else
         {
@@ -55,84 +54,35 @@ public sealed partial class ClassicZLevelMappingSystem : EntitySystem
             return;
 
         EntityManager.AddComponents(ent, network.Comp.Components);
-        EnsurePlanetaryLighting(ent.Owner, network.Comp);
+        EnrollExistingPlanetaryGrids(ent.Owner, network.Comp);
+        TrySynchronizePlanetaryLighting(network);
     }
 
-    private void EnsurePlanetaryLighting(EntityUid mapUid, ClassicZMapNetworkComponent network)
+    private void EnrollExistingPlanetaryGrids(EntityUid mapUid, ClassicZMapNetworkComponent network)
     {
-        var color = PlanetaryLightColor;
-        if (network.ZLevels.TryGetValue(0, out var baseMap) && baseMap is { } baseLightMapUid &&
-            TryComp<MapLightComponent>(baseLightMapUid, out var baseLight))
+        if (!IsPlanetaryNetwork(network) ||
+            !TryComp<MapComponent>(mapUid, out var map))
         {
-            color = baseLight.AmbientLightColor;
+            return;
         }
 
-        var baseMapUid = network.ZLevels.TryGetValue(0, out var baseMapEntry) ? baseMapEntry : null;
-        var baseCycle = baseMapUid is { } baseMapEntity
-            ? EnsureMapLightCycle(baseMapEntity, color)
-            : null;
+        foreach (var grid in _map.GetAllGrids(map.MapId))
+            EnsureComp<ClassicZLevelRoofComponent>(grid.Owner);
+    }
 
-        var cycle = EnsureMapLightCycle(mapUid, color);
-        if (baseCycle is { } sharedCycle && mapUid != baseMapUid)
-        {
-            cycle.Offset = sharedCycle.Offset;
-            cycle.Duration = sharedCycle.Duration;
-            cycle.InitialOffset = false;
-            Dirty(mapUid, cycle);
-        }
-
-        EnsureComp<SunShadowComponent>(mapUid);
-        var mapShadowCycle = EnsureComp<SunShadowCycleComponent>(mapUid);
-        if (baseCycle is { } sharedMapCycle)
-        {
-            mapShadowCycle.Offset = sharedMapCycle.Offset;
-            mapShadowCycle.Duration = sharedMapCycle.Duration;
-            Dirty(mapUid, mapShadowCycle);
-        }
-
-        // Map grids are the actual light surfaces. A map can have several grids
-        // (planet, station, and z-level geometry), so keep all of them in the
-        // planetary-light pipeline.
-        if (!TryComp<MapComponent>(mapUid, out var mapComponent))
+    /// <summary>
+    /// Enrolls grids which already existed when a completed map batch joined a planetary network.
+    /// This second pass makes enrollment independent of the maps' insertion order.
+    /// </summary>
+    public void EnrollExistingPlanetaryGrids(Entity<ClassicZMapNetworkComponent> network)
+    {
+        if (!IsPlanetaryNetwork(network.Comp))
             return;
 
-        foreach (var grid in _map.GetAllGrids(mapComponent.MapId))
+        foreach (var mapUid in network.Comp.SortedZLevels)
         {
-            EnsureComp<RoofComponent>(grid.Owner);
-            // The loaded map prototypes commonly contain ImplicitRoof. It
-            // overrides the per-tile roof mask and makes the whole z-level
-            // dark, including the top level where there is no roof above it.
-            RemCompDeferred<ImplicitRoofComponent>(grid.Owner);
-            EnsureComp<Content.Shared._Classic.ZLevels.Roof.ClassicZLevelRoofComponent>(grid.Owner);
-            EnsureComp<SunShadowComponent>(grid.Owner);
-            var shadowCycle = EnsureComp<SunShadowCycleComponent>(grid.Owner);
-            if (baseCycle is { } sharedGridCycle)
-            {
-                shadowCycle.Offset = sharedGridCycle.Offset;
-                shadowCycle.Duration = sharedGridCycle.Duration;
-                Dirty(grid.Owner, shadowCycle);
-            }
+            if (mapUid.IsValid())
+                EnrollExistingPlanetaryGrids(mapUid, network.Comp);
         }
-    }
-
-    private LightCycleComponent EnsureMapLightCycle(EntityUid mapUid, Color fallbackColor)
-    {
-        var mapLight = EnsureComp<MapLightComponent>(mapUid);
-        if (mapLight.AmbientLightColor == MapLightComponent.DefaultColor)
-        {
-            mapLight.AmbientLightColor = fallbackColor;
-            Dirty(mapUid, mapLight);
-        }
-
-        var cycle = EnsureComp<LightCycleComponent>(mapUid);
-        if (cycle.OriginalColor == Color.Transparent)
-            cycle.OriginalColor = mapLight.AmbientLightColor;
-
-        // Components added to a map after MapInit never receive the normal
-        // random-offset initialization. All maps in one z-network must use
-        // the same phase instead of independently starting day/night cycles.
-        cycle.InitialOffset = false;
-        Dirty(mapUid, cycle);
-        return cycle;
     }
 }

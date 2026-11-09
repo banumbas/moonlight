@@ -13,6 +13,7 @@ public sealed partial class ClassicZCollapseSystem
         SubscribeLocalEvent<ClassicGridStabilitySupportComponent, AnchorStateChangedEvent>(OnSupportAnchorChanged);
         SubscribeLocalEvent<ClassicGridStabilitySupportComponent, ReAnchorEvent>(OnSupportReAnchor);
 
+        SubscribeLocalEvent<ClassicGridStabilityComponent, ComponentInit>(OnStabilityComponentInit);
         SubscribeLocalEvent<ClassicGridStabilityComponent, TileChangedEvent>(OnTileChanged);
         SubscribeLocalEvent<ClassicGridStabilityComponent, MapInitEvent>(OnStabilityMapInit);
         SubscribeLocalEvent<ClassicGridStabilityComponent, GridSplitEvent>(OnGridSplit);
@@ -85,12 +86,39 @@ public sealed partial class ClassicZCollapseSystem
     // correctly from ground truth on its own.
     private void OnTileChanged(Entity<ClassicGridStabilityComponent> ent, ref TileChangedEvent args)
     {
+        // Foundation terrain cannot collapse, and its support/core events already dirty the column.
+        if (IsFoundationGrid(ent.Owner))
+            return;
+
+        var onlyNaturalTerrain = true;
+        foreach (var change in args.Changes)
+        {
+            if ((change.OldTile.IsEmpty || IsNaturalTerrain(change.OldTile)) &&
+                (change.NewTile.IsEmpty || IsNaturalTerrain(change.NewTile)))
+            {
+                continue;
+            }
+
+            onlyNaturalTerrain = false;
+            break;
+        }
+
+        if (onlyNaturalTerrain)
+            return;
+
         MarkDirty(ent.Owner);
     }
 
     private void OnStabilityMapInit(Entity<ClassicGridStabilityComponent> ent, ref MapInitEvent args)
     {
-        _pendingIndexScan.Add(ent.Owner);
+        if (_gridQuery.HasComponent(ent.Owner))
+            _pendingIndexScan.Add(ent.Owner);
+    }
+
+    private void OnStabilityComponentInit(Entity<ClassicGridStabilityComponent> ent, ref ComponentInit args)
+    {
+        if (_gridQuery.HasComponent(ent.Owner))
+            _pendingIndexScan.Add(ent.Owner);
     }
 
     // Reparented entities during a grid split may not raise ReAnchorEvent either — deferring both the

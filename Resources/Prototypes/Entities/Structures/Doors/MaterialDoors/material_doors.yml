@@ -24,7 +24,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.49,-0.49,0.49,0.49"
+          bounds: "-0.5,-0.12,0.5,0.12" # classic-edit
         density: 100
         mask:
         - FullTileMask
@@ -34,12 +34,14 @@
     bumpOpen: false
     clickOpen: true
     canCrush: false
-    closeTimeOne: 0.2
-    closeTimeTwo: 0.6
-    openTimeOne: 0.6
-    openTimeTwo: 0.2
-    openingAnimationTime: 1.2
-    closingAnimationTime: 1.2
+    # classic-start
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    openingAnimationTime: 0
+    closingAnimationTime: 0
+    # classic-end
     openSound:
       path: /Audio/Effects/stonedoor_openclose.ogg
     closeSound:
@@ -62,6 +64,13 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Occluder
+    # classic-start
+    polygon:
+    - "-0.5,-0.06"
+    - "0.5,-0.06"
+    - "0.5,0.06"
+    - "-0.5,0.06"
+    # classic-end
   - type: BlockWeather
 
 - type: entity
@@ -78,6 +87,23 @@
   id: MetalDoor
   name: metal door
   components:
+    # classic-start
+  - type: Sprite
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: metal
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: metal_open
+    closedSpriteState: metal
+    openingSpriteState: metal
+    closingSpriteState: metal_open
+  - type: Occluder
+    # classic-end
   - type: Construction
     graph: DoorGraph
     node: metalDoor
@@ -110,7 +136,22 @@
   name: plasma door
   components:
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/plasma_door.rsi
+    # classis-start
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: plasma
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: plasma_open
+    closedSpriteState: plasma
+    openingSpriteState: plasma
+    closingSpriteState: plasma_open
+  - type: Occluder
+    # classis-end
   - type: Construction
     graph: DoorGraph
     node: plasmaDoor
@@ -137,7 +178,22 @@
   name: gold door
   components:
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/gold_door.rsi
+    # classic-start
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: gold
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: gold_open
+    closedSpriteState: gold
+    openingSpriteState: gold
+    closingSpriteState: gold_open
+  - type: Occluder
+    # classic-end
   - type: Construction
     graph: DoorGraph
     node: goldDoor
@@ -164,7 +220,22 @@
   name: silver door
   components:
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/silver_door.rsi
+    # classic-start
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: silver
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: silver_open
+    closedSpriteState: silver
+    openingSpriteState: silver
+    closingSpriteState: silver_open
+  - type: Occluder
+    # classic-end
   - type: Construction
     graph: DoorGraph
     node: silverDoor
@@ -228,8 +299,22 @@
   - type: Pierceable
     level: Wood
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/wood_door.rsi
+    # classic-start
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: wood
+      map: ["enum.DoorVisualLayers.Base"]
   - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: wood_open
+    closedSpriteState: wood
+    openingSpriteState: wood
+    closingSpriteState: wood_open
+  - type: Occluder
+    # classic-end
     openSound:
       path: /Audio/Effects/door_open.ogg
     closeSound:
@@ -266,8 +351,22 @@
   - type: Pierceable
     level: Wood
   - type: Sprite
-    sprite: Structures/Doors/MineralDoors/paper_door.rsi
+    # classic-start
+    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    snapCardinals: false
+    drawdepth: Doors
+    layers:
+    - state: paperframe
+      map: ["enum.DoorVisualLayers.Base"]
   - type: Door
+    openDrawDepth: Doors
+    closedDrawDepth: Doors
+    openSpriteState: paperframe_open
+    closedSpriteState: paperframe
+    openingSpriteState: paperframe
+    closingSpriteState: paperframe_open
+  - type: Occluder
+    # classic-end
     openSound:
       path: /Audio/Effects/paperdoor_openclose.ogg
     closeSound:

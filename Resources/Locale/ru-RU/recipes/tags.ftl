@@ -106,7 +106,7 @@ construction-graph-tag-ripley-peripherals-control-module = модуль упра
 construction-graph-tag-door-electronics-circuit-board = микросхема шлюза
 construction-graph-tag-firelock-electronics-circuit-board = микросхема пожарного шлюза
 construction-graph-tag-conveyor-belt-assembly = конвейерная лента
-construction-graph-tag-station-ai-core-electronics = микросхема ядра станционного ИИ
+construction-graph-tag-station-ai-core-electronics = микросхема ядра колониального ИИ
 
 # tools
 construction-graph-tag-multitool = мультитул
@@ -119,7 +119,7 @@ construction-graph-tag-mailing-unit-electronics = микросхема почт�
 construction-graph-tag-intercom-electronics = микросхема интеркома
 construction-graph-tag-solar-assembly-parts = упаковка солнечной панели
 construction-graph-tag-solar-tracker-electronics = микросхема солнечного трекера
-construction-graph-tag-station-map-electronics = микросхема карты станции
+construction-graph-tag-station-map-electronics = микросхема карты колонии
 construction-graph-tag-signal-timer-electronics = микросхема таймера сигнала
 construction-graph-tag-screen-timer-electronics = микросхема таймера сигнала с экраном
 construction-graph-tag-brig-timer-electronics = микросхема бриг-таймера

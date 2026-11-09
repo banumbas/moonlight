@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 08/31/2025 05:06:28
-  entityCount: 3156
+  entityCount: 3157
 maps:
 - 23
 grids:
@@ -12796,6 +12796,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: PMCCommanderIDCard
+  entities:
+  - uid: 3158
+    components:
+    - type: Transform
+      pos: 33.5,18.5
+      parent: 1
 - proto: Paper
   entities:
   - uid: 802

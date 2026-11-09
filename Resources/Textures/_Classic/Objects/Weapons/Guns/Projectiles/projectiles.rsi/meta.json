@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "by VictorJob",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ltb",
+      "delays": [
+        [
+          0.06,
+          0.06,
+          0.06
+        ]
+      ]
+    }
+  ]
+}

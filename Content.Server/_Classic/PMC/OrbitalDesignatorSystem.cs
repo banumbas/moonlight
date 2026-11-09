@@ -4,34 +4,38 @@ using Robust.Shared.Map;
 
 namespace Content.Server._Classic.PMC;
 
-public sealed class OrbitalDesignatorSystem : SharedOrbitalDesignatorSystem
+public sealed partial class OrbitalDesignatorSystem : SharedOrbitalDesignatorSystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+
+    private EntityQuery<UseDelayComponent> _useDelayQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _useDelayQuery = GetEntityQuery<UseDelayComponent>();
+
         SubscribeLocalEvent<OrbitalDesignatorComponent, OrbitalDesignatorDoAfterEvent>(OnDoAfter);
     }
 
-    private void OnDoAfter(EntityUid uid, OrbitalDesignatorComponent component, OrbitalDesignatorDoAfterEvent args)
+    private void OnDoAfter(Entity<OrbitalDesignatorComponent> ent, ref OrbitalDesignatorDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
             return;
 
-        if (TryComp<UseDelayComponent>(uid, out var useDelay))
+        if (_useDelayQuery.TryComp(ent, out var useDelay))
         {
-            if (_useDelay.IsDelayed((uid, useDelay)))
+            if (_useDelay.IsDelayed((ent.Owner, useDelay)))
                 return;
 
-            _useDelay.TryResetDelay((uid, useDelay));
+            _useDelay.TryResetDelay((ent.Owner, useDelay));
         }
 
         var coords = GetCoordinates(args.TargetPosition);
         if (coords.IsValid(EntityManager))
         {
-            Spawn(component.MarkerPrototype, coords);
+            Spawn(ent.Comp.MarkerPrototype, coords);
         }
 
         args.Handled = true;

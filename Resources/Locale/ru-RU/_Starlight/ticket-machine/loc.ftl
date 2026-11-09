@@ -1,4 +1,4 @@
-ticket-machine-dispense-disabled = выдача билетов отключена
-ticket-machine-dispense-toggled = дозирование переключено
-ticket-machine-displayed-ticket = Отображаемый билет: {$number}
-ticket-machine-ticket-number = Номер билета: {$number}
+ticket-machine-dispense-disabled = Выдача купонов отключена
+ticket-machine-dispense-toggled = Режим выдачи купонов переключён
+ticket-machine-displayed-ticket = Текущий купон: {$number}
+ticket-machine-ticket-number = Номер купона: {$number}

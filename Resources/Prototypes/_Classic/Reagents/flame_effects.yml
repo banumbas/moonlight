@@ -1,0 +1,133 @@
+# Reagent flame combustion properties
+# Distinct tactical roles:
+# - WeldingFuel: Standard reliable industrial fuel (moderate range, cheap, balanced)
+# - Ethanol: High-velocity flashover jet (extreme range, low drag, quick 2.5s clean flash burn, no ash)
+# - Napalm: Sticky, viscous area denial (heavy drag, 25s persistent wall of fire, clinging stacks, leaves heavy ash)
+# - Plasma: Massive room-clearing cone (huge 2.2x expanding cone, high thermal shock, clean burn)
+# - Phlogiston: Mythical alchemical Greek fire (emerald flame, persistent sustained burning)
+# - ChlorineTrifluoride: Hyper-reactive chemical oxidizer (extreme damage, burns through everything)
+
+- type: reagentFlameEffect
+  id: BaseReagentFlameEffect
+  abstract: true
+  statePrefix: red
+  flameColor: "#ffffff"
+  damage:
+    types:
+      Heat: 8
+  fireStacks: 4.0
+  tileFireStacks: 0.8
+  maxTileFireStacks: 4.0
+  tileFireDuration: 10.0
+  walkSpeedModifier: 0.65
+  sprintSpeedModifier: 0.65
+  linearDamping: 1.6
+  projectileLifetime: 0.55
+  minScale: 0.55
+  maxScale: 1.35
+
+- type: reagentFlameEffect
+  id: WeldingFuel
+  parent: BaseReagentFlameEffect
+  flameColor: "#ff9922"
+  damage:
+    types:
+      Heat: 8
+  fireStacks: 2.5
+  tileFireStacks: 0.5
+  maxTileFireStacks: 2.5
+  tileFireDuration: 5.0
+  walkSpeedModifier: 0.70
+  sprintSpeedModifier: 0.70
+  linearDamping: 1.75
+  projectileLifetime: 0.52
+  maxScale: 1.25
+
+- type: reagentFlameEffect
+  id: Ethanol
+  parent: BaseReagentFlameEffect
+  statePrefix: blue
+  flameColor: "#1fe0ff"
+  damage:
+    types:
+      Heat: 6
+  fireStacks: 2.0
+  tileFireStacks: 0.25
+  maxTileFireStacks: 1.0
+  tileFireDuration: 2.5
+  walkSpeedModifier: 0.80
+  sprintSpeedModifier: 0.80
+  linearDamping: 1.4
+  projectileLifetime: 0.62
+  minScale: 0.65
+  maxScale: 1.30
+
+- type: reagentFlameEffect
+  id: Napalm
+  parent: BaseReagentFlameEffect
+  flameColor: "#ff3300"
+  damage:
+    types:
+      Heat: 10
+  fireStacks: 4.5
+  tileFireStacks: 1.0
+  maxTileFireStacks: 6.0
+  tileFireDuration: 25.0
+  walkSpeedModifier: 0.45
+  sprintSpeedModifier: 0.45
+  linearDamping: 2.4
+  projectileLifetime: 0.50
+  minScale: 0.6
+  maxScale: 1.4
+
+- type: reagentFlameEffect
+  id: Plasma
+  parent: BaseReagentFlameEffect
+  statePrefix: purple
+  flameColor: "#cc33ff"
+  damage:
+    types:
+      Heat: 16
+  tileFireDuration: 7.0
+  walkSpeedModifier: 0.65
+  sprintSpeedModifier: 0.65
+  linearDamping: 1.8
+  projectileLifetime: 0.48
+  minScale: 0.7
+  maxScale: 2.2
+
+- type: reagentFlameEffect
+  id: Phlogiston
+  parent: BaseReagentFlameEffect
+  statePrefix: green
+  flameColor: "#22ff44"
+  damage:
+    types:
+      Heat: 13
+  fireStacks: 4.5
+  tileFireStacks: 1.2
+  maxTileFireStacks: 5.5
+  tileFireDuration: 14.0
+  walkSpeedModifier: 0.55
+  sprintSpeedModifier: 0.55
+  linearDamping: 1.6
+  projectileLifetime: 0.55
+  minScale: 0.6
+
+- type: reagentFlameEffect
+  id: ChlorineTrifluoride
+  parent: BaseReagentFlameEffect
+  statePrefix: white
+  damage:
+    types:
+      Heat: 22
+  fireStacks: 6.0
+  tileFireStacks: 1.5
+  maxTileFireStacks: 8.0
+  tileFireDuration: 16.0
+  walkSpeedModifier: 0.50
+  sprintSpeedModifier: 0.50
+  linearDamping: 1.3
+  projectileLifetime: 0.58
+  minScale: 0.65
+  maxScale: 1.5
