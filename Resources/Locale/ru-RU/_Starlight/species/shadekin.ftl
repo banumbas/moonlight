@@ -36,8 +36,8 @@ shadekin-core-undamaged = [color=yellow]Ядро пульсирует чисто
 shadekin-core-owner = [color=yellow]Это ядро принадлежит вам.[/color]
 
 brighteye-thedark = [bold]Тьма[/bold]
-brighteye-darktiles = Тёмных клеток на станции: [color=red]{$darkCount}[/color].
-brighteye-darkstation = станция [color=red]ещё не[/color] погрузилась во тьму.
+brighteye-darktiles = Тёмных клеток в колонии: [color=red]{$darkCount}[/color].
+brighteye-darkstation = колония [color=red]ещё не[/color] погрузилась во тьму.
 
 admin-verb-text-make-brighteye = Сделать Ясноглазым
 admin-verb-make-brighteye = Превратить цель в Ясноглазого.

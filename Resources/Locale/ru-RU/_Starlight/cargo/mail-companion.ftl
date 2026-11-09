@@ -1,5 +1,5 @@
 mail-companion-window-title = Почтовый компаньон v11.037
-mail-companion-window-no-station = Станция не привязана
+mail-companion-window-no-station = Колония не привязана
 mail-companion-window-recipient = Получатель: {$recipient}
 mail-companion-window-job = Должность: {$job}
 mail-companion-window-status = Статус: {$status}

@@ -139,7 +139,7 @@ accent-nerd-replacement-46 = гастрономическая лаборатор
 accent-nerd-replaced-47 = мост
 accent-nerd-replacement-47 = командная связь
 
-accent-nerd-replaced-48 = станция
+accent-nerd-replaced-48 = колония
 accent-nerd-replacement-48 = орбитальный жилой модуль
 
 accent-nerd-replaced-49 = медицина

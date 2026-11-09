@@ -19,7 +19,7 @@ ghost-role-information-soviet-marine-desc = Вы элитный морской �
 ghost-role-information-soviet-marine-rules = Вы обязаны подчиняться приказам своего начальника, вы фактически являетесь его [color={role-type-familiar-color}][bold]{role-type-familiar-name}[/bold][/color].
 
 ghost-role-information-derelict-borgi-name = Заброшенный Борги
-ghost-role-information-derelict-borgi-desc = Вы обычный борги, затерявшийся в космосе. После многих лет воздействия ионных бурь вы оказываетесь возле космической станции.
+ghost-role-information-derelict-borgi-desc = Вы обычный борги, затерявшийся в космосе. После многих лет воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghost-role-information-horrific-tie-name = Ужасающий галстук
 ghost-role-information-horrific-tie-description = Ты ужасный галстук из Disco Elysium.
@@ -97,25 +97,25 @@ ghost-role-information-terminator-description = Вы ходячий автома
 ghost-role-information-terminator-rules = Вы — [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. Вы должны подчиняться своим целям. Вы не должны применять силу к несвязанным целям, если только они не мешают вам достичь своих целей. У вас нет воспоминаний о прошлой жизни.
 
 ghost-role-information-derelict-purrfus-cyborg-name = Заброшенный муррфус-киборг
-ghost-role-information-derelict-purrfus-cyborg-description = Вы мурлыкающий киборг, потерявшийся в космосе. После многих лет воздействия ионных бурь вы оказываетесь возле космической станции. ERR urrfus lo-es, ты purrfus любит тебя, puRrfus любит тебя- ERR
+ghost-role-information-derelict-purrfus-cyborg-description = Вы мурлыкающий киборг, потерявшийся в космосе. После многих лет воздействия ионных бурь вы оказываетесь возле космической колонии. ERR urrfus lo-es, ты purrfus любит тебя, puRrfus любит тебя- ERR
 
 ghostrole-information-derelict-heavy-xenoborg-name = Заброшенный тяжелый ксеноборг
-ghostrole-information-derelict-heavy-xenoborg-description = Вы — тяжелый ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической станции.
+ghostrole-information-derelict-heavy-xenoborg-description = Вы — тяжелый ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghostrole-information-derelict-engi-xenoborg-name = Заброшенный Энги Ксеноборг
-ghostrole-information-derelict-engi-xenoborg-description = Вы — инженерный ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической станции.
+ghostrole-information-derelict-engi-xenoborg-description = Вы — инженерный ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghostrole-information-derelict-scout-xenoborg-name = Заброшенный разведчик Ксеноборг
-ghostrole-information-derelict-scout-xenoborg-description = Вы — разведчик-ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической станции.
+ghostrole-information-derelict-scout-xenoborg-description = Вы — разведчик-ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghostrole-information-derelict-stealth-xenoborg-name = Заброшенный стелс-кеноборг
-ghostrole-information-derelict-stealth-xenoborg-description = Вы — стелс-ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической станции.
+ghostrole-information-derelict-stealth-xenoborg-description = Вы — стелс-ксеноборг, оставленный кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghostrole-information-derelict-borgi-xenoborg-name = Заброшенный КсеноБорги
-ghostrole-information-derelict-borgi-xenoborg-description = Вы — ксеноборги, оставленные кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической станции.
+ghostrole-information-derelict-borgi-xenoborg-description = Вы — ксеноборги, оставленные кораблем-носителем. После нескольких месяцев воздействия ионных бурь вы оказываетесь возле космической колонии.
 
 ghost-role-information-terror-princess-name = Террор принцесса
-ghost-role-information-terror-princess-description = Вы принцесса пауков-террористов. Ваша цель - создать большое гнездо и создать большую популяцию пауков, чтобы поработить эту станцию!!!
+ghost-role-information-terror-princess-description = Вы принцесса пауков-террористов. Ваша цель - создать большое гнездо и создать большую популяцию пауков, чтобы поработить эту колонию!!!
 
 ghost-role-information-smartcorgi-name = Умный Корги
 ghost-role-information-smartcorgi-description = Вы — собака, более умная, чем ее сверстники, способная манипулировать инструментами. Воистину чудо-продукт науки. К сожалению, хотя вы прекрасно понимаете людей, вы говорите только на собачьем языке.

@@ -1,7 +1,7 @@
 ## icons
 station-ai-icon-alien = Чужая форма жизни
 station-ai-icon-thinking = Любопытство
-station-ai-icon-database = База данных станции
+station-ai-icon-database = База данных колонии
 station-ai-icon-firewall = Брандмауэр
 station-ai-icon-fuzzy = Размытие
 station-ai-icon-gentoo = Генту

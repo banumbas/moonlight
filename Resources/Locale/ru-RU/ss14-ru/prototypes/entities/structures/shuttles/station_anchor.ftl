@@ -1,5 +1,5 @@
-ent-StationAnchorBase = станционный якорь
-    .desc = Предотвращает смещение станций.
+ent-StationAnchorBase = колониальный якорь
+    .desc = Предотвращает смещение колоний.
     .suffix = Включён
 ent-StationAnchorIndestructible = { ent-StationAnchorBase }
     .desc = { ent-StationAnchorBase.desc }

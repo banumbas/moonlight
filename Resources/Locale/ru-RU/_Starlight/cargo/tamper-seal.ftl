@@ -28,7 +28,7 @@ tamper-seal-examine-destroyed-prying = На крышке видны сорван
 
 # Performance failure announcement
 tamper-seal-performance-failure-sender = Межзвёздная Торговая Гильдия
-tamper-seal-performance-failure-message = Зафиксированы неоднократные случаи несанкционированного вскрытия и повреждения заказов. Рекомендуем провести аудит службы снабжения вашей станции.
+tamper-seal-performance-failure-message = Зафиксированы неоднократные случаи несанкционированного вскрытия и повреждения заказов. Рекомендуем провести аудит службы снабжения вашей колонии.
 
 # Short account names
 tamper-seal-account-name-unknown = Неизвестно

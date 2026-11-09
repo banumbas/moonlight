@@ -1,11 +1,11 @@
 spellbook-staff-healing-name = Посох исцеления
-spellbook-staff-healing-description = Вряд ли истинный боевой маг собирается часто им пользоваться, сея хаос на станции...
+spellbook-staff-healing-description = Вряд ли истинный боевой маг собирается часто им пользоваться, сея хаос в колонии...
 
 spellbook-event-summon-cheese-name = Призыв сыра
 spellbook-event-summon-cheese-description = Протяните руку в ткань пространства и вытяните... свежий кусочек сыра!
 
 spellbook-event-tower-babel-name = Вавилонская башня
-spellbook-event-tower-babel-description = Перемешивает языки всех членов экипажа на станции! Заклинание можно применить только на станции. Возврат очков невозможен.
+spellbook-event-tower-babel-description = Перемешивает языки всех членов экипажа в колонии! Заклинание можно применить только в колонии. Возврат очков невозможен.
 action-speech-spell-babel = Я' Ни Лау' Ре эль
 action-speech-spell-babel-tts = Яре Ни, Лора Реал
 

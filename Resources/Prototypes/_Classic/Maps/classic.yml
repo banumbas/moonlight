@@ -1,6 +1,6 @@
 - type: gameMap
   id: ClassicClassic
-  mapName: 'Classic'
+  mapName: 'Тальвея'
   mapPath: /Maps/_Classic/Stations/Colony/Colony0.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -27,10 +27,7 @@
             mapLightColor: "#48160c"
             temperature: 343.15
         - type: StationNameSetup
-          mapNameTemplate: '{0} Planet {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+          mapNameTemplate: 'Тальвея'
         - type: ClassicStationZLevels
           # MapsBelow is loaded from the deepest level toward -Z1.
           mapsBelow:

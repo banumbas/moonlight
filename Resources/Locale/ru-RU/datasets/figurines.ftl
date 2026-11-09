@@ -21,7 +21,7 @@ figurines-qm-7 = Куда пропали все деньги?
 figurines-qm-8 = 99% азартных игроков бросают прямо перед тем, как сорвать куш!
 
 figurines-cargotech-1 = ДРАКОН НА ТОРГОВОМ ПОСТУ!
-figurines-cargotech-2 = Я продал станцию!
+figurines-cargotech-2 = Я продал колонию!
 figurines-cargotech-3 = Запрос на мозги? У меня нет мозгов.
 figurines-cargotech-4 = Ты стоишь 3000 кредитов. Мои поздравления.
 figurines-cargotech-5 = Запрос на овощи? Их всё равно никто не ест.
@@ -205,7 +205,7 @@ figurines-greytider-1 = Чувак, эта вечеринка отстой. Я, 
 figurines-greytider-2 = Ой-ой, кто потерял свою дубинку?
 figurines-greytider-3 = Робаст.
 figurines-greytider-4 = Я не я без тулбокса.
-figurines-greytider-5 = Грейтайд по всей станции!
+figurines-greytider-5 = Грейтайд по всей колонии!
 figurines-greytider-6 = Viva la revolution.
 
 figurines-janitor-1 = Клоун украл моё мыло. Опять.
@@ -325,7 +325,7 @@ figurines-rat-king-2 = Дазабей.
 figurines-rat-king-3 = Прикончите их!
 figurines-rat-king-4 = Позволь мне сделать тебе предложение, от которого ты не сможешь отказаться, capiche?
 figurines-rat-king-5 = Ничего личного, capiche?
-figurines-rat-king-6 = Теперь я управляю этой станцией, видите? Ньехх!
+figurines-rat-king-6 = Теперь я управляю этой колонией, видите? Ньехх!
 
 figurines-rat-servant-1 = Андестенд!
 figurines-rat-servant-2 = Босс говорит!
@@ -333,7 +333,7 @@ figurines-rat-servant-3 = Босс хочет поговорить с тобой
 figurines-rat-servant-4 = Эй, я хожу тут!
 figurines-rat-servant-5 = Сначала покажи чеддер, потом поговорим.
 
-figurines-space-dragon-1 = Рыба поглотит станцию.
+figurines-space-dragon-1 = Рыба поглотит колонию.
 figurines-space-dragon-2 = Dragon de- Actually, nevermind.
 figurines-space-dragon-3 = Crew is delicious.
 figurines-space-dragon-4 = Don't you dare make sushi.

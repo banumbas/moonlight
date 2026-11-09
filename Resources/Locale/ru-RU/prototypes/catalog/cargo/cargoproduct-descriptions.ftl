@@ -1,5 +1,5 @@
 # Emergency
-cargoproduct-description-emergencyinflatablewall = Три стопки надувных стен на случай, если металлические стены станции перестанут удерживать атмосферу.
+cargoproduct-description-emergencyinflatablewall = Три стопки надувных стен на случай, если металлические стены колонии перестанут удерживать атмосферу.
 
 # Materials
 cargoproduct-name-material-gold = золотые слитки

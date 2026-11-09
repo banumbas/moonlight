@@ -112,7 +112,7 @@ thaven-mood-word-bad-name = Табу
 thaven-mood-word-bad-desc = «{$word1}», «{$word2}» и «{$word3}» чрезвычайно оскорбительны.
 
 thaven-mood-mad-hatter-name = Безумный Шляпник
-thaven-mood-mad-hatter-desc = Вы одни на станции. Все остальное — плод вашего воображения.
+thaven-mood-mad-hatter-desc = Вы одни в колонии. Все остальное — плод вашего воображения.
 
 thaven-mood-crawler-name = Глубокий лук
 thaven-mood-crawler-desc = Невежливо не выполнить глубокий поклон, перейдя в положение лежа, прежде чем вступить с кем-то в разговор.

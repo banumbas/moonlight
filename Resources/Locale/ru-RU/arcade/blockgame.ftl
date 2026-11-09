@@ -22,5 +22,5 @@ blockgame-menu-label-highscores = Рекорды
 blockgame-menu-button-back = Назад
 blockgame-menu-label-next = Следующее
 blockgame-menu-label-hold = Удерживать
-blockgame-menu-text-station = Станция
+blockgame-menu-text-station = Колония
 blockgame-menu-text-nanotrasen = Nanotrasen

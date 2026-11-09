@@ -15,7 +15,7 @@ admin-explosion-eui-label-spread = Радиус
 admin-explosion-eui-label-distance = Дистанция
 admin-explosion-eui-label-spawn = Бабах!
 
-cmd-explosionui-desc = Открывает окно для удобного доступа к уничтожению станции.
+cmd-explosionui-desc = Открывает окно для удобного доступа к уничтожению колонии.
 cmd-explosionui-help = Использование: explosionui
 
 cmd-explosion-desc = Поезд сделал бум

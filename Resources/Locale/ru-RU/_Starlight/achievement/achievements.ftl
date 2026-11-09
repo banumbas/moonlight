@@ -44,7 +44,7 @@ achievement-viva-cargonia-name = Вива Каргония
 achievement-viva-cargonia-description = Станьте революционером в роли интенданта.
 
 achievement-graphite-fire-name = Графитовый огонь
-achievement-graphite-fire-description = Будьте на станции во время аварии на реакторе в качестве члена экипажа.
+achievement-graphite-fire-description = Будьте в колонии во время аварии на реакторе в качестве члена экипажа.
 
 achievement-special-circumstances-name = Особые обстоятельства
 achievement-special-circumstances-description = Будьте членом экипажа в раунде, где объявлена ​​война.
@@ -53,7 +53,7 @@ achievement-remember-no-galcom-name = Помните: нет GalCom
 achievement-remember-no-galcom-description = Играйте за члена Отряда Смерти или Децимуса.
 
 achievement-contract-terminated-name = Контракт расторгнут
-achievement-contract-terminated-description = Будьте на станции, когда вызовут Эпсилон.
+achievement-contract-terminated-description = Будьте в колонии, когда вызовут Эпсилон.
 
 achievement-lone-operative-name = Одинокий оперативник
 achievement-lone-operative-description = Добейтесь успеха в качестве одиночного оперативника в раунде с 50 или более игроками.
@@ -107,7 +107,7 @@ achievement-beyond-reasonable-doubt-name = За пределами разумн�
 achievement-beyond-reasonable-doubt-description = Попытайтесь защитить разум главного революционера.
 
 achievement-viva-name = Вива!
-achievement-viva-description = Будучи революционером, захватите станцию.
+achievement-viva-description = Будучи революционером, захватите колонию.
 
 achievement-on-the-run-name = В бегах
 achievement-on-the-run-description = Выберите карту преступника.

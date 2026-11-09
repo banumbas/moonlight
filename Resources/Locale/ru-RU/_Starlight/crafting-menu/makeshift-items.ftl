@@ -126,7 +126,7 @@ crafting-menu-name-FSW = кованый меч
 crafting-menu-text-FSW = Настоящий клинок! Отлично смотрится в паре с блестящими латами.
 
 crafting-menu-name-DSW = клинок Рассвета
-crafting-menu-text-DSW = Очистите станцию от еретиков священным пламенем правосудия!
+crafting-menu-text-DSW = Очистите колонию от еретиков священным пламенем правосудия!
 
 crafting-menu-name-TSW = Волнолом
 crafting-menu-text-TSW = Тяжёлый клинок, сокрушающий любую оборону!

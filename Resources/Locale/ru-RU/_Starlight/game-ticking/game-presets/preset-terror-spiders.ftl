@@ -5,7 +5,7 @@ roles-antag-terror-princess-description = Мини-королева. Как ко
 
 terror-spider-princess-briefing =
     Ты — принцесса ужаса!
-    Ваша цель — создать большое гнездо и создать большую популяцию пауков, чтобы поработить эту станцию.
+    Ваша цель — создать большое гнездо и создать большую популяцию пауков, чтобы поработить эту колонию.
     Подробнее о вашей роли читайте в статье путеводителя.
 
 terrorspiders-win = [color=crimson]Главная победа Террористических Пауков![/color]
@@ -14,4 +14,4 @@ terrorspiders-list-start = Террористические пауки были:
 terrorspiders-list-name-user = [color=White]{$name}[/color] ([color=gray]{$user}[/color])
 
 terrorspiders-gamemode-title = Террористические пауки
-terrorspiders-gamemode-description = Пауки, пришедшие захватить станцию ​​и сделать из нее улей.
+terrorspiders-gamemode-description = Пауки, пришедшие захватить колонию ​​и сделать из нее улей.

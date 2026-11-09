@@ -7,8 +7,8 @@ thief-backpack-category-syndie-description-starlight =
 
 thief-backpack-category-communicator-description-starlight =
     Деньги — это власть, а тайны стоят денег. Используйте своё красноречие
-    и богатство, чтобы расшатать станцию изнутри.
-    Содержимое: мастер-ключ для каналов станции, бинарный ключ шифрования,
+    и богатство, чтобы расшатать колонию изнутри.
+    Содержимое: мастер-ключ для каналов колонии, бинарный ключ шифрования,
     ручка Cybersun, имплант маскировки голоса и кейс с 20 000 спесо внутри.
 
 thief-backpack-category-sleeper-description-starlight =

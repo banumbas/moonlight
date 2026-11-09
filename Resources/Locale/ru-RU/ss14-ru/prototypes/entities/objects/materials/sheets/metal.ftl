@@ -1,5 +1,5 @@
 ent-SheetMetalBase = { ent-BaseItem }
-    .desc = Металлический лист, широко применяемый на станции в различных целях.
+    .desc = Металлический лист, широко применяемый в колонии в различных целях.
 ent-SheetSteel = сталь
     .desc = { ent-SheetMetalBase.desc }
     .suffix = Полный

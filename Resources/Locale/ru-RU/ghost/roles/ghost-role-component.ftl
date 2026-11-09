@@ -3,7 +3,7 @@ ghost-role-component-default-rules = Все стандартные правил�
                                      Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                      Вам разрешается помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                      Вам [color=red]НЕ[/color] разрешается помнить или говорить имя, внешность и т.д. вашего предыдущего персонажа.
-ghost-role-information-nonantagonist-rules = Вы — [color={ role-type-crew-aligned-alternate-color }][bold]{ role-type-crew-aligned-name }[/bold][/color]. Поэтому вы не должны стремиться причинить вред станции и её экипажу.
+ghost-role-information-nonantagonist-rules = Вы — [color={ role-type-crew-aligned-alternate-color }][bold]{ role-type-crew-aligned-name }[/bold][/color]. Поэтому вы не должны стремиться причинить вред колонии и её экипажу.
                                              Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                              Вам разрешено помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                              Вам [color=red]НЕ[/color] разрешается помнить или говорить имя, внешность и т.д. вашего предыдущего персонажа.
@@ -11,11 +11,11 @@ ghost-role-information-freeagent-rules = Вы — [color={ role-type-free-agent-
                                          Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                          Вам разрешено помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                          Вам [color=red]НЕ[/color] разрешается помнить или говорить имя, внешность и т.д. вашего предыдущего персонажа.
-ghost-role-information-antagonist-rules = Вы — [color={ role-type-solo-antagonist-color }][bold]{ role-type-solo-antagonist-name }[/bold][/color]. Ваши намерения ясны, и они несут вред станции и её экипажу.
+ghost-role-information-antagonist-rules = Вы — [color={ role-type-solo-antagonist-color }][bold]{ role-type-solo-antagonist-name }[/bold][/color]. Ваши намерения ясны, и они несут вред колонии и её экипажу.
                                           Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                           Вам разрешено помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                           Вам [color=red]НЕ[/color] разрешается помнить или говорить имя, внешность и т.д. вашего предыдущего персонажа.
-ghost-role-information-rules-team-antagonist = Вы — [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color]. Ваши намерения ясны, и они несут вред станции и её экипажу.
+ghost-role-information-rules-team-antagonist = Вы — [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color]. Ваши намерения ясны, и они несут вред колонии и её экипажу.
                                                Вы должны [bold]работать сообща со своей командой[/bold] или следовать разумным указаниям лидеров вашей команды.
                                                Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                                Вам разрешено помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
@@ -51,7 +51,7 @@ ghost-role-information-snoth-name = Молитка
 ghost-role-information-snoth-description = Маленькая молитка, которая не против немного побыть на свободе. Только не убегай за пределы клетки!
 
 ghost-role-information-giant-spider-name = Гигантский паук
-ghost-role-information-giant-spider-description = Обитатели этой станции выглядят очень аппетитно, а ваша липкая паутина идеально подходит для их ловли!
+ghost-role-information-giant-spider-description = Обитатели этой колонии выглядят очень аппетитно, а ваша липкая паутина идеально подходит для их ловли!
 ghost-role-information-giant-spider-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color], в команде с другими гигантскими пауками.
 
 ghost-role-information-cognizine-description = Приобрело сознание с помощью магии когнизина.
@@ -93,7 +93,7 @@ ghost-role-information-kobold-description = Будьте маленьким гр
 
 ghost-role-information-rat-king-name = Крысиный король
 
-ghost-role-information-rat-king-description = Вы — Крысиный король, вас интересует еда, еда и ещё раз еда. Сражайтесь со станцией ради еды. Я уже упоминал, что вас интересует еда?
+ghost-role-information-rat-king-description = Вы — Крысиный король, вас интересует еда, еда и ещё раз еда. Сражайтесь с колонией ради еды. Я уже упоминал, что вас интересует еда?
 
 ghost-role-information-rat-servant-name = Крысиный слуга
 ghost-role-information-rat-servant-description = Вы Крысиный слуга. Выполняйте приказы своего короля.
@@ -102,7 +102,7 @@ ghost-role-information-salvage-carp-name = Космический карп с о
 ghost-role-information-salvage-carp-description = Защищайте ценности вашего обломка!
 
 ghost-role-information-sentient-carp-name = Разумный карп
-ghost-role-information-sentient-carp-description = Помогите дракону наводнить станцию карпами!
+ghost-role-information-sentient-carp-description = Помогите дракону наводнить колонию карпами!
 
 ghost-role-information-willow-name = Кенгуру Уиллоу
 ghost-role-information-willow-description = Вы кенгуру по имени Уиллоу! Уиллоу любит бокс.
@@ -117,7 +117,7 @@ ghost-role-information-mimebot-name = Мимбот
 ghost-role-information-mimebot-description = Мимбот, ведите себя как мим и не ведите себя как грейтайдер.
 
 ghost-role-information-supplybot-name = Грузобот
-ghost-role-information-supplybot-description = Развозите грузы по станции.
+ghost-role-information-supplybot-description = Развозите грузы по колонии.
 
 ghost-role-information-space-bear-name = Космический медведь
 ghost-role-information-space-bear-description = У вас урчит в животе, а эти люди выглядят очень аппетитно... Вот это пир!
@@ -150,13 +150,13 @@ ghost-role-information-cluwne-name = Клувень
 ghost-role-information-cluwne-description = Станьте жалким клувнем. Ваша единственная цель в жизни — найти сладкое избавление от страданий (обычно через избиение до смерти). Клувень не является антагонистом, но может защищаться. Члены экипажа могут свободно убивать клувней.
 
 ghost-role-information-skeleton-pirate-name = Скелет-пират
-ghost-role-information-skeleton-pirate-description = Устройте хаос и разграбьте станцию в поисках сокровищ.
+ghost-role-information-skeleton-pirate-description = Устройте хаос и разграбьте колонию в поисках сокровищ.
 
 ghost-role-information-skeleton-biker-name = Скелет-байкер
 ghost-role-information-skeleton-biker-description = Колесите на своём прекрасном байке.
 
 ghost-role-information-closet-skeleton-name = Скелет из шкафа
-ghost-role-information-closet-skeleton-description = Вы, похоже, один из старейших сотрудников станции! Верните себе прежнюю должность или устройте хаос! Мир в ваших руках.
+ghost-role-information-closet-skeleton-description = Вы, похоже, один из старейших сотрудников колонии! Верните себе прежнюю должность или устройте хаос! Мир в ваших руках.
 
 ghost-role-information-remilia-name = Ремилия, фамильяр священника
 ghost-role-information-remilia-description = Слушайтесь и повинуйтесь священнику. Ешьте фрукты. Громко кричите людям в уши и списывайте это на эхолокацию.
@@ -165,34 +165,34 @@ ghost-role-information-cerberus-name = Цербер, злой фамильяр
 ghost-role-information-cerberus-description = Слушайте своего хозяина. Сейте хаос.
 
 ghost-role-information-ert-leader-name = ОБР Лидер
-ghost-role-information-ert-leader-description = Руководите командой специалистов для решения проблем станции.
+ghost-role-information-ert-leader-description = Руководите командой специалистов для решения проблем колонии.
 
 ghost-role-information-ert-chaplain-name = ОБР Священник
-ghost-role-information-ert-chaplain-description = Оказывайте помощь в разрешении моральных проблем экипажа станции.
+ghost-role-information-ert-chaplain-description = Оказывайте помощь в разрешении моральных проблем экипажа колонии.
 
 ghost-role-information-ert-janitor-name = ОБР Уборщик
-ghost-role-information-ert-janitor-description = Оказывайте содействие в попытках навести чистоту для решения проблем станции.
+ghost-role-information-ert-janitor-description = Оказывайте содействие в попытках навести чистоту для решения проблем колонии.
 
 ghost-role-information-ert-engineer-name = ОБР Инженер
-ghost-role-information-ert-engineer-description = Оказывайте содействие в инженерных работах для решения проблем станции.
+ghost-role-information-ert-engineer-description = Оказывайте содействие в инженерных работах для решения проблем колонии.
 
 ghost-role-information-ert-security-name = ОБР Офицер безопасности
-ghost-role-information-ert-security-description = Оказывайте содействие в обеспечении безопасности для решения проблем станции.
+ghost-role-information-ert-security-description = Оказывайте содействие в обеспечении безопасности для решения проблем колонии.
 
 ghost-role-information-ert-medical-name = ОБР Медик
-ghost-role-information-ert-medical-description = Оказывайте содействие в медицинской помощи для решения проблем станции.
+ghost-role-information-ert-medical-description = Оказывайте содействие в медицинской помощи для решения проблем колонии.
 
 ghost-role-information-cburn-agent-name = РХБЗЗ Оперативник
 ghost-role-information-cburn-agent-description = Высококвалифицированный агент Центком, способный справиться с любыми угрозами.
 
 ghost-role-information-centcom-official-name = Представитель Центком
-ghost-role-information-centcom-official-description = Выполняйте обязанности, связанные с Центком, такие как инспекция станции, составление служебных характеристик на руководителей и работа с факсом.
+ghost-role-information-centcom-official-description = Выполняйте обязанности, связанные с Центком, такие как инспекция колонии, составление служебных характеристик на руководителей и работа с факсом.
 
-ghost-role-information-nukeop-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color], в команде с другими Ядерными оперативниками. Помощь агентов на станции не гарантируется.
+ghost-role-information-nukeop-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color], в команде с другими Ядерными оперативниками. Помощь агентов в колонии не гарантируется.
 
 ghost-role-information-loneop-name = Одинокий оперативник
-ghost-role-information-loneop-description = Вы — одинокий ядерный оперативник. Уничтожьте станцию.
-ghost-role-information-loneop-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-solo-antagonist-name }[/bold][/color]. Помощь агентов на станции не гарантируется.
+ghost-role-information-loneop-description = Вы — одинокий ядерный оперативник. Уничтожьте колонию.
+ghost-role-information-loneop-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-solo-antagonist-name }[/bold][/color]. Помощь агентов в колонии не гарантируется.
 
 ghost-role-information-behonker-name = Бехонкер
 ghost-role-information-behonker-description = Вы — антагонист, несущий смерть и хонки всем, кто не следует за хонкоматерью.
@@ -215,7 +215,7 @@ ghost-role-information-BreadDog-name = Хлебака
 ghost-role-information-BreadDog-description = Вы — любимое дитя шеф-повара. Вы — живая хлебная собака.
 
 ghost-role-information-space-ninja-name = Космический ниндзя
-ghost-role-information-space-ninja-description = Используйте хитрость и скрытность, чтобы устроить диверсию на станции.
+ghost-role-information-space-ninja-description = Используйте хитрость и скрытность, чтобы устроить диверсию в колонии.
 
 ghost-role-information-paradox-clone-name = Парадоксальный клон
 ghost-role-information-paradox-clone-description = Странная пространственно-временная аномалия телепортировала вас в другую реальность! Теперь вам предстоит найти своего двойника, убить и заменить его.
@@ -248,22 +248,22 @@ ghost-role-information-syndicate-cyborg-saboteur-name = Саботажный к�
 ghost-role-information-syndicate-cyborg-description = Синдикату нужно подкрепление. Вы, холодная кремниевая машина для убийства, поможете им.
 
 ghost-role-information-derelict-engineering-cyborg-name = Брошенный киборг-инженер
-ghost-role-information-derelict-engineering-cyborg-description = Вы — инженерный киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-engineering-cyborg-description = Вы — инженерный киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-derelict-cyborg-name = Брошенный киборг
-ghost-role-information-derelict-cyborg-description = Вы — обычный киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-cyborg-description = Вы — обычный киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-derelict-janitor-cyborg-name = Брошенный киборг-уборщик
-ghost-role-information-derelict-janitor-cyborg-description = Вы — киборг-уборщик, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-janitor-cyborg-description = Вы — киборг-уборщик, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-derelict-medical-cyborg-name = Брошенный киборг-доктор
-ghost-role-information-derelict-medical-cyborg-description = Вы — медицинский киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-medical-cyborg-description = Вы — медицинский киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-derelict-mining-cyborg-name = Брошенный киборг-шахтёр
-ghost-role-information-derelict-mining-cyborg-description = Вы — киборг-шахтёр, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-mining-cyborg-description = Вы — киборг-шахтёр, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-derelict-syndicate-assault-cyborg-name = Брошенный штурмовой киборг Синдиката
-ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы — раняя модель штурмового киборга Синдиката, которая заблудилась в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы — раняя модель штурмового киборга Синдиката, которая заблудилась в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической колонией.
 
 ghost-role-information-security-name = Служба безопасности
 ghost-role-information-security-description = Вы входите в состав оперативной группы службы безопасности, но, похоже, попали в странную ситуацию...
@@ -293,23 +293,23 @@ ghost-role-information-command-description = Вы являетесь члено�
 
 ghost-role-information-lost-challenge-commander-name = Командир в отпуске
 ghost-role-information-lost-challenge-commander-description = Вы — член команды с другого корабля, которому предоставили отпуск вместе с одним из ваших грузовых техников.
-ghost-role-information-lost-challenge-commander-rules = Вы не враждебны к станции и делаете то, что должны, чтобы обеспечить собственное выживание.
+ghost-role-information-lost-challenge-commander-rules = Вы не враждебны к колонии и делаете то, что должны, чтобы обеспечить собственное выживание.
                                      Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                      Вам разрешается помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                      Вам [color=red]НЕ[/color] разрешается помнить, имя, внешность и т.д. вашего предыдущего персонажа.
 
 ghost-role-information-lost-challenge-cargo-technican-name = Грузовой шофёр
 ghost-role-information-lost-challenge-cargo-technican-description = Вы — грузовой техник, получивший отпуск на берег вместе с одним из своих командиров.
-ghost-role-information-lost-challenge-cargo-technican-rules = Вы не враждебны станции и делаете то, что должны, чтобы обеспечить собственное выживание.
+ghost-role-information-lost-challenge-cargo-technican-rules = Вы не враждебны колонии и делаете то, что должны, чтобы обеспечить собственное выживание.
                                      Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                      Вам разрешается помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                      Вам [color=red]НЕ[/color] разрешается помнить, имя, внешность и т.д. вашего предыдущего персонажа.
 
 ghost-role-information-disaster-victim-name = Жертва катастрофы
-ghost-role-information-disaster-victim-description = Вы спаслись на спасательной капсуле с другой станции, которую постигла ужасная участь. Возможно, вас найдут и спасут.
+ghost-role-information-disaster-victim-description = Вы спаслись на спасательной капсуле из другой колонии, которую постигла ужасная участь. Возможно, вас найдут и спасут.
 
 ghost-role-information-syndie-disaster-victim-name = Жертва катастрофы из Синдиката
-ghost-role-information-syndie-disaster-victim-description = Вы — обычный пассажир со станции Синдиката. К несчастью, спасательная капсула закинула вас во вражеский сектор...
+ghost-role-information-syndie-disaster-victim-description = Вы — обычный пассажир из колонии Синдиката. К несчастью, спасательная капсула закинула вас во вражеский сектор...
 
 ghost-role-information-syndie-soldier-name = Солдат Синдиката
 ghost-role-information-syndie-soldier-description = Вы солдат Синдиката
@@ -343,10 +343,10 @@ ghost-role-information-mothership-core-name = Ядро материнского 
 ghost-role-information-mothership-core-desc = Вы — ядро матринского корабля ксеноборгов, помогите им размножиться, боргируя мозги, которые они вам приносят.
 
 ghost-role-information-xenoborg-name = Ксеноборг
-ghost-role-information-xenoborg-desc = Странный киборг, сделанный, чтобы воспроизводить себя и захватывать станцию, превращая любое разумное существо в ксеноборга.
+ghost-role-information-xenoborg-desc = Странный киборг, сделанный, чтобы воспроизводить себя и захватывать колонию, превращая любое разумное существо в ксеноборга.
 
 ghost-role-information-wizard-name = Волшебник
-ghost-role-information-wizard-desc = ТЫ ВОЛШЕБНИК! Покажи станции, из чего сделана твоя магия.
+ghost-role-information-wizard-desc = ТЫ ВОЛШЕБНИК! Покажи колонии, из чего сделана твоя магия.
 
 ghost-role-information-emotional-support-scurret-name = Слизенёк эмоциональной поддержки
 ghost-role-information-emotional-support-scurret-description = Поддерживайте экипаж, будьте очаровательными, часто говорите "ва".

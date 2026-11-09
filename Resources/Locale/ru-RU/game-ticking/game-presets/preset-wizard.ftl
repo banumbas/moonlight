@@ -17,8 +17,8 @@ survivor-round-end-dead-count =
 
 survivor-round-end-alive-count =
     { $aliveCount ->
-        [one] [color=yellow]{ $aliveCount }[/color] выживший остался на станции.
-        *[other] [color=yellow]{ $aliveCount }[/color] выживших осталось на станции.
+        [one] [color=yellow]{ $aliveCount }[/color] выживший остался в колонии.
+        *[other] [color=yellow]{ $aliveCount }[/color] выживших осталось в колонии.
     }
 
 survivor-round-end-alive-on-shuttle-count =
@@ -32,14 +32,14 @@ survivor-round-end-alive-on-shuttle-count =
 objective-issuer-swf = [color=turquoise]Федерация космических волшебников[/color]
 
 wizard-title = Волшебник
-wizard-description = На станции присутствует волшебник! Никогда не знаешь, что они могут натворить.
+wizard-description = В колонии присутствует волшебник! Никогда не знаешь, что они могут натворить.
 
 roles-antag-wizard-name = Волшебник
 roles-antag-wizard-objective = Преподайте им урок, который они никогда не забудут.
 
 wizard-role-greeting =
     Время для волшебника, огненный шар!
-    Между Федерацией космических волшебников и Nanotrasen возникли противоречия. Вы были выбраны Федерацией Космических Волшебников, чтобы навестить станцию и "напомнить им", почему над заклинателями не издеваются.
+    Между Федерацией космических волшебников и Nanotrasen возникли противоречия. Вы были выбраны Федерацией Космических Волшебников, чтобы навестить колонию и "напомнить им", почему над заклинателями не издеваются.
     Совершите хаос и разруху! Вам решать, что именно предпринять, но помните, что Космические волшебники желают, чтобы вы вернулись живыми.
 
 wizard-round-end-name = волшебник

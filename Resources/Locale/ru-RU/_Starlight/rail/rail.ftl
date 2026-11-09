@@ -33,7 +33,7 @@ rail-consume-task = Ешьте {INDEFINITE($Target)} {$Target}
 rail-open-delivery-task = Откройте {$Amount} фрагменты почты.
 
 rr-apple-pie = Яблочный пирог
-rr-apple-pie-desc = Ходят слухи, что на этой станции лучшие яблочные пироги в галактике. Это определенно стоит проверить.
+rr-apple-pie-desc = Ходят слухи, что в этой колонии лучшие яблочные пироги в галактике. Это определенно стоит проверить.
 
 rr-dumplings = Пельмени
 rr-dumplings-desc = Вы можете себе представить? Пьероги. С мясом. Я до сих пор не знал, что мне это нужно.
@@ -442,8 +442,8 @@ rr-brighteye-lights-desc = В этом месте много огней... Мы 
 rr-brighteye-backup = Резервное копирование
 rr-brighteye-backup-desc = Нам понадобится помощь для нашего следующего шага...
 
-rr-brighteye-darkstation = Темная станция
-rr-brighteye-darkstation-desc = Пусть тьма поглотит станцию ​​и всех светоходов вместе с ней.
+rr-brighteye-darkstation = Темная колония
+rr-brighteye-darkstation-desc = Пусть тьма поглотит колонию ​​и всех светоходов вместе с ней.
 
 rr-brighteye-steal-secureknowledge = Не слышу зла
 rr-brighteye-steal-secureknowledge-desc = Это угроза... Мы должны удалить эту информацию из рук светоходов.

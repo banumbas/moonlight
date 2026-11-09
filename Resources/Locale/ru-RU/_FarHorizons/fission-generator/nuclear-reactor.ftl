@@ -18,10 +18,10 @@ reactor-temperature-dangerous-message = {CAPITALIZE(THE($owner))}: опасна�
 reactor-temperature-critical-message = {CAPITALIZE(THE($owner))}: критическая температура ({$temperature} K).
 reactor-temperature-cooling-message = {CAPITALIZE(THE($owner))} охлаждается: {$temperature} K.
 
-reactor-melting-announcement = Внимание: ядерный реактор станции выходит из строя! Рекомендуется немедленная эвакуация из инженерного отсека.
+reactor-melting-announcement = Внимание: ядерный реактор колонии выходит из строя! Рекомендуется немедленная эвакуация из инженерного отсека.
 reactor-melting-announcement-sender = Аварийная служба реактора
 
-reactor-meltdown-announcement = КРИТИЧЕСКАЯ АВАРИЯ: Произошло разрушение активной зоны ядерного реактора станции! Зафиксирован катастрофический выброс радиации и пожары теплоносителя. Немедленно покиньте прилегающие секторы!
+reactor-meltdown-announcement = КРИТИЧЕСКАЯ АВАРИЯ: Произошло разрушение активной зоны ядерного реактора колонии! Зафиксирован катастрофический выброс радиации и пожары теплоносителя. Немедленно покиньте прилегающие секторы!
 reactor-meltdown-announcement-sender = Служба ядерной безопасности
 
 ### UI

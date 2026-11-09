@@ -7,7 +7,7 @@ borg-call-for-help-message = ПРЕДУПРЕЖДЕНИЕ БЕЗОПАСНОСТ
 ## Borg type information
 
 borg-type-security-name = Безопасность
-borg-type-security-desc = Помогите команде безопасности поддерживать порядок на станции, задерживать преступников и реагировать на угрозы.
+borg-type-security-desc = Помогите команде безопасности поддерживать порядок в колонии, задерживать преступников и реагировать на угрозы.
 borg-type-security-transponder = охранный киборг
 
 borg-type-SyndicateAssault-name = Нападение Синдиката
@@ -31,7 +31,7 @@ borg-type-purrfus-desc = Служить личным помощником для
 borg-type-purrfus-transponder = мурлыкающий киборг
 
 borg-type-cargo-name = Груз
-borg-type-cargo-desc = Перевозите грузы, доставляйте заказы и обогащайте станцию!
+borg-type-cargo-desc = Перевозите грузы, доставляйте заказы и обогащайте колонию!
 borg-type-cargo-transponder = грузовой киборг
 
 # Module incompatibilities

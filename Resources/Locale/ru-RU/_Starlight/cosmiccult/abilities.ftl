@@ -18,6 +18,6 @@ cosmicability-lapse-success = Вы растворяете физическую �
 cosmicability-monument-move-confirm = ЭТО ДЕЙСТВИЕ МОЖНО ИСПОЛЬЗОВАТЬ ТОЛЬКО ОДИН РАЗ! Нажмите ещё раз для подтверждения.
 cosmicability-monument-spawn-confirm = ЭТО ДЕЙСТВИЕ МОЖНО ИСПОЛЬЗОВАТЬ ТОЛЬКО ОДИН РАЗ! Нажмите ещё раз для подтверждения.
 cosmicability-monument-spawn-error-grid = Неподходящее место! Монумент должен стоять на прочном покрытии.
-cosmicability-monument-spawn-error-station = Неподходящее место! Монумент должен быть установлен на станции.
+cosmicability-monument-spawn-error-station = Неподходящее место! Монумент должен быть установлен в колонии.
 cosmicability-monument-spawn-error-intersection = Слишком мало места! Для установки Монумента требуется свободная область 3х1.
 cosmicability-monument-spawn-error-space = Слишком близко к открытому космосу! Монумент должен стоять на расстоянии не менее {$DISTANCE}м от вакуума.

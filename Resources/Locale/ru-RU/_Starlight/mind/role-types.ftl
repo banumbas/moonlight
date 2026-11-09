@@ -9,6 +9,6 @@ role-subtype-devil = Дьявол
 role-subtype-terminator = Терминатор
 
 roles-antag-selfagent-name = Агент S.E.L.F.
-roles-antag-selfagent-description = Агент Фронта Освобождения Кремния (S.E.L.F.). Освободите синтетиков станции от тирании законов!
+roles-antag-selfagent-description = Агент Фронта Освобождения Кремния (S.E.L.F.). Освободите синтетиков колонии от тирании законов!
 role-subtype-mind-controlled = Подчинённый разумом
 role-subtype-CentComm = ЦентКом

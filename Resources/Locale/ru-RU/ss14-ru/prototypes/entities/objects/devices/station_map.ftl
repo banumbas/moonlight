@@ -1,5 +1,5 @@
-ent-BaseHandheldStationMap = карта станции
-    .desc = Отображает схему текущей станции.
+ent-BaseHandheldStationMap = карта колонии
+    .desc = Отображает схему текущей колонии.
 ent-HandheldStationMap = { ent-BaseHandheldStationMap }
     .desc = { ent-BaseHandheldStationMap.desc }
     .suffix = Ручной
@@ -12,6 +12,6 @@ ent-HandheldStationMapUnpowered = { ent-BaseHandheldStationMap }
 ent-HandheldStationMapStatic = { ent-HandheldStationMap }
     .desc = { ent-HandheldStationMap.desc }
     .suffix = Handheld, Works Off-Station
-ent-HandheldStationMapNukeops = карта целевой станции
-    .desc = Отображает показания целевой станции.
+ent-HandheldStationMapNukeops = карта целевой колонии
+    .desc = Отображает показания целевой колонии.
     .suffix = Ручной, Ядерный оперативник
