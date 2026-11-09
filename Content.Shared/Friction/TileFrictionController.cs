@@ -108,7 +108,7 @@ namespace Content.Shared.Friction
 
                 friction *= bodyModifier;
 
-                friction = Math.Max(_minDamping, friction);
+                friction = ev.Cancelled ? 0f : Math.Max(_minDamping, friction); // Classic-Edit
 
                 PhysicsSystem.SetLinearDamping(uid, body, friction);
                 PhysicsSystem.SetAngularDamping(uid, body, friction);

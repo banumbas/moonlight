@@ -8,6 +8,9 @@ public struct TileFrictionEvent
 {
     public float Modifier;
 
+    /// <summary>A movement controller supplies its own drag; clear ordinary body damping.</summary>
+    public bool Cancelled; // Classic-Edit
+
     public TileFrictionEvent(float modifier)
     {
         // TODO: If something ever uses different angular and linear modifiers, split this into two modifiers
