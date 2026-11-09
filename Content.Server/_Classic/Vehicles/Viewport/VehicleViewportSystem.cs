@@ -6,22 +6,20 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Classic.Vehicles.Viewport;
 
-public sealed class VehicleViewportSystem : EntitySystem
+public sealed partial class VehicleViewportSystem : SharedVehicleViewportSystem
 {
     private static readonly EntProtoId VehiclePeekAnchor = "VehiclePeekAnchor";
 
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ClassicVehicleSystem _vehicles = default!;
     [Dependency] private readonly VehicleViewToggleSystem _viewToggle = default!;
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<VehicleViewportComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<VehicleViewportComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<VehicleViewportComponent, InteractUsingEvent>(OnInteractUsing);
@@ -31,19 +29,15 @@ public sealed class VehicleViewportSystem : EntitySystem
 
     private void OnActivate(Entity<VehicleViewportComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (_net.IsClient || args.Handled)
+        if (args.Handled)
             return;
 
-        if (!_vehicles.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle is null)
-            return;
-
-        if (ToggleViewport(args.User, vehicle.Value, ent.Owner))
-            args.Handled = true;
+        args.Handled = TryToggleViewport(ent, args.User);
     }
 
     private void OnUserMove(Entity<VehicleViewportUserComponent> ent, ref MoveInputEvent args)
     {
-        if (_net.IsClient || !args.HasDirectionalMovement)
+        if (!args.HasDirectionalMovement)
             return;
 
         CloseViewport(ent.Owner, ent.Comp);
@@ -51,32 +45,23 @@ public sealed class VehicleViewportSystem : EntitySystem
 
     private void OnInteractUsing(Entity<VehicleViewportComponent> ent, ref InteractUsingEvent args)
     {
-        if (_net.IsClient || args.Handled)
+        if (args.Handled)
             return;
 
-        if (!_vehicles.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle is null)
-            return;
-
-        if (ToggleViewport(args.User, vehicle.Value, ent.Owner))
-            args.Handled = true;
+        args.Handled = TryToggleViewport(ent, args.User);
     }
 
     private void OnInteractHand(Entity<VehicleViewportComponent> ent, ref InteractHandEvent args)
     {
-        if (_net.IsClient || args.Handled)
+        if (args.Handled)
             return;
 
-        if (!_vehicles.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle is null)
-            return;
-
-        if (ToggleViewport(args.User, vehicle.Value, ent.Owner))
-            args.Handled = true;
+        args.Handled = TryToggleViewport(ent, args.User);
     }
 
     private void OnVehicleEnterVerbs(Entity<VehicleEnterComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (_net.IsClient ||
-            !args.CanInteract ||
+        if (!args.CanInteract ||
             !args.CanAccess ||
             args.Using != null ||
             !_vehicles.TryFindEntryPoint(ent.Owner, args.User, out var entryIndex))
@@ -93,8 +78,11 @@ public sealed class VehicleViewportSystem : EntitySystem
         });
     }
 
-    private bool ToggleViewport(EntityUid user, EntityUid vehicle, EntityUid source)
+    private bool TryToggleViewport(Entity<VehicleViewportComponent> source, EntityUid user)
     {
+        if (!_vehicles.TryGetVehicleFromInterior(source, out var vehicle) || vehicle is null)
+            return false;
+
         if (TryComp(user, out VehicleViewportUserComponent? existing))
         {
             CloseViewport(user, existing);
@@ -105,9 +93,11 @@ public sealed class VehicleViewportSystem : EntitySystem
         if (TryComp(user, out EyeComponent? newEye))
             userState.PreviousTarget = newEye.Target;
         userState.Source = source;
+        userState.ExteriorOffset = source.Comp.ExteriorOffset;
+        Dirty(user, userState);
 
         _eye.SetTarget(user, vehicle);
-        _viewToggle.EnableViewToggle(user, vehicle, source, userState.PreviousTarget, isOutside: true);
+        _viewToggle.EnableViewToggle(user, vehicle.Value, source, userState.PreviousTarget, isOutside: true);
         return true;
     }
 

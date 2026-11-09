@@ -12,6 +12,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Server.Parallax;
+using System.Numerics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -29,6 +30,7 @@ public sealed partial class ClassicZLevelsSystem
     [Dependency] private ViewSubscriberSystem _viewSubscriber = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TagSystem _viewerTags = default!;
+    [Dependency] private EntityQuery<GhostComponent> _viewerGhostQuery = default!;
 
     private readonly EntProtoId _zEyeProto = "ClassicZLevelEye";
     private static readonly ProtoId<TagPrototype> AllowBiomeLoadingTag = "AllowBiomeLoading";
@@ -73,24 +75,36 @@ public sealed partial class ClassicZLevelsSystem
 
     private void UpdateView(float frameTime)
     {
-        var updateLowerEyes = _timing.CurTime >= _nextZLevelViewerUpdate;
-        if (updateLowerEyes)
+        var refreshVisibility = _timing.CurTime >= _nextZLevelViewerUpdate;
+        if (refreshVisibility)
             _nextZLevelViewerUpdate = _timing.CurTime + _zLevelViewerUpdateRate;
 
         var query = EntityQueryEnumerator<ClassicZLevelViewerComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var viewer, out var xform))
         {
-            if (updateLowerEyes)
+            var view = GetViewedPosition(uid, xform);
+            if (viewer.ViewMap != view.Map || viewer.CanLoadBiomes != CanLoadViewerBiomes(uid))
+            {
+                UpdateViewer((uid, viewer));
+                continue;
+            }
+
+            if (!viewer.CanLoadBiomes)
+                continue;
+
+            // Camera targets and offsets can move without a MoveEvent on the viewer.
+            if (viewer.ViewPosition != view.Position)
             {
                 foreach (var eye in viewer.Eyes)
                 {
                     if (!viewer.UpperEyes.Contains(eye))
-                        _transform.SetWorldPosition(eye, _transform.GetWorldPosition(xform));
+                        _transform.SetWorldPosition(eye, view.Position);
                 }
+                viewer.ViewPosition = view.Position;
             }
 
             if (viewer.LookUp)
-                UpdateUpperEyes((uid, viewer), xform, allowSameTileFastPath: !updateLowerEyes);
+                UpdateUpperEyes((uid, viewer), view, allowSameTileFastPath: !refreshVisibility);
         }
     }
 
@@ -176,6 +190,11 @@ public sealed partial class ClassicZLevelsSystem
 
     private void UpdateViewer(Entity<ClassicZLevelViewerComponent> ent)
     {
+        var view = GetViewedPosition(ent);
+        ent.Comp.ViewMap = view.Map;
+        ent.Comp.ViewPosition = view.Position;
+        ent.Comp.CanLoadBiomes = CanLoadViewerBiomes(ent);
+
         var eyes = ent.Comp.Eyes;
         TryComp<ActorComponent>(ent, out var actor);
         foreach (var eye in ent.Comp.Eyes)
@@ -189,19 +208,18 @@ public sealed partial class ClassicZLevelsSystem
         ent.Comp.UpperEyes.Clear();
         SetVisibleZLevelsAbove(ent, null, default, 0);
 
-        if (HasComp<GhostComponent>(ent) && !_viewerTags.HasTag(ent, AllowBiomeLoadingTag))
+        if (!ent.Comp.CanLoadBiomes)
             return;
 
         if (actor == null)
             return;
 
-        var xform = Transform(ent);
-        var map = xform.MapUid;
+        var map = view.Map;
 
         if (map is null)
             return;
 
-        var globalPos = _transform.GetWorldPosition(xform);
+        var globalPos = view.Position;
 
         var maxLevelsBelow = Math.Clamp(
             Math.Max(1, _configuration.GetCVar(CCVars.ClassicZLevelsRenderingMaxZLevelsBelowRendering)),
@@ -220,12 +238,12 @@ public sealed partial class ClassicZLevelsSystem
             eyes.Add(newEye);
         }
 
-        UpdateUpperEyes(ent);
+        UpdateUpperEyes(ent, view);
     }
 
     private void UpdateUpperEyes(
         Entity<ClassicZLevelViewerComponent> ent,
-        TransformComponent? xform = null,
+        (EntityUid? Map, Vector2 Position)? view = null,
         bool allowSameTileFastPath = false)
     {
         if (!TryComp<ActorComponent>(ent, out var actor))
@@ -241,12 +259,11 @@ public sealed partial class ClassicZLevelsSystem
             return;
         }
 
-        xform ??= Transform(ent);
-        var globalPos = _transform.GetWorldPosition(xform);
+        var (viewMap, globalPos) = view ?? GetViewedPosition(ent);
         EntityUid? currentMap = null;
         var currentTile = default(Vector2i);
 
-        if (xform.MapUid is { } mapUid)
+        if (viewMap is { } mapUid)
         {
             currentMap = mapUid;
             currentTile = new Vector2i(
@@ -268,8 +285,8 @@ public sealed partial class ClassicZLevelsSystem
         _staleUpperEyes.Clear();
 
         if (ent.Comp.LookUp &&
-            !(HasComp<GhostComponent>(ent) && !_viewerTags.HasTag(ent, AllowBiomeLoadingTag)) &&
-            xform.MapUid is { } map)
+            CanLoadViewerBiomes(ent) &&
+            viewMap is { } map)
         {
             var biomes = EntityManager.System<BiomeSystem>();
             for (var i = 1; i <= MaxZLevelsAboveRendering; i++)
@@ -349,5 +366,10 @@ public sealed partial class ClassicZLevelsSystem
     private void CacheEyeBiome(EntityUid eye)
     {
         EntityManager.System<BiomeSystem>().CacheClassicZLevel(eye);
+    }
+
+    private bool CanLoadViewerBiomes(EntityUid viewer)
+    {
+        return !_viewerGhostQuery.HasComp(viewer) || _viewerTags.HasTag(viewer, AllowBiomeLoadingTag);
     }
 }

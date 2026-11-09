@@ -15,6 +15,7 @@ namespace Content.Shared._Classic.ZLevels.Core.EntitySystems;
 public abstract partial class ClassicSharedZLevelsSystem
 {
     [Dependency] protected ITileDefinitionManager TilDefMan = null!;
+    [Dependency] private EntityQuery<EyeComponent> _viewerEyeQuery = default!;
 
     private void InitializeView()
     {
@@ -52,12 +53,12 @@ public abstract partial class ClassicSharedZLevelsSystem
         if (!TryComp<ClassicZLevelViewerComponent>(ent, out var viewer))
             return 0;
 
-        currentMapUid ??= Transform(ent).MapUid;
+        var (viewMap, worldPos) = GetViewedPosition(ent);
+        currentMapUid ??= viewMap;
 
         if (currentMapUid is null)
             return 0;
 
-        var worldPos = _transform.GetWorldPosition(ent);
         var tile = new Vector2i(
             (int) MathF.Floor(worldPos.X),
             (int) MathF.Floor(worldPos.Y));
@@ -95,6 +96,34 @@ public abstract partial class ClassicSharedZLevelsSystem
         }
 
         return visibleLevels;
+    }
+
+    /// <summary>
+    /// Resolves the eye target, including remote views on maps outside the Z network.
+    /// Rendering and auxiliary PVS eyes must use the same map.
+    /// </summary>
+    public TransformComponent GetViewedTransform(EntityUid viewer, TransformComponent? fallback = null)
+    {
+        if (_viewerEyeQuery.TryComp(viewer, out var eye) &&
+            eye.Target is { } target &&
+            _transformQuery.TryComp(target, out var targetXform))
+        {
+            return targetXform;
+        }
+
+        return fallback ?? Transform(viewer);
+    }
+
+    /// <summary>
+    /// Resolves the spatial view position for roof checks and auxiliary eyes. Camera projection and
+    /// screen effects are excluded; remote views can supply their own horizontal offset.
+    /// </summary>
+    public (EntityUid? Map, Vector2 Position) GetViewedPosition(EntityUid viewer, TransformComponent? fallback = null)
+    {
+        var xform = GetViewedTransform(viewer, fallback);
+        var ev = new ClassicGetViewPositionEvent(xform.Owner, _transform.GetWorldPosition(xform));
+        RaiseLocalEvent(viewer, ref ev);
+        return (xform.MapUid, ev.Position);
     }
 
     /// <summary>
@@ -228,3 +257,7 @@ public abstract partial class ClassicSharedZLevelsSystem
         }
     }
 }
+
+/// <summary>Allows a remote view to offset the position used for spatial visibility checks.</summary>
+[ByRefEvent]
+public record struct ClassicGetViewPositionEvent(EntityUid Target, Vector2 Position);

@@ -162,15 +162,17 @@ public sealed partial class ScalingViewport
             return;
         }
 
+        playerXform = _zLevels.GetViewedTransform(_player.LocalEntity.Value, playerXform);
         if (playerXform.MapUid is null)
         {
             viewport.Render();
             return;
         }
 
+        var zMapUid = playerXform.MapUid.Value;
         var lookUp = 0;
         if (zLevelViewer.LookUp)
-            lookUp = _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, playerXform.MapUid);
+            lookUp = _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, zMapUid);
 
         var maxLevelsBelow = Math.Clamp(
             _configuration.GetCVar(CCVars.ClassicZLevelsRenderingMaxZLevelsBelowRendering),
@@ -182,11 +184,11 @@ public sealed partial class ScalingViewport
         _lowerVisiblePixels = UIBox2.FromDimensions(Vector2.Zero, viewport.Size);
         for (var i = 0; i >= -maxLevelsBelow; i--)
         {
-            var checkingMap = playerXform.MapUid.Value;
+            var checkingMap = zMapUid;
 
             if (i != 0)
             {
-                if (!_zLevels.TryMapOffset(playerXform.MapUid.Value, i, out var mapUidBelow))
+                if (!_zLevels.TryMapOffset(zMapUid, i, out var mapUidBelow))
                     continue;
 
                 checkingMap = mapUidBelow;
@@ -269,7 +271,7 @@ public sealed partial class ScalingViewport
                 }
                 else
                 {
-                    if (!_zLevels.TryMapOffset(playerXform.MapUid.Value, depth, out var mapUidBelow))
+                    if (!_zLevels.TryMapOffset(zMapUid, depth, out var mapUidBelow))
                         continue;
 
                     if (!_mapQuery.Value.TryComp(mapUidBelow, out var mapComp))

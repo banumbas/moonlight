@@ -48,7 +48,8 @@ public sealed partial class ClassicClientZLevelsSystem : ClassicSharedZLevelsSys
 
         SubscribeLocalEvent<ClassicZPhysicsComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ClassicZPhysicsComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
-        SubscribeLocalEvent<ClassicZPhysicsComponent, GetEyeOffsetEvent>(OnEyeOffset);
+        SubscribeLocalEvent<ClassicZPhysicsComponent, EntityUnpausedEvent>(OnUnpaused);
+        SubscribeLocalEvent<EyeComponent, GetEyeOffsetEvent>(OnEyeOffset);
         SubscribeLocalEvent<GridRemovalEvent>(OnOpeningGridRemoved);
     }
 
@@ -63,10 +64,14 @@ public sealed partial class ClassicClientZLevelsSystem : ClassicSharedZLevelsSys
         OpeningCache.RemoveGrid(args.EntityUid);
     }
 
-    private void OnEyeOffset(Entity<ClassicZPhysicsComponent> ent, ref GetEyeOffsetEvent args)
+    private void OnEyeOffset(Entity<EyeComponent> ent, ref GetEyeOffsetEvent args)
     {
+        var target = ent.Comp.Target ?? ent.Owner;
+        if (!ZPhysicsQuery.TryComp(target, out var physics))
+            return;
+
         Angle rotation = _eye.CurrentEye.Rotation * -1;
-        var localPosition = GetVisualLocalPosition(ent, ent.Comp, Transform(ent), ZPhysicsQuery);
+        var localPosition = GetVisualLocalPosition(target, physics, Transform(target), ZPhysicsQuery);
         var offset = rotation.RotateVec(new Vector2(0, localPosition * ZLevelOffset));
         args.Offset += offset;
     }
@@ -102,6 +107,15 @@ public sealed partial class ClassicClientZLevelsSystem : ClassicSharedZLevelsSys
     private void OnAfterHandleState(Entity<ClassicZPhysicsComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         PendingVisualEntities.Add(ent);
+        // A server-started controller must also wake a body that has already settled locally.
+        if (ent.Comp.VelocityRaiseEvent)
+            RefreshBody(ent);
+    }
+
+    private void OnUnpaused(Entity<ClassicZPhysicsComponent> ent, ref EntityUnpausedEvent args)
+    {
+        // Startup or state updates may have queued this body while its visuals were paused.
+        PendingVisualEntities.Add(ent);
     }
 
     protected override void OnZPositionChanged(Entity<ClassicZPhysicsComponent> ent)
@@ -135,6 +149,7 @@ internal sealed partial class ClassicClientZLevelsPreAnimSystem : EntitySystem
     [Dependency] private EntityQuery<ClassicZPhysicsComponent> _zPhysQuery = default!;
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private EntityQuery<MetaDataComponent> _metaQuery = default!;
 
     public override void Initialize()
     {
@@ -152,12 +167,17 @@ internal sealed partial class ClassicClientZLevelsPreAnimSystem : EntitySystem
         for (var i = visualEntities.Count - 1; i >= 0; i--)
         {
             var entity = visualEntities[i];
-            if (entity.Comp1.Deleted || entity.Comp2.Deleted || entity.Comp3.Deleted)
+            if (entity.Comp1.Deleted || entity.Comp2.Deleted || entity.Comp3.Deleted ||
+                !_metaQuery.TryComp(entity.Owner, out var metadata))
             {
                 visualEntitySet.Remove(entity.Owner);
                 visualEntities.RemoveAt(i);
                 continue;
             }
+
+            // Keep the last composed frame intact, including any rotor attitude contribution.
+            if (metadata.EntityPaused)
+                continue;
 
             var localPosition = PrepareVisual(entity.Owner, entity.Comp1, entity.Comp2, entity.Comp3);
             if (localPosition == 0f)
@@ -196,6 +216,9 @@ internal sealed partial class ClassicClientZLevelsPreAnimSystem : EntitySystem
     private bool TryTrackVisual(EntityUid uid, out TransformComponent xform)
     {
         xform = null!;
+        if (!_metaQuery.TryComp(uid, out var metadata) || metadata.EntityPaused)
+            return false;
+
         if (_zLevels.VisualEntitySet.Contains(uid))
         {
             if (!_xformQuery.TryComp(uid, out var trackedXform))
@@ -263,6 +286,7 @@ internal sealed partial class ClassicClientZLevelsPostAnimSystem : EntitySystem
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private EntityQuery<ClassicZPhysicsComponent> _zPhysQuery = default!;
+    [Dependency] private EntityQuery<MetaDataComponent> _metaQuery = default!;
 
     public override void Initialize()
     {
@@ -286,7 +310,8 @@ internal sealed partial class ClassicClientZLevelsPostAnimSystem : EntitySystem
 
             // An animation or another system may have removed the entity between the
             // two passes. The cached component references are otherwise safe to reuse.
-            if (zPhys.Deleted || sprite.Deleted || xform.Deleted)
+            if (zPhys.Deleted || sprite.Deleted || xform.Deleted ||
+                !_metaQuery.TryComp(entity.Owner, out var metadata) || metadata.EntityPaused)
                 continue;
 
             var localPosition = ClassicClientZLevelsSystem.GetVisualLocalPosition(entity.Owner, zPhys, xform, _zPhysQuery);

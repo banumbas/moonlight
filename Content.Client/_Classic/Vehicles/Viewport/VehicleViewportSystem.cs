@@ -4,10 +4,8 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Client._Classic.Vehicles.Viewport;
 
-public sealed class VehicleViewportSystem : EntitySystem
+public sealed partial class VehicleViewportSystem : SharedVehicleViewportSystem
 {
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-
     public override void Initialize()
     {
         base.Initialize();
