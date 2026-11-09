@@ -34,7 +34,7 @@ public abstract partial class ClassicSharedZLevelsSystem
     private const int MovementRefreshChunkSize = 8;
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
 
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private void InitializeMovement()
     {
@@ -556,6 +556,12 @@ public abstract partial class ClassicSharedZLevelsSystem
     [PublicAPI]
     public bool TryMove(EntityUid ent, int offset, Entity<ClassicZMapComponent?>? map = null)
     {
+        return TryMove(ent, offset, out _, map);
+    }
+
+    private bool TryMove(EntityUid ent, int offset, out bool blocked, Entity<ClassicZMapComponent?>? map = null)
+    {
+        blocked = false;
         map ??= Transform(ent).MapUid;
 
         if (map is null)
@@ -566,6 +572,16 @@ public abstract partial class ClassicSharedZLevelsSystem
 
         if (!_mapQuery.TryComp(targetMap, out var targetMapComp))
             return false;
+
+        var attempt = new ClassicZLevelMapMoveAttemptEvent(targetMap, offset);
+        RaiseLocalEvent(ent, ref attempt);
+        if (attempt.Cancelled)
+        {
+            blocked = attempt.Blocked;
+            if (blocked)
+                RaiseMapMoveBlocked(ent, offset);
+            return false;
+        }
 
         var worldRot = _transform.GetWorldRotation(ent);
 
@@ -581,6 +597,12 @@ public abstract partial class ClassicSharedZLevelsSystem
         return true;
     }
 
+    private void RaiseMapMoveBlocked(EntityUid uid, int offset)
+    {
+        var ev = new ClassicZLevelMapMoveBlockedEvent(offset);
+        RaiseLocalEvent(uid, ref ev);
+    }
+
     [PublicAPI]
     public bool TryMoveUp(EntityUid ent) => TryMove(ent, 1);
 
@@ -593,8 +615,15 @@ public abstract partial class ClassicSharedZLevelsSystem
     [PublicAPI]
     public bool TryMoveDownOrChasm(EntityUid ent)
     {
-        if (TryMoveDown(ent))
-            return true;
+        return TryMoveDownOrChasm(ent, out _);
+    }
+
+    private bool TryMoveDownOrChasm(EntityUid ent, out bool blocked)
+    {
+        blocked = false;
+        // A rejected transition is an obstruction, not the edge of the map network.
+        if (Transform(ent).MapUid is { } map && TryMapDown(map, out _))
+            return TryMove(ent, -1, out blocked);
 
         //welp, that default Chasm behavior. Not really good, but ok for now.
         if (HasComp<ChasmFallingComponent>(ent))
@@ -697,11 +726,30 @@ public struct ClassicZLevelHitEvent(float impactPower)
 /// Is called every frame to calculate the current vertical velocity of the active zphysics entities.
 /// </summary>
 [ByRefEvent]
-public struct ClassicGetZVelocityEvent(Entity<ClassicZPhysicsComponent> target)
+public struct ClassicGetZVelocityEvent(Entity<ClassicZPhysicsComponent> target, float frameTime)
 {
+    /// <summary>A specialized controller has supplied the acceleration for this step.</summary>
+    public bool Handled;
     public Entity<ClassicZPhysicsComponent> Target = target;
+    public float FrameTime = frameTime;
     public float VelocityDelta = 0;
 }
+
+/// <summary>Allows movement into an obstructed destination to be rejected before map-move side effects run.</summary>
+[ByRefEvent]
+public struct ClassicZLevelMapMoveAttemptEvent(Entity<ClassicZMapComponent> destination, int offset)
+{
+    public Entity<ClassicZMapComponent> Destination = destination;
+    public int Offset = offset;
+    public bool Cancelled;
+
+    /// <summary>The transition was cancelled by a physical obstruction and should produce an impact.</summary>
+    public bool Blocked;
+}
+
+/// <summary>Raised when a floor, ceiling or destination fixture prevents a map transition.</summary>
+[ByRefEvent]
+public readonly record struct ClassicZLevelMapMoveBlockedEvent(int Offset);
 
 /// <summary>
 /// Called when UpdateGravityState is used to update the current strength of the active z-level gravity. Various systems can subscribe to this to disable gravity.

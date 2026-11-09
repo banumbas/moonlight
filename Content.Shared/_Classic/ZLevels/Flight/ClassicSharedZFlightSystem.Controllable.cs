@@ -57,8 +57,7 @@ public abstract partial class ClassicSharedZFlightSystem
         if (!_zLevel.TryMapUp(map.Value, out var mapAbove))
             return;
 
-        flyerComp.TargetMapHeight = mapAbove.Comp.Depth;
-        DirtyField(ent, flyerComp, nameof(ClassicZFlyerComponent.TargetMapHeight));
+        SetTargetHeight((ent, flyerComp), mapAbove.Comp.Depth);
 
         args.Handled = true;
     }
@@ -78,8 +77,7 @@ public abstract partial class ClassicSharedZFlightSystem
         if (!_zLevel.TryMapDown(map.Value, out var mapBelow))
             return;
 
-        flyerComp.TargetMapHeight = mapBelow.Comp.Depth;
-        DirtyField(ent, flyerComp, nameof(ClassicZFlyerComponent.TargetMapHeight));
+        SetTargetHeight((ent, flyerComp), mapBelow.Comp.Depth);
 
         args.Handled = true;
     }
@@ -135,7 +133,8 @@ public abstract partial class ClassicSharedZFlightSystem
             return;
         }
 
-        TryActivateFlight(ent.Owner);
+        if (!TryActivateFlight(ent.Owner))
+            StopFlightVisuals(ent.Owner);
         args.Handled = true;
     }
 }

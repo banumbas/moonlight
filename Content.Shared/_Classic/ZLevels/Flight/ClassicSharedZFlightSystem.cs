@@ -27,14 +27,12 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedGravitySystem _gravity = default!;
 
-    protected EntityQuery<ClassicZPhysicsComponent> ZPhyzQuery;
+    [Dependency] protected EntityQuery<ClassicZPhysicsComponent> ZPhyzQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         InitializeControllable();
-
-        ZPhyzQuery = GetEntityQuery<ClassicZPhysicsComponent>();
 
         SubscribeLocalEvent<ClassicZPhysicsComponent, ClassicFlightStartedEvent>(OnStartFlight);
         SubscribeLocalEvent<ClassicZPhysicsComponent, ClassicFlightStoppedEvent>(OnStopFlight);
@@ -96,7 +94,7 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
 
     private void OnGetZVelocity(Entity<ClassicZFlyerComponent> ent, ref ClassicGetZVelocityEvent args)
     {
-        if (!ent.Comp.Active)
+        if (!ent.Comp.Active || args.Handled)
             return;
 
         var zPhys = args.Target.Comp;
@@ -106,6 +104,7 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
 
         var distanceToTarget = targetPos - currentPos;
 
+        args.Handled = true;
         var targetVelocity = Math.Clamp(distanceToTarget * ent.Comp.FlightSpeed, -ent.Comp.FlightSpeed, ent.Comp.FlightSpeed);
         var velocityDelta = targetVelocity - currentVelocity;
 
@@ -157,6 +156,7 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
         DirtyField(ent, ent.Comp, nameof(ClassicZFlyerComponent.Active));
 
         zPhys.VelocityRaiseEvent = true;
+        DirtyField(ent, zPhys, nameof(ClassicZPhysicsComponent.VelocityRaiseEvent));
 
         _zLevel.UpdateGravityState((ent, zPhys));
         _zLevel.WakeBody((ent, zPhys));
@@ -182,6 +182,7 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
         DirtyField(ent, ent.Comp, nameof(ClassicZFlyerComponent.Active));
 
         zPhys.VelocityRaiseEvent = false;
+        DirtyField(ent, zPhys, nameof(ClassicZPhysicsComponent.VelocityRaiseEvent));
 
         _zLevel.UpdateGravityState((ent, zPhys));
         _gravity.RefreshWeightless(ent.Owner);
@@ -195,8 +196,12 @@ public abstract partial class ClassicSharedZFlightSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        if (ent.Comp.TargetMapHeight == targetHeight)
+            return;
+
         ent.Comp.TargetMapHeight = targetHeight;
         DirtyField(ent, ent.Comp, nameof(ClassicZFlyerComponent.TargetMapHeight));
+        _zLevel.WakeBody(ent.Owner);
     }
 
     private void StartFlightVisuals(Entity<ClassicZFlyerComponent?> ent)

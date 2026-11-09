@@ -1,13 +1,12 @@
 using Content.Shared._Classic.ZLevels.Core.Components;
+using Content.Shared._Classic.ZLevels.Core.EntitySystems;
 using Content.Shared.Throwing;
 
 namespace Content.Shared._Classic.ZLevels.Throwing;
 
 /// <summary>
-/// Keeps z-physics out of the way of a vanilla throw: while an entity is actually being
-/// thrown, its horizontal flight distance/timing is fully governed by ThrowingSystem's
-/// friction-based model, so z-physics gravity/ground-sync/BodyStatus-sync must not run
-/// for it (that fight is what caused throws to land short or overshoot the cursor).
+/// Suspends z-physics for throws from the ground so it does not interfere with their
+/// friction-based timing. Impulses to airborne bodies preserve their vertical motion.
 /// </summary>
 public sealed partial class ClassicZLevelThrowingSystem : EntitySystem
 {
@@ -20,6 +19,9 @@ public sealed partial class ClassicZLevelThrowingSystem : EntitySystem
 
     private void OnThrown(Entity<ClassicZPhysicsComponent> ent, ref ThrownEvent args)
     {
+        if (ent.Comp.LocalPosition - ent.Comp.CachedGroundHeight > ClassicSharedZLevelsSystem.AirborneHeightThreshold)
+            return;
+
         ent.Comp.Disabled = true;
         DirtyField(ent, ent.Comp, nameof(ClassicZPhysicsComponent.Disabled));
     }
