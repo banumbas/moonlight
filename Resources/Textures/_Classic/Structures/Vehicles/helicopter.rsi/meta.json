@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by parkinson3506 (Discord)",
+  "size": {
+    "x": 480,
+    "y": 320
+  },
+  "states": [
+    {
+      "name": "heli"
+    },
+    {
+      "name": "rotor_blades"
+    },
+    {
+      "name": "rotor_tail"
+    },
+    {
+      "name": "rotor_blur",
+      "delays": [[0.05, 0.05, 0.05, 0.05]]
+    }
+  ]
+}

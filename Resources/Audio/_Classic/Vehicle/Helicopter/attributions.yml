@@ -1,0 +1,4 @@
+- files: ["rotor_start.ogg", "rotor_loop.ogg", "rotor_stop.ogg"]
+  license: "CC0-1.0"
+  copyright: "Helicopter Sounds by aquinn (2015). Cropped, mixed to mono and looped. Spin-up sequences recorded blade beats at increasing repetition rates, with a mild pitch rise, progressive volume and a crossfade into the running loop. Variable-speed and volume envelopes added for rotor stop. CC0: https://creativecommons.org/publicdomain/zero/1.0/"
+  source: "https://opengameart.org/content/helicopter-sounds"
