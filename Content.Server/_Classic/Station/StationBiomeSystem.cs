@@ -33,7 +33,6 @@ public sealed partial class ClassicStationBiomeSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ClassicZLevelsSystem _zLevels = default!;
     [Dependency] private ClassicZLevelMappingSystem _zMapping = default!;
@@ -103,49 +102,6 @@ public sealed partial class ClassicStationBiomeSystem : EntitySystem
         }
 
         _zMapping.TrySynchronizePlanetaryLighting(network);
-    }
-
-    /// <summary>
-    /// Generates persistent planetary terrain underneath the world-space bounds of the supplied grids.
-    /// </summary>
-    public bool TryGenerateBiomeGround(
-        Entity<ClassicStationBiomeComponent?> station,
-        MapId groundMapId,
-        IReadOnlyList<EntityUid> sourceGrids)
-    {
-        if (!Resolve(station, ref station.Comp, false))
-            return false;
-
-        var stationGridUid = _station.GetLargestGrid(station.Owner);
-        if (stationGridUid == null ||
-            !TryComp<MapGridComponent>(stationGridUid.Value, out var stationGrid) ||
-            !TryComp<TransformComponent>(stationGridUid.Value, out var stationGridXform) ||
-            stationGridXform.MapID != groundMapId ||
-            !TryComp<BiomeComponent>(stationGridUid.Value, out var biome))
-        {
-            return false;
-        }
-
-        var groundInvWorld = _transform.GetInvWorldMatrix(stationGridXform);
-        var tiles = new List<(Vector2i Index, Tile Tile)>();
-
-        foreach (var sourceGridUid in sourceGrids)
-        {
-            if (sourceGridUid == EntityUid.Invalid ||
-                !TryComp<MapGridComponent>(sourceGridUid, out var sourceGrid) ||
-                !TryComp<TransformComponent>(sourceGridUid, out var sourceXform))
-            {
-                continue;
-            }
-
-            var worldBounds = _transform.GetWorldMatrix(sourceXform).TransformBox(sourceGrid.LocalAABB);
-            var groundLocalBounds = groundInvWorld.TransformBox(worldBounds);
-
-            tiles.Clear();
-            _biome.ReserveTiles(stationGridUid.Value, groundLocalBounds, tiles, biome, stationGrid);
-        }
-
-        return true;
     }
 
     private void SetupUpperConstructionLevel(EntityUid surfaceMapUid, ClassicStationBiomeComponent component)

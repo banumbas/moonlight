@@ -180,7 +180,8 @@ public sealed class ClassicZLevelOpeningCache(
         Vector2i end,
         SharedMapSystem map,
         ITileDefinitionManager tile,
-        out Box2 bounds)
+        out Box2 bounds,
+        Func<Vector2i, bool>? includeOpening = null)
     {
         var min = Vector2i.ComponentMin(start, end);
         var max = Vector2i.ComponentMax(start, end);
@@ -206,6 +207,9 @@ public sealed class ClassicZLevelOpeningCache(
                 if (chunkSize == DefaultChunkSize
                         ? (cached.OpeningMask & OpeningMaskBit(chunkStart, x, y)) == 0
                         : !IsOpeningTile(grid, index, map, tile))
+                    continue;
+
+                if (includeOpening != null && !includeOpening(index))
                     continue;
 
                 first = Vector2i.ComponentMin(first, index);
@@ -276,7 +280,10 @@ public sealed class ClassicZLevelOpeningCache(
                                 Math.Min(endY, (chunkY + 1) * chunkSize - 1),
                                 map,
                                 tileDefinition,
-                                _ => true))
+                                gridScratch.Count == 1
+                                    ? static _ => true
+                                    : openingTile => !IsOpeningCovered(grid, openingTile, gridWorldMatrix,
+                                        gridScratch, map, transform, tileDefinition)))
                         {
                             return true;
                         }
@@ -286,6 +293,19 @@ public sealed class ClassicZLevelOpeningCache(
 
                     if (!exactOpeningBounds)
                     {
+                        if (gridScratch.Count > 1 && !ForEachOpeningTileInBounds(
+                                grid, chunk,
+                                Math.Max(startX, chunkX * chunkSize),
+                                Math.Min(endX, (chunkX + 1) * chunkSize - 1),
+                                Math.Max(startY, chunkY * chunkSize),
+                                Math.Min(endY, (chunkY + 1) * chunkSize - 1),
+                                map, tileDefinition,
+                                openingTile => !IsOpeningCovered(grid, openingTile, gridWorldMatrix,
+                                    gridScratch, map, transform, tileDefinition)))
+                        {
+                            continue;
+                        }
+
                         var chunkStart = chunk * chunkSize;
                         var chunkEnd = chunkStart + new Vector2i(chunkSize, chunkSize);
                         var tileSize = MathF.Max(grid.Comp.TileSize, float.Epsilon);
@@ -322,6 +342,12 @@ public sealed class ClassicZLevelOpeningCache(
                             tileDefinition,
                             openingTile =>
                             {
+                                if (gridScratch.Count > 1 && IsOpeningCovered(grid, openingTile, gridWorldMatrix,
+                                        gridScratch, map, transform, tileDefinition))
+                                {
+                                    return false;
+                                }
+
                                 var tileSize = MathF.Max(grid.Comp.TileSize, float.Epsilon);
                                 var localTileBounds = new Box2(
                                     (Vector2) openingTile * tileSize,
@@ -341,6 +367,56 @@ public sealed class ClassicZLevelOpeningCache(
 
         combinedOpeningBounds = combinedBounds;
         return foundOpening;
+    }
+
+    /// <summary>
+    /// A hole in one grid is hidden if another grid completely covers it. Check current transforms
+    /// and tiles instead of caching coverage, so moving floors cannot leave stale render decisions.
+    /// </summary>
+    public static bool IsOpeningCovered(
+        Entity<MapGridComponent> source,
+        Vector2i opening,
+        Matrix3x2 sourceWorldMatrix,
+        List<Entity<MapGridComponent>> grids,
+        SharedMapSystem map,
+        SharedTransformSystem transform,
+        ITileDefinitionManager tileDefinition)
+    {
+        var sourceBounds = new Box2((Vector2) opening * source.Comp.TileSize,
+            (Vector2) (opening + Vector2i.One) * source.Comp.TileSize);
+        foreach (var other in grids)
+        {
+            if (other.Owner == source.Owner)
+                continue;
+
+            var matrix = sourceWorldMatrix * transform.GetInvWorldMatrix(other);
+            var bounds = matrix.TransformBox(sourceBounds);
+            if (!other.Comp.LocalAABB.Contains(bounds))
+                continue;
+
+            // The transformed AABB may include extra cells on rotated grids. Requiring all of
+            // them to be opaque is conservative: partial coverage must keep the hole visible.
+            var size = other.Comp.TileSize;
+            var minX = (int) MathF.Floor(bounds.Left / size);
+            var minY = (int) MathF.Floor(bounds.Bottom / size);
+            var maxX = (int) MathF.Ceiling(bounds.Right / size) - 1;
+            var maxY = (int) MathF.Ceiling(bounds.Top / size) - 1;
+            var covered = true;
+            for (var y = minY; y <= maxY && covered; y++)
+            for (var x = minX; x <= maxX; x++)
+            {
+                if (IsOpeningTile(other, new Vector2i(x, y), map, tileDefinition))
+                {
+                    covered = false;
+                    break;
+                }
+            }
+
+            if (covered)
+                return true;
+        }
+
+        return false;
     }
 
     public void FindOpeningCentersNear(

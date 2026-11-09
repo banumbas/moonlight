@@ -3,6 +3,7 @@
   maps:
   - /Maps/_Classic/Nonstations/Outpost/outpost0.yml
   - /Maps/_Classic/Nonstations/Outpost/outpost1.yml
+  - /Maps/_Classic/Nonstations/Outpost/outpost2.yml
   components:
   - type: MapAtmosphere
     space: False

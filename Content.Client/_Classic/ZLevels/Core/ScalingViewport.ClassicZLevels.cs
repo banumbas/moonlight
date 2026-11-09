@@ -3,6 +3,7 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
+using System.Collections.Generic;
 using System.Numerics;
 using Content.Client._Classic.ZLevels.Core;
 using Content.Shared.CCVar;
@@ -30,6 +31,8 @@ public sealed partial class ScalingViewport
     private SharedTransformSystem? _zTransform;
     private IClydeViewport? _lowerViewport;
     private UIBox2 _lowerVisiblePixels;
+    private readonly List<Entity<MapGridComponent>> _openingGrids = new();
+    private readonly List<Box2> _openingBounds = new();
 
     [ViewVariables] public Vector2i LowerLevelRenderSize { get; private set; }
 
@@ -60,62 +63,33 @@ public sealed partial class ScalingViewport
 
         var minX = MathF.Min(MathF.Min(corner0.X, corner1.X), MathF.Min(corner2.X, corner3.X));
         var minY = MathF.Min(MathF.Min(corner0.Y, corner1.Y), MathF.Min(corner2.Y, corner3.Y));
+        var maxX = MathF.Max(MathF.Max(corner0.X, corner1.X), MathF.Max(corner2.X, corner3.X));
+        var maxY = MathF.Max(MathF.Max(corner0.Y, corner1.Y), MathF.Max(corner2.Y, corner3.Y));
 
         if (_mapSystem is null)
             return true;
 
-        if (!_mapSystem.TryFindGridAt(mapUid, new Vector2(minX, minY), out var gridUid, out var grid))
-        {
-            // A corner can itself be an empty tile. Find the grid around the hole instead
-            // of making that small opening trigger a full-screen lower-level pass.
-            var maxX = MathF.Max(MathF.Max(corner0.X, corner1.X), MathF.Max(corner2.X, corner3.X));
-            var maxY = MathF.Max(MathF.Max(corner0.Y, corner1.Y), MathF.Max(corner2.Y, corner3.Y));
-            var state = (Uid: gridUid, Grid: grid, Area: 0f);
-            _mapSystem.FindGridsIntersecting(mapUid, new Box2(minX, minY, maxX, maxY), ref state,
-                static (EntityUid uid, MapGridComponent candidate, ref (EntityUid Uid, MapGridComponent? Grid, float Area) found) =>
-                {
-                    var area = candidate.LocalAABB.Width * candidate.LocalAABB.Height;
-                    if (found.Grid == null || area > found.Area)
-                        found = (uid, candidate, area);
-                    return true;
-                }, approx: true);
-            if (state.Grid == null)
-                return true;
-
-            gridUid = state.Uid;
-            grid = state.Grid;
-        }
-
-        // All four corners are required for a rotated grid/camera.
-        var tile0 = _mapSystem.TileIndicesFor(gridUid, grid, new MapCoordinates(corner0, mapId));
-        var tile1 = _mapSystem.TileIndicesFor(gridUid, grid, new MapCoordinates(corner1, mapId));
-        var tile2 = _mapSystem.TileIndicesFor(gridUid, grid, new MapCoordinates(corner2, mapId));
-        var tile3 = _mapSystem.TileIndicesFor(gridUid, grid, new MapCoordinates(corner3, mapId));
-        var tileBottomLeft = Vector2i.ComponentMin(Vector2i.ComponentMin(tile0, tile1), Vector2i.ComponentMin(tile2, tile3));
-        var tileTopRight = Vector2i.ComponentMax(Vector2i.ComponentMax(tile0, tile1), Vector2i.ComponentMax(tile2, tile3));
-
         // Tile events invalidate only the affected chunks in the system-owned cache. A viewport
         // cache without those events discarded the entire map whenever terrain streamed in.
         _zLevels ??= _entityManager.System<ClassicClientZLevelsSystem>();
+        _zTransform ??= _entityManager.System<SharedTransformSystem>();
+        _openingBounds.Clear();
+        var found = _zLevels.OpeningCache.TryFindOpeningBounds(mapId,
+            new Box2(minX, minY, maxX, maxY), captureBounds ? _openingBounds : null,
+            out var worldBounds, int.MaxValue, exactOpeningBounds: true,
+            _openingGrids, _mapSystem, _zTransform, _tile);
+        if (_openingGrids.Count == 0)
+            return true;
+        if (!found)
+            return false;
+
         if (captureBounds)
         {
-            if (!_zLevels.OpeningCache.TryGetOpeningBounds((gridUid, grid),
-                    tileBottomLeft - Vector2i.One, tileTopRight + Vector2i.One, _mapSystem, _tile, out var localBounds))
-                return false;
-
-            _zTransform ??= _entityManager.System<SharedTransformSystem>();
-            var matrix = _zTransform.GetWorldMatrix(gridUid) * viewport.GetWorldToLocalMatrix();
-            var pixels = matrix.TransformBox(localBounds);
+            var pixels = viewport.GetWorldToLocalMatrix().TransformBox(worldBounds);
             _lowerVisiblePixels = new UIBox2(pixels.Left, pixels.Bottom, pixels.Right, pixels.Top);
-            return true;
         }
 
-        return _zLevels.OpeningCache.HasOpeningInTileBounds(
-            (gridUid, grid),
-            tileBottomLeft - Vector2i.One,
-            tileTopRight + Vector2i.One,
-            _mapSystem,
-            _tile);
+        return true;
     }
 
     private void RenderZLevels(IClydeViewport viewport, IRenderHandle handle)

@@ -3287,7 +3287,17 @@ public sealed partial class BiomeSystem
         int openingChunkSize,
         out Box2 openingWorldBounds)
     {
-        if (scan.ExactQueryCached &&
+        var gridWorldMatrix = _transform.GetWorldMatrix(gridUid);
+        var tileSize = grid.TileSize;
+        var queryWorldBounds = gridWorldMatrix.TransformBox(new Box2(
+            (Vector2) exactFirstTile * tileSize, (Vector2) (exactLastTile + Vector2i.One) * tileSize));
+        var coveringGrids = _classicOpeningGrids;
+        coveringGrids.Clear();
+        _mapSystem.FindGridsIntersecting(Transform(gridUid).MapID, queryWorldBounds,
+            ref coveringGrids, approx: true, includeMap: true);
+        var checkCoverage = coveringGrids.Count > 1;
+
+        if (!checkCoverage && scan.ExactQueryCached &&
             scan.ExactQueryFirstTile == exactFirstTile &&
             scan.ExactQueryLastTile == exactLastTile)
         {
@@ -3322,14 +3332,23 @@ public sealed partial class BiomeSystem
             {
                 var bit = BitOperations.TrailingZeroCount(matching);
                 var tile = chunkOrigin + new Vector2i(bit % openingChunkSize, bit / openingChunkSize);
+                matching &= matching - 1UL;
+                if (checkCoverage && ClassicZLevelOpeningCache.IsOpeningCovered(
+                        (gridUid, grid), tile, gridWorldMatrix, coveringGrids,
+                        _mapSystem, _transform, TileDefManager))
+                {
+                    continue;
+                }
+
                 firstOpeningTile = Vector2i.ComponentMin(firstOpeningTile, tile);
                 lastOpeningTile = Vector2i.ComponentMax(lastOpeningTile, tile);
-                matching &= matching - 1UL;
                 found = true;
             }
         }
 
-        scan.ExactQueryCached = true;
+        // The raw snapshot remains reusable. Coverage is checked against live grids, so a moved
+        // or damaged prefab floor cannot leave a stale filtered result in this query cache.
+        scan.ExactQueryCached = !checkCoverage;
         scan.ExactQueryFirstTile = exactFirstTile;
         scan.ExactQueryLastTile = exactLastTile;
         scan.ExactQueryHasOpening = found;
@@ -3345,11 +3364,10 @@ public sealed partial class BiomeSystem
                 return false;
             }
 
-            var tileSize = MathF.Max(grid.TileSize, float.Epsilon);
             var localMetres = new Box2(
                 (Vector2) scan.ExactQueryFirstOpeningTile * tileSize,
                 (Vector2) (scan.ExactQueryLastOpeningTile + Vector2i.One) * tileSize);
-            result = _transform.GetWorldMatrix(gridUid).TransformBox(localMetres);
+            result = gridWorldMatrix.TransformBox(localMetres);
             return true;
         }
     }
@@ -3392,6 +3410,19 @@ public sealed partial class BiomeSystem
         var lastTile = new Vector2i(
             (int) MathF.Floor(localBounds.Right) + 1,
             (int) MathF.Floor(localBounds.Top) + 1);
+        var gridWorldMatrix = _transform.GetWorldMatrix(gridUid);
+        var worldBounds = gridWorldMatrix.TransformBox(new Box2(
+            (Vector2) firstTile * grid.TileSize, (Vector2) (lastTile + Vector2i.One) * grid.TileSize));
+        var mapId = Transform(gridUid).MapID;
+        var coveringGrids = _classicOpeningGrids;
+        coveringGrids.Clear();
+        _mapSystem.FindGridsIntersecting(mapId, worldBounds, ref coveringGrids,
+            approx: true, includeMap: true);
+        Func<Vector2i, bool>? includeOpening = coveringGrids.Count > 1
+            ? tile => !ClassicZLevelOpeningCache.IsOpeningCovered((gridUid, grid), tile,
+                gridWorldMatrix, coveringGrids, _mapSystem, _transform, TileDefManager)
+            : null;
+
         var firstChunk = SharedMapSystem.GetChunkIndices(firstTile, ChunkSize);
         var lastChunk = SharedMapSystem.GetChunkIndices(lastTile, ChunkSize);
         var found = false;
@@ -3414,7 +3445,8 @@ public sealed partial class BiomeSystem
                     searchEnd,
                     _mapSystem,
                     TileDefManager,
-                    out var localOpeningBounds))
+                    out var localOpeningBounds,
+                    includeOpening))
             {
                 continue;
             }

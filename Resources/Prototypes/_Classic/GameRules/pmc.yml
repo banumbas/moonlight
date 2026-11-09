@@ -9,9 +9,12 @@
     denyGameRules:
     - AbductorsSpawn
   - type: ClassicMergeMapRule
-    mapPath: /Maps/_Classic/Nonstations/pmc_outpost.yml
-    targetDepth: 1
+    zMap: Outpost
+    targetDepth: 0
     biomeGroundDepth: 0
+    randomPlacement: true
+    minDistance: 256
+    maxDistance: 512
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     antags:

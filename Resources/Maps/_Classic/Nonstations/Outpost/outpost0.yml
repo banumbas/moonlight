@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/02/2026 20:34:24
-  entityCount: 1652
+  time: 10/03/2026 13:31:59
+  entityCount: 1650
 maps:
 - 1
 grids:
@@ -40,7 +40,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Map Entity
+      name: Mapping Outpost [0]
     - type: Transform
     - type: Map
       mapPaused: True
@@ -137,7 +137,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
-    - type: ImplicitRoof
     - type: NavMap
     - type: GridPathfinding
     - type: Gravity
@@ -821,6 +820,7 @@ entities:
       chunkHistory: {}
     - type: GridSplitNode
     - type: ClassicZLevelsLaddersCache
+    - type: ClassicZLevelRoof
 - proto: ActionToggleLight
   entities:
   - uid: 96
@@ -889,7 +889,7 @@ entities:
       pos: -7.5,4.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -11010.236
+      secondsUntilStateChange: -20787.967
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -901,7 +901,7 @@ entities:
       pos: -11.5,4.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -11015.336
+      secondsUntilStateChange: -20793.066
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -5915,6 +5915,27 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.451538,-20.300049
+    - type: GroupExamine
+      group:
+      - title: null
+        icon: /Textures/Interface/examine-star.png
+        hoverMessage: ""
+        entries:
+        - priority: 0
+          message: >-
+            Обеспечивает следующую защиту:
+
+            - [color=blue]Stamina[/color] damage reduced by [color=lightblue]0%[/color].
+
+            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]90%[/color].
+          component: Armor
+        - priority: 0
+          message: Понижает вашу скорость бега на [color=yellow]10%[/color].
+          component: ClothingSpeedModifier
+        contextText: verb-examine-group-other
+        components:
+        - Armor
+        - ClothingSpeedModifier
 - proto: ClothingBeltUtilityEngineering
   entities:
   - uid: 954
@@ -6037,11 +6058,11 @@ entities:
       containers:
         entity_storage: !type:Container
           ents:
-          - 526
           - 519
-          - 514
-          - 453
           - 454
+          - 453
+          - 514
+          - 526
           showEnts: False
           occludes: True
         paper_label: !type:ContainerSlot
@@ -6623,8 +6644,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.5,-18.5
-    - type: Lock
-      locked: False
 - proto: LockerEngineerFilled
   entities:
   - uid: 396
@@ -7581,11 +7600,6 @@ entities:
       pos: -6.5,-0.5
 - proto: RandomVendingDrinks
   entities:
-  - uid: 1214
-    components:
-    - type: Transform
-      parent: 2
-      pos: -28.5,14.5
   - uid: 2708
     components:
     - type: Transform
@@ -8499,20 +8513,6 @@ entities:
       containers:
         ballistic-ammo: !type:Container
           ents: []
-  - uid: 1030
-    components:
-    - type: Transform
-      parent: 1029
-    - type: HardpointIntegrity
-      integrity: 500
-    - type: Gun
-      projectileSpeedModified: 40
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          ents: []
 - proto: VehicleTankRocketLauncher
   entities:
   - uid: 1081
@@ -8551,8 +8551,7 @@ entities:
       canCollide: False
     - type: ContainerContainer
       containers:
-        turret-cannon: !type:ContainerSlot
-          ent: 1030
+        turret-cannon: !type:ContainerSlot {}
         turret-launcher: !type:ContainerSlot
           ent: 1031
     - type: HardpointState
