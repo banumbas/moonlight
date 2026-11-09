@@ -46,10 +46,11 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly VehicleWheelSystem _wheels = default!;
+    [Dependency] private EntityQuery<ClassicVehicleComponent> _vehicleQuery = default!;
 
-    private EntityQuery<MapGridComponent> gridQ;
-    private EntityQuery<PhysicsComponent> physicsQ;
-    private EntityQuery<FixturesComponent> fixtureQ;
+    [Dependency] private EntityQuery<MapGridComponent> gridQ = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> physicsQ = default!;
+    [Dependency] private EntityQuery<FixturesComponent> fixtureQ = default!;
 
     private const float Clearance = PhysicsConstants.PolygonRadius * 0.75f;
     private const double MobCollisionDamage = 8;
@@ -150,9 +151,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        gridQ = GetEntityQuery<MapGridComponent>();
-        physicsQ = GetEntityQuery<PhysicsComponent>();
-        fixtureQ = GetEntityQuery<FixturesComponent>();
         SubscribeLocalEvent<GridVehicleMoverComponent, ComponentStartup>(OnMoverStartup);
         SubscribeLocalEvent<GridVehicleMoverComponent, ComponentShutdown>(OnMoverShutdown);
         SubscribeLocalEvent<GridVehicleMoverComponent, MoveEvent>(OnMoverMove);
@@ -190,6 +188,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         bool force = false)
     {
         var uid = ent.Owner;
+        if (!_vehicleQuery.TryComp(uid, out var vehicle) || vehicle.MovementKind != ClassicVehicleMovementKind.Grid)
+            return false;
+
         xform ??= Transform(uid);
 
         if (xform.GridUid is not { } grid || !gridQ.TryComp(grid, out var gridComp))

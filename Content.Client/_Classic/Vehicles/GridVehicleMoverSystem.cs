@@ -1,35 +1,24 @@
 using System.Collections.Generic;
 using System.Numerics;
-using Content.Shared._Classic.Vehicles;
-using Content.Shared._Classic.Vehicles;
-using ClientPhysicsSystem = Robust.Client.Physics.PhysicsSystem;
 using SharedMover = Content.Shared._Classic.Vehicles.GridVehicleMoverSystem;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Client.Physics;
 
 namespace Content.Client._Classic.Vehicles;
 
 public sealed class GridVehicleMoverSystem : EntitySystem
 {
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly ClientPhysicsSystem _physics = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public static readonly List<Vector2> DebugCollisionPositions = new();
 
     private GridVehicleMoverOverlay? _overlay;
     private VehicleHardpointDebugOverlay? _hardpointOverlay;
-    private EntityUid? _lastPredictedVehicle;
 
     public override void Initialize()
     {
         _overlay = new GridVehicleMoverOverlay(EntityManager);
         _hardpointOverlay = new VehicleHardpointDebugOverlay(EntityManager);
-
-        SubscribeLocalEvent<GridVehicleMoverComponent, UpdateIsPredictedEvent>(OnUpdateIsPredicted);
 
         _overlayManager.AddOverlay(_hardpointOverlay);
     }
@@ -106,50 +95,6 @@ public sealed class GridVehicleMoverSystem : EntitySystem
         else if (!enabled && hasOverlay)
         {
             _overlayManager.RemoveOverlay(_overlay);
-        }
-    }
-
-    private void OnUpdateIsPredicted(Entity<GridVehicleMoverComponent> ent, ref UpdateIsPredictedEvent args)
-    {
-        if (_playerManager.LocalEntity is not { } local)
-            return;
-
-        if (!TryComp(ent.Owner, out ClassicVehicleComponent? vehicle))
-            return;
-
-        if (vehicle.Operator == local)
-            args.IsPredicted = true;
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        if (_playerManager.LocalEntity is not { } local)
-        {
-            if (_lastPredictedVehicle is { } oldVehicle)
-                _physics.UpdateIsPredicted(oldVehicle);
-            _lastPredictedVehicle = null;
-            return;
-        }
-
-        if (TryComp(local, out ClassicVehicleOperatorComponent? op) && op.Vehicle is { } vehicle)
-        {
-            if (_lastPredictedVehicle != vehicle)
-            {
-                if (_lastPredictedVehicle is { } oldVehicle)
-                    _physics.UpdateIsPredicted(oldVehicle);
-
-                _lastPredictedVehicle = vehicle;
-                _physics.UpdateIsPredicted(vehicle);
-            }
-            return;
-        }
-
-        if (_lastPredictedVehicle is { } oldPredicted)
-        {
-            _physics.UpdateIsPredicted(oldPredicted);
-            _lastPredictedVehicle = null;
         }
     }
 }

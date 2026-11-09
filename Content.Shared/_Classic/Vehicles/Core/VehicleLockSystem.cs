@@ -33,7 +33,6 @@ public sealed class VehicleLockSystem : EntitySystem
     {
         SubscribeLocalEvent<VehicleEnterComponent, MapInitEvent>(OnVehicleMapInit);
         SubscribeLocalEvent<VehicleEnterComponent, InteractUsingEvent>(OnVehicleInteractUsing);
-        SubscribeLocalEvent<VehicleExitComponent, InteractUsingEvent>(OnVehicleExitInteractUsing);
         SubscribeLocalEvent<VehicleKeyComponent, InteractUsingEvent>(OnKeyInteractUsing);
         SubscribeLocalEvent<VehicleKeyComponent, ExaminedEvent>(OnKeyExamined);
 
@@ -271,20 +270,6 @@ public sealed class VehicleLockSystem : EntitySystem
         BindKey((args.Used, sourceKey), ent.Comp.KeyId, copied: true, sourceName: Name(ent));
         _popup.PopupEntity(Loc.GetString("rmc-vehicle-key-copy-success"), args.User, args.User, PopupType.Small);
         args.Handled = true;
-    }
-
-    private void OnVehicleExitInteractUsing(Entity<VehicleExitComponent> ent, ref InteractUsingEvent args)
-    {
-        if (_net.IsClient || args.Handled)
-            return;
-
-        if (!TryComp(args.Used, out VehicleKeyComponent? keyComp))
-            return;
-
-        if (!_vehicle.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle is not { } vehicleUid)
-            return;
-
-        args.Handled = TryUseKeyOnVehicle((args.Used, keyComp), vehicleUid, args.User);
     }
 
     private void OnKeyExamined(Entity<VehicleKeyComponent> ent, ref ExaminedEvent args)

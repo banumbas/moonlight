@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 namespace Content.Shared._Classic.Vehicles;
 
 [RegisterComponent]
-[Access(typeof(ClassicVehicleSystem))]
+[Access(typeof(ClassicVehicleSystem), Other = AccessPermissions.Read)]
 public sealed partial class VehicleInteriorComponent : Component
 {
     public EntityUid Map = EntityUid.Invalid;
@@ -34,3 +34,11 @@ public sealed partial class VehicleInteriorOccupantComponent : Component
     [AutoNetworkedField]
     public EntityUid Vehicle = EntityUid.Invalid;
 }
+
+/// <summary>
+/// Raised on the exterior vehicle after an occupant has been moved onto its interior map.
+/// Systems that need to mirror exterior state into the cabin should subscribe to this instead of
+/// subscribing to the occupant's map-change event directly.
+/// </summary>
+[ByRefEvent]
+public readonly record struct VehicleInteriorOccupantEnteredEvent(EntityUid Occupant);

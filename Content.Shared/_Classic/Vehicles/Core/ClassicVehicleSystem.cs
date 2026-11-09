@@ -63,6 +63,7 @@ public sealed class ClassicVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleEnterComponent, ComponentShutdown>(OnVehicleEnterShutdown);
         SubscribeLocalEvent<VehicleExitComponent, ActivateInWorldEvent>(OnVehicleExitActivate);
         SubscribeLocalEvent<VehicleExitComponent, InteractHandEvent>(OnVehicleExitInteractHand);
+        SubscribeLocalEvent<VehicleExitComponent, InteractUsingEvent>(OnVehicleExitInteractUsing);
         SubscribeLocalEvent<VehicleEnterComponent, VehicleEnterDoAfterEvent>(OnVehicleEnterDoAfter);
         SubscribeLocalEvent<VehicleExitComponent, VehicleExitDoAfterEvent>(OnVehicleExitDoAfter);
 
@@ -442,6 +443,23 @@ public sealed class ClassicVehicleSystem : EntitySystem
         args.Handled = activateArgs.Handled;
     }
 
+    private void OnVehicleExitInteractUsing(Entity<VehicleExitComponent> ent, ref InteractUsingEvent args)
+    {
+        if (_net.IsClient || args.Handled)
+            return;
+
+        if (TryComp(args.Used, out VehicleKeyComponent? key))
+        {
+            if (TryGetVehicleFromInterior(ent, out var vehicle) && vehicle is { } vehicleUid)
+                args.Handled = _vehicleLock.TryUseKeyOnVehicle((args.Used, key), vehicleUid, args.User);
+            return;
+        }
+
+        var activateArgs = new ActivateInWorldEvent(args.User, ent.Owner, false);
+        OnVehicleExitActivate(ent, ref activateArgs);
+        args.Handled = activateArgs.Handled;
+    }
+
     private bool TryFindEntry(Entity<VehicleEnterComponent> ent, EntityUid user, out int entryIndex)
     {
         entryIndex = -1;
@@ -676,6 +694,9 @@ public sealed class ClassicVehicleSystem : EntitySystem
             args.NewMapId == interior.MapId)
         {
             RegisterTrackedOccupant(ent.Comp.Vehicle, ent.Owner, interior);
+
+            var entered = new VehicleInteriorOccupantEnteredEvent(ent.Owner);
+            RaiseLocalEvent(ent.Comp.Vehicle, ref entered);
             return;
         }
 

@@ -1,4 +1,5 @@
 using Content.Shared._Classic.Vehicles;
+using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
@@ -25,6 +26,10 @@ public sealed partial class ClassicVehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public ClassicVehicleMovementKind MovementKind = ClassicVehicleMovementKind.Grid;
+
+    /// <summary>Default exterior view position, in vehicle-local metres. Windows can supply their own position.</summary>
+    [DataField, AutoNetworkedField]
+    public Vector2 CameraOffset;
 }
 
 [Serializable, NetSerializable]
@@ -38,7 +43,8 @@ public enum ClassicVehicleVisuals : byte
 public enum ClassicVehicleMovementKind : byte
 {
     Standard,
-    Grid
+    Grid,
+    Flight,
 }
 
 [ByRefEvent, UsedImplicitly]

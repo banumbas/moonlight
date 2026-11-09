@@ -57,10 +57,20 @@ public sealed partial class ClassicVehicleBaseSystem : EntitySystem
 
     private void OnVehicleUpdateCanMove(Entity<ClassicVehicleComponent> ent, ref UpdateCanMoveEvent args)
     {
-        var ev = new ClassicVehicleCanRunEvent(ent);
-        RaiseLocalEvent(ent, ref ev);
-        if (!ev.CanRun)
+        if (!CanRun(ent.AsNullable()))
             args.Cancel();
+    }
+
+    /// <summary>Checks the vehicle's shared operating restrictions, including frame integrity and installed equipment.</summary>
+    [PublicAPI]
+    public bool CanRun(Entity<ClassicVehicleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        var ev = new ClassicVehicleCanRunEvent((ent, ent.Comp));
+        RaiseLocalEvent(ent, ref ev);
+        return ev.CanRun;
     }
 
     private void OnVehicleShutdown(Entity<ClassicVehicleComponent> ent, ref ComponentShutdown args)
@@ -130,10 +140,13 @@ public sealed partial class ClassicVehicleBaseSystem : EntitySystem
             {
                 _mover.SetRelay(uid.Value, entity);
             }
-            else if (entity.Comp.MovementKind == ClassicVehicleMovementKind.Grid)
+            else
             {
-                EnsureComp<GridVehicleMoverComponent>(entity.Owner);
-                EnsureComp<GridVehicleOperatorComponent>(uid.Value);
+                if (entity.Comp.MovementKind == ClassicVehicleMovementKind.Grid)
+                {
+                    EnsureComp<GridVehicleMoverComponent>(entity);
+                    EnsureComp<GridVehicleOperatorComponent>(uid.Value);
+                }
                 RemCompDeferred<RelayInputMoverComponent>(uid.Value);
                 RemCompDeferred<MovementRelayTargetComponent>(entity);
             }

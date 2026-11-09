@@ -30,6 +30,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Explosion.EntitySystems;
+using Content.Shared._Starlight.Medical.Damage;
 
 namespace Content.Shared._Classic.Vehicles;
 
@@ -74,7 +75,7 @@ public sealed partial class HardpointSystem : EntitySystem
         SubscribeLocalEvent<HardpointSlotsComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<HardpointSlotsComponent, EntRemovedFromContainerMessage>(OnRemoved);
         SubscribeLocalEvent<HardpointSlotsComponent, ClassicVehicleCanRunEvent>(OnVehicleCanRun);
-        SubscribeLocalEvent<HardpointSlotsComponent, DamageModifyEvent>(OnVehicleDamageModify);
+        SubscribeLocalEvent<HardpointSlotsComponent, DamageBeforeApplyEvent>(OnVehicleDamageBeforeApply);
         SubscribeLocalEvent<HardpointIntegrityComponent, ComponentInit>(OnHardpointIntegrityInit);
         SubscribeLocalEvent<HardpointIntegrityComponent, InteractUsingEvent>(
             OnHardpointRepair,
@@ -550,15 +551,16 @@ public sealed partial class HardpointSystem : EntitySystem
         _vehicles.RefreshCanRun((uid, vehicle));
     }
 
-    private void OnVehicleDamageModify(Entity<HardpointSlotsComponent> ent, ref DamageModifyEvent args)
+    private void OnVehicleDamageBeforeApply(Entity<HardpointSlotsComponent> ent, ref DamageBeforeApplyEvent args)
     {
-        if (_net.IsClient)
+        if (_net.IsClient || args.Cancelled)
             return;
 
         var incomingMultiplier = GetVehicleIncomingDamageMultiplier(args.Origin);
         if (incomingMultiplier > 1f)
             args.Damage = ScaleDamage(args.Damage, incomingMultiplier);
 
+        // Damageable handles vehicle-wide armor; only individual hardpoint modifiers remain below.
         var totalDamage = args.Damage.GetTotal().Float();
         if (totalDamage <= 0f)
             return;
@@ -583,7 +585,7 @@ public sealed partial class HardpointSystem : EntitySystem
         if (TryComp(ent.Owner, out HardpointIntegrityComponent? frameIntegrity))
         {
             var frameDamage = ScaleDamage(args.Damage, hullFraction);
-            var frameAmount = GetVehicleFrameDamageAmount(ent.Owner, frameDamage);
+            var frameAmount = MathF.Max(frameDamage.GetTotal().Float(), 0f);
 
             if (frameAmount > 0f)
                 DamageHardpoint(ent.Owner, ent.Owner, frameAmount, frameIntegrity);
@@ -690,7 +692,7 @@ public sealed partial class HardpointSystem : EntitySystem
 
     private void ApplyDamageToHardpoint(EntityUid vehicle, EntityUid hardpoint, HardpointIntegrityComponent integrity, DamageSpecifier damage)
     {
-        var amount = GetHardpointDamageAmount(vehicle, hardpoint, damage);
+        var amount = GetHardpointDamageAmount(hardpoint, damage);
 
         if (amount <= 0f)
             return;
@@ -698,14 +700,11 @@ public sealed partial class HardpointSystem : EntitySystem
         DamageHardpoint(vehicle, hardpoint, amount, integrity);
     }
 
-    private float GetHardpointDamageAmount(EntityUid vehicle, EntityUid hardpoint, DamageSpecifier damage)
+    private float GetHardpointDamageAmount(EntityUid hardpoint, DamageSpecifier damage)
     {
         var modifiedTotal = MathF.Max(damage.GetTotal().Float(), 0f);
         var modifierSets = new List<DamageModifierSet>();
         CollectHardpointDamageModifierSets(hardpoint, modifierSets);
-
-        if (!HasComp<VehicleArmorHardpointComponent>(hardpoint))
-            CollectVehicleArmorModifierSets(vehicle, modifierSets);
 
         if (modifierSets.Count > 0)
         {
@@ -724,15 +723,6 @@ public sealed partial class HardpointSystem : EntitySystem
         return total;
     }
 
-    private void CollectVehicleArmorModifierSets(EntityUid vehicle, List<DamageModifierSet> modifierSets)
-    {
-        if (!TryComp(vehicle, out DamageProtectionBuffComponent? protection) || protection.Modifiers.Count == 0)
-            return;
-
-        foreach (var modifier in protection.Modifiers.Values)
-            modifierSets.Add(modifier);
-    }
-
     private void CollectHardpointDamageModifierSets(EntityUid hardpoint, List<DamageModifierSet> modifierSets)
     {
         if (TryComp(hardpoint, out HardpointDamageModifierComponent? hardpointModifiers))
@@ -743,33 +733,6 @@ public sealed partial class HardpointSystem : EntitySystem
                     modifierSets.Add(modifierSet);
             }
         }
-
-        if (TryComp(hardpoint, out VehicleArmorHardpointComponent? armorHardpoint))
-        {
-            foreach (var modifierSetId in armorHardpoint.ModifierSets)
-            {
-                if (_prototypeManager.TryIndex<DamageModifierSetPrototype>(modifierSetId, out var modifierSet))
-                    modifierSets.Add(modifierSet);
-            }
-        }
-    }
-
-    private float GetVehicleFrameDamageAmount(EntityUid vehicle, DamageSpecifier damage)
-    {
-        var total = MathF.Max(damage.GetTotal().Float(), 0f);
-        if (!TryComp(vehicle, out DamageProtectionBuffComponent? protection) ||
-            protection.Modifiers.Count == 0)
-        {
-            return total;
-        }
-
-        var modifiedDamage = damage;
-        foreach (var modifier in protection.Modifiers.Values)
-        {
-            modifiedDamage = DamageSpecifier.ApplyModifierSet(modifiedDamage, modifier);
-        }
-
-        return MathF.Max(modifiedDamage.GetTotal().Float(), 0f);
     }
 
     private void OnHardpointIntegrityInit(Entity<HardpointIntegrityComponent> ent, ref ComponentInit args)
