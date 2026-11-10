@@ -31,10 +31,11 @@ public sealed partial class ScalingViewport
     private SharedTransformSystem? _zTransform;
     private IClydeViewport? _lowerViewport;
     private UIBox2 _lowerVisiblePixels;
-    private readonly List<Entity<MapGridComponent>> _openingGrids = new();
-    private readonly List<Box2> _openingBounds = new();
+    private readonly Dictionary<EntityUid, MoonlightZLevelViewOpeningCache> _openingViews = new();
 
     [ViewVariables] public Vector2i LowerLevelRenderSize { get; private set; }
+    [ViewVariables] public int ZLevelRenderPasses { get; private set; }
+    [ViewVariables] public int ZLevelOpeningSearches { get; private set; }
 
     private EntityQuery<TransformComponent>? _xformQuery;
     private EntityQuery<MapComponent>? _mapQuery;
@@ -73,13 +74,18 @@ public sealed partial class ScalingViewport
         // cache without those events discarded the entire map whenever terrain streamed in.
         _zLevels ??= _entityManager.System<MoonlightClientZLevelsSystem>();
         _zTransform ??= _entityManager.System<SharedTransformSystem>();
-        _openingBounds.Clear();
-        var found = _zLevels.OpeningCache.TryFindOpeningBounds(mapId,
-            new Box2(minX, minY, maxX, maxY), captureBounds ? _openingBounds : null,
-            out var worldBounds, int.MaxValue, exactOpeningBounds: true,
-            _openingGrids, _mapSystem, _zTransform, _tile);
-        if (_openingGrids.Count == 0)
-            return true;
+        if (!_openingViews.TryGetValue(mapUid, out var view))
+        {
+            // Bound retained snapshots even after visiting many unrelated maps.
+            if (_openingViews.Count >= MoonlightSharedZLevelsSystem.MaxZLevelsBelowRendering)
+                _openingViews.Clear();
+            view = new MoonlightZLevelViewOpeningCache();
+            _openingViews.Add(mapUid, view);
+        }
+        var previousSearches = view.Searches;
+        var found = view.TryFindOpeningBounds(mapId, new Box2(minX, minY, maxX, maxY), captureBounds,
+            _zLevels.OpeningCache, _mapSystem, _zTransform, _tile, out var worldBounds);
+        ZLevelOpeningSearches += view.Searches - previousSearches;
         if (!found)
             return false;
 
@@ -95,6 +101,8 @@ public sealed partial class ScalingViewport
     private void RenderZLevels(IClydeViewport viewport, IRenderHandle handle)
     {
         LowerLevelRenderSize = Vector2i.Zero;
+        ZLevelOpeningSearches = 0;
+        ZLevelRenderPasses = _eye == null ? 0 : 1;
         if (_eye is null)
             return;
 
@@ -145,38 +153,35 @@ public sealed partial class ScalingViewport
 
         var zMapUid = playerXform.MapUid.Value;
         var lookUp = 0;
-        if (zLevelViewer.LookUp)
-            lookUp = _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, zMapUid);
+        var maxLevelsAbove = Math.Clamp(_configuration.GetCVar(CCVars.MoonlightZLevelsRenderingLevelsAbove),
+            0, MoonlightSharedZLevelsSystem.MaxZLevelsAboveRendering);
+        if (zLevelViewer.LookUp && maxLevelsAbove > 0)
+            lookUp = Math.Min(maxLevelsAbove, _zLevels.GetVisibleZLevelsAbove(_player.LocalEntity.Value, zMapUid));
 
         var maxLevelsBelow = Math.Clamp(
             _configuration.GetCVar(CCVars.MoonlightZLevelsRenderingMaxZLevelsBelowRendering),
             0,
             MoonlightSharedZLevelsSystem.MaxZLevelsBelowRendering);
+        maxLevelsBelow = Math.Min(maxLevelsBelow,
+            Math.Clamp(_configuration.GetCVar(CCVars.MoonlightZLevelsRenderingLevelsBelow),
+                0, MoonlightSharedZLevelsSystem.MaxZLevelsBelowRendering));
 
         var lowestDepth = 0;
         var cropLower = _configuration.GetCVar(CCVars.MoonlightZLevelsRenderingCropLowerLevels);
         _lowerVisiblePixels = UIBox2.FromDimensions(Vector2.Zero, viewport.Size);
-        for (var i = 0; i >= -maxLevelsBelow; i--)
+        var checkingMap = zMapUid;
+        for (var i = 1; i <= maxLevelsBelow; i++)
         {
-            var checkingMap = zMapUid;
-
-            if (i != 0)
-            {
-                if (!_zLevels.TryMapOffset(zMapUid, i, out var mapUidBelow))
-                    continue;
-
-                checkingMap = mapUidBelow;
-            }
-
-            lowestDepth = i;
-
-            // The opening state of the deepest permitted level cannot reveal another
-            // level, so scanning its tiles cannot affect this frame's render range.
-            if (i == -maxLevelsBelow)
+            // Resolve the next map before inspecting terrain: ordinary maps and the bottom
+            // of a Z network do not need an opening search at all.
+            if (!_zLevels.TryMapDown(checkingMap, out var nextMap))
                 break;
 
-            if (!TryFindEmptyTiles(checkingMap, viewport, captureBounds: cropLower && i == 0))
+            if (!TryFindEmptyTiles(checkingMap, viewport, captureBounds: cropLower && i == 1))
                 break;
+
+            lowestDepth = -i;
+            checkingMap = nextMap.Owner;
         }
 
         var lowerBounds = UIBox2i.FromDimensions(Vector2i.Zero, viewport.Size);
@@ -224,6 +229,7 @@ public sealed partial class ScalingViewport
         var softShadowsSuppressed = false;
 
         //From the lowest depth to the highest, render each level
+        ZLevelRenderPasses = 0;
         try
         {
             for (var depth = lowestDepth; depth <= lookUp; depth++)
@@ -286,6 +292,7 @@ public sealed partial class ScalingViewport
 
                 target.ClearColor = depth == lowestDepth ? Color.Black : null;
                 target.Render();
+                ZLevelRenderPasses++;
             }
         }
         finally

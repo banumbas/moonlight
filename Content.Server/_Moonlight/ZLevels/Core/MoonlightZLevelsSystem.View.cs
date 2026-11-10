@@ -162,7 +162,7 @@ public sealed partial class MoonlightZLevelsSystem
     private void OnViewerMove(Entity<MoonlightZLevelViewerComponent> ent, ref MoveEvent args)
     {
         if (ent.Comp.LookUp && !args.OnlyRotation)
-            UpdateUpperEyes(ent);
+            UpdateUpperEyes(ent, allowSameTileFastPath: true);
     }
 
     private void OnViewerMetaFlagRemoveAttempt(

@@ -12,6 +12,10 @@
                 <!-- Quality -->
                 <Label Text="{Loc 'ui-options-quality-label'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownLightingQuality" Title="{Loc 'ui-options-lighting-label'}" />
+                <!-- Moonlight-Edit start -->
+                <ui:OptionSlider Name="ZLevelsBelowSlider" Title="{Loc 'moonlight-ui-options-zlevels-below'}"/>
+                <ui:OptionSlider Name="ZLevelsAboveSlider" Title="{Loc 'moonlight-ui-options-zlevels-above'}"/>
+                <!-- Moonlight-Edit end -->
                 <ui:OptionDropDown Name="DropDownParticleQuality" Title="{Loc 'ui-options-particles-label'}" /> <!-- _Starfall: Particles -->
                 <ui:OptionDropDown Name="DropDownInteractionParticles" Title="{Loc 'ui-options-interaction-particles'}" ToolTip="{Loc 'ui-options-interaction-particles-tooltip'}" /> <!-- Starlight, interaction particles -->
                 <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />

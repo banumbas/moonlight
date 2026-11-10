@@ -7,8 +7,8 @@ namespace Content.Shared._Moonlight.ZLevels.Core.EntitySystems;
 
 public abstract partial class MoonlightSharedZLevelsSystem
 {
-    public static int MaxZLevelsBelowRendering = 5;
-    public static int MaxZLevelsAboveRendering = 3;
+    public const int MaxZLevelsBelowRendering = 5;
+    public const int MaxZLevelsAboveRendering = 3;
     public const float ZLevelOffset = 0.7f;
 
     public const float ZGravityForce = 9.8f;

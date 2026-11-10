@@ -244,6 +244,72 @@ public sealed class ZLevelMovementTest : GameTest
 
     [Test]
     [PairConfig(nameof(ConnectedClient))]
+    public async Task ClientViewportOpeningCacheReusesSearchAndTracksTilesAndMovingFloors()
+    {
+        var em = Client.EntMan;
+        var map = em.System<SharedMapSystem>();
+        var transform = em.System<SharedTransformSystem>();
+        var openings = em.System<MoonlightClientZLevelsSystem>().OpeningCache;
+        var tiles = Client.ResolveDependency<ITileDefinitionManager>();
+        var view = new MoonlightZLevelViewOpeningCache();
+        EntityUid mapUid = default;
+        try
+        {
+            await Client.WaitPost(() =>
+            {
+                mapUid = map.CreateMap();
+                var mapId = em.GetComponent<MapComponent>(mapUid).MapId;
+                var floor = map.CreateGridEntity(mapUid);
+                floor.Comp.CanSplit = false;
+                var plating = new Tile(tiles["Plating"].TileId);
+                var batch = new List<(Vector2i, Tile)>();
+                for (var x = -8; x < 8; x++)
+                for (var y = -8; y < 8; y++)
+                    batch.Add((new Vector2i(x, y), plating));
+                map.SetTiles(floor, floor.Comp, batch);
+
+                bool Search(Box2 bounds) => view.TryFindOpeningBounds(mapId, bounds, true,
+                    openings, map, transform, tiles, out _);
+
+                var bounds = new Box2(-0.8f, -0.8f, 0.8f, 0.8f);
+                Assert.That(Search(bounds), Is.False);
+                for (var frame = 0; frame < 120; frame++)
+                    Assert.That(Search(bounds.Translated(new Vector2(frame / 1000f))), Is.False);
+                Assert.That(view.Searches, Is.EqualTo(1), "Sub-tile camera movement must reuse the terrain search.");
+
+                map.SetTile(floor, Vector2i.Zero, Tile.Empty);
+                Assert.That(Search(bounds), Is.True);
+                Assert.That(view.Searches, Is.EqualTo(2));
+                map.SetTile(floor, Vector2i.Zero, plating);
+                Assert.That(Search(bounds), Is.False, "A second write in the same tick must invalidate the view.");
+                map.SetTile(floor, Vector2i.Zero, Tile.Empty);
+                Assert.That(Search(bounds), Is.True);
+
+                var cover = map.CreateGridEntity(mapUid);
+                cover.Comp.CanSplit = false;
+                map.SetTiles(cover, cover.Comp, batch);
+                Assert.That(Search(bounds), Is.False, "An overlapping opaque floor must hide the opening.");
+                transform.SetWorldPosition(cover, new Vector2(0.25f, 0));
+                Assert.That(Search(bounds), Is.False);
+                Assert.That(view.Searches, Is.EqualTo(6), "Grid movement must invalidate a cached coverage decision.");
+                transform.SetWorldPosition(cover, new Vector2(32, 0));
+                Assert.That(Search(bounds), Is.True);
+                em.DeleteEntity(cover);
+                map.SetTile(floor, Vector2i.Zero, plating);
+                Assert.That(Search(bounds), Is.False);
+                em.DeleteEntity(floor);
+                Assert.That(Search(bounds), Is.True, "Removing the final grid leaves open space.");
+            });
+        }
+        finally
+        {
+            if (mapUid != EntityUid.Invalid)
+                await Client.WaitPost(() => em.DeleteEntity(mapUid));
+        }
+    }
+
+    [Test]
+    [PairConfig(nameof(ConnectedClient))]
     public async Task ClientOpeningBoundsIncludeAllHolesAndShrinkAfterClosingOne()
     {
         var em = Client.EntMan;

@@ -3,6 +3,7 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
+using Content.Shared._Moonlight.ZLevels.Core.EntitySystems;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
@@ -49,6 +50,14 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<int>
         MoonlightZLevelsRenderingMaxZLevelsBelowRendering = CVarDef.Create("ce.zlevels.rendering.max_zLevels_below_rendering", 1, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>Client render distance below the player, additionally limited by the server.</summary>
+    public static readonly CVarDef<int>
+        MoonlightZLevelsRenderingLevelsBelow = CVarDef.Create("ce.zlevels.rendering.levels_below", MoonlightSharedZLevelsSystem.MaxZLevelsBelowRendering, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>Client render distance above the player while looking up.</summary>
+    public static readonly CVarDef<int>
+        MoonlightZLevelsRenderingLevelsAbove = CVarDef.Create("ce.zlevels.rendering.levels_above", MoonlightSharedZLevelsSystem.MaxZLevelsAboveRendering, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>Render lower levels only around visible floor openings, at the main viewport's pixel density.</summary>
     public static readonly CVarDef<bool>

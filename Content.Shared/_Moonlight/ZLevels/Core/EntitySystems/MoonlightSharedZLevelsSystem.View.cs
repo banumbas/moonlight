@@ -59,16 +59,12 @@ public abstract partial class MoonlightSharedZLevelsSystem
         if (currentMapUid is null)
             return 0;
 
-        var tile = new Vector2i(
-            (int) MathF.Floor(worldPos.X),
-            (int) MathF.Floor(worldPos.Y));
-        if (viewer.VisibleZLevelsAboveMap != currentMapUid.Value.Owner ||
-            viewer.VisibleZLevelsAboveTile != tile)
+        if (!viewer.LookUp || viewer.VisibleZLevelsAboveMap != currentMapUid.Value.Owner)
         {
             return 0;
         }
 
-        var maxVisibleLevels = Math.Min(viewer.VisibleZLevelsAbove, MaxZLevelsAboveRendering);
+        var maxVisibleLevels = Math.Min((int) viewer.VisibleZLevelsAbove, MaxZLevelsAboveRendering);
         if (maxVisibleLevels == 0)
             return 0;
 

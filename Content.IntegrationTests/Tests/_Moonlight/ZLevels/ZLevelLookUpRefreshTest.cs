@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Content.Client._Moonlight.ZLevels.Core;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Moonlight.ZLevels.Core;
 using Content.Shared._Moonlight.ZLevels.Core.Components;
@@ -16,6 +17,75 @@ namespace Content.IntegrationTests.Tests._Moonlight.ZLevels;
 public sealed class ZLevelLookUpRefreshTest : GameTest
 {
     public override PoolSettings PoolSettings => new() { Connected = true };
+
+    [Test]
+    public async Task PredictedViewerCrossesTilesWithoutLosingLookUpAndStillStopsAtCeilings()
+    {
+        var map = SEntMan.System<SharedMapSystem>();
+        var zLevels = SEntMan.System<MoonlightZLevelsSystem>();
+        var actions = SEntMan.System<SharedActionsSystem>();
+        var session = ServerSession!;
+        var originalViewer = session.AttachedEntity;
+        EntityUid network = default;
+        var viewerNet = NetEntity.Invalid;
+
+        try
+        {
+            await Server.WaitPost(() =>
+            {
+                var current = map.CreateMap();
+                var upper = map.CreateMap();
+                var upperGrid = map.CreateGridEntity(upper);
+                upperGrid.Comp.CanSplit = false;
+                var plating = new Tile(Server.ResolveDependency<ITileDefinitionManager>()["Plating"].TileId);
+                map.SetTile(upperGrid, new Vector2i(2, 0), plating);
+                var zNetwork = zLevels.CreateMapNetwork();
+                network = zNetwork;
+                Assert.That(zLevels.TryAddMapsIntoNetwork(zNetwork, new Dictionary<EntityUid, int>
+                {
+                    [current] = 0,
+                    [upper] = 1,
+                }), Is.True);
+
+                var viewer = SEntMan.SpawnEntity(null, new EntityCoordinates(current, new Vector2(0.5f, 0.5f)));
+                Server.PlayerMan.SetAttachedEntity(session, viewer);
+                var component = SEntMan.GetComponent<MoonlightZLevelViewerComponent>(viewer);
+                var action = actions.GetAction(component.ActionEntity);
+                Assert.That(action, Is.Not.Null);
+                actions.PerformAction(viewer, action!.Value);
+                viewerNet = SEntMan.GetNetEntity(viewer);
+            });
+            await Pair.RunTicksSync(10);
+            await Pair.SyncTicks(targetDelta: 1);
+
+            await Client.WaitPost(() =>
+            {
+                var viewer = CEntMan.GetEntity(viewerNet);
+                var component = CEntMan.GetComponent<MoonlightZLevelViewerComponent>(viewer);
+                var clientZ = CEntMan.System<MoonlightClientZLevelsSystem>();
+                var transform = CEntMan.System<SharedTransformSystem>();
+                Assert.That(component.VisibleZLevelsAboveTile, Is.EqualTo(Vector2i.Zero));
+                Assert.That(clientZ.GetVisibleZLevelsAbove(viewer), Is.EqualTo(1));
+
+                // Advance only the client, leaving the authoritative visibility tile behind.
+                transform.SetWorldPosition(viewer, new Vector2(1.5f, 0.5f));
+                Assert.That(component.VisibleZLevelsAboveTile, Is.EqualTo(Vector2i.Zero));
+                Assert.That(clientZ.GetVisibleZLevelsAbove(viewer), Is.EqualTo(1));
+                transform.SetWorldPosition(viewer, new Vector2(2.5f, 0.5f));
+                Assert.That(clientZ.GetVisibleZLevelsAbove(viewer), Is.Zero, "A local opaque ceiling must still stop the view.");
+                transform.SetWorldPosition(viewer, new Vector2(0.5f, 0.5f));
+            });
+        }
+        finally
+        {
+            await Server.WaitPost(() => Server.PlayerMan.SetAttachedEntity(session, originalViewer));
+            if (network != EntityUid.Invalid)
+            {
+                await Server.WaitPost(() => zLevels.DeleteMapNetwork(network));
+                await Server.WaitRunTicks(2);
+            }
+        }
+    }
 
     [Test]
     public async Task StationaryViewerRechecksMovingUpperGridAndChangedCeiling()

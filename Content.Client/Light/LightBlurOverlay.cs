@@ -45,6 +45,7 @@ public sealed partial class LightBlurOverlay : Overlay
 
         if (res.BlurTarget?.Size != size)
         {
+            res.BlurTarget?.Dispose(); // Moonlight-Add
             res.BlurTarget = _clyde
                 .CreateRenderTarget(size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "enlarged-light-blur");
         }
