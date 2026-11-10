@@ -144,9 +144,9 @@
                                     Text="{Loc 'humanoid-profile-editor-clothing-show'}"
                                     ToggleMode="True" />
                             </BoxContainer>
-                            <!-- Classic-Start -->
+                            <!-- Moonlight-Start -->
                             <!-- Spawn Priority hidden: players arrive via supply pods instead -->
-                            <!-- Classic-End -->
+                            <!-- Moonlight-End -->
                             <BoxContainer HorizontalExpand="True" Visible="False">
                                 <Label Text="{Loc 'humanoid-profile-editor-spawn-priority-label'}" />
                                 <Control HorizontalExpand="True" />

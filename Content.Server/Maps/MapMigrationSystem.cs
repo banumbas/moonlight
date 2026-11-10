@@ -28,7 +28,7 @@ public sealed partial class MapMigrationSystem : EntitySystem
     [
         "/migration.yml",
         "/_Starlight/migration.yml",
-        "/_Classic/migration.yml"
+        "/_Moonlight/migration.yml"
     ];
 
     public override void Initialize()

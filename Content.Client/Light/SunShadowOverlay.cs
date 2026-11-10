@@ -13,7 +13,7 @@ namespace Content.Client.Light;
 
 public sealed partial class SunShadowOverlay : Overlay
 {
-    // classic remove | private static readonly ProtoId<ShaderPrototype> MixShader = "Mix";
+    // moonlight remove | private static readonly ProtoId<ShaderPrototype> MixShader = "Mix";
 
     public override OverlaySpace Space => OverlaySpace.BeforeLighting;
 
@@ -22,7 +22,7 @@ public sealed partial class SunShadowOverlay : Overlay
     [Dependency] private IPrototypeManager _protoManager = default!;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedMapSystem _map;
-    private readonly SharedRoofSystem _roof; // classic-add
+    private readonly SharedRoofSystem _roof; // moonlight-add
     private readonly SharedTransformSystem _xformSys;
 
     private readonly HashSet<Entity<SunShadowCastComponent>> _shadows = new();
@@ -34,16 +34,16 @@ public sealed partial class SunShadowOverlay : Overlay
         IoCManager.InjectDependencies(this);
         _xformSys = _entManager.System<SharedTransformSystem>();
         _map = _entManager.System<SharedMapSystem>();
-        _roof = _entManager.System<SharedRoofSystem>(); // classic-add
+        _roof = _entManager.System<SharedRoofSystem>(); // moonlight-add
         _lookup = _entManager.System<EntityLookupSystem>();
-        // classic-start
+        // moonlight-start
         var stencilClearPrototype = _protoManager.Index(StencilClearShaderPrototype);
         _stencilClearShader = stencilClearPrototype.Instance();
         _stencilRestoreShader = stencilClearPrototype.InstanceUnique();
         _stencilRestoreShader.Stencil = _stencilRestoreShader.Stencil with { Ref = byte.MaxValue };
         _stencilMaskShader = _protoManager.Index(StencilMaskShaderPrototype).Instance();
         _unroofedMixShader = _protoManager.Index(UnroofedMixShaderPrototype).Instance();
-        // classic-end
+        // moonlight-end
         ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;
     }
 
@@ -86,11 +86,11 @@ public sealed partial class SunShadowOverlay : Overlay
         var lightScale = viewport.LightRenderTarget.Size / (Vector2)viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
 
-        var suns = GetSunShadows(args.MapUid); // classic-add
+        var suns = GetSunShadows(args.MapUid); // moonlight-add
 
-        foreach (var sunEntity in suns) // classic-edit
+        foreach (var sunEntity in suns) // moonlight-edit
         {
-            var sun = sunEntity.Comp; // classic-add
+            var sun = sunEntity.Comp; // moonlight-add
             //if (!_entManager.TryGetComponent(grid.Owner, out SunShadowComponent? sun))
             //{
             //    continue;
@@ -168,26 +168,26 @@ public sealed partial class SunShadowOverlay : Overlay
                     var invMatrix =
                         viewport.LightRenderTarget.GetWorldToLocalMatrix(eye, scale);
 
-                    PrepareSunShadowRoofStencil(worldHandle, invMatrix, worldBounds); // classic-add
+                    PrepareSunShadowRoofStencil(worldHandle, invMatrix, worldBounds); // moonlight-add
 
                     worldHandle.SetTransform(invMatrix);
 
                     //var maskShader = _protoManager.Index(MixShader).Instance();
-                    worldHandle.UseShader(_unroofedMixShader); // classic-edit
+                    worldHandle.UseShader(_unroofedMixShader); // moonlight-edit
 
                     worldHandle.DrawTextureRect(res.Target.Texture, worldBounds, Color.Black.WithAlpha(alpha));
-                    // classic-start
+                    // moonlight-start
                     RestoreLightStencil(worldHandle, invMatrix, worldBounds);
                     worldHandle.UseShader(null);
                     worldHandle.SetTransform(Matrix3x2.Identity);
-                    // classic-end
+                    // moonlight-end
                 }, null);
         }
     }
 
     protected override void DisposeBehavior()
     {
-        _stencilRestoreShader.Dispose(); // classic-add
+        _stencilRestoreShader.Dispose(); // moonlight-add
         _resources.Dispose();
 
         base.DisposeBehavior();

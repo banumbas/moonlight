@@ -45,12 +45,12 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         // Starlight BEGIN
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
-        var formattedDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan > TimeSpan.Zero ? overallDiffSpan : TimeSpan.Zero); // Classic edit
+        var formattedDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan > TimeSpan.Zero ? overallDiffSpan : TimeSpan.Zero); // Moonlight edit
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired),
-            ("time", formattedDiff))); // Classic edit
+            ("time", formattedDiff))); // Moonlight edit
         // Starlight END
 
         if (!Inverted)
@@ -62,7 +62,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
                 "role-timer-overall-insufficient",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired), // Starlight
-                ("time", formattedDiff))); // Classic edit
+                ("time", formattedDiff))); // Moonlight edit
             return bypass; // NullLink
         }
 
@@ -72,7 +72,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
                 ("required", formattedRequired),
-                ("time", formattedDiff))); // Classic edit // Starlight END
+                ("time", formattedDiff))); // Moonlight edit // Starlight END
             return bypass; // NullLink
         }
 

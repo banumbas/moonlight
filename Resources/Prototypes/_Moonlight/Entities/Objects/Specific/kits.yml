@@ -1,0 +1,325 @@
+- type: entity
+  id: BoxPMCEquipmentBase
+  parent: BoxCardboard
+  name: ent-BoxPMCEquipmentBase
+  components:
+  - type: Sprite
+    color: "#5f6c7a"
+
+- type: entity
+  id: BoxPMCEquipment1
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipment1
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMC
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMC
+
+- type: entity
+  id: BoxPMCEquipment2
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipment2
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMC
+
+- type: entity
+  id: BoxPMCEquipment3
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipment3
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMC
+
+- type: entity
+  id: BoxPMCEquipmentMedic1
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipmentMedic1
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMC
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMCMedic
+
+- type: entity
+  id: BoxPMCEquipmentMedic2
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipmentMedic2
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMCMedic
+
+- type: entity
+  id: BoxPMCEquipmentMedic3
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCEquipmentMedic3
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+      - id: ClothingShoesBootsMagPMC
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadsetPMC
+      - id: ClothingBeltMilitaryWebbing
+      - id: ClothingBackpackMessengerPMCMedic
+
+- type: entity
+  id: BoxPMCArmorAssault
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCArmorAssault
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorPMC
+      - id: ClothingHeadHelmetPMCAssault
+
+- type: entity
+  id: BoxPMCArmorMedic
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCArmorMedic
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorPMCMedic
+      - id: ClothingHeadHelmetPMCMedic
+
+- type: entity
+  id: BoxPMCArmorCommander
+  parent: BoxPMCEquipmentBase
+  name: ent-BoxPMCArmorCommander
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorPMCCommander
+      - id: ClothingHeadHelmetPMCCommander
+
+- type: entity
+  id: BoxPMCWeaponCaseBase
+  parent: BaseStorageItem
+  name: ent-BoxPMCWeaponCaseBase
+  description: ent-BoxPMCWeaponCaseBase-desc
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Objects/Storage/guncase.rsi
+    layers:
+    - map: [ base ]
+      state: closed
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: open }
+          False: { state: closed }
+  - type: Appearance
+  - type: Item
+    size: Ginormous
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: ContainerContainer
+  - type: ItemSlots
+    slots:
+      slot_1:
+        name: Slot 1
+        whitelist:
+          components:
+          - Gun
+          - MeleeWeapon
+          - ItemToggleMeleeWeapon
+          - DisarmMalus
+          - OrbitalDesignator
+          - CartridgeAmmo
+          - Storage
+          tags:
+          - PMCGunCaseAllowed
+          - CartridgeRocket
+          - FlamerTank
+      slot_2:
+        name: Slot 2
+        whitelist:
+          components:
+          - Gun
+          - MeleeWeapon
+          - ItemToggleMeleeWeapon
+          - DisarmMalus
+          - OrbitalDesignator
+          - CartridgeAmmo
+          - Storage
+          tags:
+          - PMCGunCaseAllowed
+          - CartridgeRocket
+          - FlamerTank
+      slot_3:
+        name: Slot 3
+        whitelist:
+          components:
+          - Gun
+          - MeleeWeapon
+          - ItemToggleMeleeWeapon
+          - DisarmMalus
+          - OrbitalDesignator
+          - CartridgeAmmo
+          - Storage
+          tags:
+          - PMCGunCaseAllowed
+          - CartridgeRocket
+          - FlamerTank
+
+- type: entity
+  id: BoxPMCWeaponA
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponShotgunBulldogPMC
+
+- type: entity
+  id: BoxPMCWeaponB
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponRifleARG
+
+- type: entity
+  id: BoxPMCWeaponC
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponRevolverProtocol
+      slot_2:
+        startingItem: EnergySword
+
+- type: entity
+  id: BoxPMCWeaponD
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponSubMachineGunUziPMC
+      slot_2:
+        startingItem: TelescopicShield
+
+- type: entity
+  id: BoxPMCWeaponScout
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponShotgunZhihaoPMC
+      slot_2:
+        startingItem: WeaponSniperZhihaoPMC
+
+- type: entity
+  id: BoxPMCWeaponPyro
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: FlamerBackpackTankFLCS
+      slot_2:
+        startingItem: FlamerFuelTankSmall
+
+- type: entity
+  id: BoxPMCWeaponComm1
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponRifleM90PMC
+      slot_2:
+        startingItem: WeaponRocketLauncherPMC
+      slot_3:
+        startingItem: ClothingBackpackMessengerPMCCommanderRockets
+
+- type: entity
+  id: BoxPMCWeaponComm2
+  parent: BoxPMCWeaponCaseBase
+  components:
+  - type: ItemSlots
+    slots:
+      slot_1:
+        startingItem: WeaponRifleM52PMC
+      slot_2:
+        startingItem: WeaponOrbitalDesignatorPMC
+
+- type: entity
+  id: BoxPMCAmmoKit
+  parent: BoxPMCEquipmentBase
+  name: PMC ammunition kit
+  description: A cardboard box filled with an extensive supply of ammunition for PMC squad weapons.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,8,3
+  - type: StorageFill
+    contents:
+    - id: MagazineLightRifleFMJ
+      amount: 4
+    - id: MagazineLightRifle60PMC
+      amount: 2
+    - id: MagazineShotgun
+      amount: 3
+    - id: MagazineBoxSniperZhihaoPMC
+      amount: 1
+    - id: SpeedLoaderShotgunZhihao
+      amount: 2
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+
+- type: entity
+  id: BoxPMCMedicalKit
+  parent: BoxPMCEquipmentBase
+  name: PMC medical kit
+  description: A cardboard box filled with medical supplies and hyposprays for PMC field operations.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,8,3
+  - type: StorageFill
+    contents:
+    - id: DefibrillatorSyndicate
+    - id: MedkitCombatFilled
+      amount: 4
+    - id: CombatMedipen
+      amount: 6
+    - id: Stimpack
+      amount: 3

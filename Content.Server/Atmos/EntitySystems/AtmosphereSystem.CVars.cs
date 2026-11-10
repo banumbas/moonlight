@@ -38,7 +38,7 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void InitializeCVars()
         {
-            InitializeClassicCVars(); // Classic-Edit
+            InitializeMoonlightCVars(); // Moonlight-Edit
             Subs.CVar(_cfg, CCVars.SpaceWind, value => SpaceWind = value, true);
             Subs.CVar(_cfg, CCVars.SpaceWindPressureForceDivisorThrow, value => SpaceWindPressureForceDivisorThrow = value, true);
             Subs.CVar(_cfg, CCVars.SpaceWindPressureForceDivisorPush, value => SpaceWindPressureForceDivisorPush = value, true);

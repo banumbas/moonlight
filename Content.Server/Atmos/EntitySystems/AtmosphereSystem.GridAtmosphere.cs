@@ -44,13 +44,13 @@ public sealed partial class AtmosphereSystem
 
     private void OnGridAtmosphereInit(EntityUid uid, GridAtmosphereComponent component, ComponentInit args)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (AtmosDisabled)
         {
             ClearGridAtmosphere(component);
             return;
         }
-        // Classic-End
+        // Moonlight-End
 
         EnsureComp<GasTileOverlayComponent>(uid);
         foreach (var tile in component.Tiles.Values)
@@ -61,13 +61,13 @@ public sealed partial class AtmosphereSystem
 
     private void OnGridAtmosphereStartup(EntityUid uid, GridAtmosphereComponent component, ComponentStartup args)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (AtmosDisabled)
         {
             ClearGridAtmosphere(component);
             return;
         }
-        // Classic-End
+        // Moonlight-End
 
         if (!TryComp(uid, out MapGridComponent? mapGrid))
             return;
@@ -77,10 +77,10 @@ public sealed partial class AtmosphereSystem
 
     private void OnGridSplit(EntityUid uid, GridAtmosphereComponent originalGridAtmos, ref GridSplitEvent args)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (AtmosDisabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         foreach (var newGrid in args.NewGrids)
         {
@@ -133,7 +133,7 @@ public sealed partial class AtmosphereSystem
         if (args.Handled)
             return;
 
-        args.Simulated = !AtmosDisabled && component.Simulated; // Classic-Edit
+        args.Simulated = !AtmosDisabled && component.Simulated; // Moonlight-Edit
         args.Handled = true;
     }
 
@@ -336,10 +336,10 @@ public sealed partial class AtmosphereSystem
     /// </summary>
     public void InvalidateAllTiles(Entity<MapGridComponent?, GridAtmosphereComponent?> entity)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (AtmosDisabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         var (uid, grid, atmos) = entity;
         if (!Resolve(uid, ref grid, ref atmos))

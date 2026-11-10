@@ -1,0 +1,64 @@
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPMCAssault
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani
+  jobName: roles-antag-pmc-assault-name
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPMCMedic
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-medic
+  jobName: roles-antag-pmc-medic-name
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPMCSpecialist
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-spec
+  jobName: roles-antag-pmc-specialist-name
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPMCCommander
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-commander
+  jobName: roles-antag-pmc-commander-name
+
+- type: factionIcon
+  id: FactionIconPMCAssault
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani
+
+- type: factionIcon
+  id: FactionIconPMCMedic
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-medic
+
+- type: factionIcon
+  id: FactionIconPMCSpecialist
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-spec
+
+- type: factionIcon
+  id: FactionIconPMCCommander
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Moonlight/Interface/Misc/job_icons.rsi
+    state: eridani-commander
+

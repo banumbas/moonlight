@@ -5,7 +5,7 @@
   description: A sign indicating the brig medical bay.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: brigmed
 
 - type: entity
@@ -15,7 +15,7 @@
   description: A sign indicating a disposal area.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: disposals_proper
 
 - type: entity
@@ -25,7 +25,7 @@
   description: A sign indicating a secure area.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: secureareasmall
 
 - type: entity
@@ -35,7 +35,7 @@
   description: A sign indicating a biohazard.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: wall_biohazard
 
 - type: entity
@@ -45,7 +45,7 @@
   description: A sign indicating extreme heat.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: wall_extremeheat
 
 - type: entity
@@ -55,7 +55,7 @@
   description: A sign indicating you can not smoke here.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: nosmoking
 
 - type: entity
@@ -65,7 +65,7 @@
   description: A sign indicating you can smoke here.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: yessmoking
 
 - type: entity
@@ -75,7 +75,7 @@
   description: A direction sign, pointing out which way the Mining department is.
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
       state: direction_mining
 
 - type: entity
@@ -85,7 +85,7 @@
   description: A sign indicating the mining area.
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
       state: mining
 
 - type: entity
@@ -257,7 +257,7 @@
   description: A sign indicating the xenoborg core. Nice of them to mark this for you.
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/xeno_signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: core
 
 - type: entity
@@ -267,7 +267,7 @@
   description: A sign warning of doors. Don't stand in them when closing, you wouldn't want to be gibbed would you?
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/xeno_signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: doors
 
 - type: entity
@@ -277,7 +277,7 @@
   description: A sign indicating the xenoborg power systems. Electrical hazards ahead.
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/xeno_signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: power
 
 - type: entity
@@ -287,7 +287,7 @@
   description: A sign indicating these doors leads to space. That heavy xenoborg might be lost forever! Don't end up like them.
   components:
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Wallmounts/xeno_signs.rsi
+      sprite: _Moonlight/_Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: space
 
 # Emergency
@@ -298,7 +298,7 @@
   description: A sign indicating that an exit is this way.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/safety_signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/safety_signs.rsi
     noRot: true
     snapCardinals: false
     layers:
@@ -313,7 +313,7 @@
   description: A sign indicating that Evac is this way
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/safety_signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/safety_signs.rsi
     noRot: true
     snapCardinals: false
     layers:
@@ -329,7 +329,7 @@
   description: A sign indicating Internal Affairs and their impending audit of your department.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: iaa
 
 - type: entity
@@ -339,7 +339,7 @@
   description: A sign indicating the presence of someone you better call.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: lawyer
 
 - type: entity
@@ -349,7 +349,7 @@
   description: A sign indicating the presence of the ultimate authority of Corporate Law.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: magistrate
 
 # NT
@@ -360,5 +360,5 @@
   description: A sign indicating the physical presence of NanoTrasen aboard the station.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi
     state: ntr

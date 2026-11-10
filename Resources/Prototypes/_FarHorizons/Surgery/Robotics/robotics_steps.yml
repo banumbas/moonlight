@@ -119,7 +119,7 @@
   components:
   - type: SurgeryStep
   - type: Sprite
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
     state: plasteel
 
 - type: entity

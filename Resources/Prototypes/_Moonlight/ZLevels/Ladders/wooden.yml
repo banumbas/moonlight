@@ -1,0 +1,38 @@
+- type: entity
+  id: MoonlightZLevelsLadderWoodenBase
+  abstract: true
+  name: wooden ladder
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/wooden.rsi
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderBase
+  - MoonlightZLevelsLadderWoodenBase
+  id: MoonlightZLevelLadderWooden
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerBase
+  - MoonlightZLevelsLadderWoodenBase
+  id: MoonlightZLevelLadderWoodenCorner
+  suffix: Corner

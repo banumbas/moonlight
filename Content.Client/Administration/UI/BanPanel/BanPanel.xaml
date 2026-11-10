@@ -44,7 +44,7 @@
             <ScrollContainer>
                 <BoxContainer Name="RolesContainer"  Orientation="Vertical" />
             </ScrollContainer>
-            <!-- Classic-Start: Punishments list -->
+            <!-- Moonlight-Start: Punishments list -->
             <ScrollContainer Name="PunishmentsTabContainer" Visible="False">
                 <BoxContainer Orientation="Vertical" Margin="5">
                     <Label Text="{Loc 'ban-panel-punishment-channels-label'}" FontColorOverride="LightGray" />
@@ -65,7 +65,7 @@
                     </GridContainer>
                 </BoxContainer>
             </ScrollContainer>
-            <!-- Classic-End -->
+            <!-- Moonlight-End -->
         </TabContainer>
         <Button Name="SubmitButton" Text="{Loc ban-panel-submit}" HorizontalExpand="True" />
     </BoxContainer>

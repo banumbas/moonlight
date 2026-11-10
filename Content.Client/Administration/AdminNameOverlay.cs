@@ -42,7 +42,7 @@ internal sealed class AdminNameOverlay : Overlay
         new ProtoId<RoleTypePrototype>[] {"SoloAntagonist", "TeamAntagonist", "SiliconAntagonist", "FreeAgent"}
         .ToFrozenSet();
 
-    private readonly string _antagLabelClassic = Loc.GetString("admin-overlay-antag-classic");
+    private readonly string _antagLabelMoonlight = Loc.GetString("admin-overlay-antag-moonlight");
 
     public AdminNameOverlay(
         AdminSystem system,
@@ -255,7 +255,7 @@ internal sealed class AdminNameOverlay : Overlay
                 case AdminOverlayAntagFormat.Binary:
                     color = Color.OrangeRed;
                     symbol = playerInfo.Antag ? symbol : string.Empty;
-                    text = playerInfo.Antag ? _antagLabelClassic : string.Empty;
+                    text = playerInfo.Antag ? _antagLabelMoonlight : string.Empty;
                     break;
             }
 

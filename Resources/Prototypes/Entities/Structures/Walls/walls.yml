@@ -28,7 +28,7 @@
   - type: IsRoof
   - type: Sprite
     drawdepth: Walls
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
   - type: Icon
     state: full
   - type: PlacementReplacement
@@ -64,7 +64,7 @@
   parent: BaseStructureWall
   id: BaseWall
   components:
-  - type: ClassicGridStabilitySupport
+  - type: MoonlightGridStabilitySupport
   - type: Occluder # Breaks on diagonal walls
 
 - type: entity
@@ -147,13 +147,13 @@
   id: WallClock
   name: clock wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/clockwork.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/clockwork.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/clockwork.rsi
+    sprite: _Moonlight/Structures/Walls/clockwork.rsi
   - type: Construction
     graph: ClockworkGirder
     node: clockworkWall
@@ -179,13 +179,13 @@
   id: WallClown
   name: bananium wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/bananium.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/bananium.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/bananium.rsi
+    sprite: _Moonlight/Structures/Walls/bananium.rsi
   - type: Construction
     graph: Girder
     node: bananiumWall
@@ -231,13 +231,13 @@
     tags:
       - Wall
       - Structure
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/meat.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/meat.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/meat.rsi
+    sprite: _Moonlight/Structures/Walls/meat.rsi
   - type: Construction
     graph: Girder
     node: meatWall
@@ -263,13 +263,13 @@
   id: WallCult
   name: cult wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/cult.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/cult.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/cult.rsi
+    sprite: _Moonlight/Structures/Walls/cult.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -296,13 +296,13 @@
   - type: Tag
     tags:
       - Wall
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/debug.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/debug.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/debug.rsi
+    sprite: _Moonlight/Structures/Walls/debug.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -327,13 +327,13 @@
   components:
   - type: Ricochetable
     chance: 1
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/diamond.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/diamond.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/diamond.rsi
+    sprite: _Moonlight/Structures/Walls/diamond.rsi
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -360,13 +360,13 @@
   id: WallGold
   name: gold wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/gold.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/gold.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/gold.rsi
+    sprite: _Moonlight/Structures/Walls/gold.rsi
   - type: Construction
     graph: Girder
     node: goldWall
@@ -442,13 +442,13 @@
   id: WallPlasma
   name: plasma wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/plasma.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/plasma.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/plasma.rsi
+    sprite: _Moonlight/Structures/Walls/plasma.rsi
   - type: Construction
     graph: Girder
     node: plasmaWall
@@ -536,13 +536,13 @@
   components:
     - type: Ricochetable
       chance: 1
-    - type: SpriteFade # Classic-Edit
-      fadeTopOnly: true # Classic-Edit
+    - type: SpriteFade # Moonlight-Edit
+      fadeTopOnly: true # Moonlight-Edit
     - type: Sprite
-      sprite: _Classic/Structures/Walls/plastitanium.rsi
-      drawdepth: Overdoors # Classic-Edit
+      sprite: _Moonlight/Structures/Walls/plastitanium.rsi
+      drawdepth: Overdoors # Moonlight-Edit
     - type: Icon
-      sprite: _Classic/Structures/Walls/plastitanium.rsi
+      sprite: _Moonlight/Structures/Walls/plastitanium.rsi
     - type: IconSmooth
       key: walls
       base: plastitanium
@@ -663,13 +663,13 @@
     level: HardenedMetal
   - type: Ricochetable
     chance: 0.75
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/reinforced.rsi # Classic-Edit
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/reinforced.rsi # Moonlight-Edit
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/reinforced.rsi # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/reinforced.rsi # Moonlight-Edit
   - type: Construction
     graph: Girder
     node: reinforcedWall
@@ -700,7 +700,7 @@
         acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    base: reinforced # Classic-Edit
+    base: reinforced # Moonlight-Edit
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -736,10 +736,10 @@
   suffix: rusted
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Walls/rusty_reinforced.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/rusty_reinforced.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/rusty_reinforced.rsi
+    sprite: _Moonlight/Structures/Walls/rusty_reinforced.rsi
     state: full
   - type: Construction
     graph: Girder
@@ -816,13 +816,13 @@
   id: WallRiveted
   name: riveted wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/riveted.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/riveted.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/riveted.rsi
+    sprite: _Moonlight/Structures/Walls/riveted.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -850,13 +850,13 @@
   id: WallSandstone
   name: sandstone wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/sandstone.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/sandstone.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/sandstone.rsi
+    sprite: _Moonlight/Structures/Walls/sandstone.rsi
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -883,13 +883,13 @@
   id: WallSilver
   name: silver wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/silver.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/silver.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/silver.rsi
+    sprite: _Moonlight/Structures/Walls/silver.rsi
   - type: Construction
     graph: Girder
     node: silverWall
@@ -1027,13 +1027,13 @@
     price: 250
   - type: RadiationBlocker
     resistance: 5
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/shuttle.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/shuttle.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/shuttle.rsi
+    sprite: _Moonlight/Structures/Walls/shuttle.rsi
     state: full
   - type: Construction
     graph: Girder
@@ -1075,19 +1075,19 @@
   id: WallSolid
   name: solid wall
   components:
-  # Classic-Start
+  # Moonlight-Start
   - type: SpriteFade
     fadeTopOnly: true
-  # Classic-End
+  # Moonlight-End
   - type: Sprite
-    sprite: _Classic/Structures/Walls/metal.rsi # Classic-Edit
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/metal.rsi # Moonlight-Edit
+    drawdepth: Overdoors # Moonlight-Edit
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    sprite: _Classic/Structures/Walls/metal.rsi # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/metal.rsi # Moonlight-Edit
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -1116,7 +1116,7 @@
         acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    base: metal # classic-edit
+    base: metal # moonlight-edit
 
 - type: entity
   parent: WallDiagonalBase
@@ -1161,10 +1161,10 @@
   suffix: rusted
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Walls/rusty.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/rusty.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/rusty.rsi
+    sprite: _Moonlight/Structures/Walls/rusty.rsi
     state: full
   - type: Construction
     graph: Girder
@@ -1332,13 +1332,13 @@
   components:
   - type: Ricochetable
     chance: 1
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/uranium.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/uranium.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/uranium.rsi
+    sprite: _Moonlight/Structures/Walls/uranium.rsi
   - type: Construction
     graph: Girder
     node: uraniumWall
@@ -1389,13 +1389,13 @@
   components:
   - type: Ricochetable
     chance: 0
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/wood.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/wood.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/wood.rsi
+    sprite: _Moonlight/Structures/Walls/wood.rsi
   - type: Construction
     graph: BarricadeDirectional
     node: woodWall
@@ -1485,13 +1485,13 @@
   id: WallNecropolis
   name: stone wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/necro.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/necro.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/necro.rsi
+    sprite: _Moonlight/Structures/Walls/necro.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -1509,13 +1509,13 @@
   id: WallMining
   name: mining wall
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Sprite
-    sprite: _Classic/Structures/Walls/survival_pod.rsi
-    drawdepth: Overdoors # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/survival_pod.rsi
+    drawdepth: Overdoors # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/survival_pod.rsi
+    sprite: _Moonlight/Structures/Walls/survival_pod.rsi
   - type: Destructible
     thresholds:
     - trigger:

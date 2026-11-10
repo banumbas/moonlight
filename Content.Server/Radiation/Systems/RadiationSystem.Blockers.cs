@@ -91,7 +91,7 @@ public partial class RadiationSystem
 
     private void AddTile(EntityUid uid, RadiationBlockerComponent component)
     {
-        // classic start
+        // moonlight start
 #if false
         // check that last position was removed
         if (component.CurrentPosition != null)
@@ -116,13 +116,13 @@ public partial class RadiationSystem
         // and remember it as last valid position
         component.CurrentPosition = (gridId, tilePos);
 #endif
-        AddClassicTile(uid, component);
-        // classic end
+        AddMoonlightTile(uid, component);
+        // moonlight end
     }
 
     private void RemoveTile(EntityUid uid, RadiationBlockerComponent component)
     {
-        // classic start
+        // moonlight start
 #if false
         // check if blocker was placed on grid before component was removed
         if (component.CurrentPosition == null)
@@ -133,8 +133,8 @@ public partial class RadiationSystem
         RemoveFromTile(gridId, tilePos, component.RadResistance);
         component.CurrentPosition = null;
 #endif
-        RemoveClassicTile(component);
-        // classic end
+        RemoveMoonlightTile(component);
+        // moonlight end
     }
 
     private void AddToTile(EntityUid gridUid, Vector2i tilePos, float radResistance)

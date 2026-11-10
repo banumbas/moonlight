@@ -107,7 +107,7 @@ namespace Content.Shared.Maps
         [DataField("heatCapacity")] public float HeatCapacity = Atmospherics.MinimumHeatCapacity;
 
         [DataField("itemDrop", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? ItemDropPrototypeName { get; private set; } //Classic nullable
+        public string? ItemDropPrototypeName { get; private set; } //Moonlight nullable
 
         // TODO rename data-field in yaml
         /// <summary>
@@ -142,7 +142,7 @@ namespace Content.Shared.Maps
         /// <summary>
         ///     Hide this tile in the tile placement editor.
         /// </summary>
-        [DataField] public bool EditorHidden { get; private set; } = false; //Classic
+        [DataField] public bool EditorHidden { get; private set; } = false; //Moonlight
 
         public void AssignTileId(ushort id)
         {
@@ -150,7 +150,7 @@ namespace Content.Shared.Maps
         }
 
         /// <summary>
-        /// Classic: used for lightning calculation through zlevels
+        /// Moonlight: used for lightning calculation through zlevels
         /// </summary>
         [DataField]
         public bool Transparent = false;

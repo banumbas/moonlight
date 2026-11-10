@@ -56,8 +56,8 @@ public sealed partial class InternalsSystem : SharedInternalsSystem
             var gasTank = Comp<GasTankComponent>(ent.Comp.GasTankEntity!.Value);
             args.Gas = _gasTank.RemoveAirVolume((ent.Comp.GasTankEntity.Value, gasTank), args.Respirator.BreathVolume);
             // TODO: Should listen to gas tank updates instead I guess?
-            if (ent.Comp.InternalsAlert != null) // classic-add
-                _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // classic-edit
+            if (ent.Comp.InternalsAlert != null) // moonlight-add
+                _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert.Value, GetSeverity(ent)); // moonlight-edit
         }
     }
 }

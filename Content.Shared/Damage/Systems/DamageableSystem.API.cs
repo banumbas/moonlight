@@ -184,7 +184,7 @@ public sealed partial class DamageableSystem
         RaiseLocalEvent(ent, finalEv);
         if (finalEv.Cancelled)
             return damage;
-        damage = finalEv.Damage; // Classic-Edit
+        damage = finalEv.Damage; // Moonlight-Edit
         // 🌟Starlight🌟 end
 
         if (!ignoreGlobalModifiers)

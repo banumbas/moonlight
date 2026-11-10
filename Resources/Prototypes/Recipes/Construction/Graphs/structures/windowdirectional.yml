@@ -29,9 +29,9 @@
               amount: 1
               doAfter: 3
 
-        # Classic-Start
+        # Moonlight-Start
         # Uranium windows are intentionally unavailable from construction.
-        # Classic-End
+        # Moonlight-End
 
         - to: windowClockworkDirectional
           steps:

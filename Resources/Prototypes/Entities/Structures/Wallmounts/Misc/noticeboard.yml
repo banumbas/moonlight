@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: _Classic/Structures/Wallmounts/noticeboard.rsi
+    sprite: _Moonlight/Structures/Wallmounts/noticeboard.rsi
     layers:
       - state: noticeboard
       - state: notice-0

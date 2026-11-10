@@ -29,9 +29,9 @@
           position: "0,-0.5"
         hard: false
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/shuttle.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/shuttle.rsi
     snapCardinals: false
-    drawdepth: Doors # Classic-Edit - below perspective wall overhangs
+    drawdepth: Doors # Moonlight-Edit - below perspective wall overhangs
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -55,15 +55,15 @@
       visible: false
       map: ["enum.ElectrifiedLayers.HUD"]
     - state: sparks
-      sprite: _Classic/Effects/airlock_electrified.rsi
+      sprite: _Moonlight/Effects/airlock_electrified.rsi
       shader: unshaded
       visible: false
       map: ["enum.ElectrifiedLayers.Sparks"]
   - type: Wires
     layoutId: Docking
   - type: Door
-    openDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
-    closedDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
+    openDrawDepth: Doors # Moonlight-Edit - below perspective wall overhangs
+    closedDrawDepth: Doors # Moonlight-Edit - below perspective wall overhangs
     closeTimeTwo: 0.4
     openTimeTwo: 0.4
     crushDamage:
@@ -96,7 +96,7 @@
   suffix: Glass, Docking
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/shuttle.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/shuttle.rsi
   - type: Occluder
     enabled: false
   - type: Door
@@ -119,7 +119,7 @@
     noRot: false
   - type: Rotatable
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/shuttle.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/shuttle.rsi
     state: closed
     snapCardinals: false
     drawdepth: Overdoors

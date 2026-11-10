@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagPMC
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Clothing/Shoes/pmc_magboots.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Moonlight/Clothing/Shoes/pmc_magboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95

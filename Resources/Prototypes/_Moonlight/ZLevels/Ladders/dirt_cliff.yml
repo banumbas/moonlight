@@ -1,0 +1,56 @@
+- type: entity
+  id: MoonlightZLevelsLadderDirtCliffBase
+  abstract: true
+  name: dirt cliff
+  description: TODO
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/dirt_cliff.rsi
+  - type: Damageable
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderBase
+  - MoonlightZLevelsLadderDirtCliffBase
+  id: MoonlightZLevelLadderDirtCliff
+  #components:
+  #- type: Construction
+  #  graph: MoonlightZLevelLadderStone
+  #  node: MoonlightZLevelLadderStone
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerBase
+  - MoonlightZLevelsLadderDirtCliffBase
+  id: MoonlightZLevelLadderDirtCliffCorner
+  suffix: Corner
+  #components:
+  #- type: Construction
+  #  graph: MoonlightZLevelLadderStone
+  #  node: MoonlightZLevelLadderStoneCorner
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerInnerBase
+  - MoonlightZLevelsLadderDirtCliffBase
+  id: MoonlightZLevelLadderDirtCliffCornerInner
+  suffix: Inner Corner
+  #components:
+  #- type: Construction
+  #  graph: MoonlightZLevelLadderStone
+  #  node: MoonlightZLevelLadderStoneCorner

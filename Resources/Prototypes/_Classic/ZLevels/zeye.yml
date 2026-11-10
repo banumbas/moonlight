@@ -1,6 +1,0 @@
-# We just need simple non-saveable prototype for zEye entities
-- type: entity
-  id: ClassicZLevelEye
-  save: false
-  categories: [ HideSpawnMenu ]
-

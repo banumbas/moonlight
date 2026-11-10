@@ -55,9 +55,9 @@ namespace Content.Client.Info
                 if (link != null)
                     uriOpener.OpenUri(link);
             };
-            // Classic start
+            // Moonlight start
             steamButton.Visible = false;
-            // Classic end
+            // Moonlight end
             buttons.AddChild(steamButton);
             // NullLink end
 

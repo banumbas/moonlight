@@ -12,7 +12,7 @@
     - PlantSampleTaker
     - Wirecutter
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     layers:
     - state: cutters
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -72,7 +72,7 @@
     tags:
     - Screwdriver
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     layers:
       - state: screwdriver
         map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -129,7 +129,7 @@
     tags:
     - Wrench
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: wrench
   - type: Item
     sprite: Objects/Tools/wrench.rsi
@@ -176,7 +176,7 @@
     sound:
       path: /Audio/Items/multitool_drop.ogg
   - type: Sprite
-    sprite: _Classic/Objects/Devices/tool.rsi
+    sprite: _Moonlight/Objects/Devices/tool.rsi
     layers:
     - state: multitool
   - type: Item
@@ -281,7 +281,7 @@
     tags:
     - Powerdrill
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: drill
   - type: Item
     sprite: Objects/Tools/drill.rsi
@@ -296,7 +296,7 @@
     entries:
       - behavior: Screwing
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: drill
         useSound:
           path: /Audio/Items/drill_use.ogg
@@ -304,7 +304,7 @@
           path: /Audio/Items/change_drill.ogg
       - behavior: Anchoring
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: drill_on
         useSound:
           path: /Audio/Items/drill_use.ogg
@@ -375,7 +375,7 @@
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: rcd
   - type: Item #SL
     size: Small
@@ -527,24 +527,24 @@
   description: A large tool for digging and moving dirt.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Tools/shovel.rsi # Classic-edit
+    sprite: _Moonlight/Objects/Tools/shovel.rsi # Moonlight-edit
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: 45
     damage:
       types:
         Blunt: 14
-        Structural: 10 # Classic-add
+        Structural: 10 # Moonlight-add
     soundHit:
-      collection: ShovelDig # Classic-edit
+      collection: ShovelDig # Moonlight-edit
   - type: Item
     size: Normal
-    # Classic-start
+    # Moonlight-start
     shape:
     - 0,0,2,0
     - 1,1,1,2
-    # Classic-end
-    sprite: _Classic/Objects/Tools/shovel.rsi # Classic-edit
+    # Moonlight-end
+    sprite: _Moonlight/Objects/Tools/shovel.rsi # Moonlight-edit
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -556,12 +556,12 @@
   - type: Tool
     qualities:
       - Digging
-  # Classic-start
+  # Moonlight-start
     useSound:
       collection: ShovelDig
   - type: ToolTileCompatible
     delay: 1.5
-  # Classic-end
+  # Moonlight-end
   # 🌟Starlight-end🌟
 - type: entity
   parent: BaseItem

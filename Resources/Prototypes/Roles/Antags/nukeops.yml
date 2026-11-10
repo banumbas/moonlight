@@ -2,7 +2,7 @@
   id: Nukeops
   name: roles-antag-nuclear-operative-name
   antagonist: true
-  setPreference: false # classic
+  setPreference: false # moonlight
   objective: roles-antag-nuclear-operative-objective
   roleLoadout: [ AntagNukeops ] # Starlight
   requirements:
@@ -28,7 +28,7 @@
   id: NukeopsMedic
   name: roles-antag-nuclear-operative-agent-name
   antagonist: true
-  setPreference: false # classic
+  setPreference: false # moonlight
   objective: roles-antag-nuclear-operative-agent-objective
   roleLoadout: [ AntagNukeopsMedic ] # Starlight
   requirements:
@@ -54,7 +54,7 @@
   id: NukeopsCommander
   name: roles-antag-nuclear-operative-commander-name
   antagonist: true
-  setPreference: false # classic
+  setPreference: false # moonlight
   objective: roles-antag-nuclear-operative-commander-objective
   roleLoadout: [ AntagNukeopsCommander ] # Starlight
   requirements:

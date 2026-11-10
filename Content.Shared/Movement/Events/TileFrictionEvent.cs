@@ -9,7 +9,7 @@ public struct TileFrictionEvent
     public float Modifier;
 
     /// <summary>A movement controller supplies its own drag; clear ordinary body damping.</summary>
-    public bool Cancelled; // Classic-Edit
+    public bool Cancelled; // Moonlight-Edit
 
     public TileFrictionEvent(float modifier)
     {

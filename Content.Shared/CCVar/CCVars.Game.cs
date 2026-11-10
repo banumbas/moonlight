@@ -94,7 +94,7 @@ public sealed partial class CCVars
     ///     Prototype to use for map pool.
     /// </summary>
     public static readonly CVarDef<string>
-        GameMapPool = CVarDef.Create("game.map_pool", "DefaultClassicMapPool", CVar.SERVERONLY); // Classic-Edit
+        GameMapPool = CVarDef.Create("game.map_pool", "DefaultMoonlightMapPool", CVar.SERVERONLY); // Moonlight-Edit
 
     /// <summary>
     ///     The depth of the queue used to calculate which map is next in rotation.

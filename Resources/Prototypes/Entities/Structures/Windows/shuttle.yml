@@ -1,15 +1,15 @@
 - type: entity
   id: ShuttleWindow
   name: shuttle window
-  description: A durable pressure window designed for shuttles and survival pods. # Classic-Edit
+  description: A durable pressure window designed for shuttles and survival pods. # Moonlight-Edit
   parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/pod_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/pod_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/pod_window.rsi # Classic-Edit
-    state: full # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/pod_window.rsi # Moonlight-Edit
+    state: full # Moonlight-Edit
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
@@ -42,7 +42,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    base: pod_window # Classic-Edit
+    base: pod_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: shuttleWindow
@@ -52,7 +52,7 @@
     damageDivisor: 20
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
   - type: StaticPrice
     price: 150
 

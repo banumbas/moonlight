@@ -66,7 +66,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         var deptDiff = deptDiffSpan.TotalMinutes;
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(playtime); // Starlight
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time); // Starlight
-        var formattedDiff = ContentLocalizationManager.FormatPlaytime(deptDiffSpan > TimeSpan.Zero ? deptDiffSpan : TimeSpan.Zero); // Classic edit
+        var formattedDiff = ContentLocalizationManager.FormatPlaytime(deptDiffSpan > TimeSpan.Zero ? deptDiffSpan : TimeSpan.Zero); // Moonlight edit
         var nameDepartment = "role-timer-department-unknown";
 
         if (protoManager.Resolve(Department, out var departmentIndexed))
@@ -79,7 +79,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
             Inverted ? "role-timer-department-not-too-high" : "role-timer-department-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired),
-            ("time", formattedDiff), // Classic edit
+            ("time", formattedDiff), // Moonlight edit
             ("department", Loc.GetString(nameDepartment)),
             ("departmentColor", department.Color.ToHex())));
         // Starlight END
@@ -93,7 +93,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 "role-timer-department-insufficient",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired), // Starlight
-                ("time", formattedDiff), // Classic edit
+                ("time", formattedDiff), // Moonlight edit
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
             return bypass; // NullLink
@@ -105,7 +105,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 "role-timer-department-too-high",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired), // Starlight
-                ("time", formattedDiff), // Classic edit
+                ("time", formattedDiff), // Moonlight edit
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
             return bypass; // NullLink

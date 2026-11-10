@@ -173,7 +173,7 @@ public sealed partial class FloorTileSystem : EntitySystem
 
     public bool HasBaseTurf(ContentTileDefinition tileDef, ProtoId<ContentTileDefinition> baseTurf)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (tileDef.BaseTurf == baseTurf)
             return true;
 
@@ -184,7 +184,7 @@ public sealed partial class FloorTileSystem : EntitySystem
         }
 
         return false;
-        // Classic-End
+        // Moonlight-End
     }
 
     private bool CanPlaceOn(ContentTileDefinition tileDef, ProtoId<ContentTileDefinition> currentTurfId)

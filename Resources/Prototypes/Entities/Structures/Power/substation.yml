@@ -81,7 +81,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite # TODO: add sprite for maintenance panel open
-    sprite: _Classic/Structures/Power/substation.rsi
+    sprite: _Moonlight/Structures/Power/substation.rsi
     snapCardinals: true
     layers:
     - state: substation
@@ -98,7 +98,7 @@
     color: "#ff6900"
     castShadows: false
   - type: PowerMonitoringDevice
-    sprite: _Classic/Structures/Power/substation.rsi
+    sprite: _Moonlight/Structures/Power/substation.rsi
     state: substation_static
   - type: Destructible
     thresholds:
@@ -182,7 +182,7 @@
     anchored: true
   - type: Sprite # TODO: add sprite for maintenance panel open
     drawdepth: WallMountedItems
-    sprite: _Classic/Structures/Power/substation.rsi
+    sprite: _Moonlight/Structures/Power/substation.rsi
     layers:
     - state: substation_wall
     - state: screen_wall
@@ -191,7 +191,7 @@
     maxCharge: 2000000
     startingCharge: 0
   - type: PowerMonitoringDevice
-    sprite: _Classic/Structures/Power/substation.rsi
+    sprite: _Moonlight/Structures/Power/substation.rsi
     state: substation_wall_static
   - type: Destructible
     thresholds:
@@ -278,7 +278,7 @@
     anchored: true
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: _Classic/Structures/Power/substation.rsi
+    sprite: _Moonlight/Structures/Power/substation.rsi
     layers:
     - state: substation_wall
   - type: Construction

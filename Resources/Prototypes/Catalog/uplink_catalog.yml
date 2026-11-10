@@ -713,7 +713,7 @@
   id: UplinkZombieBundle
   name: uplink-zombie-bundle-name
   description: uplink-zombie-bundle-desc
-  icon: { sprite: /Textures/_Classic/Structures/Wallmounts/signs.rsi, state: bio }
+  icon: { sprite: /Textures/_Moonlight/Structures/Wallmounts/signs.rsi, state: bio }
   productEntity: ClothingBackpackDuffelZombieBundle
   cost:
     Telecrystal: 40
@@ -1445,7 +1445,7 @@
   id: UplinkDnaScramblerImplant
   name: uplink-dna-scrambler-implanter-name
   description: uplink-dna-scrambler-implanter-desc
-  icon: { sprite: /Textures/_Classic/Mobs/Species/Human/parts.rsi, state: full }
+  icon: { sprite: /Textures/_Moonlight/Mobs/Species/Human/parts.rsi, state: full }
   productEntity: DnaScramblerImplanter
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1782,7 +1782,7 @@
   id: UplinkClothingOuterHardsuitJuggernaut
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
-  icon: { sprite: /Textures/_Classic/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  icon: { sprite: /Textures/_Moonlight/Structures/Storage/Crates/syndicate.rsi, state: icon }
   productEntity: CrateCybersunJuggernautBundle
   cost:
     Telecrystal: 12

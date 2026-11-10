@@ -28,9 +28,9 @@
               amount: 2
               doAfter: 3
 
-        # Classic-Start
+        # Moonlight-Start
         # Uranium windows are intentionally unavailable from construction.
-        # Classic-End
+        # Moonlight-End
 
         - to: window
           steps:
@@ -46,7 +46,7 @@
               amount: 2
               doAfter: 4
 
-        # Classic-Start
+        # Moonlight-Start
         - to: paperWindowFixing
           steps:
             - material: WoodPlank
@@ -55,7 +55,7 @@
             - material: Paper
               amount: 1
               doAfter: 1
-        # Classic-End
+        # Moonlight-End
 
         - to: clockworkWindow
           steps:
@@ -436,9 +436,9 @@
             - tool: Anchoring
               doAfter: 1
 
-    # Classic-Start
+    # Moonlight-Start
     - node: titaniumWindow
-      entity: ClassicTitaniumWindow
+      entity: MoonlightTitaniumWindow
       edges:
         - to: start
           completed:
@@ -462,7 +462,7 @@
               doAfter: 1
 
     - node: frostedWindow
-      entity: ClassicFrostedWindow
+      entity: MoonlightFrostedWindow
       edges:
         - to: window
           steps:
@@ -470,7 +470,7 @@
               doAfter: 3
 
     - node: paperWindowFixing
-      entity: ClassicPaperWindowFixing
+      entity: MoonlightPaperWindowFixing
       edges:
         - to: paperWindow
           steps:
@@ -491,7 +491,7 @@
               doAfter: 1
 
     - node: paperWindow
-      entity: ClassicPaperWindow
+      entity: MoonlightPaperWindow
       edges:
         - to: start
           completed:
@@ -507,7 +507,7 @@
               doAfter: 2
 
     - node: paperWindowTorn
-      entity: ClassicPaperWindowTorn
+      entity: MoonlightPaperWindowTorn
       edges:
         - to: paperWindowTornFixing
           steps:
@@ -528,7 +528,7 @@
               doAfter: 1
 
     - node: paperWindowTornFixing
-      entity: ClassicPaperWindowTornFixing
+      entity: MoonlightPaperWindowTornFixing
       edges:
         - to: paperWindow
           steps:
@@ -543,4 +543,4 @@
           steps:
             - tool: Prying
               doAfter: 1
-    # Classic-End
+    # Moonlight-End

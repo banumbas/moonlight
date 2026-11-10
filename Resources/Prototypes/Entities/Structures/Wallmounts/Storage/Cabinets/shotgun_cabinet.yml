@@ -7,7 +7,7 @@
   - type: Sprite
     # Wallening has no matching wall shotgun cabinet. This RSI directionally
     # adapts the coherent SS14 layers instead of mixing in an extinguisher.
-    sprite: _Classic/Structures/Wallmounts/shotgun_cabinet.rsi
+    sprite: _Moonlight/Structures/Wallmounts/shotgun_cabinet.rsi
     noRot: true
     snapCardinals: false
     layers:

@@ -11,9 +11,9 @@ public interface INullLinkPlayerManager
 
     string GetDiscordAuthUrl(string customState);
     string GetSteamAuthUrl(string customState);
-    // Classic start
+    // Moonlight start
     void LinkPlayerDiscord(Robust.Shared.Network.NetUserId userId, ulong discordId, IEnumerable<ulong>? roles = null);
-    // Classic end
+    // Moonlight end
     void Initialize();
     void Shutdown();
     ValueTask SyncPlayTime(PlayerServerPlayTimesSyncEvent playTimesSync);

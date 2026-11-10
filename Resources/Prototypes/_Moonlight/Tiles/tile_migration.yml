@@ -1,0 +1,158 @@
+# 2026-08-06
+# Moonlight tiles liquidated in favor of standard and Starlight tiles
+
+- type: tileAlias
+  id: MoonlightDarkDiagonal
+  target: FloorDarkDiagonal
+
+- type: tileAlias
+  id: MoonlightDarkHerringbone
+  target: FloorDarkHerringbone
+
+- type: tileAlias
+  id: MoonlightDarkLarge
+  target: FloorDarkMono
+
+- type: tileAlias
+  id: MoonlightDarkSmall
+  target: FloorDarkMini
+
+- type: tileAlias
+  id: MoonlightDarkfull
+  target: FloorDark
+
+- type: tileAlias
+  id: MoonlightFloor
+  target: FloorSteel
+
+- type: tileAlias
+  id: MoonlightFloorLarge
+  target: FloorSteelMono
+
+- type: tileAlias
+  id: MoonlightDiagonal
+  target: FloorSteelDiagonal
+
+- type: tileAlias
+  id: MoonlightHerringbone
+  target: FloorSteelHerringbone
+
+- type: tileAlias
+  id: MoonlightSmall
+  target: FloorSteelMini
+
+- type: tileAlias
+  id: MoonlightSmooth
+  target: FloorGrayConcrete
+
+- type: tileAlias
+  id: MoonlightSmoothLarge
+  target: FloorGrayConcreteSmooth
+
+- type: tileAlias
+  id: MoonlightTextured
+  target: FloorSteel
+
+- type: tileAlias
+  id: MoonlightTexturedDark
+  target: FloorDark
+
+- type: tileAlias
+  id: MoonlightTexturedDarkLarge
+  target: FloorDarkMono
+
+- type: tileAlias
+  id: MoonlightTexturedLarge
+  target: FloorSteelMono
+
+- type: tileAlias
+  id: MoonlightTexturedWhite
+  target: FloorWhite
+
+- type: tileAlias
+  id: MoonlightTexturedWhiteLarge
+  target: FloorWhiteMono
+
+- type: tileAlias
+  id: MoonlightWhite
+  target: FloorWhite
+
+- type: tileAlias
+  id: MoonlightWhiteDiagonal
+  target: FloorWhiteDiagonal
+
+- type: tileAlias
+  id: MoonlightWhiteHerringbone
+  target: FloorWhiteHerringbone
+
+- type: tileAlias
+  id: MoonlightWhiteLarge
+  target: FloorWhiteMono
+
+- type: tileAlias
+  id: MoonlightWhiteSmall
+  target: FloorWhiteMini
+
+- type: tileAlias
+  id: MoonlightWood
+  target: FloorWood
+
+- type: tileAlias
+  id: MoonlightWoodLarge
+  target: FloorWoodLarge
+
+- type: tileAlias
+  id: MoonlightWoodParquet
+  target: FloorWoodParquet
+
+- type: tileAlias
+  id: MoonlightWoodTile
+  target: FloorWoodTile
+
+- type: tileAlias
+  id: MoonlightCafeteria
+  target: FloorSteelCheckerLight
+
+- type: tileAlias
+  id: MoonlightKitchen
+  target: FloorKitchen
+
+- type: tileAlias
+  id: MoonlightKitchenDiagonal
+  target: FloorSteelDiagonal
+
+- type: tileAlias
+  id: MoonlightKitchenHerringbone
+  target: FloorSteelHerringbone
+
+- type: tileAlias
+  id: MoonlightKitchenSmall
+  target: FloorSteelMini
+
+- type: tileAlias
+  id: MoonlightMaterialfloor
+  target: FloorSteel
+
+- type: tileAlias
+  id: MoonlightPlastic
+  target: FloorPlastic
+
+- type: tileAlias
+  id: MoonlightSepia
+  target: FloorSepia
+
+- type: tileAlias
+  id: MoonlightTerracotta
+  target: FloorTerracotta
+
+- type: tileAlias
+  id: MoonlightTerracottaDiagonal
+  target: FloorTerracottaDiagonal
+
+- type: tileAlias
+  id: MoonlightTerracottaHerringbone
+  target: FloorTerracotta
+
+- type: tileAlias
+  id: MoonlightTerracottaSmall
+  target: FloorTerracottaSmall

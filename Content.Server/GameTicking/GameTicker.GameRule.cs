@@ -86,16 +86,16 @@ public sealed partial class GameTicker
     /// Adds a game rule to the list, but does not
     /// start it yet, instead waiting until the rule is actually started by other code (usually roundstart)
     /// </summary>
-    /// <returns>The entity for the added game rule, or <see cref="EntityUid.Invalid"/> if it was rejected.</returns> // Classic-Edit
+    /// <returns>The entity for the added game rule, or <see cref="EntityUid.Invalid"/> if it was rejected.</returns> // Moonlight-Edit
     public EntityUid AddGameRule([ForbidLiteral] string ruleId, List<EntityUid>? siblings = null) // Starlight - add optional sibling list
     {
-        // Classic-Edit start - prevent auxiliary map rules from entering any game-rule path
+        // Moonlight-Edit start - prevent auxiliary map rules from entering any game-rule path
         if (!CanAddGameRule(ruleId))
         {
-            _sawmill.Info($"Game rule {ruleId} was blocked by the Classic auxiliary-map filter.");
+            _sawmill.Info($"Game rule {ruleId} was blocked by the Moonlight auxiliary-map filter.");
             return EntityUid.Invalid;
         }
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         // Starlight Start: Check if any active game rule denies this rule from being added
         var activeRules = GetActiveGameRules();
@@ -181,10 +181,10 @@ public sealed partial class GameTicker
     public bool StartGameRule([ForbidLiteral] string ruleId, out EntityUid ruleEntity)
     {
         ruleEntity = AddGameRule(ruleId);
-        // Classic-Edit start
+        // Moonlight-Edit start
         if (ruleEntity == EntityUid.Invalid)
             return false;
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         return StartGameRule(ruleEntity);
     }
@@ -195,10 +195,10 @@ public sealed partial class GameTicker
     /// </summary>
     public bool StartGameRule(EntityUid ruleEntity, GameRuleComponent? ruleData = null)
     {
-        // Classic-Edit start
+        // Moonlight-Edit start
         if (ruleEntity == EntityUid.Invalid || !Exists(ruleEntity))
             return false;
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         if (!Resolve(ruleEntity, ref ruleData))
             ruleData ??= EnsureComp<GameRuleComponent>(ruleEntity);
@@ -258,7 +258,7 @@ public sealed partial class GameTicker
     [PublicAPI]
     public bool EndGameRule(EntityUid ruleEntity, GameRuleComponent? ruleData = null)
     {
-        // Classic-Edit
+        // Moonlight-Edit
         if (ruleEntity == EntityUid.Invalid || !Exists(ruleEntity))
             return false;
 

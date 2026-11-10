@@ -20,9 +20,9 @@
           "/Audio/Weapons/smash.ogg"
   - type: InteractionOutline
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/basic.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/basic.rsi
     snapCardinals: false
-    drawdepth: Doors # Classic-Edit - below perspective wall overhangs
+    drawdepth: Doors # Moonlight-Edit - below perspective wall overhangs
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -46,7 +46,7 @@
       visible: false
       map: ["enum.ElectrifiedLayers.HUD"]
     - state: sparks
-      sprite: _Classic/Effects/airlock_electrified.rsi
+      sprite: _Moonlight/Effects/airlock_electrified.rsi
       shader: unshaded
       visible: false
       map: ["enum.ElectrifiedLayers.Sparks"]
@@ -54,7 +54,7 @@
       map: ["enum.DoorVisualLayers.BaseEmagging"]
       shader: unshaded
       visible: false
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: AnimationPlayer
   - type: Physics
@@ -78,8 +78,8 @@
   - type: AccessReader
     containerAccessProvider: board
   - type: Door
-    openDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
-    closedDrawDepth: Doors # Classic-Edit - below perspective wall overhangs
+    openDrawDepth: Doors # Moonlight-Edit - below perspective wall overhangs
+    closedDrawDepth: Doors # Moonlight-Edit - below perspective wall overhangs
     crushDamage:
       types:
         Blunt: 15
@@ -222,7 +222,7 @@
   - type: Occluder
     enabled: false
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/basic.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/basic.rsi
   - type: AnimationPlayer
   - type: Fixtures
     fixtures:

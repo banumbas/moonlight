@@ -68,7 +68,7 @@
     boardName: wires-board-name-firealarm
     layoutId: FireAlarm
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/air_monitors.rsi
+    sprite: _Moonlight/Structures/Wallmounts/air_monitors.rsi
     noRot: true
     snapCardinals: false
     layers:
@@ -117,7 +117,7 @@
   description: A fire alarm assembly. Very mild.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/air_monitors.rsi
+    sprite: _Moonlight/Structures/Wallmounts/air_monitors.rsi
     noRot: true
     snapCardinals: false
     layers:

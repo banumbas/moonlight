@@ -1,0 +1,103 @@
+﻿# Moonlight Supply Pod entities.
+# These are EntityStorage-based pods delivered via the MoonlightSupplyPodSystem.
+# Any system can call MoonlightSupplyPodSystem.Deliver() to spawn one.
+#
+# The falling animation and impact effect are separate prototypes:
+#   - SupplyPodFallingEffect: _Moonlight/Entities/Effects/supplypod_falling_effect.yml
+#   - MoonlightSupplyPodImpactEffect: _Moonlight/Entities/Effects/supplypod_impact_effect.yml
+#
+# NOTE: EntityStorageVisuals is intentionally NOT used here because its
+# AppearanceChangeEvent handler overrides the Base layer and would clobber
+# the ClassicSupplyPod visualizer's Falling layer logic. The ClassicSupplyPod
+# client system manages all three layers (Base, Door, Falling) directly.
+
+# Base supply pod - uses the default texture set.
+# Parent is BaseStructureDynamic so it inherits EntityStorage, Physics, Destructible, etc.
+- type: entity
+  id: MoonlightSupplyPod
+  parent: BaseStructureDynamic
+  name: supply pod
+  description: A NanoTrasen supply pod, delivered from orbit. It can be opened to retrieve its contents.
+  categories: [ ForkFiltered ]
+  components:
+  - type: MoonlightSupplyPod
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Sprite
+    noRot: true
+    drawdepth: Objects
+    sprite: _Moonlight/Structures/Storage/SupplyPods/supply_pod_default.rsi
+    layers:
+    - state: default_pod
+      map: ["enum.MoonlightSupplyPodVisualLayers.Base"]
+    - state: default_closed
+      map: ["enum.MoonlightSupplyPodVisualLayers.Door"]
+    - state: default_falling_animation
+      sprite: _Moonlight/Effects/supplypod_falling.rsi
+      map: ["enum.MoonlightSupplyPodVisualLayers.Falling"]
+      visible: false
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    capacity: 10
+    airtight: true
+    isCollidableWhenOpen: false
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: StaticPrice
+    price: 200
+
+# Nanotrasen variant
+- type: entity
+  id: MoonlightSupplyPodNanotrasen
+  parent: MoonlightSupplyPod
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Storage/SupplyPods/supply_pod_nanotrasen.rsi
+
+# Syndicate variant
+- type: entity
+  id: MoonlightSupplyPodSyndicate
+  parent: MoonlightSupplyPod
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
+
+# Bluespace variant
+- type: entity
+  id: MoonlightSupplyPodBluespace
+  parent: MoonlightSupplyPod
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Storage/SupplyPods/supply_pod_bluespace.rsi

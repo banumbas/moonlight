@@ -1,0 +1,209 @@
+- type: entity
+  name: PMC rocket launcher
+  parent: BaseItem
+  id: WeaponRocketLauncherPMC
+  description: ent-WeaponRocketLauncherPMC-desc
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Objects/Weapons/Guns/rocketlauncher.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Moonlight/Objects/Weapons/Guns/rocketlauncher.rsi
+    size: Huge
+  - type: Clothing
+    sprite: _Moonlight/Objects/Weapons/Guns/rocketlauncher.rsi
+    slots: [ Back, suitStorage ]
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRocket
+    proto: AmmoRocketFragPMC
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: structural rocket
+  parent: BaseItem
+  id: AmmoRocketStructuralPMC
+  description: ent-AmmoRocketStructuralPMC-desc
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Objects/Weapons/Guns/Ammunition/rocket.rsi
+    layers:
+    - state: icon
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    sprite: _Moonlight/Objects/Weapons/Guns/Ammunition/rocket.rsi
+  - type: CartridgeAmmo
+    proto: ProjectileRocketStructuralPMC
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: icon
+    suffix: true
+  - type: Tag
+    tags:
+    - CartridgeRocket
+
+- type: entity
+  name: fragmentation rocket
+  parent: AmmoRocketStructuralPMC
+  id: AmmoRocketFragPMC
+  description: ent-AmmoRocketFragPMC-desc
+  components:
+  - type: CartridgeAmmo
+    proto: ProjectileRocketFragPMC
+
+- type: entity
+  name: gibbing rocket
+  parent: AmmoRocketStructuralPMC
+  id: AmmoRocketGibPMC
+  description: ent-AmmoRocketGibPMC-desc
+  components:
+  - type: CartridgeAmmo
+    proto: ProjectileRocketGibPMC
+
+- type: entity
+  parent: BulletRocket
+  id: ProjectileRocketStructuralPMC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15
+        Structural: 250
+  - type: Explosive
+    explosionType: DemolitionCharge
+    totalIntensity: 80
+    intensitySlope: 5
+    maxIntensity: 20
+    maxTileBreak: 2
+
+- type: entity
+  parent: BulletRocket
+  id: ProjectileRocketFragPMC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 20
+        Piercing: 20
+  - type: Explosive
+    explosionType: DefaultnoSpace
+    totalIntensity: 45
+    intensitySlope: 2
+    maxIntensity: 6
+    canCreateVacuum: false
+    maxTileBreak: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletRocketFragPMC
+    capacity: 16
+
+- type: entity
+  parent: BulletRocket
+  id: ProjectileRocketGibPMC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 140
+        Piercing: 40
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 75
+    intensitySlope: 12
+    maxIntensity: 20
+    maxTileBreak: 1
+
+- type: entity
+  parent: BaseBullet
+  id: PelletRocketFragPMC
+  categories: [ HideSpawnMenu ]
+  name: shrapnel
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 16
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  parent: BulletTrace
+  id: HitscanSniperZhihaoPMC
+  name: armor-piercing sniper beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    ignoreResistances: true
+    damage:
+      types:
+        Piercing: 60
+  - type: HitscanPierce
+    pierceLevel: HardenedMetal
+
+- type: entity
+  parent: BaseCartridgeRifle
+  id: CartridgeSniperZhihaoPMC
+  name: ent-CartridgeSniperZhihaoPMC
+  description: ent-CartridgeSniperZhihaoPMC-desc
+  components:
+  - type: CartridgeAmmo
+    proto: HitscanSniperZhihaoPMC
+  - type: Tag
+    tags: [ CartridgeSniperZhihaoPMC ]
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: SpeedLoaderShotgunZhihao
+  name: Zhihao shotgun drum
+  description: A quick-reload drum designed to instantly refill the Zhihao shotgun.
+  parent: SpeedLoaderShotgunEmpty
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 16
+    proto: ShellShotgun
+
+- type: entity
+  parent: BaseMagazineBoxAntiMateriel
+  id: MagazineBoxSniperZhihaoPMC
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 25
+    proto: CartridgeSniperZhihaoPMC
+    whitelist:
+      tags:
+      - CartridgeSniperZhihaoPMC
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+

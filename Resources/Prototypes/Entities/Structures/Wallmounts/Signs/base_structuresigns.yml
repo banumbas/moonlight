@@ -16,7 +16,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/signs.rsi
+    sprite: _Moonlight/Structures/Wallmounts/signs.rsi
     noRot: true
     snapCardinals: false
   - type: StaticPrice

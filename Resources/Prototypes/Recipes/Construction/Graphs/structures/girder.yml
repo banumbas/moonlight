@@ -40,7 +40,7 @@
               amount: 2
               doAfter: 2
 
-        # Classic-Start
+        # Moonlight-Start
         - to: ironWall
           completed:
             - !type:SnapToGrid
@@ -92,7 +92,7 @@
             - tag: Pizza
               name: ent-FoodPizzaBase
               doAfter: 2
-        # Classic-End
+        # Moonlight-End
 
         - to: reinforcedGirder
           completed:
@@ -201,7 +201,7 @@
               doAfter: 10
 
     - node: icedMetalWall
-      entity: ClassicWallIcedMetal
+      entity: MoonlightWallIcedMetal
       edges:
         - to: wall
           completed:
@@ -212,7 +212,7 @@
               doAfter: 20
 
     - node: ironWall
-      entity: ClassicWallIron
+      entity: MoonlightWallIron
       edges:
         - to: girder
           completed:
@@ -226,7 +226,7 @@
               doAfter: 10
 
     - node: paperWall
-      entity: ClassicWallPaper
+      entity: MoonlightWallPaper
       edges:
         - to: girder
           completed:
@@ -238,7 +238,7 @@
               doAfter: 3
 
     - node: paperframeWall
-      entity: ClassicWallPaperframe
+      entity: MoonlightWallPaperframe
       edges:
         - to: girder
           completed:
@@ -253,7 +253,7 @@
               doAfter: 5
 
     - node: pizzaWall
-      entity: ClassicWallPizza
+      entity: MoonlightWallPizza
       edges:
         - to: girder
           steps:

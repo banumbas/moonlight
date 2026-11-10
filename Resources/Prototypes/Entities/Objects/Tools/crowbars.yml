@@ -62,7 +62,7 @@
   id: Crowbar
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: crowbar
   - type: Item
     storedSprite:
@@ -79,7 +79,7 @@
     - Crowbar
     - CrowbarRed
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: crowbar_red
   - type: Item
     storedSprite:
@@ -108,7 +108,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Classic/Objects/Tools/tools.rsi
+    - sprite: _Moonlight/Objects/Tools/tools.rsi
       state: crowbar
     - sprite: Objects/Tools/crowbar.rsi
       state: cover-icon
@@ -140,7 +140,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Classic/Objects/Tools/tools.rsi
+    - sprite: _Moonlight/Objects/Tools/tools.rsi
       state: crowbar
     - sprite: Objects/Tools/crowbar.rsi
       state: cover-icon
@@ -172,7 +172,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Classic/Objects/Tools/tools.rsi
+    - sprite: _Moonlight/Objects/Tools/tools.rsi
       state: crowbar
     - sprite: Objects/Tools/crowbar.rsi
       state: cover-icon

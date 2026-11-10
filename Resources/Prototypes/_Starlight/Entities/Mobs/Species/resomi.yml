@@ -121,7 +121,7 @@
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - shader: StencilClear
-      sprite: _Classic/Mobs/Species/Human/parts.rsi
+      sprite: _Moonlight/Mobs/Species/Human/parts.rsi
       state: l_leg
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ] # Doesn't work atm, but who knows in the future.

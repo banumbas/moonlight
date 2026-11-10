@@ -23,7 +23,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: full
   - type: Respirator
     damage:

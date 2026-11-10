@@ -33,17 +33,17 @@ jobs:
       run: ssh -T git@github.com || exit 0
 
     - name: Publish changelog (Discord)
-      run: Tools/_Classic/actions_changelogs_since_last_run.py
+      run: Tools/_Moonlight/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_CLASSIC }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_MOONLIGHT }}
 
     - name: Commit and push changes
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add "Resources/Changelog/changelog_classic.yml"
+        git add "Resources/Changelog/changelog_moonlight.yml"
         git add "Tools/changelogs/sent_changelog_ids.yml"
         if git diff --cached --quiet; then
           echo "No changes to commit."

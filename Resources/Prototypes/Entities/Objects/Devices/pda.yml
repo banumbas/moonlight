@@ -11,7 +11,7 @@
        !type:String
        pda
   - type: Sprite
-    sprite: _Classic/Objects/Devices/pda.rsi
+    sprite: _Moonlight/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -24,7 +24,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: _Classic/Objects/Devices/pda.rsi
+    sprite: _Moonlight/Objects/Devices/pda.rsi
     state: pda
   - type: Pda
     paiSlot:
@@ -48,7 +48,7 @@
   - type: PdaVisuals
   - type: Item
     size: Small
-    # The modern SS13 world frames are in _Classic; retain the existing
+    # The modern SS13 world frames are in _Moonlight; retain the existing
     # directional in-hand frames from the original RSI.
     sprite: Objects/Devices/pda.rsi
   - type: ContainerContainer
@@ -135,7 +135,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Devices/pda.rsi
+    sprite: _Moonlight/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"

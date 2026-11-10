@@ -3,7 +3,7 @@ ghost-role-no-requirements = У этой роли нет требований.
 
 # Coloring rule of thumb: limegreen for met requirement, yellow for unmet requirement that can still be met, red for unmeetable
 
-# Classic-Start
+# Moonlight-Start
 role-timer-department-sufficient = У вас наиграно [color=limegreen]{$current}[/color] из требуемых [color=lightblue]{$required}[/color] в отделе [color={$departmentColor}]{$department}[/color].
 role-timer-department-insufficient = У вас наиграно [color=yellow]{$current}[/color] из требуемых [color=lightblue]{$required}[/color] в отделе [color={$departmentColor}]{$department}[/color].
 role-timer-department-not-too-high = У вас наиграно [color=limegreen]{$current}[/color] (не более [color=lightblue]{$required}[/color]) в отделе [color={$departmentColor}]{$department}[/color].
@@ -18,10 +18,10 @@ role-timer-role-sufficient = У вас наиграно [color=limegreen]{$curre
 role-timer-role-insufficient = У вас наиграно [color=yellow]{$current}[/color] из требуемых [color=lightblue]{$required}[/color] в роли [color={$departmentColor}]{$job}[/color].
 role-timer-role-not-too-high = У вас наиграно [color=limegreen]{$current}[/color] (не более [color=lightblue]{$required}[/color]) в роли [color={$departmentColor}]{$job}[/color].
 role-timer-role-too-high = У вас наиграно [color=red]{$current}[/color] (не более [color=lightblue]{$required}[/color]) в роли [color={$departmentColor}]{$job}[/color]. (Вы пытаетесь играть за роль для новичков?)
-# Classic-End
+# Moonlight-End
 
 role-whitelisted = Вы [color=limegreen]внесены в белый список[/color] на эту роль.
-role-not-whitelisted = Вы [color=yellow]не внесены в белый список[/color] на эту роль. # Classic edit
+role-not-whitelisted = Вы [color=yellow]не внесены в белый список[/color] на эту роль. # Moonlight edit
 role-timer-age-old-enough = Возраст вашего персонажа должен быть не менее [color=limegreen]{$age}[/color] для этой роли.
 role-timer-age-not-old-enough = Возраст вашего персонажа должен быть не менее [color=yellow]{$age}[/color] для этой роли.
 role-timer-age-young-enough = Возраст вашего персонажа должен быть не более [color=limegreen]{$age}[/color] для этой роли.
@@ -37,4 +37,4 @@ role-timer-whitelisted-traits-fail = Персонаж [color=yellow]должен
 role-timer-blacklisted-traits-pass = Персонаж [color=limegreen]не должен[/color] иметь черты: [color=limegreen]{$traits}[/color]
 role-timer-blacklisted-traits-fail = Персонаж [color=yellow]не должен[/color] иметь черты: [color=yellow]{$traits}[/color]
 
-role-ban = Вам [color=red]заблокировали[/color] эту роль. # Classic edit
+role-ban = Вам [color=red]заблокировали[/color] эту роль. # Moonlight edit

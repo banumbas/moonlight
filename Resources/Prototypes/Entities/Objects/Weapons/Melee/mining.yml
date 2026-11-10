@@ -35,14 +35,14 @@
     sprite: Objects/Weapons/Melee/pickaxe.rsi
     storedRotation: -45
   - type: UseDelay
-  # Classic-Start
+  # Moonlight-Start
   - type: Tool
     qualities:
     - Digging
     useSound:
       path: /Audio/Weapons/smash.ogg
   - type: ToolTileCompatible
-  # Classic-End
+  # Moonlight-End
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

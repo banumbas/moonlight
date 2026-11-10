@@ -41,7 +41,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         return ValueTask.CompletedTask;
     }
 
-    // Classic start
+    // Moonlight start
     public void LinkPlayerDiscord(NetUserId userId, ulong discordId, IEnumerable<ulong>? roles = null)
     {
         if (!_playerById.TryGetValue(userId, out var playerData))
@@ -58,7 +58,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         RebuildTitle(_playerManager.GetSessionById(userId), playerData);
         SendPlayerRoles(playerData.Session, playerData.Roles);
     }
-    // Classic end
+    // Moonlight end
 
     private void SendPlayerRoles(ICommonSession session, ImmutableHashSet<ulong> roles)
     => _netMgr.ServerSendMessage(new MsgUpdatePlayerRoles

@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudPMC
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Clothing/Eyes/Hud/pmchud.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Moonlight/Clothing/Eyes/Hud/pmchud.rsi
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: EyeProtection
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowPMCIcons

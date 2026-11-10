@@ -108,7 +108,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: ash
   - type: Tag
     tags:

@@ -59,7 +59,7 @@ public abstract partial class SharedGunSystem
         if (component.SelectedMode == component.AvailableModes)
             return;
 
-        // classic start
+        // moonlight start
         if (TryComp<BatteryWeaponFireModesComponent>(uid, out var fireModesComp))
         {
             foreach (var mode in fireModesComp.FireModes)
@@ -68,7 +68,7 @@ public abstract partial class SharedGunSystem
                     return;
             }
         }
-        // classic end
+        // moonlight end
 
         var nextMode = GetNextMode(component);
 

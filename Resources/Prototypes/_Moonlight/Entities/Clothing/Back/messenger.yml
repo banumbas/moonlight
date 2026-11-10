@@ -1,0 +1,61 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackMessengerPMC
+  name: ent-ClothingBackpackMessengerPMC
+  description: ent-ClothingBackpackMessengerPMC-desc
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Clothing/Back/Messenger/pmc.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Moonlight/Clothing/Back/Messenger/pmc.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,4
+    - 3,0,6,4
+    - 8,0,9,4
+  - type: StorageFill
+    contents:
+      - id: DeathAcidifierImplanter
+  - type: ExplosionResistance
+    damageCoefficient: 0.1 # 90% resistance
+
+- type: entity
+  parent: ClothingBackpackMessengerPMC
+  id: ClothingBackpackMessengerPMCMedic
+  name: ent-ClothingBackpackMessengerPMCMedic
+  description: ent-ClothingBackpackMessengerPMCMedic-desc
+  components:
+  - type: StorageFill
+    contents:
+      - id: HypospraySakuraPMC
+      - id: DeathAcidifierImplanter
+
+- type: entity
+  parent: ClothingBackpackMessengerPMC
+  id: ClothingBackpackMessengerPMCCommander
+  name: ent-ClothingBackpackMessengerPMCCommander
+  description: ent-ClothingBackpackMessengerPMCCommander-desc
+  components:
+  - type: Storage
+    grid:
+    - 0,0,1,5
+    - 3,0,6,5
+    - 8,0,9,5
+
+- type: entity
+  parent: ClothingBackpackMessengerPMCCommander
+  id: ClothingBackpackMessengerPMCCommanderRockets
+  suffix: Filled, Rockets
+  components:
+  - type: StorageFill
+    contents:
+      - id: AmmoRocketStructuralPMC
+      - id: AmmoRocketStructuralPMC
+      - id: AmmoRocketGibPMC
+      - id: AmmoRocketFragPMC
+      - id: AmmoRocketFragPMC
+      - id: AmmoRocketFragPMC
+      - id: AmmoRocketFragPMC
+      - id: DeathAcidifierImplanter
+

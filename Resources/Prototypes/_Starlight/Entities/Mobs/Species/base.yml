@@ -360,7 +360,7 @@
   - type: ComplexInteraction
   - type: ContainerContainer
   - type: Icon
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: full
   - type: Sprite
     drawdepth: Mobs

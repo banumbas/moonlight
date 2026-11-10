@@ -8,7 +8,7 @@
     tags:
     - JawsOfLife
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: jaws
   - type: Item
     size: Normal
@@ -34,13 +34,13 @@
     entries:
       - behavior: Prying
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: jaws
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
       - behavior: Cutting
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: jaws_on
         useSound: /Audio/Items/jaws_cut.ogg
         changeSound: /Audio/Items/change_jaws.ogg
@@ -86,7 +86,7 @@
     - SyndicateJawsOfLife
   # 🌟Starlight-end🌟
   - type: Sprite
-    sprite: _Classic/Objects/Tools/tools.rsi
+    sprite: _Moonlight/Objects/Tools/tools.rsi
     state: jaws_syndie
   - type: Item
     size: Normal
@@ -98,13 +98,13 @@
     entries:
       - behavior: Prying
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: jaws_syndie
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
       - behavior: Cutting
         sprite:
-          sprite: _Classic/Objects/Tools/tools.rsi
+          sprite: _Moonlight/Objects/Tools/tools.rsi
           state: jaws_syndie_on
         useSound: /Audio/Items/jaws_cut.ogg
         changeSound: /Audio/Items/change_jaws.ogg

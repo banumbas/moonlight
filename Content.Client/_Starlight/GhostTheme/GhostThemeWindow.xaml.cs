@@ -175,7 +175,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
             themeBox.AddChild(ghostPicker);
             filterThemeBox.AddChild(ghostPickerFilter);
 
-            // Classic-Start
+            // Moonlight-Start
             var reqs = theme.Requirements
                 .Select(x => x.GetRequirementDescription())
                 .Where(desc => !string.IsNullOrWhiteSpace(desc));
@@ -197,7 +197,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
                     return tt;
                 };
             }
-            // Classic-End
+            // Moonlight-End
 
             if (_availableThemes.Contains(theme.ID))
             {

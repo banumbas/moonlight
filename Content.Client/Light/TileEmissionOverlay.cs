@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._Classic.ZLevels.Core; // Classic-Edit
+using Content.Client._Moonlight.ZLevels.Core; // Moonlight-Edit
 using Content.Shared.Light.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
@@ -46,10 +46,10 @@ public sealed partial class TileEmissionOverlay : Overlay
         var mapId = args.MapId;
         var worldHandle = args.WorldHandle;
         var viewport = args.Viewport;
-        // Classic-Edit start - lower Z-levels can draw content lighting into the existing target.
+        // Moonlight-Edit start - lower Z-levels can draw content lighting into the existing target.
         Box2Rotated bounds;
         IRenderTexture target;
-        if (viewport.Eye is IClassicZLevelRenderQuality { UseDirectContentLightTarget: true })
+        if (viewport.Eye is IMoonlightZLevelRenderQuality { UseDirectContentLightTarget: true })
         {
             bounds = args.WorldBounds;
             target = viewport.LightRenderTarget;
@@ -60,7 +60,7 @@ public sealed partial class TileEmissionOverlay : Overlay
             bounds = lightOverlay.EnlargedBounds;
             target = lightOverlay.GetCachedForViewport(viewport).EnlargedLightTarget;
         }
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         _grids.Clear();
         _mapSystem.FindGridsIntersecting(mapId, bounds, ref _grids, approx: true);

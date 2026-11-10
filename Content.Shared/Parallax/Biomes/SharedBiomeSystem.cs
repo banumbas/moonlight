@@ -20,7 +20,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private SharedMapSystem _map = default!;
 
-    // Classic-Start
+    // Moonlight-Start
     // ConditionalWeakTable is not allowed by the client content sandbox. Prototype reloads
     // explicitly clear this cache, so retaining the noise keys between reloads is unnecessary.
     private readonly ConcurrentDictionary<FastNoiseLite, SeededNoiseCache> _seededNoiseCache = new();
@@ -29,7 +29,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     {
         public readonly ConcurrentDictionary<int, FastNoiseLite> Values = new();
     }
-    // Classic-End
+    // Moonlight-End
 
     protected const byte ChunkSize = 8;
 
@@ -120,7 +120,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return TryGetBiomeTile(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out tile);
     }
 
-    // Classic-Start: Replaced by TryGetTile in SharedBiomeSystem.Classic.cs
+    // Moonlight-Start: Replaced by TryGetTile in SharedBiomeSystem.Moonlight.cs
     /*
     /// <summary>
     /// Gets the underlying biome tile, ignoring any existing tile that may be there.
@@ -163,7 +163,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return false;
     }
     */
-    // Classic-End
+    // Moonlight-End
 
     /// <summary>
     /// Gets the underlying biome tile, ignoring any existing tile that may be there.
@@ -392,7 +392,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)
     {
-        // Classic-Start
+        // Moonlight-Start
         var cache = _seededNoiseCache.GetOrAdd(seedNoise, static _ => new SeededNoiseCache());
         if (cache.Values.TryGetValue(seed, out var cached))
             return cached;
@@ -402,17 +402,17 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         // cache so random map seeds cannot accumulate forever across rounds.
         if (cache.Values.Count >= 64)
             cache.Values.Clear();
-        // Classic-End
+        // Moonlight-End
 
         var noiseCopy = new FastNoiseLite();
         _serManager.CopyTo(seedNoise, ref noiseCopy, notNullableOverride: true);
         noiseCopy.SetSeed(noiseCopy.GetSeed() + seed);
         // Ensure re-calculate is run.
         noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
-        return cache.Values.GetOrAdd(seed, noiseCopy);  // Classic-Edit
+        return cache.Values.GetOrAdd(seed, noiseCopy);  // Moonlight-Edit
     }
 
-    // Classic-Start
+    // Moonlight-Start
     protected void InvalidateNoise(FastNoiseLite noise)
     {
         _seededNoiseCache.TryRemove(noise, out _);
@@ -422,5 +422,5 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     {
         _seededNoiseCache.Clear();
     }
-    // Classic-End
+    // Moonlight-End
 }

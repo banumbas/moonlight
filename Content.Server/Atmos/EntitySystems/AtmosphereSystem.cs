@@ -82,10 +82,10 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private void OnTileChanged(ref TileChangedEvent ev)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (AtmosDisabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         foreach (var change in ev.Changes)
         {
@@ -103,16 +103,16 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     {
         base.Update(frameTime);
 
-        // Classic-Start
+        // Moonlight-Start
         if (!AtmosDisabled)
         {
             UpdateProcessing(frameTime);
             UpdateHighPressure(frameTime);
         }
-        // Classic-End
+        // Moonlight-End
 
-        //UpdateProcessing(frameTime); // classic-remove
-        //UpdateHighPressure(frameTime); // classic-remove
+        //UpdateProcessing(frameTime); // moonlight-remove
+        //UpdateHighPressure(frameTime); // moonlight-remove
 
         _exposedTimer += frameTime;
 

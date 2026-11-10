@@ -206,7 +206,7 @@
     - type: Item
     container: cavity
   - type: Sprite
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: torso_m
 
 - type: entity
@@ -232,7 +232,7 @@
     - type: Item
     container: cavity
   - type: Sprite
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: torso_m
 
 - type: entity

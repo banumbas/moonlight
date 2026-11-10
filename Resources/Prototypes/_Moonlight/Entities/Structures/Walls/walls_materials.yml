@@ -1,0 +1,230 @@
+# Imported from the SS13 wall template set in C:\Users\sobol\Downloads\walls.
+# These material variants did not have an entity in the Moonlight content pack, so they
+# inherit the normal wall behaviour and only replace the visual resource.
+
+- type: entity
+  id: MoonlightWallBamboo
+  parent: WallWood
+  name: bamboo wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/bamboo.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/bamboo.rsi
+  - type: IconSmooth
+    key: walls
+    base: bamboo
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallIcedMetal
+  name: iced metal wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/iced_metal.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/iced_metal.rsi
+  - type: Construction
+    graph: Girder
+    node: icedMetalWall
+  - type: IconSmooth
+    key: walls
+    base: iced_metal
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallIron
+  name: iron wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/iron.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/iron.rsi
+  - type: Ricochetable
+    chance: 0.7
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: Girder
+    node: ironWall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: StaticPrice
+    price: 300
+  - type: IconSmooth
+    key: walls
+    base: iron
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallMaterial
+  name: material wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/material.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/material.rsi
+  - type: IconSmooth
+    key: walls
+    base: material
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallPaperframe
+  name: paper frame wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/paperframe.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/paperframe.rsi
+  - type: Construction
+    graph: Girder
+    node: paperframeWall
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 180
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RCDDeconstructable
+    cost: 3
+    delay: 5
+    fx: EffectRCDDeconstruct8
+  - type: IconSmooth
+    key: walls
+    base: paperframe
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallPaper
+  name: paper wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/paper.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/paper.rsi
+  - type: Ricochetable
+    chance: 0
+  - type: Construction
+    graph: Girder
+    node: paperWall
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RCDDeconstructable
+    cost: 1
+    delay: 2
+    fx: EffectRCDDeconstruct8
+  - type: IconSmooth
+    key: walls
+    base: paper
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallPizza
+  name: pizza wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/pizza.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/pizza.rsi
+  - type: Construction
+    graph: Girder
+    node: pizzaWall
+  - type: FlavorProfile
+    flavors:
+    - oily
+    - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Edible
+  - type: SpaceGarbage
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 3
+    fx: EffectRCDDeconstruct8
+  - type: IconSmooth
+    key: walls
+    base: pizza

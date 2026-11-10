@@ -74,10 +74,10 @@ public sealed partial class RespiratorSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         var query = EntityQueryEnumerator<RespiratorComponent>();
         while (query.MoveNext(out var uid, out var respirator))
@@ -133,10 +133,10 @@ public sealed partial class RespiratorSystem : EntitySystem
 
     public void Inhale(Entity<RespiratorComponent?> entity)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         if (!Resolve(entity, ref entity.Comp, logMissing: false))
             return;
@@ -167,10 +167,10 @@ public sealed partial class RespiratorSystem : EntitySystem
 
     public void Exhale(Entity<RespiratorComponent> entity)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         // exhale gas
 
@@ -191,10 +191,10 @@ public sealed partial class RespiratorSystem : EntitySystem
 
     public void Exhale(Entity<RespiratorComponent?> entity, GasMixture gas)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         if (!Resolve(entity, ref entity.Comp, logMissing: false))
             return;
@@ -208,10 +208,10 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return !_mobState.IsDead(ent);
-        // Classic-End
+        // Moonlight-End
 
         if (_mobState.IsIncapacitated(ent))
             return false;
@@ -229,10 +229,10 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// <returns>Returns true only if the air is not toxic, and it wouldn't suffocate.</returns>
     public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return true;
-        // Classic-End
+        // Moonlight-End
 
         if (!Resolve(ent, ref ent.Comp))
             return false;
@@ -258,10 +258,10 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// <returns>Returns true only if the gas mixture is not toxic, and it wouldn't suffocate.</returns>
     public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent, GasMixture gas)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosSys.AtmosEnabled)
             return true;
-        // Classic-End
+        // Moonlight-End
 
         if (!Resolve(ent, ref ent.Comp))
             return false;

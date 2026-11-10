@@ -147,7 +147,7 @@
   id: AirlockMaintRoboticsLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
   # Surgery
 - type: entity
@@ -173,7 +173,7 @@
   id: AirlockMaintSurgeryLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Paramedic
 - type: entity
@@ -199,7 +199,7 @@
   id: AirlockMaintParamedicLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Salvage/Mining Shared
 - type: entity
@@ -225,7 +225,7 @@
   id: AirlockMaintSalvageMiningLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Mining/Cargo Shared
 - type: entity
@@ -251,7 +251,7 @@
   id: AirlockMaintMiningCargoLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Retro Salvage
 - type: entity
@@ -334,7 +334,7 @@
   id: AirlockMaintMailLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Service
 - type: entity
@@ -360,7 +360,7 @@
   id: AirlockMaintLegalLocked # Starlight
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockJournalismLocked
@@ -393,7 +393,7 @@
   id: AirlockMaintCourtroomLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 
 # Attorney
@@ -420,7 +420,7 @@
   id: AirlockMaintAttorneyLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 
 # Xenoborg
@@ -540,7 +540,7 @@
   id: AirlockMaintBrigmedLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockBrigmedPara
@@ -565,7 +565,7 @@
   id: AirlockMaintBrigmedParaLocked
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Solgov
 - type: entity
@@ -629,7 +629,7 @@
   suffix: Communist, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/basic.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/basic.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCommunist ]
@@ -642,7 +642,7 @@
   suffix: Communist, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/glass.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/glass.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCommunist ]
@@ -655,7 +655,7 @@
   suffix: Communist, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockHatch
@@ -739,7 +739,7 @@
   suffix: Wizard, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/basic.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/basic.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsWizard ]
@@ -752,7 +752,7 @@
   suffix: Wizard, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/glass.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/glass.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsWizard ]
@@ -765,7 +765,7 @@
   suffix: Wizard, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockHatch
@@ -849,7 +849,7 @@
   suffix: Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/basic.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/basic.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -862,7 +862,7 @@
   suffix: Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/glass.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/glass.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -875,7 +875,7 @@
   suffix: Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockHatch
@@ -905,7 +905,7 @@
   suffix: External, Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/external.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/external.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -918,7 +918,7 @@
   suffix: Glass, External, Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/external.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/external.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -931,7 +931,7 @@
   suffix: Docking, Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/shuttle.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/shuttle.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -944,7 +944,7 @@
   suffix: Glass, Docking, Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/shuttle.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/shuttle.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
@@ -957,7 +957,7 @@
   suffix: Blackstar, Locked
   components:
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/highsec/highsec.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/highsec/highsec.rsi
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]

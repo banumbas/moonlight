@@ -11,24 +11,24 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#2d2d33" #Different from the worn state for contrast reasons. # Classic-Edit
+      color: "#2d2d33" #Different from the worn state for contrast reasons. # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#2d2d33" # Classic-Edit
+        color: "#2d2d33" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#2d2d33" # Classic-Edit
+        color: "#2d2d33" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#2d2d33" # Classic-Edit
+        color: "#2d2d33" # Moonlight-Edit
       - state: soles-equipped-FEET
 
 # White Shoes
@@ -42,22 +42,22 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-#      color: "#EAE8E8" #Deliberately NOT pure white # Classic-Edit
+#      color: "#EAE8E8" #Deliberately NOT pure white # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals: #We don't want the sole icons. Since this is white, it's just going to look weird (white on white doesn't really contrast.)
       left:
       - state: inhand-left
-#        color: "#EAE8E8" # Classic-Edit
+#        color: "#EAE8E8" # Moonlight-Edit
       right:
       - state: inhand-right
-#        color: "#EAE8E8" # Classic-Edit
+#        color: "#EAE8E8" # Moonlight-Edit
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-#        color: "#EAE8E8" # Classic-Edit
+#        color: "#EAE8E8" # Moonlight-Edit
       - state: contrastedsoles-equipped-FEET
 
 # Blue Shoes
@@ -71,24 +71,24 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#4f88df" # Classic-Edit
+      color: "#4f88df" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#4f88df" # Classic-Edit
+        color: "#4f88df" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#4f88df" # Classic-Edit
+        color: "#4f88df" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#4f88df" # Classic-Edit
+        color: "#4f88df" # Moonlight-Edit
       - state: soles-equipped-FEET
 
 # Brown Shoes
@@ -102,17 +102,17 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#472c21" # Classic-Edit
+      color: "#472c21" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#472c21" # Classic-Edit
+        color: "#472c21" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#472c21" # Classic-Edit
+        color: "#472c21" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
@@ -133,24 +133,24 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#3bca5a" # Classic-Edit
+      color: "#3bca5a" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#3bca5a" # Classic-Edit
+        color: "#3bca5a" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#3bca5a" # Classic-Edit
+        color: "#3bca5a" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#3bca5a" # Classic-Edit
+        color: "#3bca5a" # Moonlight-Edit
       - state: soles-equipped-FEET
 
 # Orange Shoes
@@ -164,24 +164,24 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#d15b1b" # Classic-Edit
+      color: "#d15b1b" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#d15b1b" # Classic-Edit
+        color: "#d15b1b" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#d15b1b" # Classic-Edit
+        color: "#d15b1b" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#d15b1b" # Classic-Edit
+        color: "#d15b1b" # Moonlight-Edit
       - state: soles-equipped-FEET
 
 # Red Shoes
@@ -226,24 +226,24 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#deb63d" # Classic-Edit
+      color: "#deb63d" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#deb63d" # Classic-Edit
+        color: "#deb63d" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#deb63d" # Classic-Edit
+        color: "#deb63d" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#deb63d" # Classic-Edit
+        color: "#deb63d" # Moonlight-Edit
       - state: soles-equipped-FEET
 
 # Purple Shoes
@@ -257,22 +257,22 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#7e1980" # Classic-Edit
+      color: "#7e1980" # Moonlight-Edit
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#7e1980" # Classic-Edit
+        color: "#7e1980" # Moonlight-Edit
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#7e1980" # Classic-Edit
+        color: "#7e1980" # Moonlight-Edit
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#7e1980" # Classic-Edit
+        color: "#7e1980" # Moonlight-Edit
       - state: soles-equipped-FEET

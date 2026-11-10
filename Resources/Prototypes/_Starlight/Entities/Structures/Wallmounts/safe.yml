@@ -20,7 +20,7 @@
     drawdepth: Effects
     noRot: true
     snapCardinals: false
-    sprite: _Classic/_Starlight/Structures/Storage/safe.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/safe.rsi
     layers:
     - state: icon
     - state: open

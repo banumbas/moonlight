@@ -1,1 +1,0 @@
-ent-ClassicSupplyPodImpactEffect = эффект столкновения

@@ -1,4 +1,0 @@
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
-  id: ClassicGeyserGeneratorMachineCircuitboard
-  result: ClassicGeyserGeneratorMachineCircuitboard

@@ -1,0 +1,98 @@
+# Base Black PMC Airlocks
+- type: entity
+  parent: Airlock
+  id: AirlockPMCBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/pmc.rsi
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockPMCBaseGlass
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/pmc.rsi
+
+# Solid Black PMC Airlocks
+- type: entity
+  parent: AirlockPMCBase
+  id: AirlockPMCCommander
+  name: airlock-pmc-commander
+  suffix: PMC, Commander, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCCommander ]
+
+- type: entity
+  parent: AirlockPMCBase
+  id: AirlockPMCMedic
+  name: airlock-pmc-medic
+  suffix: PMC, Medic, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCMedic ]
+
+- type: entity
+  parent: AirlockPMCBase
+  id: AirlockPMCSpecialist
+  name: airlock-pmc-specialist
+  suffix: PMC, Specialist, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCSpecialist ]
+
+- type: entity
+  parent: AirlockPMCBase
+  id: AirlockPMCAssault
+  name: airlock-pmc-assault
+  suffix: PMC, Assault, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCAssault ]
+
+# Glass Black PMC Airlocks
+- type: entity
+  parent: AirlockPMCBaseGlass
+  id: AirlockPMCCommanderGlass
+  name: airlock-pmc-commander
+  suffix: PMC, Commander, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCCommander ]
+
+- type: entity
+  parent: AirlockPMCBaseGlass
+  id: AirlockPMCMedicGlass
+  name: airlock-pmc-medic
+  suffix: PMC, Medic, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCMedic ]
+
+- type: entity
+  parent: AirlockPMCBaseGlass
+  id: AirlockPMCSpecialistGlass
+  name: airlock-pmc-specialist
+  suffix: PMC, Specialist, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCSpecialist ]
+
+- type: entity
+  parent: AirlockPMCBaseGlass
+  id: AirlockPMCAssaultGlass
+  name: airlock-pmc-assault
+  suffix: PMC, Assault, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPMCAssault ]

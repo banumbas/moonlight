@@ -722,7 +722,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: generic_materials
 
 - type: entity

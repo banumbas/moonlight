@@ -178,7 +178,7 @@
   - type: Sprite
     layers:
     - state: pink
-    - sprite: _Classic/Objects/Materials/materials.rsi
+    - sprite: _Moonlight/Objects/Materials/materials.rsi
       state: diamond
   - type: EntityTableSpawner
     offset: 0.4
@@ -247,7 +247,7 @@
   - type: Sprite
     layers:
     - state: pink
-    - sprite: _Classic/Objects/Materials/materials.rsi
+    - sprite: _Moonlight/Objects/Materials/materials.rsi
       state: diamond
   - type: EntityTableSpawner
     offset: 0.4

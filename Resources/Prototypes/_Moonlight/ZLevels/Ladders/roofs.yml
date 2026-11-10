@@ -1,0 +1,84 @@
+- type: entity
+  id: MoonlightZLevelsLadderRoofBase
+  name: roof tile
+  description: Roof tiles, for covering building roofs.
+  abstract: true
+  components:
+  - type: Damageable
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# Red
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofRed
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_red.rsi
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofRedCorner
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_red.rsi
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerInnerBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofRedCornerInner
+  suffix: Inner Corner
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_red.rsi
+
+# Green
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofGreen
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_green.rsi
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofGreenCorner
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_green.rsi
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerInnerBase
+  - MoonlightZLevelsLadderRoofBase
+  id: MoonlightZLevelsLadderRoofGreenCornerInner
+  suffix: Inner Corner
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/roof_green.rsi
+

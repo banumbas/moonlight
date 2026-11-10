@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.GameTicking.Rules; // Starlight
-using Content.Shared._Classic.CCVar; // Classic-Edit
+using Content.Shared._Moonlight.CCVar; // Moonlight-Edit
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -36,12 +36,12 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
 
     protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
-        // Classic-Edit start - hard stop even if a map-loading rule bypasses prototype filtering
+        // Moonlight-Edit start - hard stop even if a map-loading rule bypasses prototype filtering
         if (uid == EntityUid.Invalid)
             return;
 
         if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule) ||
-            _cfg.GetCVar(ClassicCCVars.DisableShuttleEvents))
+            _cfg.GetCVar(MoonlightCCVars.DisableShuttleEvents))
         {
             // If map loading is explicitly disabled, end the rule rather than leaving it partially initialized.
             // This avoids dependent systems (e.g. antag spawn location selection via RuleGrids) running with no map data.
@@ -49,7 +49,7 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
             ForceEndSelf(uid, rule);
             return;
         }
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
         {

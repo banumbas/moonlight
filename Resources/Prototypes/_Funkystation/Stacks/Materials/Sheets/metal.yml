@@ -2,6 +2,6 @@
 - type: stack
   id: MetalHydrogen
   name: stack-metal-hydrogen
-  icon: { sprite: /Textures/_Classic/Objects/Materials/ingots.rsi, state: hydrogen }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/ingots.rsi, state: hydrogen }
   spawn: MetalHydrogen1
   maxCount: 30

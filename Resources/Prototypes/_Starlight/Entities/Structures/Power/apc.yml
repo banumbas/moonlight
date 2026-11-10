@@ -9,7 +9,7 @@
     access: []
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: _Classic/Structures/Power/apc.rsi
+    sprite: _Moonlight/Structures/Power/apc.rsi
     layers:
     - state: base
       color: "#795382"

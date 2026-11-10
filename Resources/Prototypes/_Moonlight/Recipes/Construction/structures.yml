@@ -1,0 +1,95 @@
+- type: construction
+  id: MoonlightGrilleWindow
+  graph: MoonlightGrilleWindow
+  startNode: start
+  targetNode: grilleWindow
+  category: construction-category-structures
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: WindowFrameBase
+  graph: WindowFrameBase
+  startNode: start
+  targetNode: windowFrame
+  category: construction-category-structures
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: IronWall
+  name: construction-recipe-iron-wall
+  graph: Girder
+  startNode: start
+  targetNode: ironWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PaperWall
+  name: construction-recipe-paper-wall
+  graph: Girder
+  startNode: start
+  targetNode: paperWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PaperframeWall
+  name: construction-recipe-paperframe-wall
+  graph: Girder
+  startNode: start
+  targetNode: paperframeWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PizzaWall
+  name: construction-recipe-pizza-wall
+  graph: Girder
+  startNode: start
+  targetNode: pizzaWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: MoonlightPaperWindow
+  graph: Window
+  startNode: start
+  targetNode: paperWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false

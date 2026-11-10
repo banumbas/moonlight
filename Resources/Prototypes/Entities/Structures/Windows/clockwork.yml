@@ -5,11 +5,11 @@
   parent: Window
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/bronze_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/bronze_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/bronze_window.rsi # Classic-Edit
-    state: full # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/bronze_window.rsi # Moonlight-Edit
+    state: full # Moonlight-Edit
   - type: Repairable
     fuelCost: 10
     doAfterDelay: 2
@@ -42,7 +42,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    base: bronze_window # Classic-Edit
+    base: bronze_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: clockworkWindow
@@ -52,7 +52,7 @@
     damageDivisor: 3
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
 
 - type: entity
   id: WindowClockworkDirectional

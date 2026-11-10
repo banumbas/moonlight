@@ -473,7 +473,7 @@ namespace Content.Client.Lobby.UI
 
             #endregion Hair
 
-            // Classic-Start
+            // Moonlight-Start
             // SpawnPriority preference commented out: players arrive via supply pods.
             // The UI element is kept for visual consistency but the choice is non-functional.
             // #region SpawnPriority
@@ -491,7 +491,7 @@ namespace Content.Client.Lobby.UI
             //
             // #endregion SpawnPriority
             SpawnPriorityButton.Visible = false;
-            // Classic-End
+            // Moonlight-End
 
             #region Eyes
 
@@ -1961,7 +1961,7 @@ namespace Content.Client.Lobby.UI
             PronounsButton.SelectId((int)Profile.Gender);
         }
 
-        // Classic-Start
+        // Moonlight-Start
         // SpawnPriority preference disabled: players arrive via supply pods.
         // The button is no longer populated, so SelectId would throw KeyNotFoundException.
         // private void UpdateSpawnPriorityControls()
@@ -1976,7 +1976,7 @@ namespace Content.Client.Lobby.UI
         private void UpdateSpawnPriorityControls()
         {
         }
-        // Classic-End
+        // Moonlight-End
 
         private void UpdateHairPickers()
         {

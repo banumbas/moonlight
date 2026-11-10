@@ -682,7 +682,7 @@ Entries:
   changes:
   - message: The Admin Menu and Admin Overlay now shows the specific role types of
       players and antagonists, respectively. The old admin overlay can still be used
-      with cvar ui.admin_overlay_classic true
+      with cvar ui.admin_overlay_moonlight true
     type: Tweak
   id: 85
   time: '2025-01-11T21:17:26.0000000+00:00'
@@ -883,7 +883,7 @@ Entries:
   changes:
   - message: All Solo Antagonist, Team Antagonist, Altered Silicon and (non-harmless)
       Free Agent ghostroles are now marked as Antagonist on all interfaces where this
-      distinction exists. (Classic admin overlay, admin playerlist, round end player
+      distinction exists. (Moonlight admin overlay, admin playerlist, round end player
       list)
     type: Fix
   id: 110

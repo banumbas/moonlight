@@ -22,7 +22,7 @@
     graph: LightFixture
     node: tubeLight
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
+    sprite: _Moonlight/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
     drawdepth: Overlays
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -101,7 +101,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
+    sprite: _Moonlight/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
     state: empty
   - type: PointLight
     enabled: false
@@ -264,7 +264,7 @@
       sound:
         path: /Audio/Ambience/Objects/light_hum.ogg
     - type: Sprite
-      sprite: _Classic/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
+      sprite: _Moonlight/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
       drawdepth: Overlays
       state: base
     - type: PointLight
@@ -319,7 +319,7 @@
   parent: SmallLight
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
+    sprite: _Moonlight/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
     state: empty
   - type: AmbientSound
     enabled: false

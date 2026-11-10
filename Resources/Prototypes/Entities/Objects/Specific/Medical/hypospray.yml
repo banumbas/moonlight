@@ -28,7 +28,7 @@
   description: A sterile injector for rapid administration of drugs to patients.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Specific/Medical/syringe.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/syringe.rsi
     layers:
     - state: hypo
       map: ["enum.SolutionContainerLayers.Base"]
@@ -65,7 +65,7 @@
   description: A sterile injector for rapid administration of drugs. Reverse-engineered from NanoTrasen designs, Cybersun produces these in limited quantities for Gorlex Marauders' corpsmen. # SL
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Specific/Medical/syringe.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/syringe.rsi
     layers:
       - state: combat_hypo
         map: ["enum.SolutionContainerLayers.Base"]
@@ -91,7 +91,7 @@
   description: A sterile injector for rapid administration of drugs to patients. This integrated model is specialized for use by medical borgs.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Specific/Medical/syringe.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/syringe.rsi
     layers:
     - state: borghypo
       map: [ "enum.SolutionContainerLayers.Base" ]

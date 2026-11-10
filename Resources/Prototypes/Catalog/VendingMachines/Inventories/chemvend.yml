@@ -54,10 +54,10 @@
     JugSugar: 3
     JugSulfur: 1
     JugWeldingFuel: 1
-    # Classic-Start
+    # Moonlight-Start
     JugPunctTranex: 1
     JugDesoxyephedrineDylovene: 1
-    # Classic-End
+    # Moonlight-End
     PlasmaChemistryVial: 1
   contrabandInventory:
     DrinkLithiumFlask: 1

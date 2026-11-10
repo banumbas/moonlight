@@ -12,7 +12,7 @@
   - type: WallMount
     arc: 360
   - type: Sprite
-    sprite: _Classic/Structures/Wallmounts/barsign.rsi
+    sprite: _Moonlight/Structures/Wallmounts/barsign.rsi
     noRot: true
     snapCardinals: false
     state: empty

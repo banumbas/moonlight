@@ -65,7 +65,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
                 profile = prefs.GetRandomEnabledProfile()
                        ?? prefs.Characters.Values.OfType<HumanoidCharacterProfile>().FirstOrDefault();
             }
-            // classic end
+            // moonlight end
             #endregion
         }
 

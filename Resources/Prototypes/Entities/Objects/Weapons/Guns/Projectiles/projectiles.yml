@@ -3,15 +3,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 0.3 # Classic-Edit
+    lifetime: 0.3 # Moonlight-Edit
   - type: Sprite
-    drawdepth: OverMobs # Classic-Edit
-    offset: 0.33, 0 # Classic-Edit
+    drawdepth: OverMobs # Moonlight-Edit
+    offset: 0.33, 0 # Moonlight-Edit
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: _Classic/Effects/muzzle_flash.rsi # Classic-Edit
-      state: muzzle_bullet # Classic-Edit
+      sprite: _Moonlight/Effects/muzzle_flash.rsi # Moonlight-Edit
+      state: muzzle_bullet # Moonlight-Edit
   - type: EffectVisuals
   - type: Tag
     tags:

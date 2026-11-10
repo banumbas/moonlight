@@ -9,7 +9,7 @@
     arc: 360
   - type: Sprite
     drawdepth: Effects
-    sprite: _Classic/Structures/Wallmounts/switch.rsi
+    sprite: _Moonlight/Structures/Wallmounts/switch.rsi
     noRot: true
     snapCardinals: false
     state: on

@@ -7,7 +7,7 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: _Classic/Structures/Wallmounts/signs.rsi
+    - sprite: _Moonlight/Structures/Wallmounts/signs.rsi
       state: atmosplaque
   - type: EntityTableSpawner
     table: !type:GroupSelector

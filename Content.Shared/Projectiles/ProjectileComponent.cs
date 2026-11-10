@@ -56,10 +56,10 @@ public sealed partial class ProjectileComponent : Component
     public bool Armed = false;
     //Starlight End
 
-    // Classic-Edit Start
+    // Moonlight-Edit Start
     [DataField, AutoNetworkedField]
     public float? MaxFixedRange;
-    // Classic-Edit End
+    // Moonlight-Edit End
 
     /// <summary>
     ///     The amount of damage the projectile will do.

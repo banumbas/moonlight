@@ -1,0 +1,34 @@
+- type: entity
+  abstract: true
+  id: MoonlightBasePaperWindow
+  name: ent-MoonlightBasePaperWindow
+
+- type: entity
+  parent: MoonlightBasePaperWindow
+  id: MoonlightPaperWindow
+  name: ent-MoonlightPaperWindow
+
+- type: entity
+  parent: MoonlightBasePaperWindow
+  id: MoonlightPaperWindowFixing
+  name: ent-MoonlightPaperWindowFixing
+
+- type: entity
+  parent: MoonlightBasePaperWindow
+  id: MoonlightPaperWindowTorn
+  name: ent-MoonlightPaperWindowTorn
+
+- type: entity
+  parent: MoonlightBasePaperWindow
+  id: MoonlightPaperWindowTornFixing
+  name: ent-MoonlightPaperWindowTornFixing
+
+- type: entity
+  parent: Window
+  id: MoonlightFrostedWindow
+  name: ent-MoonlightFrostedWindow
+
+- type: entity
+  parent: Window
+  id: MoonlightTitaniumWindow
+  name: ent-MoonlightTitaniumWindow

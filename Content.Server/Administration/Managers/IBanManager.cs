@@ -58,12 +58,12 @@ public interface IBanManager
     /// </summary>
     public HashSet<ProtoId<AntagPrototype>>? GetAntagBans(NetUserId playerUserId);
 
-    // Classic-Start
+    // Moonlight-Start
     /// <summary>
     /// Gets a list of punishment types for the player.
     /// </summary>
     public List<ServerRoleBanDef>? GetPunishments(NetUserId playerUserId);
-    // Classic-End
+    // Moonlight-End
 
     /// <summary>
     /// Creates a job ban for the specified target, username or GUID
@@ -91,7 +91,7 @@ public interface IBanManager
         DateTimeOffset timeOfBan
     ) where T : class, IPrototype;
 
-    // Classic-Start
+    // Moonlight-Start
     /// <summary>
     /// Creates multiple punishments (mutes/pacifism) in a single batch for the specified target.
     /// </summary>
@@ -128,7 +128,7 @@ public interface IBanManager
     /// Pardons all active punishments (mutes) for a given player.
     /// </summary>
     public Task<int> UnmutePlayer(NetUserId target, NetUserId? unbanningAdmin);
-    // Classic-End
+    // Moonlight-End
 
     // Starlight start
     /// <summary>

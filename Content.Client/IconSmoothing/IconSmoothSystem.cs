@@ -40,7 +40,7 @@ namespace Content.Client.IconSmoothing
             base.Initialize();
 
             InitializeEdge();
-            InitializeClassic();
+            InitializeMoonlight();
             SubscribeLocalEvent<IconSmoothComponent, AnchorStateChangedEvent>(OnAnchorChanged);
             SubscribeLocalEvent<IconSmoothComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<IconSmoothComponent, ComponentStartup>(OnStartup);

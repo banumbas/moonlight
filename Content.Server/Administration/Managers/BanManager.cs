@@ -63,17 +63,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private IEntitySystemManager _systems = default!;
     [Dependency] private ITaskManager _taskManager = default!;
     [Dependency] private UserDbDataManager _userDbData = default!;
-    // Classic-Start
+    // Moonlight-Start
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!;
-    // Classic-End
+    // Moonlight-End
 
     private ISawmill _sawmill = default!;
 
     public const string SawmillId = "admin.bans";
     public const string PrefixAntag = "Antag:";
     public const string PrefixJob = "Job:";
-    public const string PrefixPunishment = "Punish:"; // Classic
+    public const string PrefixPunishment = "Punish:"; // Moonlight
 
     private readonly HttpClient _httpClient = new();
     private string _serverName = string.Empty;
@@ -416,10 +416,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             encodedRole = PrefixJob + role;
         else if (_prototypeManager.HasIndex<AntagPrototype>(role))
             encodedRole = PrefixAntag + role;
-        // Classic-Start
+        // Moonlight-Start
         else if (role.Id.StartsWith("Punish:"))
             encodedRole = role.Id;
-        // Classic-End
+        // Moonlight-End
         else
         {
             _sawmill.Error($"Creating role ban for {role}: cannot create role ban, role is not a JobPrototype or an AntagPrototype or a Punishment.");
@@ -430,7 +430,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         DateTimeOffset? expires = null;
 
         if (minutes > 0)
-            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // classic edit
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // moonlight edit
 
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -458,23 +458,23 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return;
         }
 
-    // classic start
+    // moonlight start
     if (!encodedRole.StartsWith(PrefixPunishment, StringComparison.Ordinal))
     {
-    // classic end
+    // moonlight end
         var roleBan = (await _db.GetServerRoleBansAsync(addressRange?.Item1, target, hwid?.Hwid, null, false)).FirstOrDefault(b => b.UserId == target && b.Role == encodedRole && b.BanTime == timeOfBan);
         if (roleBan != null && _actor.TryGetServerGrain(out var serverGrain))
             await serverGrain.AddOrUpdateBan(roleBan.ToNullLink());
 
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
-    } // classic add
+    } // moonlight add
 
         if (target is not null && _playerManager.TryGetSessionById(target.Value, out var session))
             SendRoleBans(session);
     }
 
-    // Classic-Start
+    // Moonlight-Start
     public async Task CreatePunishments(
         NetUserId? target,
         string? targetUsername,
@@ -585,7 +585,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         return unbannedCount;
     }
-    // Classic-End
+    // Moonlight-End
 
     private async Task<bool> AddRoleBan(ServerRoleBanDef banDef)
     {
@@ -596,9 +596,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             && _cachedRoleBans.TryGetValue(player, out var cachedBans))
         {
             cachedBans.Add(banDef);
-            // Classic-Start
+            // Moonlight-Start
             _entityManager.EventBus.RaiseEvent(EventSource.Local, new RoleBansUpdatedEvent(player.UserId));
-            // Classic-End
+            // Moonlight-End
         }
 
         return true;
@@ -613,7 +613,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         DateTimeOffset? expires = null;
         if (minutes > 0)
         {
-            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // classic edit
+            expires = DateTimeOffset.UtcNow + TimeSpan.FromMinutes(minutes.Value); // moonlight edit
         }
 
         var banDef = new ServerRoleBanDef(
@@ -656,10 +656,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return response.ToString();
         }
 
-    // classic start
+    // moonlight start
     if (!ban.Role.StartsWith(PrefixPunishment, StringComparison.Ordinal))
     {
-    // classic end
+    // moonlight end
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             if (await serverGrain.RequestBanById(banId) is { } networkBan)
@@ -686,7 +686,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                 };
                 await serverGrain.AddOrUpdateBan(newBan);
             }
-            } // classic add
+            } // moonlight add
         }
 
         await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
@@ -697,9 +697,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
             roleBans.RemoveAll(roleBan => roleBan.Id == ban.Id);
             SendRoleBans(session);
-            // Classic-Start
+            // Moonlight-Start
             _entityManager.EventBus.RaiseEvent(EventSource.Local, new RoleBansUpdatedEvent(player));
-            // Classic-End
+            // Moonlight-End
         }
 
         return $"Pardoned ban with id {banId}";
@@ -720,7 +720,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (!_playerManager.TryGetSessionById(playerUserId, out var session))
             return null;
 
-    // Classic-Start
+    // Moonlight-Start
         if (!_cachedRoleBans.TryGetValue(session, out var roleBans))
             return null;
 
@@ -762,16 +762,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         return bans;
     }
-    // Classic-End
+    // Moonlight-End
 
     private HashSet<ProtoId<T>>? GetRoleBans<T>(ICommonSession playerSession, string prefix) where T : class, IPrototype
     {
         if (!_cachedRoleBans.TryGetValue(playerSession, out var roleBans))
             return null;
 
-        var now = DateTimeOffset.UtcNow; // classic add
+        var now = DateTimeOffset.UtcNow; // moonlight add
         return roleBans
-            // Classic-Edit
+            // Moonlight-Edit
             .Where(ban => (ban.ExpirationTime == null || now <= ban.ExpirationTime) && ban.Role.StartsWith(prefix, StringComparison.Ordinal))
             .Select(ban => new ProtoId<T>(ban.Role[prefix.Length..]))
             .ToHashSet();
@@ -783,7 +783,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return null;
 
         return _cachedRoleBans.TryGetValue(session, out var roleBans)
-            // Classic-Edit
+            // Moonlight-Edit
             ? roleBans.Where(ban => ban.ExpirationTime == null || DateTimeOffset.Now <= ban.ExpirationTime).Select(banDef => banDef.Role).ToHashSet()
             : null;
     }
@@ -939,13 +939,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
         }
         // nulllink end
-        // Classic start
+        // Moonlight start
         if (adminDiscordId == null && banDef.BanningAdmin != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.BanningAdmin.Value.UserId, out var adminData) && adminData.DiscordId != 0)
             adminDiscordId = adminData.DiscordId.ToString();
 
         if (targetDiscordId == null && banDef.UserId != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.UserId.Value.UserId, out var targetData) && targetData.DiscordId != 0)
             targetDiscordId = targetData.DiscordId.ToString();
-        // Classic end
+        // Moonlight end
 
         var adminLink = "";
         var targetLink = "";
@@ -1078,13 +1078,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
 
         // nulllink end
-        // Classic start
+        // Moonlight start
         if (adminDiscordId == null && banDef.BanningAdmin != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.BanningAdmin.Value.UserId, out var adminData) && adminData.DiscordId != 0)
             adminDiscordId = adminData.DiscordId.ToString();
 
         if (targetDiscordId == null && banDef.UserId != null && _nullLinkPlayerManager.TryGetPlayerData(banDef.UserId.Value.UserId, out var targetData) && targetData.DiscordId != 0)
             targetDiscordId = targetData.DiscordId.ToString();
-        // Classic end
+        // Moonlight end
 
         var adminLink = "";
         var targetLink = "";

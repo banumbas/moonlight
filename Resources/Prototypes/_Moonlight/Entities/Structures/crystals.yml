@@ -1,0 +1,612 @@
+- type: entity
+  id: MoonlightCrystalBase
+  abstract: true
+  parent: BaseStructure
+  name: crystals
+  description: A large, glowing crystal formation.
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Moonlight/Structures/Decoration/crystal.rsi
+    layers:
+      - state: medium1
+        map: ["random", "enum.MiningScannerVisualLayers.Overlay"]
+        shader: unshaded
+    offset: 0, 0.25
+    noRot: true
+  - type: InteractionPopup
+    interactSuccessString: moonlight-popup-crystal-ding
+    messagePerceivedByOthers: moonlight-popup-crystal-ding
+    interactSuccessSound:
+      collection: MoonlightCrystalDings
+      params:
+        variation: 0.03
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+  - type: PointLight
+    netSync: false
+    radius: 2.5
+    energy: 1
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Rock
+  - type: MiningScannerViewable
+
+- type: entity
+  id: MoonlightCrystalBaseBig
+  abstract: true
+  parent: MoonlightCrystalBase
+  components:
+  - type: RandomSprite
+    available:
+    - random:
+        big0: Inherit
+        big1: Inherit
+        big2: Inherit
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_smash.ogg
+
+- type: entity
+  id: MoonlightCrystalBaseMedium
+  abstract: true
+  parent: MoonlightCrystalBase
+  components:
+  - type: RandomSprite
+    available:
+    - random:
+        medium0: Inherit
+        medium1: Inherit
+        medium2: Inherit
+        medium3: Inherit
+        medium4: Inherit
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_smash.ogg
+
+- type: entity
+  id: MoonlightCrystalBaseSmall
+  abstract: true
+  parent: MoonlightCrystalBase
+  components:
+  - type: RandomSprite
+    available:
+    - random:
+        small0: Inherit
+        small1: Inherit
+        small2: Inherit
+        small3: Inherit
+        small4: Inherit
+        small5: Inherit
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_smash.ogg
+- type: entity
+  id: MoonlightCrystalQuartzWhiteBig
+  suffix: Diamond, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#ffffff"
+  - type: PointLight
+    color: "#ffffff"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreWhiteBig
+
+- type: entity
+  id: MoonlightCrystalQuartzWhiteMedium
+  suffix: Diamond, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#ffffff"
+  - type: PointLight
+    color: "#ffffff"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreWhiteMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzWhiteSmall
+  suffix: Diamond, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#ffffff"
+  - type: PointLight
+    color: "#ffffff"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreWhiteSmall
+
+- type: entity
+  id: MoonlightCrystalQuartzRedBig
+  suffix: Bananium, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#e42d2d"
+  - type: PointLight
+    color: "#e42d2d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreRedBig
+
+- type: entity
+  id: MoonlightCrystalQuartzRedMedium
+  suffix: Bananium, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#e42d2d"
+  - type: PointLight
+    color: "#e42d2d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreRedMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzRedSmall
+  suffix: Bananium, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#e42d2d"
+  - type: PointLight
+    color: "#e42d2d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreRedSmall
+
+- type: entity
+  id: MoonlightCrystalQuartzBlueBig
+  suffix: Silver, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#2d9ee4"
+  - type: PointLight
+    color: "#2d9ee4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreBlueBig
+
+- type: entity
+  id: MoonlightCrystalQuartzBlueMedium
+  suffix: Silver, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#2d9ee4"
+  - type: PointLight
+    color: "#2d9ee4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreBlueMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzBlueSmall
+  suffix: Silver, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#2d9ee4"
+  - type: PointLight
+    color: "#2d9ee4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreBlueSmall
+
+- type: entity
+  id: MoonlightCrystalQuartzGreenBig
+  suffix: Uranium, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#3fe42d"
+  - type: PointLight
+    color: "#3fe42d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGreenBig
+
+- type: entity
+  id: MoonlightCrystalQuartzGreenMedium
+  suffix: Uranium, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#3fe42d"
+  - type: PointLight
+    color: "#3fe42d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGreenMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzGreenSmall
+  suffix: Uranium, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#3fe42d"
+  - type: PointLight
+    color: "#3fe42d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGreenSmall
+
+- type: entity
+  id: MoonlightCrystalQuartzPurpleBig
+  suffix: Plasma, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#a42de4"
+  - type: PointLight
+    color: "#a42de4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOrePurpleBig
+
+- type: entity
+  id: MoonlightCrystalQuartzPurpleMedium
+  suffix: Plasma, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#a42de4"
+  - type: PointLight
+    color: "#a42de4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOrePurpleMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzPurpleSmall
+  suffix: Plasma, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#a42de4"
+  - type: PointLight
+    color: "#a42de4"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOrePurpleSmall
+
+- type: entity
+  id: MoonlightCrystalQuartzGoldBig
+  suffix: Gold, Big
+  parent: MoonlightCrystalBaseBig
+  components:
+  - type: Sprite
+    color: "#e4d02d"
+  - type: PointLight
+    color: "#e4d02d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGoldBig
+
+- type: entity
+  id: MoonlightCrystalQuartzGoldMedium
+  suffix: Gold, Medium
+  parent: MoonlightCrystalBaseMedium
+  components:
+  - type: Sprite
+    color: "#e4d02d"
+  - type: PointLight
+    color: "#e4d02d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGoldMedium
+
+- type: entity
+  id: MoonlightCrystalQuartzGoldSmall
+  suffix: Gold, Small
+  parent: MoonlightCrystalBaseSmall
+  components:
+  - type: Sprite
+    color: "#e4d02d"
+  - type: PointLight
+    color: "#e4d02d"
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: MoonlightOreGoldSmall
+
+- type: entity
+  id: MoonlightCrystalSpawner
+  parent: MarkerBase
+  name: crystal spawner
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Moonlight/Structures/Decoration/crystal.rsi
+        state: medium1
+  - type: RandomSpawner
+    prototypes:
+      - MoonlightCrystalQuartzWhiteBig
+      - MoonlightCrystalQuartzWhiteMedium
+      - MoonlightCrystalQuartzWhiteMedium
+      - MoonlightCrystalQuartzWhiteMedium
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzWhiteSmall
+      - MoonlightCrystalQuartzRedBig
+      - MoonlightCrystalQuartzRedMedium
+      - MoonlightCrystalQuartzRedMedium
+      - MoonlightCrystalQuartzRedMedium
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzRedSmall
+      - MoonlightCrystalQuartzBlueBig
+      - MoonlightCrystalQuartzBlueMedium
+      - MoonlightCrystalQuartzBlueMedium
+      - MoonlightCrystalQuartzBlueMedium
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzBlueSmall
+      - MoonlightCrystalQuartzGreenBig
+      - MoonlightCrystalQuartzGreenMedium
+      - MoonlightCrystalQuartzGreenMedium
+      - MoonlightCrystalQuartzGreenMedium
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzGreenSmall
+      - MoonlightCrystalQuartzPurpleBig
+      - MoonlightCrystalQuartzPurpleBig
+      - MoonlightCrystalQuartzPurpleBig
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleMedium
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzPurpleSmall
+      - MoonlightCrystalQuartzGoldBig
+      - MoonlightCrystalQuartzGoldMedium
+      - MoonlightCrystalQuartzGoldMedium
+      - MoonlightCrystalQuartzGoldMedium
+      - MoonlightCrystalQuartzGoldSmall
+      - MoonlightCrystalQuartzGoldSmall
+      - MoonlightCrystalQuartzGoldSmall
+      - MoonlightCrystalQuartzGoldSmall
+      - MoonlightCrystalQuartzGoldSmall
+      - MoonlightCrystalQuartzGoldSmall
+    offset: 0.2
+
+- type: ore
+  id: MoonlightOreWhiteBig
+  oreEntity: DiamondOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOreWhiteMedium
+  oreEntity: DiamondOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOreWhiteSmall
+  oreEntity: DiamondOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: MoonlightOreRedBig
+  oreEntity: BananiumOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOreRedMedium
+  oreEntity: BananiumOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOreRedSmall
+  oreEntity: BananiumOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: MoonlightOreBlueBig
+  oreEntity: SilverOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOreBlueMedium
+  oreEntity: SilverOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOreBlueSmall
+  oreEntity: SilverOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: MoonlightOreGreenBig
+  oreEntity: UraniumOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOreGreenMedium
+  oreEntity: UraniumOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOreGreenSmall
+  oreEntity: UraniumOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: MoonlightOrePurpleBig
+  oreEntity: PlasmaOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOrePurpleMedium
+  oreEntity: PlasmaOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOrePurpleSmall
+  oreEntity: PlasmaOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+- type: ore
+  id: MoonlightOreGoldBig
+  oreEntity: GoldOre1
+  minOreYield: 3
+  maxOreYield: 5
+
+- type: ore
+  id: MoonlightOreGoldMedium
+  oreEntity: GoldOre1
+  minOreYield: 2
+  maxOreYield: 3
+
+- type: ore
+  id: MoonlightOreGoldSmall
+  oreEntity: GoldOre1
+  minOreYield: 1
+  maxOreYield: 1
+
+
+- type: entity
+  id: MoonlightCrystalIceBase
+  abstract: true
+  parent: MoonlightCrystalBase
+  name: ice crystal
+  description: A freezing cold crystal of pure ice.
+  components:
+  - type: Sprite
+    color: "#aaddff"
+  - type: PointLight
+    color: "#aaddff"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_smash.ogg
+
+- type: entity
+  id: MoonlightCrystalIceBig
+  parent: [MoonlightCrystalBaseBig, MoonlightCrystalIceBase]
+- type: entity
+  id: MoonlightCrystalIceMedium
+  parent: [MoonlightCrystalBaseMedium, MoonlightCrystalIceBase]
+- type: entity
+  id: MoonlightCrystalIceSmall
+  parent: [MoonlightCrystalBaseSmall, MoonlightCrystalIceBase]
+
+- type: entity
+  id: MoonlightCrystalIceSpawner
+  parent: MarkerBase
+  name: ice crystal spawner
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Moonlight/Structures/Decoration/crystal.rsi
+        state: medium1
+        color: "#aaddff"
+  - type: RandomSpawner
+    prototypes:
+      - MoonlightCrystalIceBig
+      - MoonlightCrystalIceMedium
+      - MoonlightCrystalIceMedium
+      - MoonlightCrystalIceSmall
+      - MoonlightCrystalIceSmall
+      - MoonlightCrystalIceSmall
+    offset: 0.2

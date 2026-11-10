@@ -6,7 +6,7 @@
   components:
   - type: InteractionOutline
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Windoors/windoor.rsi
+    sprite: _Moonlight/Structures/Doors/Windoors/windoor.rsi
     drawdepth: Overdoors
     layers:
     - state: assembly
@@ -57,7 +57,7 @@
   parent: WindoorAssembly
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Windoors/windoor.rsi
+    sprite: _Moonlight/Structures/Doors/Windoors/windoor.rsi
     layers:
     - state: secure_underlay
     - state: assembly

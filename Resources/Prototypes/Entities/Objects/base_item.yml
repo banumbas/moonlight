@@ -28,7 +28,7 @@
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
-  - type: ClassicZPhysics
+  - type: MoonlightZPhysics
   - type: Fixtures
     fixtures:
       fix1:

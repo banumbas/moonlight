@@ -628,11 +628,11 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (!hasTransferDirs) return;
 
-            // classic start
+            // moonlight start
             var tileAir = tile.Air;
             if (tileAir == null)
                 return;
-            // classic end
+            // moonlight end
 
             for(var i = 0; i < Atmospherics.Directions; i++)
             {
@@ -645,11 +645,11 @@ namespace Content.Server.Atmos.EntitySystems
                 if (amount <= 0) continue;
 
                 // Everything that calls this method already ensures that Air will not be null.
-                if (tileAir.TotalMoles < amount) // classic-edit
+                if (tileAir.TotalMoles < amount) // moonlight-edit
                     FinalizeEqNeighbors(ent, tile, transferDirections);
 
                 otherTile.MonstermosInfo[i.ToOppositeDir()] = 0;
-                Merge(otherTile.Air, tileAir.Remove(amount)); // classic-edit
+                Merge(otherTile.Air, tileAir.Remove(amount)); // moonlight-edit
                 InvalidateVisuals(ent, tile);
                 InvalidateVisuals(ent, otherTile);
                 ConsiderPressureDifference(ent, tile, direction, amount);
@@ -664,7 +664,7 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 var direction = (AtmosDirection) (1 << i);
                 var amount = transferDirs[i];
-                // classic start
+                // moonlight start
 #if false
                 // Since AdjacentBits is set, AdjacentTiles[i] wouldn't be null, and neither would its air.
                 if(amount < 0 && tile.AdjacentBits.IsFlagSet(direction))
@@ -673,7 +673,7 @@ namespace Content.Server.Atmos.EntitySystems
                 var adjacent = tile.AdjacentTiles[i];
                 if (amount < 0 && tile.AdjacentBits.IsFlagSet(direction) && adjacent?.Air != null)
                     FinalizeEq(ent, adjacent);  // A bit of recursion if needed.
-                // classic end
+                // moonlight end
             }
         }
 

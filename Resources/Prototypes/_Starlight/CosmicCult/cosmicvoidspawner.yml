@@ -7,6 +7,6 @@
       sprite: Markers/cross.rsi
       layers:
         - state: red
-        - sprite: _Classic/Mobs/Species/Human/parts.rsi
+        - sprite: _Moonlight/Mobs/Species/Human/parts.rsi
           state: full
     - type: CosmicVoidSpawn

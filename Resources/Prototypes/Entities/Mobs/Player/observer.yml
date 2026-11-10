@@ -17,7 +17,7 @@
   - type: Physics
     bodyType: KinematicController
     bodyStatus: InAir
-  - type: ClassicZPhysics
+  - type: MoonlightZPhysics
     autoStep: false
     velocityGravity: false
   - type: CanMoveInAir
@@ -64,7 +64,7 @@
   - type: LanguageSpeaker # Starlight
   - type: UniversalLanguageSpeaker # Starlight
   - type: DarkLight # Starlight
-  - type: ClassicZLevelGhostMover
+  - type: MoonlightZLevelGhostMover
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true

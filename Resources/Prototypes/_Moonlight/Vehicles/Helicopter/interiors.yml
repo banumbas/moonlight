@@ -1,0 +1,45 @@
+- type: entity
+  abstract: true
+  id: MoonlightHelicopterInteriorBase
+  categories: [ Vehicle ]
+  suffix: Vehicle, Helicopter
+  name: helicopter cabin piece
+  description: A component of the helicopter's compact cabin.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Tag
+    tags:
+    - Vehicle
+    - VehiclePart
+
+- type: entity
+  parent: [ShuttleWindow, MoonlightHelicopterInteriorBase]
+  id: MoonlightHelicopterCabinWindow
+  name: helicopter cabin window
+  description: A tinted pressure window overlooking the helicopter's surroundings.
+  components:
+  - type: Sprite
+    color: '#B7A2DD'
+  - type: VehicleViewport
+  - type: WallMount
+    arc: 360
+
+- type: entity
+  parent: MoonlightHelicopterCabinWindow
+  id: MoonlightHelicopterCockpitWindshield
+  name: helicopter cockpit windshield
+  description: Reinforced glazing across the front of the cockpit.
+
+- type: entity
+  parent: MoonlightHelicopterInteriorBase
+  id: MoonlightHelicopterFlightConsole
+  name: helicopter flight console
+  description: Rotor, lift and navigation controls.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Moonlight/Structures/Vehicles/Interiors/tank.rsi
+    state: prop5
+    drawdepth: Items

@@ -15,7 +15,7 @@
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/external.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/external.rsi
   - type: Wires
     layoutId: AirlockExternal
   - type: Paintable
@@ -31,7 +31,7 @@
   - type: Occluder
     enabled: false
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/external.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/external.rsi
   - type: Fixtures
     fixtures:
       fix1:

@@ -103,7 +103,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         var airHeatCapacity = _atmosphere.GetHeatCapacity(args.GasMixture, false);
         var heatCapacity = GetHeatCapacity(uid, temperature);
         // TODO ATMOS: This heat transfer formula is really really wrong, it needs to be pulled out. Pending on HeatContainers.
-        // Classic start large bodies (mobs) in open atmosphere experience ambient convective thermal exchange
+        // Moonlight start large bodies (mobs) in open atmosphere experience ambient convective thermal exchange
         //var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
         //                               (airHeatCapacity + heatCapacity));
         var transferRate = airHeatCapacity * heatCapacity / (airHeatCapacity + heatCapacity);
@@ -116,7 +116,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         var heat = temperatureDelta * transferRate * temperature.AtmosTemperatureTransferEfficiency;
         ChangeHeat(uid, heat, temperature: temperature);
         //ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
-        // classic-end
+        // moonlight-end
     }
 
     private void OnInit(Entity<InternalTemperatureComponent> entity, ref MapInitEvent args)

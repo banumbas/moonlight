@@ -111,7 +111,7 @@
 - type: cargoProduct
   id: FunPirate
   icon:
-    sprite: _Classic/Structures/Storage/Crates/piratechest.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/piratechest.rsi
     state: crate_icon
   product: CrateFunPirate
   cost: 400
@@ -121,7 +121,7 @@
 - type: cargoProduct
   id: FunToyBox
   icon:
-    sprite: _Classic/Structures/Storage/Crates/toybox.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/toybox.rsi
     state: crate_icon
   product: CrateFunToyBox
   cost: 900

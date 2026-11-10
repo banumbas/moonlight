@@ -6,11 +6,11 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
   - type: Clothing
     slots:
     - idcard
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
   - type: Item
     size: Small
     # World and worn card faces use the SS13 RSI. Keep the original item RSI
@@ -40,7 +40,7 @@
   - type: Sprite
     layers:
     - state: default
-    - sprite: &icon-rsi _Classic/Objects/Misc/id_cards.rsi
+    - sprite: &icon-rsi _Moonlight/Objects/Misc/id_cards.rsi
       state: trim_assistant
   - type: PresetIdCard
     job: Assistant
@@ -716,7 +716,7 @@
       color: *color-service-top
     - state: stripe_bottom
       color: *color-service-bottom
-    - sprite: &starlight-icon-rsi _Classic/Objects/Misc/id_cards.rsi
+    - sprite: &starlight-icon-rsi _Moonlight/Objects/Misc/id_cards.rsi
       state: trim_lawyer
   - type: PresetIdCard
     job: Lawyer
@@ -1113,13 +1113,13 @@
   description: An ID card that gives you access beyond your wildest dreams.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: admin
     - sprite: *icon-rsi
       state: trim_centcom
   - type: Clothing
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: green
   - type: IdCard

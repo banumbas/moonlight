@@ -10,8 +10,8 @@ namespace Content.Shared.Localizations
         [Dependency] private ILocalizationManager _loc = default!;
 
         // If you want to change your codebase's language, do it here.
-        private const string Culture = "ru-RU"; // Classic-Localization
-        private const string FallbackCulture = "en-US"; // Classic-Localization
+        private const string Culture = "ru-RU"; // Moonlight-Localization
+        private const string FallbackCulture = "en-US"; // Moonlight-Localization
 
         /// <summary>
         /// Custom format strings used for parsing and displaying minutes:seconds timespans.
@@ -27,12 +27,12 @@ namespace Content.Shared.Localizations
         public void Initialize()
         {
             var culture = new CultureInfo(Culture);
-            var fallbackCulture = new CultureInfo(FallbackCulture); // Classic-Localization
+            var fallbackCulture = new CultureInfo(FallbackCulture); // Moonlight-Localization
 
             _loc.LoadCulture(culture);
-            _loc.LoadCulture(fallbackCulture); // Classic-Localization
-            _loc.SetFallbackCluture(fallbackCulture); // Classic-Localization
-            _loc.AddFunction(culture, "MANY", FormatMany); // Classic-Localization: To prevent problems in auto-generated locale files
+            _loc.LoadCulture(fallbackCulture); // Moonlight-Localization
+            _loc.SetFallbackCluture(fallbackCulture); // Moonlight-Localization
+            _loc.AddFunction(culture, "MANY", FormatMany); // Moonlight-Localization: To prevent problems in auto-generated locale files
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);

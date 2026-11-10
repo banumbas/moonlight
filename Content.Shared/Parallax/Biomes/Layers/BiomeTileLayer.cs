@@ -30,13 +30,13 @@ public sealed partial class BiomeTileLayer : IBiomeLayer
     [DataField("allowedTiles")]
     public List<ProtoId<ContentTileDefinition>>? AllowedTiles;
 
-    // Classic-Start
+    // Moonlight-Start
     /// <summary>
     /// If greater than 0, this tile layer will not spawn within this distance from the grid origin (0,0).
     /// </summary>
     [DataField]
     public float MinDistance = 0f;
-    // Classic-End
+    // Moonlight-End
 
     [DataField(required: true)]
     public ProtoId<ContentTileDefinition> Tile = string.Empty;

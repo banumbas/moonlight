@@ -1,0 +1,21 @@
+﻿# Impact effect spawned when a supply pod lands.
+# Provides a brief flash of light and rubble sprite at the landing location.
+- type: entity
+  id: MoonlightSupplyPodImpactEffect
+  name: impact effect
+  categories: [ HideSpawnMenu, ForkFiltered ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: Effects
+    sprite: _Moonlight/Structures/Storage/SupplyPods/supply_pod_default.rsi
+    state: rubble_overlay
+    color: "#FFFFFFFF"
+  - type: TimedDespawn
+    lifetime: 3
+  - type: PointLight
+    radius: 3
+    energy: 5
+    color: "#FFAA44"
+  - type: AnimationPlayer

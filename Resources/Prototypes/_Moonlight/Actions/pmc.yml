@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseToggleAction
+  id: ActionTogglePMCHelmet
+  name: ent-ActionTogglePMCHelmet
+  description: ent-ActionTogglePMCHelmet-desc
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
+    iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionTogglePMCSpecialist
+  name: ent-ActionTogglePMCSpecialist
+  description: ent-ActionTogglePMCSpecialist-desc
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigItem
+    icon: { sprite: _Moonlight/Clothing/OuterClothing/Armor/pmc_reactive.rsi, state: icon }
+    iconOn: { sprite: _Moonlight/Clothing/OuterClothing/Armor/pmc_reactive.rsi, state: icon-on }
+  - type: InstantAction
+    event: !type:ToggleActionEvent

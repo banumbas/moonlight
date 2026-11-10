@@ -1,0 +1,122 @@
+- type: entity
+  parent: MoonlightVehicleBase
+  id: MoonlightVehicleHelicopter
+  name: transport helicopter
+  description: A rotorcraft built to ferry a squad between Z-levels.
+  suffix: Drivable, Helicopter, Transport
+  components:
+  - type: MoonlightVehicle
+    movementKind: Flight
+    cameraOffset: 0,-2.45
+  - type: WarpPoint
+    location: Helicopter
+  - type: MoonlightRotorcraft
+  - type: MoonlightRotorcraftSound
+    rotorStartSound: /Audio/_Moonlight/Vehicle/Helicopter/rotor_start.ogg
+    rotorSound: /Audio/_Moonlight/Vehicle/Helicopter/rotor_loop.ogg
+    rotorStopSound: /Audio/_Moonlight/Vehicle/Helicopter/rotor_stop.ogg
+  - type: Physics
+    fixedRotation: false
+    linearDamping: 0
+    angularDamping: 0
+  - type: MoonlightZPhysics
+    autoStep: false
+    bounciness: 0.1
+  - type: GravityAffected
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Moonlight/Structures/Vehicles/helicopter.rsi
+    scale: 0.6,0.6
+    rotation: 90 # Source artwork faces left.
+    layers:
+    - map: [ base ]
+      state: heli
+    - map: [ "enum.MoonlightRotorcraftVisualLayers.Rotor" ]
+      state: rotor_blades
+    - map: [ "enum.MoonlightRotorcraftVisualLayers.RotorBlur" ]
+      state: rotor_blur
+      visible: false
+    - state: rotor_tail
+  - type: MoonlightRotorcraftVisuals
+    rotorPivot: -2.21875,0
+  - type: Fixtures
+    fixtures:
+      fuselage:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "0,-2.98125"
+            - "-0.43125,-2.71875"
+            - "-0.80625,-0.91875"
+            - "-0.80625,-0.6"
+            - "-0.28125,-0.43125"
+            - "0.45,-0.43125"
+            - "0.7875,-0.61875"
+            - "0.50625,-2.53125"
+        density: 2000
+        hard: true
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        - MidImpassable
+        - BarricadeImpassable
+        - LargeMobLayer
+        - Vehicle
+        layer:
+        - LargeMobLayer
+        - Vehicle
+      tail:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.31875,-0.54375"
+            - "-0.09375,2.34375"
+            - "0.09375,2.34375"
+            - "0.28125,-0.54375"
+        density: 2000
+        hard: true
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        - MidImpassable
+        - BarricadeImpassable
+        - LargeMobLayer
+        - Vehicle
+        layer:
+        - LargeMobLayer
+        - Vehicle
+      stabilizer:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.76875,2.0625"
+            - "-0.73125,2.4"
+            - "0.7875,2.475"
+            - "0.76875,2.0625"
+        density: 2000
+        hard: true
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        - MidImpassable
+        - BarricadeImpassable
+        - LargeMobLayer
+        - Vehicle
+        layer:
+        - LargeMobLayer
+        - Vehicle
+  - type: VehicleEnter
+    interiorPath: /Maps/_Moonlight/Vehicles/helicopter_cabin.yml
+    enterDoAfter: 1.0
+    exitDoAfter: 1.0
+    maxPassengers: 6
+    entryPoints:
+    - offset: -0.95,-1.05
+      radius: 0.8
+      interiorCoords: 3.5,1.5
+    - offset: 0.95,-1.05
+      radius: 0.8
+      interiorCoords: 3.5,3.5

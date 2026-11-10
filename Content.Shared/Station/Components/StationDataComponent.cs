@@ -7,7 +7,7 @@ namespace Content.Shared.Station.Components;
 /// All station entities will have this component.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
- Access(typeof(SharedStationSystem), Other = AccessPermissions.ReadWriteExecute)] // Classic-Edit
+ Access(typeof(SharedStationSystem), Other = AccessPermissions.ReadWriteExecute)] // Moonlight-Edit
 public sealed partial class StationDataComponent : Component
 {
     /// <summary>

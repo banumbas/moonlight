@@ -4,7 +4,7 @@ using Content.Shared.Database;
 using Content.Shared.Gravity;
 using Content.Shared.Physics;
 using Content.Shared.Movement.Pulling.Events;
-using Content.Shared._Classic.ZLevels.Core.EntitySystems;
+using Content.Shared._Moonlight.ZLevels.Core.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -27,7 +27,7 @@ namespace Content.Shared.Throwing
         [Dependency] private SharedBroadphaseSystem _broadphase = default!;
         [Dependency] private SharedPhysicsSystem _physics = default!;
         [Dependency] private SharedGravitySystem _gravity = default!;
-        [Dependency] private ClassicSharedZLevelsSystem _zLevels = default!; //Classic
+        [Dependency] private MoonlightSharedZLevelsSystem _zLevels = default!; //Moonlight
 
         private const string ThrowingFixture = "throw-fixture";
 
@@ -132,10 +132,10 @@ namespace Content.Shared.Throwing
 
             _broadphase.RegenerateContacts((uid, physics));
 
-            //Classic dont call LandEvent if we dont have ground
+            //Moonlight dont call LandEvent if we dont have ground
             if (_zLevels.DistanceToGround(uid) > 0.5f)
                 return;
-            //Classic end
+            //Moonlight end
             var landEvent = new LandEvent(thrownItem.Thrower, playSound);
             RaiseLocalEvent(uid, ref landEvent);
         }

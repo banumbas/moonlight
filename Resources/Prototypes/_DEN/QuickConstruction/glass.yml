@@ -5,7 +5,7 @@
     - SheetUGlass # SL
     - SheetPGlass # SL
     - Window
-    # Classic-Edit - diagonal window construction is intentionally omitted.
+    # Moonlight-Edit - diagonal window construction is intentionally omitted.
     - WindowDirectional
 
 - type: quickConstructionCategory
@@ -14,39 +14,39 @@
     - SheetRUGlass1 # SL
     - SheetRPGlass1 # SL
     - ReinforcedWindow
-    # Classic-Edit - diagonal window construction is intentionally omitted.
+    # Moonlight-Edit - diagonal window construction is intentionally omitted.
     - WindowReinforcedDirectional
 
 - type: quickConstructionCategory
   id: UraniumGlass
   constructionEntries:
     - SheetRUGlass0 # SL
-    # Classic-Start
+    # Moonlight-Start
     # Uranium windows are intentionally unavailable from quick construction.
-    # Classic-End
+    # Moonlight-End
 
 - type: quickConstructionCategory
   id: ReinforcedUraniumGlass
-  constructionEntries: [] # Classic-Edit - uranium windows are not constructible.
+  constructionEntries: [] # Moonlight-Edit - uranium windows are not constructible.
 
 - type: quickConstructionCategory
   id: PlasmaGlass
   constructionEntries:
     - SheetRPGlass0 # SL
     - PlasmaWindow
-    # Classic-Edit - diagonal window construction is intentionally omitted.
+    # Moonlight-Edit - diagonal window construction is intentionally omitted.
     - PlasmaWindowDirectional
 
 - type: quickConstructionCategory
   id: ReinforcedPlasmaGlass
   constructionEntries:
     - ReinforcedPlasmaWindow
-    # Classic-Edit - diagonal window construction is intentionally omitted.
+    # Moonlight-Edit - diagonal window construction is intentionally omitted.
     - PlasmaReinforcedWindowDirectional
 
 - type: quickConstructionCategory
   id: ClockworkGlass
   constructionEntries:
     - ClockworkWindow
-    # Classic-Edit - diagonal window construction is intentionally omitted.
+    # Moonlight-Edit - diagonal window construction is intentionally omitted.
     - WindowClockworkDirectional

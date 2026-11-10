@@ -48,9 +48,9 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private DiscordChatLink _discordLink = default!;
     [Dependency] private ILogManager _logManager = default!;
-    // Classic-Start
+    // Moonlight-Start
     [Dependency] private IBanManager _banManager = default!;
-    // Classic-End
+    // Moonlight-End
 
     private ISawmill _sawmill = default!;
 
@@ -268,7 +268,7 @@ internal sealed partial class ChatManager : IChatManager
         }
         // Starlight-End
 
-        // Classic-Start
+        // Moonlight-Start
         var punishments = _banManager.GetPunishments(player.UserId);
         if (punishments != null)
         {
@@ -282,7 +282,7 @@ internal sealed partial class ChatManager : IChatManager
                 }
             }
         }
-        // Classic-End
+        // Moonlight-End
 
         switch (type)
         {

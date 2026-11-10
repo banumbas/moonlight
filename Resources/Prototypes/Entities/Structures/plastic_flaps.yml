@@ -10,7 +10,7 @@
     - Anchorable
   - type: Rotatable
   - type: Sprite
-    sprite: _Classic/Structures/structures_tall.rsi
+    sprite: _Moonlight/Structures/structures_tall.rsi
     state: plasticflaps
     drawdepth: Mobs
   - type: Physics

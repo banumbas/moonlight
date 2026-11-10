@@ -1,0 +1,61 @@
+- type: entity
+  id: MoonlightActionZLevelUp
+  name: Move up
+  description: Move up one Z-Level
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 0.5
+    icon:
+      sprite: _Moonlight/Actions/misc.rsi
+      state: up
+  - type: InstantAction
+    event: !type:MoonlightZLevelActionUp
+
+- type: entity
+  id: MoonlightActionZLevelDown
+  name: Move down
+  description: Move down one Z-Level
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 0.5
+    icon:
+      sprite: _Moonlight/Actions/misc.rsi
+      state: down
+  - type: InstantAction
+    event: !type:MoonlightZLevelActionDown
+
+- type: entity
+  parent: BaseToggleAction
+  id: MoonlightActionToggleLookUp
+  name: Look up
+  description: You lift your head and look up at the sky.
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 0.5
+    icon:
+      sprite: _Moonlight/Actions/misc.rsi
+      state: eye_down
+    iconOn:
+      sprite: _Moonlight/Actions/misc.rsi
+      state: eye_up
+
+#- type: entity
+#  id: MoonlightActionRespawn
+#  name: Respawn
+#  description: Return to the lobby to connect with a new character.
+#  components:
+#  - type: Action
+#    priority: 20
+#    startDelay: true
+#    useDelay: 300
+#    checkCanInteract: false
+#    icon:
+#      sprite: _Moonlight/Actions/zLevel.rsi
+#      state: respawn
+#  - type: ConfirmableAction
+#    popup: CE-respawn-action-popup
+#  - type: InstantAction
+#    event: !type:CERespawnAction

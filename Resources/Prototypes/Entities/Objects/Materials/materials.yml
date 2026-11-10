@@ -296,7 +296,7 @@
   name: bear hide
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bearpelt
@@ -327,7 +327,7 @@
   description: Luxury pelt used in only the most elite fashion. Rumors say this is found when a corgi is sent to the nice farm.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: corgihide
   - type: Item
     heldPrefix: corgihide

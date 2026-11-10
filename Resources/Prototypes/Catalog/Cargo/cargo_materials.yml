@@ -1,7 +1,7 @@
 - type: cargoProduct
   id: MaterialGlass
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/glass.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/glass.rsi
     state: glass_3
   product: CrateMaterialGlass
   cost: 1500
@@ -11,7 +11,7 @@
 - type: cargoProduct
   id: MaterialSteel
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
     state: steel_3
   product: CrateMaterialSteel
   cost: 1500
@@ -21,7 +21,7 @@
 - type: cargoProduct
   id: MaterialPlastic
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: plastic_3
   product: CrateMaterialPlastic
   cost: 2000
@@ -31,7 +31,7 @@
 - type: cargoProduct
   id: MaterialBrass
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
     state: brass_3
   product: CrateMaterialBrass
   cost: 3000
@@ -41,7 +41,7 @@
 - type: cargoProduct
   id: MaterialPlasteel
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
     state: plasteel_3
   product: CrateMaterialPlasteel
   cost: 1600
@@ -51,7 +51,7 @@
 - type: cargoProduct
   id: MaterialGold
   icon:
-    sprite: _Classic/Objects/Materials/ingots.rsi
+    sprite: _Moonlight/Objects/Materials/ingots.rsi
     state: gold_3
   product: CrateMaterialGold
   cost: 3225
@@ -61,7 +61,7 @@
 - type: cargoProduct
   id: MaterialSilver
   icon:
-    sprite: _Classic/Objects/Materials/ingots.rsi
+    sprite: _Moonlight/Objects/Materials/ingots.rsi
     state: silver_3
   product: CrateMaterialSilver
   cost: 2580
@@ -71,7 +71,7 @@
 - type: cargoProduct
   id: MaterialTextiles
   icon:
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: cloth_3
   product: CrateMaterialTextiles
   cost: 1500
@@ -81,7 +81,7 @@
 - type: cargoProduct
   id: MaterialPlasma
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: plasma_3
   product: CrateMaterialPlasma
   cost: 1500
@@ -91,7 +91,7 @@
 - type: cargoProduct
   id: CardboardMaterial
   icon:
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: cardboard_3
   product: CrateMaterialCardboard
   cost: 330
@@ -101,7 +101,7 @@
 - type: cargoProduct
   id: PaperMaterial
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: paper_3
   product: CrateMaterialPaper
   cost: 185
@@ -111,7 +111,7 @@
 - type: cargoProduct
   id: MaterialBasic
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: generic_materials
   product: CrateMaterialBasicResource
   cost: 1660

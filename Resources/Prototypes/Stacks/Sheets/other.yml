@@ -2,19 +2,19 @@
   parent: BaseSheetStack
   id: Plasma
   name: stack-plasma
-  icon: { sprite: /Textures/_Classic/Objects/Materials/Sheets/other.rsi, state: plasma }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/Sheets/other.rsi, state: plasma }
   spawn: SheetPlasma1
 
 - type: stack
   parent: BaseSheetStack
   id: Plastic
   name: stack-plastic
-  icon: { sprite: /Textures/_Classic/Objects/Materials/Sheets/other.rsi, state: plastic }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/Sheets/other.rsi, state: plastic }
   spawn: SheetPlastic1
 
 - type: stack
   parent: BaseSheetStack
   id: Uranium
   name: stack-uranium
-  icon: { sprite: /Textures/_Classic/Objects/Materials/Sheets/other.rsi, state: uranium }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/Sheets/other.rsi, state: uranium }
   spawn: SheetUranium1

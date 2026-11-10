@@ -1,0 +1,71 @@
+# Moonlight wall variants with dedicated decorative or animated materials.
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallBathroom
+  name: bathroom wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/bathroom.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/bathroom.rsi
+  - type: IconSmooth
+    key: walls
+    base: bathroom
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallBoss
+  name: boss wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/boss.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/boss.rsi
+  - type: IconSmooth
+    key: walls
+    base: boss
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallHierophant
+  name: hierophant wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/hierophant.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/hierophant.rsi
+  - type: IconSmooth
+    key: walls
+    base: hierophant
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallHotelDoor
+  name: hotel door wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/hotel_door.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/hotel_door.rsi
+  - type: IconSmooth
+    key: walls
+    base: hotel_door
+
+- type: entity
+  parent: WallSolid
+  id: MoonlightWallHotel
+  name: hotel wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/hotel.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/hotel.rsi
+  - type: IconSmooth
+    key: walls
+    base: hotel

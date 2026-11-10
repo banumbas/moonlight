@@ -13,9 +13,9 @@
         type: QuickConstructionBoundUserInterface
   # Starlight end
   - type: Sprite
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
   - type: Item
-    sprite: _Classic/Objects/Materials/Sheets/metal.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi
     size: Normal
   - type: StaticPrice
     price: 0

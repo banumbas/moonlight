@@ -13,7 +13,7 @@
     materialComposition:
       Cardboard: 100
   - type: Sprite
-    sprite: _Classic/Objects/Storage/box.rsi
+    sprite: _Moonlight/Objects/Storage/box.rsi
     state: box
   - type: Tag
     tags:

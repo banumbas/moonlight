@@ -39,8 +39,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
-using Content.Shared._Classic.Vehicles; // Classic-edit
-using Content.Shared.Maps; // Classic-Edit
+using Content.Shared._Moonlight.Vehicles; // Moonlight-edit
+using Content.Shared.Maps; // Moonlight-Edit
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -58,7 +58,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private TurfSystem _turf = default!; // Classic-Edit
+    [Dependency] private TurfSystem _turf = default!; // Moonlight-Edit
 
 #region Starlight
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -410,10 +410,10 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
-        // Classic-edit: begin
+        // Moonlight-edit: begin
         var coordinateEntity = HasComp<GunUseGunOriginComponent>(gun) ? (EntityUid)gun : entity;
         var coordinates = TransformSystem.ToCoordinates(coordinateEntity, mousePos);
-        // Classic-edit: end
+        // Moonlight-edit: end
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)
@@ -558,9 +558,9 @@ public sealed partial class GunSystem : SharedGunSystem
             track.Offset = Vector2.UnitX / 2f;
         }
 
-        var lifetime = 0.3f; // Classic edit
+        var lifetime = 0.3f; // Moonlight edit
 
-        if (TryComp<TimedDespawnComponent>(ent, out var despawn)) // Classic edit
+        if (TryComp<TimedDespawnComponent>(ent, out var despawn)) // Moonlight edit
         {
             lifetime = despawn.Lifetime;
         }
@@ -577,9 +577,9 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), 0f), // Classic edit
-                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), lifetime * 0.45f), // Classic add
-                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), lifetime * 0.55f) // Classic edit
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), 0f), // Moonlight edit
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(1f), lifetime * 0.45f), // Moonlight add
+                        new AnimationTrackProperty.KeyFrame(Color.White.WithAlpha(0f), lifetime * 0.55f) // Moonlight edit
                     }
                 }
             }
@@ -587,7 +587,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         _animPlayer.Play(ent, anim, "muzzle-flash");
 
-        // classic-start
+        // moonlight-start
         var smokeEnt = Spawn("GunshotSmokeEffect", coordinates);
         TransformSystem.SetWorldRotationNoLerp(smokeEnt, message.Angle);
         if (tracked != null)
@@ -648,7 +648,7 @@ public sealed partial class GunSystem : SharedGunSystem
             };
             _animPlayer.Play(dustEnt, dustAnim, "gunshot-dust");
         }
-        // classic-end
+        // moonlight-end
 
         if (!TryComp(gunUid, out PointLightComponent? light))
         {
@@ -658,14 +658,14 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         Lights.SetEnabled(gunUid, true, light);
-        Lights.SetRadius(gunUid, 5.5f, light); // classic-edit
-        Lights.SetColor(gunUid, Color.FromHex("#FFE4A0"), light); // classic-edit
-        Lights.SetEnergy(gunUid, 6.0f, light); // classic-edit
+        Lights.SetRadius(gunUid, 5.5f, light); // moonlight-edit
+        Lights.SetColor(gunUid, Color.FromHex("#FFE4A0"), light); // moonlight-edit
+        Lights.SetEnergy(gunUid, 6.0f, light); // moonlight-edit
 
-        var flashDuration = 0.15f; // classic-add
+        var flashDuration = 0.15f; // moonlight-add
         var animTwo = new Animation()
         {
-            Length = TimeSpan.FromSeconds(flashDuration), // classic-edit
+            Length = TimeSpan.FromSeconds(flashDuration), // moonlight-edit
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -675,10 +675,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(6.0f, 0f), // classic-edit
-                        new AnimationTrackProperty.KeyFrame(3.5f, 0.03f), // classic-add
-                        new AnimationTrackProperty.KeyFrame(1.2f, 0.04f), // classic-add
-                        new AnimationTrackProperty.KeyFrame(0.0f, 0.08f) // classic-edit
+                        new AnimationTrackProperty.KeyFrame(6.0f, 0f), // moonlight-edit
+                        new AnimationTrackProperty.KeyFrame(3.5f, 0.03f), // moonlight-add
+                        new AnimationTrackProperty.KeyFrame(1.2f, 0.04f), // moonlight-add
+                        new AnimationTrackProperty.KeyFrame(0.0f, 0.08f) // moonlight-edit
                     }
                 },
                 new AnimationTrackComponentProperty
@@ -688,8 +688,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(true, 0f), // classic-edit
-                        new AnimationTrackProperty.KeyFrame(false, flashDuration) // classic-edit
+                        new AnimationTrackProperty.KeyFrame(true, 0f), // moonlight-edit
+                        new AnimationTrackProperty.KeyFrame(false, flashDuration) // moonlight-edit
                     }
                 }
             }

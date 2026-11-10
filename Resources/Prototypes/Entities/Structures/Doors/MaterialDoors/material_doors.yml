@@ -24,7 +24,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.5,-0.12,0.5,0.12" # classic-edit
+          bounds: "-0.5,-0.12,0.5,0.12" # moonlight-edit
         density: 100
         mask:
         - FullTileMask
@@ -34,14 +34,14 @@
     bumpOpen: false
     clickOpen: true
     canCrush: false
-    # classic-start
+    # moonlight-start
     closeTimeOne: 0
     closeTimeTwo: 0
     openTimeOne: 0
     openTimeTwo: 0
     openingAnimationTime: 0
     closingAnimationTime: 0
-    # classic-end
+    # moonlight-end
     openSound:
       path: /Audio/Effects/stonedoor_openclose.ogg
     closeSound:
@@ -64,13 +64,13 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Occluder
-    # classic-start
+    # moonlight-start
     polygon:
     - "-0.5,-0.06"
     - "0.5,-0.06"
     - "0.5,0.06"
     - "-0.5,0.06"
-    # classic-end
+    # moonlight-end
   - type: BlockWeather
 
 - type: entity
@@ -87,9 +87,9 @@
   id: MetalDoor
   name: metal door
   components:
-    # classic-start
+    # moonlight-start
   - type: Sprite
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -103,7 +103,7 @@
     openingSpriteState: metal
     closingSpriteState: metal_open
   - type: Occluder
-    # classic-end
+    # moonlight-end
   - type: Construction
     graph: DoorGraph
     node: metalDoor
@@ -137,7 +137,7 @@
   components:
   - type: Sprite
     # classis-start
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -178,8 +178,8 @@
   name: gold door
   components:
   - type: Sprite
-    # classic-start
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    # moonlight-start
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -193,7 +193,7 @@
     openingSpriteState: gold
     closingSpriteState: gold_open
   - type: Occluder
-    # classic-end
+    # moonlight-end
   - type: Construction
     graph: DoorGraph
     node: goldDoor
@@ -220,8 +220,8 @@
   name: silver door
   components:
   - type: Sprite
-    # classic-start
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    # moonlight-start
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -235,7 +235,7 @@
     openingSpriteState: silver
     closingSpriteState: silver_open
   - type: Occluder
-    # classic-end
+    # moonlight-end
   - type: Construction
     graph: DoorGraph
     node: silverDoor
@@ -299,8 +299,8 @@
   - type: Pierceable
     level: Wood
   - type: Sprite
-    # classic-start
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    # moonlight-start
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -314,7 +314,7 @@
     openingSpriteState: wood
     closingSpriteState: wood_open
   - type: Occluder
-    # classic-end
+    # moonlight-end
     openSound:
       path: /Audio/Effects/door_open.ogg
     closeSound:
@@ -351,8 +351,8 @@
   - type: Pierceable
     level: Wood
   - type: Sprite
-    # classic-start
-    sprite: _Classic/Structures/Doors/mineral_doors.rsi
+    # moonlight-start
+    sprite: _Moonlight/Structures/Doors/mineral_doors.rsi
     snapCardinals: false
     drawdepth: Doors
     layers:
@@ -366,7 +366,7 @@
     openingSpriteState: paperframe
     closingSpriteState: paperframe_open
   - type: Occluder
-    # classic-end
+    # moonlight-end
     openSound:
       path: /Audio/Effects/paperdoor_openclose.ogg
     closeSound:

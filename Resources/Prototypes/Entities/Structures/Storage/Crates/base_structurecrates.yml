@@ -9,11 +9,11 @@
   - type: Transform
     noRot: true
   - type: Icon
-    sprite: _Classic/Structures/Storage/Crates/generic.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/generic.rsi
     state: icon
   - type: Sprite
     noRot: true
-    sprite: _Classic/Structures/Storage/Crates/generic.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/generic.rsi
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
@@ -114,10 +114,10 @@
   - type: LockVisuals
   - type: AccessReader
   - type: Icon
-    sprite: _Classic/Structures/Storage/Crates/secure.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/secure.rsi
     state: icon
   - type: Sprite
-    sprite: _Classic/Structures/Storage/Crates/secure.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/secure.rsi
     layers:
     - state: base
     - state: closed

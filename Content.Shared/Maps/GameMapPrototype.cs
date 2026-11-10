@@ -22,7 +22,7 @@ public sealed partial class GameMapPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField]
-    public float MaxRandomOffset = 0; //Classic - we dont need offset because zlevels stacking dont support it
+    public float MaxRandomOffset = 0; //Moonlight - we dont need offset because zlevels stacking dont support it
 
     /// <summary>
     /// Turns out some of the map files are actually secretly grids. Excellent. I love map loading code.
@@ -30,7 +30,7 @@ public sealed partial class GameMapPrototype : IPrototype
     [DataField] public bool IsGrid;
 
     [DataField]
-    public bool RandomRotation = false; //Classic - we dont need rotate because zlevels stacking dont support it
+    public bool RandomRotation = false; //Moonlight - we dont need rotate because zlevels stacking dont support it
 
     /// <summary>
     /// Name of the map to use in generic messages, like the map vote.

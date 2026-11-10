@@ -1,0 +1,343 @@
+﻿- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileCafeteria
+  name: moonlight-cafeteria-floor-tile
+  spawn: MoonlightFloorTileItemCafeteria
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDarkDiagonal
+  name: moonlight-dark_diagonal-floor-tile
+  spawn: MoonlightFloorTileItemDarkDiagonal
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDarkHerringbone
+  name: moonlight-dark_herringbone-floor-tile
+  spawn: MoonlightFloorTileItemDarkHerringbone
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDarkLarge
+  name: moonlight-dark_large-floor-tile
+  spawn: MoonlightFloorTileItemDarkLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDarkSmall
+  name: moonlight-dark_small-floor-tile
+  spawn: MoonlightFloorTileItemDarkSmall
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDarkfull
+  name: moonlight-darkfull-floor-tile
+  spawn: MoonlightFloorTileItemDarkfull
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileDiagonal
+  name: moonlight-diagonal-floor-tile
+  spawn: MoonlightFloorTileItemDiagonal
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileFloor
+  name: moonlight-floor-floor-tile
+  spawn: MoonlightFloorTileItemFloor
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileFloorLarge
+  name: moonlight-floor_large-floor-tile
+  spawn: MoonlightFloorTileItemFloorLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileHerringbone
+  name: moonlight-herringbone-floor-tile
+  spawn: MoonlightFloorTileItemHerringbone
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileKitchen
+  name: moonlight-kitchen-floor-tile
+  spawn: MoonlightFloorTileItemKitchen
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileKitchenDiagonal
+  name: moonlight-kitchen_diagonal-floor-tile
+  spawn: MoonlightFloorTileItemKitchenDiagonal
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileKitchenHerringbone
+  name: moonlight-kitchen_herringbone-floor-tile
+  spawn: MoonlightFloorTileItemKitchenHerringbone
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileKitchenSmall
+  name: moonlight-kitchen_small-floor-tile
+  spawn: MoonlightFloorTileItemKitchenSmall
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileMaterialfloor
+  name: moonlight-materialfloor-floor-tile
+  spawn: MoonlightFloorTileItemMaterialfloor
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTilePinkblack
+  name: moonlight-pinkblack-floor-tile
+  spawn: MoonlightFloorTileItemPinkblack
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTilePlaque
+  name: moonlight-plaque-floor-tile
+  spawn: MoonlightFloorTileItemPlaque
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTilePlastic
+  name: moonlight-plastic-floor-tile
+  spawn: MoonlightFloorTileItemPlastic
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTilePlastitanium
+  name: moonlight-plastitanium-floor-tile
+  spawn: MoonlightFloorTileItemPlastitanium
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTilePlastitaniumRed
+  name: moonlight-plastitanium_red-floor-tile
+  spawn: MoonlightFloorTileItemPlastitaniumRed
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileSepia
+  name: moonlight-sepia-floor-tile
+  spawn: MoonlightFloorTileItemSepia
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileSmall
+  name: moonlight-small-floor-tile
+  spawn: MoonlightFloorTileItemSmall
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileSmooth
+  name: moonlight-smooth-floor-tile
+  spawn: MoonlightFloorTileItemSmooth
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileSmoothLarge
+  name: moonlight-smooth_large-floor-tile
+  spawn: MoonlightFloorTileItemSmoothLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileStoneFloor
+  name: moonlight-stone_floor-floor-tile
+  spawn: MoonlightFloorTileItemStoneFloor
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTerracotta
+  name: moonlight-terracotta-floor-tile
+  spawn: MoonlightFloorTileItemTerracotta
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTerracottaDiagonal
+  name: moonlight-terracotta_diagonal-floor-tile
+  spawn: MoonlightFloorTileItemTerracottaDiagonal
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTerracottaHerringbone
+  name: moonlight-terracotta_herringbone-floor-tile
+  spawn: MoonlightFloorTileItemTerracottaHerringbone
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTerracottaSmall
+  name: moonlight-terracotta_small-floor-tile
+  spawn: MoonlightFloorTileItemTerracottaSmall
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTextured
+  name: moonlight-textured-floor-tile
+  spawn: MoonlightFloorTileItemTextured
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTexturedDark
+  name: moonlight-textured_dark-floor-tile
+  spawn: MoonlightFloorTileItemTexturedDark
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTexturedDarkLarge
+  name: moonlight-textured_dark_large-floor-tile
+  spawn: MoonlightFloorTileItemTexturedDarkLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTexturedLarge
+  name: moonlight-textured_large-floor-tile
+  spawn: MoonlightFloorTileItemTexturedLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTexturedWhite
+  name: moonlight-textured_white-floor-tile
+  spawn: MoonlightFloorTileItemTexturedWhite
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTexturedWhiteLarge
+  name: moonlight-textured_white_large-floor-tile
+  spawn: MoonlightFloorTileItemTexturedWhiteLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTitaniumTiled
+  name: moonlight-titanium_tiled-floor-tile
+  spawn: MoonlightFloorTileItemTitaniumTiled
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTitaniumTiledBlue
+  name: moonlight-titanium_tiled_blue-floor-tile
+  spawn: MoonlightFloorTileItemTitaniumTiledBlue
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTitaniumTiledPurple
+  name: moonlight-titanium_tiled_purple-floor-tile
+  spawn: MoonlightFloorTileItemTitaniumTiledPurple
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTitaniumTiledWhite
+  name: moonlight-titanium_tiled_white-floor-tile
+  spawn: MoonlightFloorTileItemTitaniumTiledWhite
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileTitaniumTiledYellow
+  name: moonlight-titanium_tiled_yellow-floor-tile
+  spawn: MoonlightFloorTileItemTitaniumTiledYellow
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWhite
+  name: moonlight-white-floor-tile
+  spawn: MoonlightFloorTileItemWhite
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWhiteDiagonal
+  name: moonlight-white_diagonal-floor-tile
+  spawn: MoonlightFloorTileItemWhiteDiagonal
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWhiteHerringbone
+  name: moonlight-white_herringbone-floor-tile
+  spawn: MoonlightFloorTileItemWhiteHerringbone
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWhiteLarge
+  name: moonlight-white_large-floor-tile
+  spawn: MoonlightFloorTileItemWhiteLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWhiteSmall
+  name: moonlight-white_small-floor-tile
+  spawn: MoonlightFloorTileItemWhiteSmall
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWood
+  name: moonlight-wood-floor-tile
+  spawn: MoonlightFloorTileItemWood
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWoodLarge
+  name: moonlight-wood_large-floor-tile
+  spawn: MoonlightFloorTileItemWoodLarge
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWoodParquet
+  name: moonlight-wood_parquet-floor-tile
+  spawn: MoonlightFloorTileItemWoodParquet
+  maxCount: 30
+
+- type: stack
+  parent: BaseTileStack
+  id: MoonlightFloorTileWoodTile
+  name: moonlight-wood_tile-floor-tile
+  spawn: MoonlightFloorTileItemWoodTile
+  maxCount: 30
+

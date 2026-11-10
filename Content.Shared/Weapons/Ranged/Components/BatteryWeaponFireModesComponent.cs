@@ -66,10 +66,10 @@ public sealed partial class BatteryWeaponFireMode
     [DataField("visualState")]
     public string? VisualState;
 
-    // classic-start
+    // moonlight-start
     [DataField]
     public SelectiveFire? Mode;
-    // classic-end
+    // moonlight-end
 }
 
 [Serializable, NetSerializable]

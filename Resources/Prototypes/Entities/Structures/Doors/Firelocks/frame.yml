@@ -5,7 +5,7 @@
   description: That is a firelock frame.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/firelock.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/firelock.rsi
     drawdepth: Overdoors
     layers:
     - state: frame1

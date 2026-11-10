@@ -35,10 +35,10 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
         public void JoinAtmosphere(Entity<AtmosDeviceComponent> ent)
         {
-            // Classic-Start
+            // Moonlight-Start
             if (!_atmosphereSystem.AtmosEnabled)
                 return;
-            // Classic-End
+            // Moonlight-End
 
             if (ent.Comp.JoinedGrid != null)
             {
@@ -127,10 +127,10 @@ namespace Content.Server.Atmos.Piping.EntitySystems
         /// </summary>
         public override void Update(float frameTime)
         {
-            // Classic-Start
+            // Moonlight-Start
             if (!_atmosphereSystem.AtmosEnabled)
                 return;
-            // Classic-End
+            // Moonlight-End
 
             _timer += frameTime;
 

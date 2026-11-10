@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
-using Content.Server._Classic.Station; // classic-add
+using Content.Server._Moonlight.Station; // moonlight-add
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -90,7 +90,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-        InitializeClassicBiome(); // classic-add
+        InitializeMoonlightBiome(); // moonlight-add
         SubscribeLocalEvent<BiomeComponent, MapInitEvent>(OnBiomeMapInit);
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<ShuttleFlattenEvent>(OnShuttleFlatten);
@@ -101,9 +101,9 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private void ProtoReload(PrototypesReloadedEventArgs obj)
     {
-        ClearNoiseCache(); // classic-add
-        _classicZPhysicsDefaults.Clear(); // classic-add
-        ClearClassicPrototypeCaches(); // classic-add
+        ClearNoiseCache(); // moonlight-add
+        _moonlightZPhysicsDefaults.Clear(); // moonlight-add
+        ClearMoonlightPrototypeCaches(); // moonlight-add
 
         if (!obj.ByType.TryGetValue(typeof(BiomeTemplatePrototype), out var reloads))
             return;
@@ -152,8 +152,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 _shuttles.Disable(grid.Owner);
                 var pTransform = _physics.GetPhysicsTransform(grid.Owner);
 
-                var fixturesList = fixtures.Fixtures.Values.ToList(); // classic-add
-                foreach (var fixture in fixturesList) // classic-add
+                var fixturesList = fixtures.Fixtures.Values.ToList(); // moonlight-add
+                foreach (var fixture in fixturesList) // moonlight-add
                 {
                     for (var i = 0; i < fixture.Shape.ChildCount; i++)
                     {
@@ -223,7 +223,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
 
             addedLayer.Noise.SetSeed(addedLayer.Noise.GetSeed() + seedOffset);
-            InvalidateNoise(addedLayer.Noise); // classic-add
+            InvalidateNoise(addedLayer.Noise); // moonlight-add
             component.Layers.Insert(i, addedLayer);
             break;
         }
@@ -253,7 +253,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 var addedLayer = template.Layers[j];
                 addedLayer.Noise.SetSeed(addedLayer.Noise.GetSeed() + seedOffset);
-                InvalidateNoise(addedLayer.Noise); // classic-add
+                InvalidateNoise(addedLayer.Noise); // moonlight-add
                 component.Layers.Insert(i, addedLayer);
             }
 
@@ -339,10 +339,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        // classic start
-        if (TryUpdateClassicBiomeStreaming(frameTime))
+        // moonlight start
+        if (TryUpdateMoonlightBiomeStreaming(frameTime))
             return;
-        // classic end
+        // moonlight end
         var biomes = AllEntityQuery<BiomeComponent>();
 
         while (biomes.MoveNext(out var biome))
@@ -351,12 +351,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
 
             _activeChunks.Add(biome, _tilePool.Get());
-            // classic start
-            if (_classicStreamingQuery.TryComp(biome.Owner, out var streaming))
+            // moonlight start
+            if (_moonlightStreamingQuery.TryComp(biome.Owner, out var streaming))
                 streaming.ViewerChunks.Clear();
             if (biome.MarkerLayers.Count > 0 || biome.ForcedMarkerLayers.Count > 0)
                 _markerChunks.GetOrNew(biome);
-            // classic end
+            // moonlight end
         }
 
         // Get chunks in range
@@ -364,7 +364,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             if (_xformQuery.TryGetComponent(pSession.AttachedEntity, out var xform) &&
                 _handledEntities.Add(pSession.AttachedEntity.Value) &&
-                TryGetActiveBiome(xform, out var biome) && // classic-add
+                TryGetActiveBiome(xform, out var biome) && // moonlight-add
                 biome.Enabled &&
                 CanLoad(pSession.AttachedEntity.Value))
             {
@@ -382,14 +382,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 if (!_handledEntities.Add(viewer) ||
                     !_xformQuery.TryGetComponent(viewer, out xform) ||
-                    !TryGetActiveBiome(xform, out biome) || // classic-add
+                    !TryGetActiveBiome(xform, out biome) || // moonlight-add
                     !biome.Enabled ||
                     !CanLoad(viewer))
                 {
                     continue;
                 }
 
-                var worldPos = ClassicBiomeViewerPosition(pSession.AttachedEntity, viewer, xform); // classic-edit
+                var worldPos = MoonlightBiomeViewerPosition(pSession.AttachedEntity, viewer, xform); // moonlight-edit
                 AddChunksInRange(biome, worldPos);
 
                 foreach (var layer in biome.MarkerLayers)
@@ -430,8 +430,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private void AddChunksInRange(BiomeComponent biome, Vector2 worldPos)
     {
-        // Classic: always generate the physical landing cell of every player and Z-eye first.
-        if (_classicStreamingQuery.TryComp(biome.Owner, out var streaming))
+        // Moonlight: always generate the physical landing cell of every player and Z-eye first.
+        if (_moonlightStreamingQuery.TryComp(biome.Owner, out var streaming))
         {
             var tile = new Vector2i((int) MathF.Floor(worldPos.X), (int) MathF.Floor(worldPos.Y));
             streaming.ViewerChunks.Add(SharedMapSystem.GetChunkIndices(tile, ChunkSize) * ChunkSize);
@@ -473,16 +473,16 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         BuildMarkerChunks(component, gridUid, grid, seed);
 
-        // classic start
+        // moonlight start
 #if false
-        // Classic: spread planetary terrain generation across ticks.
-        if (_classicStreamingQuery.TryComp(gridUid, out var streaming))
+        // Moonlight: spread planetary terrain generation across ticks.
+        if (_moonlightStreamingQuery.TryComp(gridUid, out var streaming))
         {
-            LoadClassicStreamingChunks(component, gridUid, grid, seed, streaming);
+            LoadMoonlightStreamingChunks(component, gridUid, grid, seed, streaming);
             return;
         }
 #endif
-        // classic end
+        // moonlight end
 
         var active = _activeChunks[component];
 
@@ -504,29 +504,29 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// </summary>
     private void BuildMarkerChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
     {
-        // classic start
-        if (!_markerChunks.TryGetValue(component, out var classicMarkers))
+        // moonlight start
+        if (!_markerChunks.TryGetValue(component, out var moonlightMarkers))
         {
-            if (_classicStreamingQuery.TryComp(gridUid, out var inactiveStreaming))
+            if (_moonlightStreamingQuery.TryComp(gridUid, out var inactiveStreaming))
             {
-                DisposeClassicMarkerScan(inactiveStreaming.MarkerAreaScan);
+                DisposeMoonlightMarkerScan(inactiveStreaming.MarkerAreaScan);
                 inactiveStreaming.MarkerAreaScan = null;
             }
         }
-        else if (_classicStreamingQuery.TryComp(gridUid, out var classicStreaming))
+        else if (_moonlightStreamingQuery.TryComp(gridUid, out var moonlightStreaming))
         {
-            var budgetWasExpired = ClassicStreamingBudgetExpired();
-            using (_classicProfiler.Value("ClassicBiome.MarkerArea"))
-                BuildClassicMarkerChunk(component, gridUid, grid, seed, classicMarkers, classicStreaming);
+            var budgetWasExpired = MoonlightStreamingBudgetExpired();
+            using (_moonlightProfiler.Value("MoonlightBiome.MarkerArea"))
+                BuildMoonlightMarkerChunk(component, gridUid, grid, seed, moonlightMarkers, moonlightStreaming);
 
-            if (!budgetWasExpired && ClassicStreamingBudgetExpired())
-                _classicForcedProgressUsed = true;
+            if (!budgetWasExpired && MoonlightStreamingBudgetExpired())
+                _moonlightForcedProgressUsed = true;
 
-            if (ClassicMarkerRequestsComplete(classicMarkers, component.LoadedMarkers, classicStreaming.PinnedMarkerAreas)) // classic-edit
+            if (MoonlightMarkerRequestsComplete(moonlightMarkers, component.LoadedMarkers, moonlightStreaming.PinnedMarkerAreas)) // moonlight-edit
                 component.ForcedMarkerLayers.Clear();
             return;
         }
-        // classic end
+        // moonlight end
         if (!_markerChunks.TryGetValue(component, out var markers))
             return;
 
@@ -775,13 +775,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         // This needs to be done separately in case we try to add a marker layer and want to force it on existing
         // loaded chunks.
-        // classic start
+        // moonlight start
         if (!component.ModifiedTiles.TryGetValue(chunk, out var modified))
         {
             modified = _tilePool.Get();
             component.ModifiedTiles.Add(chunk, modified);
         }
-        // classic end
+        // moonlight end
 
         foreach (var (layer, nodes) in layers)
         {
@@ -795,7 +795,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 // Need to ensure the tile under it has loaded for anchoring.
                 if (TryGetBiomeTile(node, component.Layers, seed, (gridUid, grid), out var tile))
                 {
-                    SetClassicBiomeTile(gridUid, grid, node, tile.Value); // classic-edit
+                    SetMoonlightBiomeTile(gridUid, grid, node, tile.Value); // moonlight-edit
                 }
 
                 string? prototype;
@@ -859,17 +859,17 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (_mapSystem.TryGetTileRef(gridUid, grid, indices, out var tileRef) && !tileRef.Tile.IsEmpty)
                     continue;
 
-                if (!TryGetTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile)) // classic-edit
+                if (!TryGetTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile)) // moonlight-edit
                     continue;
 
                 _tiles.Add((indices, biomeTile.Value));
             }
         }
 
-        SetClassicBiomeTiles(gridUid, grid, _tiles); // classic-edit
+        SetMoonlightBiomeTiles(gridUid, grid, _tiles); // moonlight-edit
         _tiles.Clear();
 
-    if (ClassicBiomeLoadsEntities(gridUid))  // classic-add
+    if (MoonlightBiomeLoadsEntities(gridUid))  // moonlight-add
     {
         // Now do entities
         var loadedEntities = new Dictionary<EntityUid, Vector2i>();
@@ -905,7 +905,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             }
         }
 
-    if (ClassicBiomeLoadsDecals(gridUid)) // classic-add
+    if (MoonlightBiomeLoadsDecals(gridUid)) // moonlight-add
     {
         // Decals
         var loadedDecals = new Dictionary<uint, Vector2i>();
@@ -957,16 +957,16 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// </summary>
     private void UnloadChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
     {
-        // classic start
-        if (_classicStreamingQuery.TryComp(gridUid, out var classicStreaming))
+        // moonlight start
+        if (_moonlightStreamingQuery.TryComp(gridUid, out var moonlightStreaming))
         {
-            UnloadClassicChunks(component, gridUid, grid, seed, classicStreaming);
+            UnloadMoonlightChunks(component, gridUid, grid, seed, moonlightStreaming);
             return;
         }
-        // classic end
+        // moonlight end
         var active = _activeChunks[component];
         List<(Vector2i, Tile)>? tiles = null;
-        _classicStreamingQuery.TryComp(gridUid, out var streaming); // classic-add
+        _moonlightStreamingQuery.TryComp(gridUid, out var streaming); // moonlight-add
         var unloaded = 0;
 
         foreach (var chunk in component.LoadedChunks)
@@ -977,18 +977,18 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
             }
 
-            // Classic: a brief grace period avoids regeneration while crossing a chunk boundary.
+            // Moonlight: a brief grace period avoids regeneration while crossing a chunk boundary.
             // The unload budget also prevents deleting a whole view range in one server tick.
             if (streaming != null)
             {
                 if (!streaming.PendingUnloads.TryGetValue(chunk, out var deadline))
                 {
-                    streaming.PendingUnloads[chunk] = _classicTiming.CurTime + streaming.UnloadDelay;
+                    streaming.PendingUnloads[chunk] = _moonlightTiming.CurTime + streaming.UnloadDelay;
                     continue;
                 }
-                if (_classicTiming.CurTime < deadline ||
+                if (_moonlightTiming.CurTime < deadline ||
                     unloaded >= Math.Max(1, streaming.BackgroundChunksPerTick) ||
-                    ClassicStreamingBudgetExpired(streaming))
+                    MoonlightStreamingBudgetExpired(streaming))
                     continue;
                 streaming.PendingUnloads.Remove(chunk);
             }
@@ -1010,10 +1010,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         // Reverse order to loading
         component.ModifiedTiles.TryGetValue(chunk, out var modified);
-        modified ??= _tilePool.Get(); // classic-edit
+        modified ??= _tilePool.Get(); // moonlight-edit
 
         // Delete decals
-    if (component.LoadedDecals.Remove(chunk, out var loadedDecals)) // classic-add
+    if (component.LoadedDecals.Remove(chunk, out var loadedDecals)) // moonlight-add
     {
         foreach (var (dec, indices) in loadedDecals)
         {
@@ -1029,9 +1029,9 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         // and also if the map is enormous will make stuff like physics broadphase much faster
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-    if (component.LoadedEntities.Remove(chunk, out var loadedEntities)) // classic-add
+    if (component.LoadedEntities.Remove(chunk, out var loadedEntities)) // moonlight-add
     {
-        foreach (var (ent, tile) in loadedEntities) // classic-edit
+        foreach (var (ent, tile) in loadedEntities) // moonlight-edit
         {
             if (Deleted(ent) || !xformQuery.TryGetComponent(ent, out var xform))
             {
@@ -1048,17 +1048,17 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
             }
 
-            // classic start
+            // moonlight start
             // Keep a procedural source when a player-built consumer depends on it. Transient
             // anchored effects (such as geyser mist) deliberately do not make it persistent.
-            if (ClassicHasPersistentBiomeDependent(gridUid, grid, tile, ent))
+            if (MoonlightHasPersistentBiomeDependent(gridUid, grid, tile, ent))
             {
                 modified.Add(tile);
                 continue;
             }
-            // classic end
+            // moonlight end
 
-            if (!ClassicCanUnloadBiomeEntity(gridUid, ent)) // classic-edit
+            if (!MoonlightCanUnloadBiomeEntity(gridUid, ent)) // moonlight-edit
             {
                 modified.Add(tile);
                 continue;
@@ -1089,10 +1089,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 }
 
                 // If it's default data unload the tile.
-                // classic start
+                // moonlight start
                 if (!TryGetTile(indices, component.Layers, seed, (Entity<MapGridComponent>?) null, out var biomeTile) ||
                     _mapSystem.TryGetTileRef(gridUid, grid, indices, out var tileRef) && tileRef.Tile != biomeTile.Value)
-                // classic end
+                // moonlight end
                 {
                     modified.Add(indices);
                     continue;
@@ -1102,14 +1102,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             }
         }
 
-        SetClassicBiomeTiles(gridUid, grid, tiles); // classic-edit
+        SetMoonlightBiomeTiles(gridUid, grid, tiles); // moonlight-edit
         tiles.Clear();
         component.LoadedChunks.Remove(chunk);
 
         if (modified.Count == 0)
         {
             component.ModifiedTiles.Remove(chunk);
-            _tilePool.Return(modified); // classic-add
+            _tilePool.Return(modified); // moonlight-add
         }
         else
         {

@@ -103,7 +103,7 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
-  - type: ClassicZPhysics
+  - type: MoonlightZPhysics
 
 - type: entity
   save: false

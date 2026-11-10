@@ -4,11 +4,11 @@
   parent: [BaseDeltaPressurePlasma, WindowRCDResistant]
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/plasma_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/plasma_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/plasma_window.rsi # Classic-Edit
-    state: full # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/plasma_window.rsi # Moonlight-Edit
+    state: full # Moonlight-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
@@ -38,7 +38,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    base: plasma_window # Classic-Edit
+    base: plasma_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: plasmaWindow
@@ -48,7 +48,7 @@
     damageDivisor: 3
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
   - type: StaticPrice
     price: 100
   - type: RadiationBlocker
@@ -65,10 +65,10 @@
     - Window
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Windows/Directional/plasma.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/plasma.rsi
     state: plasma_window
   - type: Icon
-    sprite: _Classic/Structures/Windows/Directional/plasma.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/plasma.rsi
     state: plasma_window
   - type: Construction
     graph: WindowDirectional

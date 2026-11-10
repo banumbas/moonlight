@@ -4,12 +4,12 @@
 The input is the five-column ``{name}.png`` template used by the SS13 icon
 cutter.  Each column is 32x48 and represents one of the five corner types:
 convex, concave, horizontal, vertical and flat.  The output uses the wall
-layout used by Resources/Textures/_Classic/Structures/Walls/*.rsi: every
+layout used by Resources/Textures/_Moonlight/Structures/Walls/*.rsi: every
 state has four directional frames in a 2x2 sprite sheet, with a 32x64 frame.
 
 The cutter's ``bitmask/windows`` template is also supported.  It contains ten
 32x64 columns: five regular corner templates followed by five alternate
-templates used by SS13's split window renderer.  Classic's tall RSI layout
+templates used by SS13's split window renderer.  Moonlight's tall RSI layout
 uses the regular templates with their top 16 pixels removed, producing the
 same 32x48 input layout as walls.
 """
@@ -103,7 +103,7 @@ def load_source(path: Path) -> list[list[Image.Image]]:
         frame_count = image.height // FRAME_HEIGHT
         # SS13's window renderer splits each 64px icon into upper/lower
         # states and has a second, alternate set of five columns for windows
-        # adjacent to walls. Classic stores a single 48px-tall visible icon,
+        # adjacent to walls. Moonlight stores a single 48px-tall visible icon,
         # matching the regular set cropped from y=16 through y=64.
         frames = [
             [
@@ -121,7 +121,7 @@ def load_source(path: Path) -> list[list[Image.Image]]:
         ]
         # The vertical and flat templates extend into SS13's lower split
         # state. Keeping that strip in a single tall SS14 sprite makes the
-        # lower window draw over the window above it. In Classic that strip
+        # lower window draw over the window above it. In Moonlight that strip
         # belongs to the neighbouring tile and must stay transparent.
         for frame in frames:
             for column in (VERTICAL, FLAT):

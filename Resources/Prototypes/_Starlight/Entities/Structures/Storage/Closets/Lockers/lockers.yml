@@ -48,7 +48,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: bso
     stateDoorOpen: nanotrasen-black_open
@@ -66,7 +66,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: magi
     stateDoorOpen: nanotrasen-black_open
@@ -84,7 +84,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: iaa
     stateDoorOpen: nanotrasen-black_open
@@ -102,7 +102,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: nct
     stateDoorOpen: nanotrasen-black_open
@@ -121,7 +121,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: salvagelead
       stateDoorOpen: salvagelead_open
@@ -154,7 +154,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: miner
     stateDoorOpen: miner_open
@@ -185,7 +185,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: cargo
       stateDoorOpen: cargo_open
@@ -216,7 +216,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: mail
       stateDoorOpen: mail_open
@@ -248,7 +248,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: surgeon
       stateDoorOpen: robosurgeon-black_open
@@ -264,7 +264,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: coroner
       stateDoorOpen: coroner_open
@@ -280,7 +280,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: virologist
       stateDoorOpen: medical_open
@@ -296,7 +296,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: geneticist
       stateDoorOpen: medical_open
@@ -313,7 +313,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: roboticist
       stateDoorOpen: robosurgeon-black_open
@@ -330,7 +330,7 @@
   components:
     - type: Appearance
     - type: Sprite
-      sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+      sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
       stateBaseClosed: janitor
       stateDoorOpen: janitor_open

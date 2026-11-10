@@ -45,7 +45,7 @@ using Content.Shared._Starlight.Camera;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
-using Content.Shared._Classic.Vehicles; // Classic-edit
+using Content.Shared._Moonlight.Vehicles; // Moonlight-edit
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -78,7 +78,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected TagSystem TagSystem = default!;
     [Dependency] protected ThrowingSystem ThrowingSystem = default!;
     [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
-    [Dependency] private readonly VehicleWeaponsSystem _vehicleWeapons = default!; // Classic-edit
+    [Dependency] private readonly VehicleWeaponsSystem _vehicleWeapons = default!; // Moonlight-edit
 
     /// <summary>
     /// Default projectile speed
@@ -264,7 +264,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         // Starlight-edit: end
 
-        // Classic-edit: begin
+        // Moonlight-edit: begin
         if (TryComp<VehiclePortGunOperatorComponent>(entity, out var portGunOperator) &&
             portGunOperator.Gun is { } portGun &&
             TryComp<VehiclePortGunComponent>(portGun, out var portGunComp) &&
@@ -283,7 +283,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             gun = (selected, gunComp);
             return true;
         }
-        // Classic-edit: end
+        // Moonlight-edit: end
 
         // Last resort is check if the entity itself is a gun.
         if (TryComp(entity, out gunComp))
@@ -411,12 +411,12 @@ public abstract partial class SharedGunSystem : EntitySystem
             shots = Math.Min(shots, gun.Comp.ShotsPerBurstModified - gun.Comp.ShotCounter);
         }
 
-        // Classic-edit: begin
+        // Moonlight-edit: begin
         var originEntity = HasComp<GunUseGunOriginComponent>(gun) ? (EntityUid)gun : user;
         var fromCoordinates = Transform(originEntity).Coordinates;
 
         var attemptEv = new AttemptShootEvent(user, null, fromCoordinates, toCoordinates);
-        // Classic-edit: end
+        // Moonlight-edit: end
         RaiseLocalEvent(gun, ref attemptEv);
 
         if (attemptEv.Cancelled)
@@ -427,17 +427,17 @@ public abstract partial class SharedGunSystem : EntitySystem
             }
             gun.Comp.BurstActivated = false;
             gun.Comp.BurstShotsCount = 0;
-            // Classic-edit: begin
+            // Moonlight-edit: begin
             gun.Comp.NextFire = attemptEv.ResetCooldown ? curTime : TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.Comp.NextFire.TotalSeconds));
-            // Classic-edit: end
+            // Moonlight-edit: end
             return false;
         }
 
-        // Classic-edit: begin
+        // Moonlight-edit: begin
         fromCoordinates = attemptEv.FromCoordinates;
         if (attemptEv.ToCoordinates != null)
             toCoordinates = attemptEv.ToCoordinates.Value;
-        // Classic-edit: end
+        // Moonlight-edit: end
 
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, [], fromCoordinates, user);
@@ -574,7 +574,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             shooter = pilotComp.Mech;
         }
-        // Classic-edit: begin
+        // Moonlight-edit: begin
         else if (user != null && TryComp<VehicleWeaponsOperatorComponent>(user.Value, out var vehOp) && vehOp.Vehicle is { } vehicle)
         {
             shooter = vehicle;
@@ -583,7 +583,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             shooter = portVehicle;
         }
-        // Classic-edit: end
+        // Moonlight-edit: end
         else
         {
             shooter = user ?? gunUid;
@@ -713,7 +713,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         Dirty(gun, gun.Comp);
     }
 
-    // classic-start
+    // moonlight-start
     public void SetSelectedMode(Entity<GunComponent?> gun, SelectiveFire mode)
     {
         if (!Resolve(gun, ref gun.Comp) || gun.Comp.SelectedMode == mode)
@@ -722,7 +722,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Comp.SelectedMode = mode;
         Dirty(gun, gun.Comp);
     }
-    // classic-end
+    // moonlight-end
 
     public void RefreshModifiers(Entity<GunComponent?> gun)
     {
@@ -860,7 +860,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 /// <param name="Cancelled">Set this to true if the shot should be cancelled.</param>
 /// <param name="ThrowItems">Set this to true if the ammo shouldn't actually be fired, just thrown.</param>
 [ByRefEvent]
-// Classic-edit: begin
+// Moonlight-edit: begin
 public record struct AttemptShootEvent(
     EntityUid User,
     string? Message = null,
@@ -875,7 +875,7 @@ public record struct AttemptShootEvent(
     public EntityCoordinates FromCoordinates { get; set; } = FromCoordinates;
     public EntityCoordinates? ToCoordinates { get; set; } = ToCoordinates;
 }
-// Classic-edit: end
+// Moonlight-edit: end
 
 /// <summary>
 ///     Raised directed on the gun after firing.

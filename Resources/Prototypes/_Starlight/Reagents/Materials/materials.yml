@@ -26,6 +26,6 @@
   id: Adamantine
   stackEntity: SheetAdamantine1
   name: Adamantine
-  icon: { sprite: _Classic/Objects/Materials/Sheets/metal.rsi, state: brass }
+  icon: { sprite: _Moonlight/Objects/Materials/Sheets/metal.rsi, state: brass }
   color: "#407985"
   price: 2

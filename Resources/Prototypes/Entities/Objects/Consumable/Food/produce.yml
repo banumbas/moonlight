@@ -532,14 +532,14 @@
   name: bananium peel
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: peel
   - type: Item
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     heldPrefix: peel
   - type: Slippery
   - type: Clothing
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     equippedPrefix: peel
 
 - type: entity

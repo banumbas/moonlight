@@ -620,10 +620,10 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void UpdateProcessing(float frameTime)
         {
-            // Classic-Start
+            // Moonlight-Start
             if (AtmosDisabled)
                 return;
-            // Classic-End
+            // Moonlight-End
 
             _simulationStopwatch.Restart();
 
@@ -689,10 +689,10 @@ namespace Content.Server.Atmos.EntitySystems
             Entity<MapAtmosphereComponent?> mapAtmosphere,
             float frameTime)
         {
-            // Classic-Start
+            // Moonlight-Start
             if (AtmosDisabled)
                 return AtmosphereProcessingCompletionState.Finished;
-            // Classic-End
+            // Moonlight-End
 
             // They call me the deconstructor the way i be deconstructing it
             // and by it, i mean... my entity

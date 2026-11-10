@@ -164,10 +164,10 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        // Classic-Start
+        // Moonlight-Start
         var daylightMultiplier = GetPlanetDaylightMultiplier(uid, xform);
         if (!IsInSpace(xform) && daylightMultiplier <= 0.0)
-        // Classic-End
+        // Moonlight-End
         {
             ResetSpaceExposure(sunlight);
             return;
@@ -228,24 +228,24 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool ProcessSpaceExposureTick(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight)
     {
-        // Classic-Start
+        // Moonlight-Start
         var multiplier = GetPlanetDaylightMultiplier(uid, Transform(uid));
         if (multiplier <= 0.0 && !IsInSpace(Transform(uid)))
             return true;
 
         if (multiplier <= 0.0)
             multiplier = 1.0;
-        // Classic-End
+        // Moonlight-End
 
         var hadBlood = vampire.DrunkBlood > 0;
 
         if (hadBlood)
         {
-            DrainBlood(uid, vampire, sunlight, multiplier); // Classic-Edit
+            DrainBlood(uid, vampire, sunlight, multiplier); // Moonlight-Edit
         }
         else
         {
-            if (!ApplyGeneticSpaceDamage(uid, sunlight, multiplier)) // Classic-Edit
+            if (!ApplyGeneticSpaceDamage(uid, sunlight, multiplier)) // Moonlight-Edit
                 return false;
         }
 
@@ -254,29 +254,29 @@ public sealed partial class VampireSystem : EntitySystem
         var healthy = IsAboveHalfHealth(uid, damageable, thresholds);
 
         var chance = hadBlood ? sunlight.BloodEffectChance : sunlight.BloodlessEffectChance;
-        TryApplySpaceDamage(uid, healthy, chance * (float)multiplier, sunlight, multiplier); // Classic-Edit
+        TryApplySpaceDamage(uid, healthy, chance * (float)multiplier, sunlight, multiplier); // Moonlight-Edit
 
         return true;
     }
 
-    // Classic-Start
+    // Moonlight-Start
     private void DrainBlood(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight, double multiplier = 1.0)
     {
         var scaledDrain = (int)(sunlight.BloodDrainPerInterval * multiplier);
         var drain = Math.Min(scaledDrain, vampire.DrunkBlood);
-        // Classic-End
+        // Moonlight-End
         if (drain <= 0)
             return;
 
         TrySpendBlood(uid, vampire, drain, showPopup: false);
     }
 
-    private bool ApplyGeneticSpaceDamage(EntityUid uid, VampireSunlightComponent sunlight, double multiplier = 1.0) // Classic-Edit
+    private bool ApplyGeneticSpaceDamage(EntityUid uid, VampireSunlightComponent sunlight, double multiplier = 1.0) // Moonlight-Edit
     {
         if (!_proto.TryIndex<DamageGroupPrototype>(_geneticGroupId, out var damageGroup))
             return true;
 
-        var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval * (float)multiplier); // Classic-Edit
+        var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval * (float)multiplier); // Moonlight-Edit
         _damageableSystem.TryChangeDamage(uid, spec, true);
 
         if (!TryComp(uid, out DamageableComponent? damageable) ||
@@ -295,7 +295,7 @@ public sealed partial class VampireSystem : EntitySystem
         return false;
     }
 
-    private void TryApplySpaceDamage(EntityUid uid, bool isHealthy, float chance, VampireSunlightComponent sunlight, double multiplier = 1.0) // Classic-Edit
+    private void TryApplySpaceDamage(EntityUid uid, bool isHealthy, float chance, VampireSunlightComponent sunlight, double multiplier = 1.0) // Moonlight-Edit
     {
         if (!_rand.Prob(Math.Clamp(chance, 0f, 1f)))
             return;
@@ -304,7 +304,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             if (_proto.TryIndex(_heatTypeId, out var heat))
             {
-                var spec = new DamageSpecifier(heat, sunlight.BurnDamage * (float)multiplier); // Classic-Edit
+                var spec = new DamageSpecifier(heat, sunlight.BurnDamage * (float)multiplier); // Moonlight-Edit
                 _damageableSystem.TryChangeDamage(uid, spec, true);
             }
         }

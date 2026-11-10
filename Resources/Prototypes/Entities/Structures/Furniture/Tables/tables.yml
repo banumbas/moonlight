@@ -165,9 +165,9 @@
   description: A square piece of metal standing on four metal legs.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/table.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -209,9 +209,9 @@
   description: A square piece of metal standing on four metal legs. Extra robust.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/reinforced_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/reinforced_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/reinforced_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/reinforced_table.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -257,9 +257,9 @@
   description: A square piece of glass, standing on four metal legs.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/glass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/glass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/glass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/glass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -367,9 +367,9 @@
   description: A square piece of glass, standing on four metal legs. Extra robust.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/rglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/rglass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/rglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/rglass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -425,9 +425,9 @@
   description: A square piece of plasma glass, standing on four metal legs. Pretty!
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/plasmaglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/plasmaglass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/plasmaglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/plasmaglass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -483,9 +483,9 @@
   description: A shiny, corrosion resistant brass table. Steampunk!
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/brass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/brass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/brass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/brass_table.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -527,9 +527,9 @@
   description: A reinforced table made from translucent plasma glass.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/rplasmaglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/rplasmaglass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/rplasmaglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/rplasmaglass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -587,9 +587,9 @@
   description: An exceptionally sturdy titanium glass table.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/titaniumglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/titaniumglass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/titaniumglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/titaniumglass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -637,9 +637,9 @@
   description: An almost indestructible plastitanium glass table.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/plastitaniumglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/plastitaniumglass_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/plastitaniumglass_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/plastitaniumglass_table.rsi
   - type: GlassTable
     climberDamage:
       types:
@@ -687,9 +687,9 @@
   description: Do not apply fire to this. Rumour says it burns easily.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/wood_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/wood_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/wood_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/wood_table.rsi
   - type: Damageable
     damageModifierSet: Wood
   - type: Destructible
@@ -737,9 +737,9 @@
   description: Play em' cowboy.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/poker_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/poker_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/poker_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/poker_table.rsi
   - type: Damageable
     damageModifierSet: Wood
   - type: Destructible
@@ -851,9 +851,9 @@
   description: I wouldn't put the silverware on it.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/alien_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/alien_table.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/alien_table.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/alien_table.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -923,9 +923,9 @@
   suffix: Blue
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_blue.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_blue.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_blue.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_blue.rsi
   - type: Construction
     graph: Table
     node: TableFancyBlue
@@ -954,9 +954,9 @@
   suffix: Cyan
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_cyan.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_cyan.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_cyan.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_cyan.rsi
   - type: Construction
     graph: Table
     node: TableFancyCyan
@@ -970,9 +970,9 @@
   suffix: Black
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_black.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_black.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_black.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_black.rsi
   - type: Construction
     graph: Table
     node: TableFancyBlack
@@ -986,9 +986,9 @@
   suffix: Red
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_red.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_red.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_red.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_red.rsi
   - type: Construction
     graph: Table
     node: TableFancyRed
@@ -1002,9 +1002,9 @@
   suffix: Purple
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_purple.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_purple.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_purple.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_purple.rsi
   - type: Construction
     graph: Table
     node: TableFancyPurple
@@ -1033,9 +1033,9 @@
   suffix: Green
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_green.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_green.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_green.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_green.rsi
   - type: Construction
     graph: Table
     node: TableFancyGreen
@@ -1049,9 +1049,9 @@
   suffix: Orange
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_orange.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_orange.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_orange.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_orange.rsi
   - type: Construction
     graph: Table
     node: TableFancyOrange
@@ -1080,9 +1080,9 @@
   suffix: Royal Black
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_royalblack.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_royalblack.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_royalblack.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_royalblack.rsi
   - type: Construction
     graph: Table
     node: TableFancyRoyalBlack
@@ -1096,9 +1096,9 @@
   suffix: Royal Blue
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_royalblue.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_royalblue.rsi
   - type: Icon
-    sprite: _Classic/Structures/Furniture/Tables/fancy_table_royalblue.rsi
+    sprite: _Moonlight/Structures/Furniture/Tables/fancy_table_royalblue.rsi
   - type: Construction
     graph: Table
     node: TableFancyRoyalBlue

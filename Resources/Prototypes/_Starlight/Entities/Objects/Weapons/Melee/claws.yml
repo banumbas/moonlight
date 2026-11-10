@@ -43,7 +43,7 @@
   - type: MeleeWeapon
     mustBeEquippedToUse: true
     altDisarm: true
-    autoAttack: true # classic
+    autoAttack: true # moonlight
     soundHit:
       collection: AlienClaw
     angle: 30
@@ -51,4 +51,4 @@
     attackRate: 2
     damage:
       types:
-        Slash: 12 # classic
+        Slash: 12 # moonlight

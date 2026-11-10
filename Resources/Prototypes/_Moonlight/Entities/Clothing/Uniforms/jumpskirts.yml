@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitOperativePMCSkirt
+  name: ent-ClothingUniformJumpsuitOperativePMCSkirt
+  description: ent-ClothingUniformJumpsuitOperativePMCSkirt-desc
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Clothing/Uniforms/Jumpskirt/tactifool_s.rsi
+  - type: Clothing
+    sprite: _Moonlight/Clothing/Uniforms/Jumpskirt/tactifool_s.rsi

@@ -1,0 +1,67 @@
+- type: constructionGraph
+  id: MoonlightGrilleWindow
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: grilleWindow
+      completed:
+      - !type:AdminLog
+        message: "Construction"
+        impact: High
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: MetalRod
+        amount: 2
+        doAfter: 1
+
+  - node: grilleWindow
+    entity: MoonlightGrilleWindow
+    edges:
+    - to: start
+      completed:
+      - !type:AdminLog
+        message: "A grille window was cut"
+      - !type:SpawnPrototype
+        prototype: PartRodMetal1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Cutting
+        doAfter: 0.25
+
+- type: constructionGraph
+  id: WindowFrameBase
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: windowFrame
+      completed:
+      - !type:AdminLog
+        message: "Construction"
+        impact: High
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: Steel
+        amount: 4
+        doAfter: 2
+
+  - node: windowFrame
+    entity: WindowFrameBase
+    edges:
+    - to: start
+      completed:
+      - !type:AdminLog
+        message: "A window frame was deconstructed"
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 4
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Prying
+        doAfter: 2

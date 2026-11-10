@@ -3,18 +3,18 @@
 [![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://discord.gg/ssJTANEa)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/banumbas/space-station-classic?style=social)](https://github.com/banumbas/space-station-classic)
+[![GitHub](https://img.shields.io/github/stars/banumbas/space-station-moonlight?style=social)](https://github.com/banumbas/space-station-moonlight)
 
-# Space Station Classic
+# Space Station Moonlight
 <sub>Space-Station 14</sub>
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/banumbas/space-station-classic)
-![GitHub Issues](https://img.shields.io/github/issues/banumbas/space-station-classic)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/banumbas/space-station-classic)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/banumbas/space-station-moonlight)
+![GitHub Issues](https://img.shields.io/github/issues/banumbas/space-station-moonlight)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/banumbas/space-station-moonlight)
 
 </div>
 
-Space Station Classic - это проект с открытым исходным кодом, направленный на создание уникальных механик и приятной игровой атмосферы в игре Space Station 14.
+Space Station Moonlight - это проект с открытым исходным кодом, направленный на создание уникальных механик и приятной игровой атмосферы в игре Space Station 14.
 
 Это игра о выживании на космической станции, где происходят постоянные столкновения между экипажем и антагонистами, чья цель помешать экипажу выполнить свои задачи.
 
@@ -24,7 +24,7 @@ Space Station Classic - это проект с открытым исходным
 
 ## Активность проекта
 
-[![GitHub activity](https://img.shields.io/github/commit-activity/y/banumbas/space-station-classic)](https://github.com/banumbas/space-station-classic/pulse)
+[![GitHub activity](https://img.shields.io/github/commit-activity/y/banumbas/space-station-moonlight)](https://github.com/banumbas/space-station-moonlight/pulse)
 
 ---
 
@@ -38,7 +38,7 @@ Space Station Classic - это проект с открытым исходным
 > Все вклады за пределами этого периода лицензированы под MIT (`LICENSE.TXT`).
 > Запросы на смену лицензии отслеживаются в [issue #3499](https://github.com/ss14Starlight/space-station-14/issues/3499).
 >
-> Изменения, вносимые в рамках данного форка (Space Station Classic), также распространяются под лицензией MIT.
+> Изменения, вносимые в рамках данного форка (Space Station Moonlight), также распространяются под лицензией MIT.
 
 ### Нажмите на каждый баннер для получения дополнительной информации
 

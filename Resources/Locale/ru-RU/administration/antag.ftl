@@ -24,4 +24,4 @@ admin-verb-text-make-wizard = Сделать волшебником
 admin-verb-text-make-space-ninja = Сделать ниндзя
 admin-verb-text-make-changeling = Сделать генокрадом (WIP)
 
-admin-overlay-antag-classic = АНТАГ
+admin-overlay-antag-moonlight = АНТАГ

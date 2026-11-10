@@ -95,7 +95,7 @@
     startBreakoutSound:
       path: /Audio/Items/Handcuffs/rope_takeoff.ogg
   - type: Sprite
-    sprite: _Classic/Objects/Weapons/restraints.rsi
+    sprite: _Moonlight/Objects/Weapons/restraints.rsi
     state: cuff
 
 - type: entity

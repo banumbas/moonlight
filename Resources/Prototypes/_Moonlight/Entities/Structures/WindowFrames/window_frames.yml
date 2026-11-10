@@ -1,0 +1,48 @@
+﻿- type: entity
+  id: WindowFrameBase
+  parent: TableBase
+  name: window frame
+  description: A square piece of metal standing. Extra robust.
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/WindowFrames/window_frame.rsi
+  - type: Icon
+    sprite: _Moonlight/Structures/WindowFrames/window_frame.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    base: wframe
+  - type: Climbable
+    # Reinforced tables are extra tough
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 8
+    bonkTime: 3
+  - type: Construction
+    graph: WindowFrameBase
+    node: windowFrame
+    deconstructionTarget: start

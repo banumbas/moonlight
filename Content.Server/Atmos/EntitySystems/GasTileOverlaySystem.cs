@@ -175,10 +175,10 @@ namespace Content.Server.Atmos.EntitySystems
 
         public GasOverlayData GetOverlayData(GasMixture? mixture)
         {
-            // Classic-Start
+            // Moonlight-Start
             if (!_atmosphereSystem.AtmosEnabled)
                 return new GasOverlayData(0, new byte[VisibleGasId.Length]);
-            // Classic-End
+            // Moonlight-End
 
             var data = new GasOverlayData(0, new byte[VisibleGasId.Length]);
 
@@ -304,10 +304,10 @@ namespace Content.Server.Atmos.EntitySystems
         {
             base.Update(frameTime);
 
-            // Classic-Start
+            // Moonlight-Start
             if (!_atmosphereSystem.AtmosEnabled)
                 return;
-            // Classic-End
+            // Moonlight-End
 
             AccumulatedFrameTime += frameTime;
 

@@ -22,7 +22,7 @@
   categories:
   - Materials
   icon:
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: cloth
   completetime: 1
   materials:
@@ -34,7 +34,7 @@
   categories:
   - Materials
   icon:
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: cardboard
   completetime: 1
   materials:

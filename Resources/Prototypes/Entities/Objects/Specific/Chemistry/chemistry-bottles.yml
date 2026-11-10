@@ -14,7 +14,7 @@
       Glass: 25
   - type: SpaceGarbage
   - type: Sprite
-    sprite: _Classic/Objects/Specific/Medical/chemical.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/chemical.rsi
     layers:
     - state: bottle
     - state: bottle-1-1

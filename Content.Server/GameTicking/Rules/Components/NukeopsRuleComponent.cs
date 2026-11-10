@@ -105,7 +105,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     Path to antagonist alert sound.
     /// </summary>
     [DataField]
-    public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/_Classic/Ambience/Antag/pmc_start.ogg");
+    public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/_Moonlight/Ambience/Antag/pmc_start.ogg");
 }
 
 public enum WinType : byte

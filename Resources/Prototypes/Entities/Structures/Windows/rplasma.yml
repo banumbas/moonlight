@@ -4,11 +4,11 @@
   parent: [BaseDeltaPressureReinforcedPlasma, WindowRCDResistant]
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/plasma_reinforced_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/plasma_reinforced_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/plasma_reinforced_window.rsi # Classic-Edit
-    state: full # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/plasma_reinforced_window.rsi # Moonlight-Edit
+    state: full # Moonlight-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -43,7 +43,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    base: plasma_reinforced_window # Classic-Edit
+    base: plasma_reinforced_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: reinforcedPlasmaWindow
@@ -53,7 +53,7 @@
     damageDivisor: 6
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
   - type: StaticPrice
     price: 132
 
@@ -68,10 +68,10 @@
     - Window
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Windows/Directional/plasma_reinforced.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/plasma_reinforced.rsi
     state: plasma_reinforced_window
   - type: Icon
-    sprite: _Classic/Structures/Windows/Directional/plasma_reinforced.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/plasma_reinforced.rsi
     state: plasma_reinforced_window
   - type: Construction
     graph: WindowDirectional

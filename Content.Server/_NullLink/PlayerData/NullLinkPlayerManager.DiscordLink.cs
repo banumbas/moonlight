@@ -15,39 +15,39 @@ public sealed partial class NullLinkPlayerManager
     private void CheckDiscordLink(ICommonSession session)
     {
         if (_discordPromptOpen.Contains(session))
-        // classic start
+        // moonlight start
             return;
 
         if (_playerById.TryGetValue(session.UserId, out var playerData) && playerData.DiscordId != 0)
-        // classic end
+        // moonlight end
             return;
 
         var url = GetDiscordAuthUrl(session.UserId.ToString());
         if (string.IsNullOrEmpty(url))
             return;
 
-    // classic start
+    // moonlight start
     if (_actors.TryGetServerGrain(out var serverGrain))
     {
-    // classic-end
+    // moonlight-end
         serverGrain.GetPlayerDiscordId(session.UserId)
             .Then(discordId =>
             {
-                if (discordId != 0) // classic edit
-                // classic start
+                if (discordId != 0) // moonlight edit
+                // moonlight start
                     if (_playerById.TryGetValue(session.UserId, out var data))
                         data.DiscordId = discordId;
                 else
-                // classic end
+                // moonlight end
                     _taskManager.RunOnMainThread(() => OpenDiscordPrompt(session, url));
             })
             .FireAndForget(err => _sawmill.Error($"Discord link check failed for {session.UserId}: {err}"));
     }
-    // classic start
+    // moonlight start
     else
         _taskManager.RunOnMainThread(() => OpenDiscordPrompt(session, url));
     }
-    // classic end
+    // moonlight end
 
     private void OpenDiscordPrompt(ICommonSession session, string url)
     {

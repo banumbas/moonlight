@@ -7,14 +7,14 @@
   - type: AccessReader
     containerAccessProvider: board
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Shutters/blastdoor.rsi
+    sprite: _Moonlight/Structures/Doors/Shutters/blastdoor.rsi
     drawdepth: Doors
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
     - state: welded
       map: ["enum.WeldableLayers.BaseWelded"]
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: Door
     openDrawDepth: Doors
@@ -79,10 +79,10 @@
   description: This one says 'BLAST DONGER'.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Shutters/blastdoor.rsi
+    sprite: _Moonlight/Structures/Doors/Shutters/blastdoor.rsi
     state: assembly
     drawdepth: Doors
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: InteractionOutline
   - type: Damageable

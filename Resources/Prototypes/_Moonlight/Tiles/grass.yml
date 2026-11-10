@@ -1,0 +1,191 @@
+- type: tile
+  id: MoonlightGrass
+  name: moonlight-tiles-grass
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Grass/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 6
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Grass/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Grass/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Grass/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Grass/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Grass/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Grass/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Grass/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Grass/double_edge_W.png
+  baseTurf: MoonlightDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightGrassLight
+  name: moonlight-tiles-grass-light
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/GrassLight/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 7
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/GrassLight/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/GrassLight/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/GrassLight/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/GrassLight/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/GrassLight/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/GrassLight/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/GrassLight/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/GrassLight/double_edge_W.png
+  baseTurf: MoonlightGrass
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightGrassTall
+  name: moonlight-tiles-grass-tall
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/GrassTall/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 8
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/GrassTall/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/GrassTall/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/GrassTall/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/GrassTall/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/GrassTall/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/GrassTall/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/GrassTall/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/GrassTall/double_edge_W.png
+  baseTurf: MoonlightGrassLight
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightGrassBlood
+  name: moonlight-tiles-bloodgrass
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/GrassBlood/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 7
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/GrassBlood/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/GrassBlood/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/GrassBlood/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/GrassBlood/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/GrassBlood/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/GrassBlood/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/GrassBlood/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/GrassBlood/double_edge_W.png
+  baseTurf: MoonlightDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightGrassLightBlood
+  name: moonlight-tiles-bloodgrass-light
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/GrassBloodLight/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 8
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/GrassBloodLight/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/GrassBloodLight/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/GrassBloodLight/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/GrassBloodLight/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/GrassBloodLight/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/GrassBloodLight/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/GrassBloodLight/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/GrassBloodLight/double_edge_W.png
+  baseTurf: MoonlightGrassBlood
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightGrassTallBlood
+  name: moonlight-tiles-bloodgrass-tall
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/GrassBloodTall/grass.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 9
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/GrassBloodTall/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/GrassBloodTall/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/GrassBloodTall/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/GrassBloodTall/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/GrassBloodTall/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/GrassBloodTall/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/GrassBloodTall/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/GrassBloodTall/double_edge_W.png
+  baseTurf: MoonlightGrassLightBlood
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true

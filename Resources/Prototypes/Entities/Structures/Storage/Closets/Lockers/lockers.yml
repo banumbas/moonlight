@@ -630,7 +630,7 @@
   - type: AccessReader
     access: [["Ntrep"]] # Starlight start
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Storage/closet.rsi
+    sprite: _Moonlight/_Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: ntr
     stateDoorOpen: nanotrasen-black_open

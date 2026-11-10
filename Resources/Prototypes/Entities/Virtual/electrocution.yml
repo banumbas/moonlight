@@ -6,7 +6,7 @@
   - type: Electrocution
   - type: Icon
     # Shows up inside the power monitoring console.
-    sprite: "_Classic/Structures/Wallmounts/signs.rsi"
+    sprite: "_Moonlight/Structures/Wallmounts/signs.rsi"
     state: "shock"
 
 - type: entity

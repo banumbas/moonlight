@@ -13,7 +13,7 @@
     # Lockers stay behind the foreground of adjacent tables and walls.
     drawdepth: Walls
     noRot: true
-    sprite: _Classic/Structures/Storage/closet.rsi
+    sprite: _Moonlight/Structures/Storage/closet.rsi
     layers:
     - state: generic
       map: ["enum.StorageVisualLayers.Base"]
@@ -222,7 +222,7 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     # Starlight Start: Maintenance panel
     - state: panel_open
-      sprite: _Classic/Structures/Storage/closet.rsi
+      sprite: _Moonlight/Structures/Storage/closet.rsi
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
       visible: false
     - state: electrified_ai
@@ -278,9 +278,9 @@
   - type: Transform
     noRot: true
   - type: Sprite
-    drawdepth: Objects # Classic-Edit - below perspective wall overhangs, above wall bodies
+    drawdepth: Objects # Moonlight-Edit - below perspective wall overhangs, above wall bodies
     noRot: true
-    sprite: _Classic/Structures/Storage/suit_storage.rsi
+    sprite: _Moonlight/Structures/Storage/suit_storage.rsi
     layers:
     - state: base
     - state: door

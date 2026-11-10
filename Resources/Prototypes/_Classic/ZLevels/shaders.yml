@@ -1,4 +1,0 @@
-- type: shader
-  id: ClassicZBlur
-  kind: source
-  path: "/Textures/_Classic/Shaders/zblur.swsl"

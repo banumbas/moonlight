@@ -8,7 +8,7 @@
     powerNeeded: true # Starlight-edit
   - type: LockVisuals
   - type: Sprite
-    sprite: _Classic/Structures/Storage/closet.rsi
+    sprite: _Moonlight/Structures/Storage/closet.rsi
     noRot: true
     layers:
     - state: generic

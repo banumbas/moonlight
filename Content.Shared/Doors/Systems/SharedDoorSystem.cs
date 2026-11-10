@@ -145,7 +145,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         else
             _activeDoors.Add(ent);
 
-        RaiseLocalEvent(ent, new DoorStateChangedEvent(ent, door.State), true); // Classic-edit
+        RaiseLocalEvent(ent, new DoorStateChangedEvent(ent, door.State), true); // Moonlight-edit
     }
 
     public bool SetState(EntityUid uid, DoorState state, DoorComponent? door = null, EntityUid? user = null) // Starlight: added user param
@@ -192,7 +192,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         door.State = state;
         Dirty(uid, door);
-        RaiseLocalEvent(uid, new DoorStateChangedEvent(uid, state, user), true); // Classic-edit
+        RaiseLocalEvent(uid, new DoorStateChangedEvent(uid, state, user), true); // Moonlight-edit
 
         AppearanceSystem.SetData(uid, DoorVisuals.State, door.State);
         return true;

@@ -657,7 +657,7 @@
   description: A sign indicating the presence of the (typically absent) rule of law.
   components:
   - type: Sprite
-    sprite: _Classic/_Starlight/Structures/Wallmounts/signs.rsi # Starlight
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/signs.rsi # Starlight
     state: law
 
 - type: entity

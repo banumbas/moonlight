@@ -65,12 +65,12 @@
   description: An orange high voltage power cable.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Power/Cables/hv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/hv_cable.rsi
     state: hvcable_0
     color: Orange
     drawdepth: ThickWire
   - type: Icon
-    sprite: _Classic/Structures/Power/Cables/hv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/hv_cable.rsi
     state: hvcable_4
   - type: NodeContainer
     nodes:
@@ -124,12 +124,12 @@
   description: A medium voltage power cable.
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Power/Cables/mv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/mv_cable.rsi
     layers:
     - state: mvcable_0
       color: Yellow
   - type: Icon
-    sprite: _Classic/Structures/Power/Cables/mv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/mv_cable.rsi
     state: mvcable_4
   - type: NodeContainer
     nodes:
@@ -177,10 +177,10 @@
   components:
   - type: Sprite
     color: Green
-    sprite: _Classic/Structures/Power/Cables/lv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/lv_cable.rsi
     state: lvcable_0
   - type: Icon
-    sprite: _Classic/Structures/Power/Cables/lv_cable.rsi
+    sprite: _Moonlight/Structures/Power/Cables/lv_cable.rsi
     state: lvcable_4
   - type: NodeContainer
     nodes:

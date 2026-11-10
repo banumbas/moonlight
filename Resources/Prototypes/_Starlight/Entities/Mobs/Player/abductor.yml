@@ -96,7 +96,7 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: _Classic/Structures/Wallmounts/signs.rsi
+      - sprite: _Moonlight/Structures/Wallmounts/signs.rsi
         state: radiation
 
 - type: entity
@@ -115,7 +115,7 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: _Classic/Structures/Wallmounts/signs.rsi
+      - sprite: _Moonlight/Structures/Wallmounts/signs.rsi
         state: radiation
 
 - type: entity
@@ -128,7 +128,7 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: _Classic/Structures/Wallmounts/signs.rsi
+      - sprite: _Moonlight/Structures/Wallmounts/signs.rsi
         state: radiation
 
 - type: entity
@@ -147,5 +147,5 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: _Classic/Structures/Wallmounts/signs.rsi
+      - sprite: _Moonlight/Structures/Wallmounts/signs.rsi
         state: radiation

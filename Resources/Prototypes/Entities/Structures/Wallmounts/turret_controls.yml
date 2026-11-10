@@ -8,7 +8,7 @@
     noRot: true
     snapCardinals: false
     drawdepth: Effects
-    sprite: _Classic/Structures/Wallmounts/turret_controls.rsi
+    sprite: _Moonlight/Structures/Wallmounts/turret_controls.rsi
     layers:
     - state: base
   - type: Damageable
@@ -59,7 +59,7 @@
     noRot: true
     snapCardinals: false
     drawdepth: Effects
-    sprite: _Classic/Structures/Wallmounts/turret_controls.rsi
+    sprite: _Moonlight/Structures/Wallmounts/turret_controls.rsi
     layers:
     - state: base
     - state: safe

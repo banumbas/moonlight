@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Directional Moonlight adaptation of the existing SS14 shotgun cabinet; original per-state attribution retained",
+  "size": {
+    "x": 82,
+    "y": 82
+  },
+  "states": [
+    {
+      "name": "glass",
+      "directions": 4
+    },
+    {
+      "name": "glass-1",
+      "directions": 4
+    },
+    {
+      "name": "glass-2",
+      "directions": 4
+    },
+    {
+      "name": "glass-3",
+      "directions": 4
+    },
+    {
+      "name": "glass-4",
+      "directions": 4
+    },
+    {
+      "name": "glass-up",
+      "directions": 4
+    },
+    {
+      "name": "locked",
+      "directions": 4
+    },
+    {
+      "name": "shotgun",
+      "directions": 4
+    },
+    {
+      "name": "unlocked",
+      "directions": 4
+    },
+    {
+      "name": "cabinet",
+      "directions": 4
+    },
+    {
+      "name": "cabinet-empty-open",
+      "directions": 4
+    },
+    {
+      "name": "cabinet-filled-closed",
+      "directions": 4
+    },
+    {
+      "name": "cabinet-filled-open",
+      "directions": 4
+    }
+  ]
+}

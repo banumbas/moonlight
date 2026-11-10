@@ -1,0 +1,376 @@
+- type: tile
+  id: MoonlightStonebricks
+  name: moonlight-tiles-stonebricks
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks.png
+  variants: 9
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStonebricksSnowed
+  name: moonlight-tiles-stonebricks
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/snowstonebricks.png
+  variants: 9
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStonebricksSmallCarved1
+  name: moonlight-tiles-stonebricks-small-carved1
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_small_carved_1.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStonebricksSmallCarved2
+  name: moonlight-tiles-stonebricks-small-carved2
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_small_carved_2.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneLongBricks
+  name: moonlight-tiles-stonebricks-long-bricks
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_long.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneMediumBricks
+  name: moonlight-tiles-stonebricks-medium
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_medium.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneDiamond
+  name: moonlight-tiles-stonebricks-diamond
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_diamond.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneSquarePattern
+  name: moonlight-tiles-stonebricks-square-pattern
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_square_pattern.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneMediumCircles
+  name: moonlight-tiles-stonebricks-medium-circles
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_medium_circles.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStoneSmallCircles
+  name: moonlight-tiles-stonebricks-small-circles
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_small_circles.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightStonebricksSquareCarved
+  name: moonlight-tiles-stonebricks-square-carved
+  sprite: /Textures/_Moonlight/Tiles/Stonebricks/stonebricks_square_carved.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 101
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Stonebricks/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Stonebricks/double_edge_W.png
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemRockVault
+
+- type: tile
+  id: MoonlightGlass
+  name: moonlight-tiles-glass
+  sprite: /Textures/_Moonlight/Tiles/glass.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepTile
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: SheetGlass1
+  weather: true
+
+- type: tile
+  id: MoonlightRoofRed
+  name: moonlight-tiles-roof
+  sprite: /Textures/_Moonlight/Tiles/roof_red.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemSteel
+
+- type: tile
+  id: MoonlightRoofGreen
+  name: moonlight-tiles-roof
+  sprite: /Textures/_Moonlight/Tiles/roof_green.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: MoonlightPlanks
+  isSubfloor: false
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemSteel

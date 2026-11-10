@@ -4,7 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Utility;
 using Robust.Shared.Graphics;
-using Content.Shared._Classic.Sprite; // classic-edit
+using Content.Shared._Moonlight.Sprite; // moonlight-edit
 
 namespace Content.Client.Clickable;
 
@@ -20,8 +20,8 @@ public sealed partial class ClickableSystem : EntitySystem
     private EntityQuery<ClickableComponent> _clickableQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<FadingSpriteComponent> _fadingSpriteQuery;
-    private EntityQuery<ClassicFadingSpriteComponent> _classicFadingSpriteQuery; // Classic-Edit
-    private EntityQuery<ClassicPerspectiveDepthComponent> _perspectiveDepthQuery; // classic-edit
+    private EntityQuery<MoonlightFadingSpriteComponent> _moonlightFadingSpriteQuery; // Moonlight-Edit
+    private EntityQuery<MoonlightPerspectiveDepthComponent> _perspectiveDepthQuery; // moonlight-edit
 
     public override void Initialize()
     {
@@ -29,8 +29,8 @@ public sealed partial class ClickableSystem : EntitySystem
         _clickableQuery = GetEntityQuery<ClickableComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _fadingSpriteQuery = GetEntityQuery<FadingSpriteComponent>();
-        _classicFadingSpriteQuery = GetEntityQuery<ClassicFadingSpriteComponent>(); // Classic-Edit
-        _perspectiveDepthQuery = GetEntityQuery<ClassicPerspectiveDepthComponent>(); // classic-edit
+        _moonlightFadingSpriteQuery = GetEntityQuery<MoonlightFadingSpriteComponent>(); // Moonlight-Edit
+        _perspectiveDepthQuery = GetEntityQuery<MoonlightPerspectiveDepthComponent>(); // moonlight-edit
     }
 
     /// <summary>
@@ -96,37 +96,37 @@ public sealed partial class ClickableSystem : EntitySystem
         var entityXform = Matrix3Helpers.CreateInverseTransform(spritePos, sprite.NoRotation ? -eye.Rotation : spriteRot - cardinalSnapping);
         var localPos = Vector2.Transform(Vector2.Transform(worldPos, entityXform), invSpriteMatrix);
 
-        // Classic-Start
-        // A classic wall fade only affects selected IconSmooth layers. Keep its opaque layers clickable,
+        // Moonlight-Start
+        // A moonlight wall fade only affects selected IconSmooth layers. Keep its opaque layers clickable,
         // but do not let explicit bounds or the faded layers hide an entity underneath the transparent part.
-        ClassicFadingSpriteComponent? classicFading = null;
+        MoonlightFadingSpriteComponent? moonlightFading = null;
         if (excludeFaded &&
-            _classicFadingSpriteQuery.TryComp(entity.Owner, out var fading) &&
+            _moonlightFadingSpriteQuery.TryComp(entity.Owner, out var fading) &&
             fading.Alpha < 1f)
         {
-            classicFading = fading;
+            moonlightFading = fading;
         }
-        // Classic-End
+        // Moonlight-End
 
         // Check explicitly defined click-able bounds
-        if (classicFading == null && // Classic-Edit
+        if (moonlightFading == null && // Moonlight-Edit
             CheckDirBound((entity.Owner, entity.Comp1, entity.Comp2), relativeRotation, localPos))
             return true;
 
         // Next check each individual sprite layer using automatically computed click maps.
-        var layerIndex = 0; // Classic-Edit
+        var layerIndex = 0; // Moonlight-Edit
         foreach (var spriteLayer in sprite.AllLayers)
         {
-            var currentLayerIndex = layerIndex++; // Classic-Edit
+            var currentLayerIndex = layerIndex++; // Moonlight-Edit
             if (spriteLayer is not SpriteComponent.Layer layer || !_sprites.IsVisible(layer))
             {
                 continue;
             }
 
-            // Classic-Start
-            if (classicFading?.OriginalLayerAlphas.ContainsKey(currentLayerIndex) == true)
+            // Moonlight-Start
+            if (moonlightFading?.OriginalLayerAlphas.ContainsKey(currentLayerIndex) == true)
                 continue;
-            // Classic-End
+            // Moonlight-End
 
             // Check the layer's texture, if it has one
             if (layer.Texture != null)
@@ -136,7 +136,7 @@ public sealed partial class ClickableSystem : EntitySystem
 
                 if (_clickMapManager.IsOccluding(layer.Texture, imagePos))
                 {
-                    SetPerspectiveDepth(entity.Owner, layer.Texture.Height, imagePos.Y, ref drawDepth); // classic-add
+                    SetPerspectiveDepth(entity.Owner, layer.Texture.Height, imagePos.Y, ref drawDepth); // moonlight-add
                     return true;
                 }
             }
@@ -163,7 +163,7 @@ public sealed partial class ClickableSystem : EntitySystem
 
             if (_clickMapManager.IsOccluding(layer.ActualRsi!, layer.State, dir, layer.AnimationFrame, layerImagePos))
             {
-                SetPerspectiveDepth(entity.Owner, rsiState.Size.Y, layerImagePos.Y, ref drawDepth); // classic-add
+                SetPerspectiveDepth(entity.Owner, rsiState.Size.Y, layerImagePos.Y, ref drawDepth); // moonlight-add
                 return true;
             }
         }
@@ -174,7 +174,7 @@ public sealed partial class ClickableSystem : EntitySystem
         return false;
     }
 
-    // Classic-Start
+    // Moonlight-Start
     private void SetPerspectiveDepth(
         EntityUid entity,
         int textureHeight,
@@ -184,14 +184,14 @@ public sealed partial class ClickableSystem : EntitySystem
         if (!_perspectiveDepthQuery.HasComp(entity) ||
             textureHeight <= EyeManager.PixelsPerMeter ||
             imageY < 0 ||
-            imageY >= Math.Min(ClassicPerspectiveDepthComponent.OverlayHeight, textureHeight))
+            imageY >= Math.Min(MoonlightPerspectiveDepthComponent.OverlayHeight, textureHeight))
         {
             return;
         }
 
-        drawDepth = ClassicPerspectiveDepthComponent.OverlayDrawDepth;
+        drawDepth = MoonlightPerspectiveDepthComponent.OverlayDrawDepth;
     }
-    // Classic-End
+    // Moonlight-End
 
     public bool CheckDirBound(Entity<ClickableComponent, SpriteComponent> entity, Angle relativeRotation, Vector2 localPos)
     {

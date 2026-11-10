@@ -1,7 +1,7 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Content.Client.Graphics;
-using Content.Client._Classic.ZLevels.Core; // Classic-Edit
+using Content.Client._Moonlight.ZLevels.Core; // Moonlight-Edit
 using Content.Client.Light.EntitySystems;
 using Content.Shared.CCVar;
 using Content.Shared.Light.Components;
@@ -54,10 +54,10 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
         _cfgManager.OnValueChanged(CCVars.AmbientOcclusionColor, OnColorChanged, true);
     }
 
-    // Classic-Edit
+    // Moonlight-Edit
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        return args.Viewport.Eye is not IClassicZLevelRenderQuality quality || quality.DrawAmbientOcclusion;
+        return args.Viewport.Eye is not IMoonlightZLevelRenderQuality quality || quality.DrawAmbientOcclusion;
     }
 
     protected override void Draw(in OverlayDrawArgs args)

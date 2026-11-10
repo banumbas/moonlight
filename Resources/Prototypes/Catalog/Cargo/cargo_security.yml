@@ -81,7 +81,7 @@
 - type: cargoProduct
   id: SecurityGenPopCloset
   icon:
-    sprite: _Classic/Structures/Storage/closet.rsi
+    sprite: _Moonlight/Structures/Storage/closet.rsi
     state: genpop
   product: LockerPrisoner
   cost: 250

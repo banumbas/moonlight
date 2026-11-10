@@ -1,0 +1,92 @@
+# All tiles placed on Space
+
+- type: tile
+  id: MoonlightPlanks
+  name: moonlight-tiles-planks
+  sprite: /Textures/_Moonlight/Tiles/planks.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepWood
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: MaterialWoodPlank1
+  weather: true
+
+- type: tile
+  id: MoonlightIronRods
+  name: moonlight-tiles-iron-rods
+  sprite: /Textures/_Moonlight/Tiles/iron_rods.png
+  variants: 3
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepCatwalk
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: PartRodMetal1
+  weather: true
+
+- type: tile
+  id: MoonlightIronPlating
+  name: moonlight-tiles-iron-plating
+  sprite: /Textures/_Moonlight/Tiles/iron_plating.png
+  variants: 3
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: MoonlightIronRods
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepCatwalk
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: SheetSteel1
+  weather: true
+
+- type: tile
+  id: MoonlightBrassPlating
+  name: moonlight-tiles-brass-plating
+  sprite: /Textures/_Moonlight/Tiles/brass_plating.png
+  variants: 3
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: MoonlightBrassRods
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepCatwalk
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: SheetBrass1
+  weather: true
+
+- type: tile
+  id: MoonlightBrassRods
+  name: moonlight-tiles-brass-rods
+  sprite: /Textures/_Moonlight/Tiles/brass_rods.png
+  variants: 3
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepCatwalk
+  heatCapacity: 10000
+  deconstructTools: [ Prying ]
+  itemDrop: PartRodMetal1
+  weather: true

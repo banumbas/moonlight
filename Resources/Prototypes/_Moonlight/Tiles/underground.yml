@@ -1,0 +1,9 @@
+- type: tile
+  parent: FloorBasalt
+  id: MoonlightMagmaBasalt
+  name: tiles-basalt-floor
+  baseTurf: MoonlightStone
+  deconstructTools: [ Digging ]
+  indestructible: false
+  naturalTerrain: true
+  digType: Stone

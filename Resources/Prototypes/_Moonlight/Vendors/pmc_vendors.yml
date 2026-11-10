@@ -1,0 +1,611 @@
+- type: entity
+  parent: MoonlightPointsVendorBase
+  id: VendingMachinePMCAssault
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Machines/VendingMachines/ColMarTech/pmc.rsi
+    layers:
+    - state: base
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: MoonlightAutomatedVendor
+    pointsType: null
+    userWhitelist:
+      components:
+      - PMCAssault
+    sections:
+    - name: Base Kits
+      takeOne: "BaseKit"
+      entries:
+      - id: ClothingUniformJumpsuitOperativePMC
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCPDA
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCPDA
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCPDA
+    - name: Armor
+      takeOne: "ClassArmor"
+      entries:
+      - id: ClothingOuterArmorPMC
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCAssault
+    - name: Weapons
+      takeOne: "ClassWeapon"
+      entries:
+      - id: BoxPMCWeaponA
+        displayEntity: WeaponShotgunBulldogPMC
+        points: 0
+      - id: BoxPMCWeaponB
+        displayEntity: WeaponRifleARG
+        points: 0
+      - id: BoxPMCWeaponC
+        displayEntity: WeaponRevolverProtocol
+        points: 0
+        stock: 1
+      - id: BoxPMCWeaponD
+        displayEntity: WeaponSubMachineGunUziPMC
+        points: 0
+        stock: 1
+    - name: Ammo
+      entries:
+      - id: MagazinePistolSubMachineGunFMJ
+        points: 2
+      - id: MagazineLightRifleFMJ
+        points: 3
+      - id: MagazineShotgun
+        points: 4
+      - id: MagazineShotgunSlug
+        points: 4
+    - name: Medicine
+      entries:
+      - id: CombatMedipen
+        points: 4
+      - id: Stimpack
+        points: 4
+      - id: MedkitCombatFilled
+        points: 6
+      - id: HyposprayLOLPMC
+        points: 12
+    - name: Implants
+      entries:
+      - id: EmpImplanter
+        points: 6
+        icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
+      - id: FreedomImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+      - id: MicroBombImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+      - id: ScramImplanter
+        points: 12
+        icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+      - id: MacroBombImplanter
+        points: 20
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+    - name: Cybernetic
+      entries:
+      - id: HandImplantClaws
+        points: 8
+      - id: CyberEyeNightVision
+        points: 8
+      - id: CyberEyeThermal
+        points: 12
+    - name: Explosive
+      entries:
+      - id: EmpGrenade
+        points: 2
+      - id: C4
+        points: 4
+      - id: ToxicGasGrenade
+        points: 4
+      - id: ExGrenade
+        points: 4
+      - id: GrenadeIncendiary
+        points: 4
+      - id: GrenadeShrapnel
+        points: 4
+      - id: X4
+        points: 4
+    - name: Misc
+      entries:
+      - id: SoapSyndie
+        points: 2
+      - id: SlipocalypseClusterSoap
+        points: 2
+      - id: ToolboxSyndicateFilled
+        points: 3
+      - id: SyndicateJawsOfLife
+        points: 4
+      - id: AccessBreaker
+        points: 6
+      - id: Emag
+        points: 8
+
+- type: entity
+  parent: MoonlightPointsVendorBase
+  id: VendingMachinePMCMedic
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Machines/VendingMachines/ColMarTech/equipment.rsi
+    layers:
+    - state: base
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: MoonlightAutomatedVendor
+    pointsType: null
+    userWhitelist:
+      components:
+      - PMCMedic
+    sections:
+    - name: Base Kits
+      takeOne: "BaseKit"
+      entries:
+      - id: ClothingUniformJumpsuitOperativePMC
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMCMedic
+        - ClothingEyesHudPMC
+        - PMCMedicPDA
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMCMedic
+        - ClothingEyesHudPMC
+        - PMCMedicPDA
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMCMedic
+        - ClothingEyesHudPMC
+        - PMCMedicPDA
+    - name: Armor
+      takeOne: "ClassArmor"
+      entries:
+      - id: ClothingOuterArmorPMCMedic
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCMedic
+    - name: Weapons
+      takeOne: "ClassWeapon"
+      entries:
+      - id: BoxPMCWeaponA
+        displayEntity: WeaponShotgunBulldogPMC
+        points: 0
+      - id: BoxPMCWeaponB
+        displayEntity: WeaponRifleARG
+        points: 0
+      - id: BoxPMCWeaponC
+        displayEntity: WeaponRevolverProtocol
+        points: 0
+        stock: 1
+      - id: BoxPMCWeaponD
+        displayEntity: WeaponSubMachineGunUziPMC
+        points: 0
+        stock: 1
+    - name: Ammo
+      entries:
+      - id: MagazinePistolSubMachineGunFMJ
+        points: 2
+      - id: MagazineLightRifleFMJ
+        points: 3
+      - id: MagazineShotgun
+        points: 4
+      - id: MagazineShotgunSlug
+        points: 4
+    - name: Medicine
+      entries:
+      - id: CombatMedipen
+        points: 4
+      - id: Stimpack
+        points: 4
+      - id: MedkitCombatFilled
+        points: 6
+    - name: Implants
+      entries:
+      - id: EmpImplanter
+        points: 6
+        icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
+      - id: FreedomImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+      - id: MicroBombImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+      - id: ScramImplanter
+        points: 12
+        icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+      - id: MacroBombImplanter
+        points: 20
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+    - name: Cybernetic
+      entries:
+      - id: HandImplantClaws
+        points: 8
+      - id: CyberEyeNightVision
+        points: 8
+      - id: CyberEyeThermal
+        points: 12
+    - name: Explosive
+      entries:
+      - id: EmpGrenade
+        points: 2
+      - id: C4
+        points: 4
+      - id: ToxicGasGrenade
+        points: 4
+      - id: ExGrenade
+        points: 4
+      - id: GrenadeIncendiary
+        points: 4
+      - id: GrenadeShrapnel
+        points: 4
+      - id: X4
+        points: 4
+    - name: Misc
+      entries:
+      - id: SoapSyndie
+        points: 2
+      - id: SlipocalypseClusterSoap
+        points: 2
+      - id: ToolboxSyndicateFilled
+        points: 3
+      - id: SyndicateJawsOfLife
+        points: 4
+      - id: AccessBreaker
+        points: 6
+      - id: Emag
+        points: 8
+
+- type: entity
+  parent: MoonlightPointsVendorBase
+  id: VendingMachinePMCSpecialist
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Machines/VendingMachines/ColMarTech/specialist_gear.rsi
+    layers:
+    - state: base
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: MoonlightAutomatedVendor
+    pointsType: null
+    userWhitelist:
+      components:
+      - PMCSpecialist
+    sections:
+    - name: Base Kits
+      takeOne: "BaseKit"
+      entries:
+      - id: ClothingUniformJumpsuitOperativePMC
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingEyesHudPMC
+        - PMCSpecialistPDA
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingEyesHudPMC
+        - PMCSpecialistPDA
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingEyesHudPMC
+        - PMCSpecialistPDA
+    - name: Specialization
+      takeOne: "ClassWeapon"
+      entries:
+      - id: ClothingOuterArmorPMCSpecialist
+        displayEntity: WeaponSniperZhihaoPMC
+        name: moonlight-vendor-pmc-scout-specialization
+        description: moonlight-vendor-pmc-scout-specialization-desc
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCSpecialist
+        - ClothingBackpackMessengerPMC
+        - BoxPMCWeaponScout
+      - id: ClothingOuterArmorPMCPyro
+        displayEntity: WeaponFlamethrowerFLC
+        name: moonlight-vendor-pmc-pyro-specialization
+        description: moonlight-vendor-pmc-pyro-specialization-desc
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCPyro
+        - FlamerBackpackTankFLCS
+        - FlamerFuelTankSmall
+    - name: Ammo
+      entries:
+      - id: SpeedLoaderShotgunZhihao
+        points: 6
+      - id: MagazineBoxSniperZhihaoPMC
+        points: 8
+      - id: FlamerFuelTankSmallEmpty
+        points: 1
+      - id: FlamerFuelTankSmallEthanol
+        points: 2
+      - id: FlamerFuelTankSmall
+        points: 4
+      - id: FlamerFuelTankSmallPhlogiston
+        points: 4
+      - id: FlamerFuelTankSmallPlasma
+        points: 6
+      - id: FlamerFuelTankSmallChlorineTrifluoride
+        points: 8
+
+    - name: Medicine
+      entries:
+      - id: CombatMedipen
+        points: 4
+      - id: Stimpack
+        points: 4
+      - id: MedkitCombatFilled
+        points: 6
+      - id: HyposprayLOLPMC
+        points: 12
+    - name: Implants
+      entries:
+      - id: EmpImplanter
+        points: 6
+        icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
+      - id: FreedomImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+      - id: MicroBombImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+      - id: ScramImplanter
+        points: 12
+        icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+      - id: MacroBombImplanter
+        points: 20
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+    - name: Cybernetic
+      entries:
+      - id: HandImplantClaws
+        points: 8
+      - id: CyberEyeNightVision
+        points: 8
+      - id: CyberEyeThermal
+        points: 12
+    - name: Explosive
+      entries:
+      - id: EmpGrenade
+        points: 2
+      - id: C4
+        points: 4
+      - id: ToxicGasGrenade
+        points: 4
+      - id: ExGrenade
+        points: 4
+      - id: GrenadeIncendiary
+        points: 4
+      - id: GrenadeShrapnel
+        points: 4
+      - id: X4
+        points: 4
+    - name: Misc
+      entries:
+      - id: SoapSyndie
+        points: 2
+      - id: SlipocalypseClusterSoap
+        points: 2
+      - id: ToolboxSyndicateFilled
+        points: 3
+      - id: SyndicateJawsOfLife
+        points: 4
+      - id: AccessBreaker
+        points: 6
+      - id: Emag
+        points: 8
+
+- type: entity
+  parent: MoonlightPointsVendorBase
+  id: VendingMachinePMCCommander
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Machines/VendingMachines/ColMarTech/smart_gun_operator_gear.rsi
+    layers:
+    - state: base
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: MoonlightAutomatedVendor
+    pointsType: null
+    userWhitelist:
+      components:
+      - PMCCommander
+    sections:
+    - name: Base Kits
+      takeOne: "BaseKit"
+      entries:
+      - id: ClothingUniformJumpsuitOperativePMC
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCCommanderPDA
+      - id: ClothingUniformJumpsuitOperativePMCSkirt
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCCommanderPDA
+      - id: ClothingUniformJumpsuitOperativePMCBlack
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingShoesBootsMagPMC
+        - ClothingHandsGlovesCombat
+        - ClothingHeadsetPMC
+        - ClothingBeltMilitaryWebbing
+        - ClothingBackpackMessengerPMC
+        - ClothingEyesHudPMC
+        - PMCCommanderPDA
+    - name: Armor
+      takeOne: "ClassArmor"
+      entries:
+      - id: ClothingOuterArmorPMCCommander
+        points: 0
+        autoEquip: true
+        autoEquipContents:
+        - ClothingHeadHelmetPMCCommander
+    - name: Weapons
+      takeOne: "ClassWeapon"
+      entries:
+      - id: BoxPMCWeaponComm1
+        displayEntity: WeaponRocketLauncherPMC
+        points: 0
+      - id: BoxPMCWeaponComm2
+        displayEntity: WeaponRifleM52PMC
+        points: 0
+    - name: Ammo
+      entries:
+      - id: MagazineLightRifleFMJ
+        points: 3
+      - id: MagazineLightRifle60PMC
+        points: 5
+      - id: AmmoRocketFragPMC
+        points: 20
+      - id: AmmoRocketStructuralPMC
+        points: 20
+    - name: Medicine
+      entries:
+      - id: CombatMedipen
+        points: 4
+      - id: Stimpack
+        points: 4
+      - id: MedkitCombatFilled
+        points: 6
+      - id: HyposprayLOLPMC
+        points: 12
+    - name: Team Supplies
+      entries:
+      - id: BoxPMCAmmoKit
+        points: 35
+      - id: BoxPMCMedicalKit
+        points: 35
+    - name: Implants
+      entries:
+      - id: EmpImplanter
+        points: 6
+        icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: shield }
+      - id: FreedomImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+      - id: MicroBombImplanter
+        points: 8
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+      - id: ScramImplanter
+        points: 12
+        icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+      - id: MacroBombImplanter
+        points: 20
+        icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+    - name: Cybernetic
+      entries:
+      - id: HandImplantClaws
+        points: 8
+      - id: CyberEyeNightVision
+        points: 8
+      - id: CyberEyeThermal
+        points: 12
+    - name: Explosive
+      entries:
+      - id: EmpGrenade
+        points: 2
+      - id: C4
+        points: 4
+      - id: ToxicGasGrenade
+        points: 4
+      - id: ExGrenade
+        points: 4
+      - id: GrenadeIncendiary
+        points: 4
+      - id: GrenadeShrapnel
+        points: 4
+      - id: X4
+        points: 4
+    - name: Misc
+      entries:
+      - id: SoapSyndie
+        points: 2
+      - id: SlipocalypseClusterSoap
+        points: 2
+      - id: ToolboxSyndicateFilled
+        points: 3
+      - id: SyndicateJawsOfLife
+        points: 4
+      - id: AccessBreaker
+        points: 6
+      - id: Emag
+        points: 8

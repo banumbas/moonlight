@@ -8,8 +8,8 @@
     snap:
     - Window
   components:
-  - type: SpriteFade # Classic-Edit
-    fadeTopOnly: true # Classic-Edit
+  - type: SpriteFade # Moonlight-Edit
+    fadeTopOnly: true # Moonlight-Edit
   - type: Anchorable
     flags:
     - Anchorable
@@ -27,12 +27,12 @@
       - ForceFixRotations
       - Window
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/normal_window.rsi # Classic-Edit
-  - type: ClassicPerspectiveDepth # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/normal_window.rsi # Moonlight-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: Icon
-    sprite: _Classic/Structures/Windows/normal_window.rsi # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/normal_window.rsi # Moonlight-Edit
     state: full
   - type: Physics
     bodyType: Static
@@ -83,7 +83,7 @@
   - type: Airtight
   - type: IconSmooth
     key: windows
-    base: normal_window # Classic-Edit
+    base: normal_window # Moonlight-Edit
   - type: InteractionPopup
     interactSuccessString: comp-window-knock
     messagePerceivedByOthers: comp-window-knock
@@ -98,7 +98,7 @@
     damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
   - type: StaticPrice
     price: 100
   - type: BlockWeather
@@ -110,13 +110,13 @@
   description: Smart tinted window with state switching option. # Starlight
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/tinted_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/tinted_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/tinted_window.rsi # Classic-Edit
-    state: full # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/tinted_window.rsi # Moonlight-Edit
+    state: full # Moonlight-Edit
   - type: IconSmooth
-    base: tinted_window # Classic-Edit
+    base: tinted_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: tintedWindow
@@ -161,12 +161,12 @@
         collection: GlassSmack
   - type: Sprite
     drawdepth: Doors
-    sprite: _Classic/Structures/Windows/Directional/normal.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/normal.rsi
     state: window
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: Icon
-    sprite: _Classic/Structures/Windows/Directional/normal.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/normal.rsi
     state: window
   - type: InteractionPopup
     interactSuccessString: comp-window-knock
@@ -255,10 +255,10 @@
     - Window
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Windows/Directional/frosted.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/frosted.rsi
     state: frosted_window
   - type: Icon
-    sprite: _Classic/Structures/Windows/Directional/frosted.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/frosted.rsi
     state: frosted_window
   - type: StaticPrice
     price: 35

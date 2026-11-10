@@ -1,5 +1,5 @@
 using Content.Server.Administration.Logs;
-using Content.Shared._Classic.Clothing.EntitySystems;
+using Content.Shared._Moonlight.Clothing.EntitySystems;
 using Content.Server.Atmos.Components;
 using Content.Server.Stunnable;
 using Content.Server.Temperature.Systems;
@@ -51,7 +51,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private AudioSystem _audio = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private IGameTiming _timing = default!;
-        [Dependency] private FireproofClothingSystem _fireproof = default!; // classic-add
+        [Dependency] private FireproofClothingSystem _fireproof = default!; // moonlight-add
 
         private EntityQuery<InventoryComponent> _inventoryQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -244,10 +244,10 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnTileFire(Entity<FlammableComponent> ent, ref TileFireEvent args)
         {
-            // classic start
+            // moonlight start
             if (IsFireproof(ent.Owner))
                 return;
-            // classic end
+            // moonlight end
 
             var tempDelta = args.Temperature - ent.Comp.MinIgnitionTemperature;
 
@@ -286,19 +286,19 @@ namespace Content.Server.Atmos.EntitySystems
             _appearance.SetData(uid, ToggleableVisuals.Enabled, flammable.OnFire, appearance);
         }
 
-        // classic start
+        // moonlight start
         public bool IsFireproof(EntityUid uid) => _fireproof.IsFireproof(uid);
-        // classic end
+        // moonlight end
 
         public void AdjustFireStacks(EntityUid uid, float relativeFireStacks, FlammableComponent? flammable = null, bool ignite = false)
         {
             if (!Resolve(uid, ref flammable))
                 return;
 
-            // classic start
+            // moonlight start
             if (relativeFireStacks > 0 && IsFireproof(uid))
                 return;
-            // classic end
+            // moonlight end
 
             SetFireStacks(uid, flammable.FireStacks + relativeFireStacks, flammable, ignite);
         }
@@ -308,13 +308,13 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
-            // classic start
+            // moonlight start
             if (stacks > 0 && IsFireproof(uid))
             {
                 Extinguish(uid, flammable);
                 return;
             }
-            // classic end
+            // moonlight end
 
             flammable.FireStacks = MathF.Min(MathF.Max(flammable.MinimumFireStacks, stacks), flammable.MaximumFireStacks);
 
@@ -355,10 +355,10 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
-            // classic start
+            // moonlight start
             if (IsFireproof(uid))
                 return;
-            // classic end
+            // moonlight end
 
             if (flammable.AlwaysCombustible)
             {
@@ -454,13 +454,13 @@ namespace Content.Server.Atmos.EntitySystems
 
                 flammable.NextUpdate += UpdateTime;
 
-                // classic start
+                // moonlight start
                 if (flammable.OnFire && IsFireproof(uid))
                 {
                     Extinguish(uid, flammable);
                     continue;
                 }
-                // classic end
+                // moonlight end
 
                 // Check if we finished resisting.
                 if (curTime > flammable.ResistCompleteTime)

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Content.Server._Starlight.Language;
-using Content.Shared._Classic.Administration.Punishment;
+using Content.Shared._Moonlight.Administration.Punishment;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -209,7 +209,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             _chatManager.EnsurePlayer(player.UserId).AddEntity(GetNetEntity(source));
         }
 
-        // Classic-Start
+        // Moonlight-Start
         if (TryComp<PunishmentComponent>(source, out var punish))
         {
             if (desiredType == InGameICChatType.Speak && (punish.MutedChannels & ChatChannel.Local) != 0 ||
@@ -220,7 +220,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
-        // Classic-End
+        // Moonlight-End
 
         if (desiredType == InGameICChatType.Speak && message.Text.StartsWith(LocalPrefix)) //Starlight
         {
@@ -269,13 +269,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProcessRadioMessage(source, message.Text, out var modMessage, out var channel, out var customChannel))
             {
-                // Classic-Start
+                // Moonlight-Start
                 if (TryComp<PunishmentComponent>(source, out var punishRadio) && (punishRadio.MutedChannels & ChatChannel.Radio) != 0)
                 {
                     SendMutedChannelMessage(source, player);
                     return;
                 }
-                // Classic-End
+                // Moonlight-End
 
                 if (language.Speech.RadioChannel is not null)
                     _language.SendEntityRadioLanguage(source, modMessage, language.Speech.RadioChannel.Value, language);
@@ -350,7 +350,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Starlight edit End
             return;
 
-        // Classic-Start
+        // Moonlight-Start
         if (TryComp<PunishmentComponent>(source, out var punishOOC))
         {
             if (sendType == InGameOOCChatType.Looc && (punishOOC.MutedChannels & ChatChannel.LOOC) != 0 ||
@@ -360,7 +360,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
-        // Classic-End
+        // Moonlight-End
 
         // Systems can differentiate Looc and DeadChat by type, and cancel the speak attempt if necessary.
         var ev = new InGameOocMessageAttemptEvent(player, sendType);
@@ -1183,14 +1183,14 @@ public sealed partial class ChatSystem : SharedChatSystem
         return sb.ToString();
     }
 
-    // Classic-Start
+    // Moonlight-Start
     private void SendMutedChannelMessage(EntityUid source, ICommonSession? player)
     {
         var s = player ?? (TryComp<ActorComponent>(source, out var actor) ? actor.PlayerSession : null);
         if (s != null)
             _chatManager.DispatchServerMessage(s, Loc.GetString("punishment-chat-channel-muted"));
     }
-    // Classic-End
+    // Moonlight-End
 
     #endregion
 }

@@ -1,0 +1,41 @@
+- type: entity
+  id: MoonlightZLevelsLadderStoneBase
+  abstract: true
+  name: stone ladder
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Architecture/Ladders/stone.rsi
+  - type: Damageable
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+
+- type: entity
+  parent:
+  - MoonlightZLevelLadderBase
+  - MoonlightZLevelsLadderStoneBase
+  id: MoonlightZLevelLadderStone
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerBase
+  - MoonlightZLevelsLadderStoneBase
+  id: MoonlightZLevelLadderStoneCorner
+  suffix: Corner
+- type: entity
+  parent:
+  - MoonlightZLevelLadderCornerInnerBase
+  - MoonlightZLevelsLadderStoneBase
+  id: MoonlightZLevelLadderStoneCornerInner
+  suffix: Inner Corner

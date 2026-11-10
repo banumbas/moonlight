@@ -90,7 +90,7 @@
   components:
   # this and the name/desc get replaced, this is just placeholder incase something goes wrong
   - type: Sprite
-    sprite: /Textures/_Classic/Mobs/Species/Human/parts.rsi
+    sprite: /Textures/_Moonlight/Mobs/Species/Human/parts.rsi
     state: full
   - type: Transform
     noRot: true # players rotation and anchor is used instead

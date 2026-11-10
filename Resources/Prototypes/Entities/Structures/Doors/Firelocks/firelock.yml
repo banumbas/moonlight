@@ -39,7 +39,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Standard/firelock.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Standard/firelock.rsi
       snapCardinals: false
       drawdepth: Overdoors
       layers:
@@ -175,7 +175,7 @@
   components:
     - type: StationAiWhitelist
     - type: Sprite
-      sprite: _Classic/Structures/Doors/Airlocks/Glass/firelock.rsi
+      sprite: _Moonlight/Structures/Doors/Airlocks/Glass/firelock.rsi
     - type: Occluder
       enabled: false
     - type: Fixtures
@@ -201,7 +201,7 @@
   components:
     - type: StationAiWhitelist
     - type: Sprite
-      sprite: _Classic/Structures/Doors/edge_door_hazard.rsi
+      sprite: _Moonlight/Structures/Doors/edge_door_hazard.rsi
       snapCardinals: false
     - type: Airtight
       airBlocked: false

@@ -1,0 +1,37 @@
+# PMC Game Rule
+
+- type: entity
+  parent: BaseNukeopsRule
+  id: PMC
+  components:
+  - type: GameRule
+    minPlayers: 20
+    denyGameRules:
+    - AbductorsSpawn
+  - type: MoonlightMergeMapRule
+    zMap: Outpost
+    targetDepth: 0
+    biomeGroundDepth: 0
+    randomPlacement: true
+    minDistance: 256
+    maxDistance: 512
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:FixedAntagCount
+      proto: PMCCommander
+    - !type:FixedAntagCount
+      proto: PMCMedic
+    - !type:FixedAntagCount
+      proto: PMCSpecialist
+    - !type:LinearAntagCount
+      proto: PMCAssault
+      range:
+        min: 1
+        max: 10
+      playerRatio: 20
+  - type: DynamicRuleCost
+    cost: 200
+  - type: PMCAutoAnnouncement
+    delay: 5m
+    color: "#FFFFFF"

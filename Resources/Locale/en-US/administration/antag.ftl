@@ -27,4 +27,4 @@ admin-verb-text-make-changeling-wip = Make Changeling (Upstream, WIP)
 admin-verb-text-make-wizard = Make Wizard
 admin-verb-text-make-space-ninja = Make Ninja
 
-admin-overlay-antag-classic = ANTAG
+admin-overlay-antag-moonlight = ANTAG

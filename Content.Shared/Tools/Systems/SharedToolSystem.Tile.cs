@@ -50,10 +50,10 @@ public abstract partial class SharedToolSystem
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return;
 
-        // Classic-Start
+        // Moonlight-Start
         if (!TryDeconstructWithToolQualities(tileRef, tool.Qualities, ent.Owner, args.User))
             return;
-        // Classic-End
+        // Moonlight-End
 
         AdminLogger.Add(
             LogType.LatticeCut,
@@ -82,10 +82,10 @@ public abstract partial class SharedToolSystem
         if (string.IsNullOrWhiteSpace(tileDef.BaseTurf))
             return false;
 
-        // Classic-Start
-        if (!CanDigClassicTile(tileRef, tool.Qualities, ent.Owner, user))
+        // Moonlight-Start
+        if (!CanDigMoonlightTile(tileRef, tool.Qualities, ent.Owner, user))
             return false;
-        // Classic-End
+        // Moonlight-End
 
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return false;
@@ -105,17 +105,17 @@ public abstract partial class SharedToolSystem
         EntityUid? toolUid = null,
         EntityUid? user = null)
     {
-        // Classic-Start
-        if (!CanDigClassicTile(tileRef, withToolQualities, toolUid, user))
+        // Moonlight-Start
+        if (!CanDigMoonlightTile(tileRef, withToolQualities, toolUid, user))
             return false;
-        // Classic-End
+        // Moonlight-End
 
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];
         if (withToolQualities.ContainsAny(tileDef.DeconstructTools))
         {
             // don't do this on the client or else the tile entity spawn mispredicts and looks horrible
-            var deconstructed = _net.IsClient || _tiles.DeconstructTile(tileRef); // classic-edit z-levels digging
-            // classic-start z-levels digging
+            var deconstructed = _net.IsClient || _tiles.DeconstructTile(tileRef); // moonlight-edit z-levels digging
+            // moonlight-start z-levels digging
             if (deconstructed &&
                 !_net.IsClient &&
                 tileDef.DeconstructTools.Contains(DiggingQuality) &&
@@ -123,11 +123,11 @@ public abstract partial class SharedToolSystem
                 TryComp<MapGridComponent>(tileRef.GridUid, out var grid) &&
                 _maps.GetTileRef(tileRef.GridUid, grid, tileRef.GridIndices).Tile.IsEmpty)
             {
-                RaiseLocalEvent(new ClassicDiggingTileDeconstructedEvent(tileRef.GridUid, tileRef.GridIndices));
+                RaiseLocalEvent(new MoonlightDiggingTileDeconstructedEvent(tileRef.GridUid, tileRef.GridIndices));
             }
 
             return deconstructed;
-            // classic-end
+            // moonlight-end
         }
         return false;
     }

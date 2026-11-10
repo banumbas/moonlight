@@ -86,18 +86,18 @@ jobs:
       - name: Parse PR and Update Changelog
         if: steps.get_pr.outputs.result != ''
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/changelog_classic.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/changelog_moonlight.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.get_pr.outputs.result }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          python ./Tools/_Classic/update_changelog.py
+          python ./Tools/_Moonlight/update_changelog.py
           echo "Script exited with code $?"
 
       - name: Display changelog after update
         if: steps.get_pr.outputs.result != ''
         run: |
-          cat "Resources/Changelog/changelog_classic.yml"
+          cat "Resources/Changelog/changelog_moonlight.yml"
 
       - name: Git status before commit
         if: steps.get_pr.outputs.result != ''
@@ -109,7 +109,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "Resources/Changelog/changelog_classic.yml"
+          git add "Resources/Changelog/changelog_moonlight.yml"
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

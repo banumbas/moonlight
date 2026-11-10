@@ -303,10 +303,10 @@ public sealed partial class TileSystem : EntitySystem
             previousTileId = tileDef.BaseTurf.Value;
         }
 
-        if (spawnItem && tileDef.ItemDropPrototypeName is { } itemDrop) // classic-edit
+        if (spawnItem && tileDef.ItemDropPrototypeName is { } itemDrop) // moonlight-edit
         {
             //Actually spawn the relevant tile item at the right position and give it some random offset.
-            var tileItem = Spawn(itemDrop, coordinates); // classic-edit
+            var tileItem = Spawn(itemDrop, coordinates); // moonlight-edit
             Transform(tileItem).LocalRotation = _robustRandom.NextDouble() * Math.Tau;
         }
 

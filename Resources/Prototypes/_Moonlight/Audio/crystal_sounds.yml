@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: MoonlightCrystalDings
+  files:
+  - /Audio/_Moonlight/Effects/crystal_ding.ogg
+  - /Audio/_Moonlight/Effects/crystal_ding2.ogg

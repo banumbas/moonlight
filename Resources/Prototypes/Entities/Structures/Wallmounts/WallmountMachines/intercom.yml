@@ -40,7 +40,7 @@
     noRot: true
     snapCardinals: false
     drawdepth: Effects
-    sprite: _Classic/_Starlight/Structures/Wallmounts/intercom.rsi # Starlight
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/intercom.rsi # Starlight
     layers:
     - state: base
     - state: unshaded
@@ -123,7 +123,7 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: _Classic/_Starlight/Structures/Wallmounts/intercom.rsi # Starlight
+    sprite: _Moonlight/_Starlight/Structures/Wallmounts/intercom.rsi # Starlight
     noRot: true
     snapCardinals: false
     layers:

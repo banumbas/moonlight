@@ -141,14 +141,14 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         GameRuleComponent gameRule,
         ref RoundEndTextAppendEvent args)
     {
-        // classic start
+        // moonlight start
         var isPmc = MetaData(uid).EntityPrototype?.ID == "PMC" || GameTicker.IsGameRuleActive(PmcGameRule);
         var winPrefix = isPmc ? "pmc" : "nukeops";
         var winKey = $"{winPrefix}-{component.WinType.ToString().ToLower()}";
         var winText = Loc.TryGetString(winKey, out var localizedWin)
             ? localizedWin
-        // classic end
-            : Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}"); // classic edit
+        // moonlight end
+            : Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}"); // moonlight edit
         args.AddLine(winText);
 
         foreach (var cond in component.WinConditions)
@@ -157,20 +157,20 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             args.AddLine(text);
         }
 
-        var startKey = isPmc ? "pmc-list-start" : "nukeops-list-start"; // classic add
-        args.AddLine(Loc.TryGetString(startKey, out var startText) ? startText : Loc.GetString("nukeops-list-start")); // classic edit
+        var startKey = isPmc ? "pmc-list-start" : "nukeops-list-start"; // moonlight add
+        args.AddLine(Loc.TryGetString(startKey, out var startText) ? startText : Loc.GetString("nukeops-list-start")); // moonlight edit
 
         var antags = _antag.GetAntagIdentifiers(uid);
 
-        var nameUserKey = isPmc ? "pmc-list-name-user" : "nukeops-list-name-user"; // classic add
+        var nameUserKey = isPmc ? "pmc-list-name-user" : "nukeops-list-name-user"; // moonlight add
         foreach (var (_, sessionData, name) in antags)
         {
-            // classic start
+            // moonlight start
             var formattedName = Loc.TryGetString(nameUserKey, out var userFormat, ("name", name), ("user", sessionData.UserName))
                 ? userFormat
                 : Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName));
             args.AddLine(formattedName);
-            // classic end
+            // moonlight end
         }
         args.AddLine("");
     }

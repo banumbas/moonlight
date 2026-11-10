@@ -59,7 +59,7 @@ namespace Content.Shared.Containers.ItemSlots
             SubscribeLocalEvent<ItemSlotsComponent, ComponentHandleState>(HandleItemSlotsState);
 
             SubscribeLocalEvent<ItemSlotsComponent, ItemSlotButtonPressedEvent>(HandleButtonPressed);
-        // classic start
+        // moonlight start
             SubscribeLocalEvent<ItemSlotsComponent, BeforeExplodeEvent>(OnBeforeExplode);
         }
 
@@ -70,7 +70,7 @@ namespace Content.Shared.Containers.ItemSlots
                 if (slot.Item != null)
                     args.Contents.Add(slot.Item.Value);
             }
-        // classic end
+        // moonlight end
         }
 
         #region ComponentManagement

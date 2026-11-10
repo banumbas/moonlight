@@ -9,7 +9,7 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: _Classic/Structures/Storage/Crates/generic.rsi
+        - sprite: _Moonlight/Structures/Storage/Crates/generic.rsi
           state: icon
     - type: RandomSpawner
       rarePrototypes:

@@ -11,7 +11,7 @@
     rows: 2
   - type: Sprite
     drawdepth: Effects
-    sprite: _Classic/Structures/Wallmounts/screen.rsi
+    sprite: _Moonlight/Structures/Wallmounts/screen.rsi
     noRot: true
     snapCardinals: false
     layers:

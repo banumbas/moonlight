@@ -1,0 +1,14 @@
+ent-MoonlightFrostedWindow = frosted window
+    .desc = An ordinary window covered in a thick layer of frost. Heat from a welder can thaw it.
+ent-MoonlightBasePaperWindow = paper window
+    .desc = A wooden lattice covered with thin paper. It blocks movement and sight, but not air.
+ent-MoonlightPaperWindow = { ent-MoonlightBasePaperWindow }
+    .desc = { ent-MoonlightBasePaperWindow.desc }
+ent-MoonlightPaperWindowTorn = torn paper window
+    .desc = The paper is badly torn. It can be patched with fresh sheets.
+ent-MoonlightPaperWindowFixing = unfinished paper window
+    .desc = A paper window with part of its covering still missing.
+ent-MoonlightPaperWindowTornFixing = patched paper window
+    .desc = A torn paper window with an incomplete patch.
+ent-MoonlightTitaniumWindow = titanium window
+    .desc = A nearly indestructible titanium-framed pressure window. It cannot be constructed by ordinary means.

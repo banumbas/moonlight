@@ -2,26 +2,26 @@
   parent: BaseMediumStack
   id: Cloth
   name: stack-cloth
-  icon: { sprite: /Textures/_Classic/Objects/Materials/materials.rsi, state: cloth }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/materials.rsi, state: cloth }
   spawn: MaterialCloth1
 
 - type: stack
   parent: BaseMediumStack
   id: Durathread
   name: stack-durathread
-  icon: { sprite: /Textures/_Classic/Objects/Materials/materials.rsi, state: durathread }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/materials.rsi, state: durathread }
   spawn: MaterialDurathread1
 
 - type: stack
   parent: BaseMediumStack
   id: Cotton
   name: stack-cotton
-  icon: { sprite: /Textures/_Classic/Objects/Materials/materials.rsi, state: cotton }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/materials.rsi, state: cotton }
   spawn: MaterialCotton1
 
 - type: stack
   parent: BaseMediumStack
   id: Pyrotton
   name: stack-pyrotton
-  icon: { sprite: /Textures/_Classic/Objects/Materials/materials.rsi, state: pyrotton }
+  icon: { sprite: /Textures/_Moonlight/Objects/Materials/materials.rsi, state: pyrotton }
   spawn: MaterialPyrotton1

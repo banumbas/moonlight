@@ -28,7 +28,7 @@
   name: CentComm operator ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcom
     - sprite: *id-rsi
@@ -37,7 +37,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: "#6b6b6b"
-    - sprite: &icon-rsi _Classic/Objects/Misc/id_cards.rsi
+    - sprite: &icon-rsi _Moonlight/Objects/Misc/id_cards.rsi
       state: trim_centcom
   - type: Item
     sprite: Objects/Misc/id_cards.rsi
@@ -70,7 +70,7 @@
   name: NanoTrasen representative ID Card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: nanotrasen
     - sprite: *id-rsi
@@ -93,7 +93,7 @@
   name: internal affairs agent ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
     - sprite: *id-rsi
@@ -113,7 +113,7 @@
   name: blue shield ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
     - sprite: *id-rsi
@@ -148,7 +148,7 @@
   name: NanoTrasen navy corps marine's ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: gold
     - sprite: *id-rsi
@@ -200,7 +200,7 @@
   name: salvage lead ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - sprite: *id-rsi
@@ -220,7 +220,7 @@
   name: mining ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - sprite: *id-rsi
@@ -240,7 +240,7 @@
   name: mail technician ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - sprite: *id-rsi
@@ -277,7 +277,7 @@
   name: duty officer ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - sprite: *id-rsi
@@ -348,7 +348,7 @@
   name: soviet id card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: sovietid
   - type: IdCard
@@ -504,7 +504,7 @@
   name: NTSF ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: nanotrasen
     - sprite: *id-rsi
@@ -649,7 +649,7 @@
   description: An identification card issued by the Trans Solar Federation.
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: tsf
     - sprite: *id-rsi
@@ -743,7 +743,7 @@
   name: NanoTrasen career trainer ID Card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - sprite: *id-rsi
       state: silver
@@ -768,7 +768,7 @@
     quickEquip: false
     slots:
     - idcard
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Devices/nctdatachip.rsi
     layers:
@@ -793,12 +793,12 @@
   description: A set of door electronics rewired to act as an ID card.
   components: # Noteably absent is the ID card component and nanochat component - so borgs will treat you as non crew. It also can't be used in a PDA, and cannot be reprogrammed by an ID card computer.
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     state: makeshift
   - type: Clothing
     slots:
     - idcard
-    sprite: _Classic/Objects/Misc/id_cards.rsi # Moffstation
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi # Moffstation
   - type: Access
     tags:
     - Maintenance
@@ -816,7 +816,7 @@
   name: command officer ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcom
     - sprite: *id-rsi
@@ -841,7 +841,7 @@
   name: ERT leader ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomgold
     - sprite: *id-rsi
@@ -866,7 +866,7 @@
   name: ERT chaplain ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi
@@ -891,7 +891,7 @@
   name: ERT engineer ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi
@@ -916,7 +916,7 @@
   name: ERT janitor ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi
@@ -941,7 +941,7 @@
   name: ERT medic ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi
@@ -966,7 +966,7 @@
   name: ERT security ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi
@@ -991,7 +991,7 @@
   name: death squad ID card
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: nanotrasen
     - sprite: *id-rsi
@@ -1017,7 +1017,7 @@
   suffix: CBURN
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Misc/id_cards.rsi
+    sprite: _Moonlight/Objects/Misc/id_cards.rsi
     layers:
     - state: centcomsilver #Starlight
     - sprite: *id-rsi

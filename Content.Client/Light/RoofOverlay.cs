@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._Classic.ZLevels.Core; // Classic-Edit
+using Content.Client._Moonlight.ZLevels.Core; // Moonlight-Edit
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
@@ -50,10 +50,10 @@ public sealed partial class RoofOverlay : Overlay
         var eye = args.Viewport.Eye;
 
         var worldHandle = args.WorldHandle;
-        // Classic-Edit start - lower Z-levels can avoid the enlarged target and copy-back pass.
+        // Moonlight-Edit start - lower Z-levels can avoid the enlarged target and copy-back pass.
         Box2Rotated bounds;
         IRenderTexture target;
-        if (eye is IClassicZLevelRenderQuality { UseDirectContentLightTarget: true })
+        if (eye is IMoonlightZLevelRenderQuality { UseDirectContentLightTarget: true })
         {
             bounds = args.WorldBounds;
             target = viewport.LightRenderTarget;
@@ -65,7 +65,7 @@ public sealed partial class RoofOverlay : Overlay
             bounds = lightOverlay.EnlargedBounds;
             target = lightRes.EnlargedLightTarget;
         }
-        // Classic-Edit end
+        // Moonlight-Edit end
 
         _grids.Clear();
         _mapSystem.FindGridsIntersecting(args.MapId, bounds, ref _grids, approx: true, includeMap: true);
@@ -122,7 +122,7 @@ public sealed partial class RoofOverlay : Overlay
                     var tileEnumerator = _mapSystem.GetTilesEnumerator(grid.Owner, grid, bounds);
                     var roofEnt = (grid.Owner, grid.Comp, roof);
 
-                    // Classic: open planetary terrain otherwise performs a broadphase query for
+                    // Moonlight: open planetary terrain otherwise performs a broadphase query for
                     // every visible tile every frame, even when all roof entities are on another Z.
                     // Include the full boundary tiles selected by the rotated viewport bounds.
                     var localBounds = _xformSystem.GetInvWorldMatrix(grid.Owner)

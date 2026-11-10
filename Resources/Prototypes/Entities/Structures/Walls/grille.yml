@@ -24,11 +24,11 @@
           map: ["enum.ElectrifiedLayers.Sparks"]
           shader: unshaded
           visible: false
-    - type: ClassicPerspectiveDepth # Classic-Edit
+    - type: MoonlightPerspectiveDepth # Moonlight-Edit
     - type: Icon
       sprite: Structures/Walls/grille.rsi
       state: grille
-    #- type: Construction # Classic
+    #- type: Construction # Moonlight
     #  graph: Grille
     #  node: grille
     #  deconstructionTarget: start
@@ -113,13 +113,13 @@
   name: grille
   description: A flimsy framework of iron rods. It has seen better days.
   components:
-  # Classic-Start
+  # Moonlight-Start
   - type: Sprite
     drawdepth: Walls
-    sprite: _Classic/Structures/Walls/grille_damaged.rsi
-  - type: ClassicPerspectiveDepth # Classic-Edit
+    sprite: _Moonlight/Structures/Walls/grille_damaged.rsi
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Walls/grille_damaged.rsi
+    sprite: _Moonlight/Structures/Walls/grille_damaged.rsi
     state: full
   - type: IconSmooth
     key: walls
@@ -137,7 +137,7 @@
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
         - MidImpassable
-  # Classic-End
+  # Moonlight-End
   - type: RCDDeconstructable
     cost: 6
     delay: 4
@@ -149,7 +149,7 @@
   #- type: Fixtures # overwrite BaseStructure parent.
   - type: Physics
     bodyType: Static
-    canCollide: true # Classic-Edit
+    canCollide: true # Moonlight-Edit
   - type: Tag
     tags:
     - ForceNoFixRotations
@@ -173,17 +173,17 @@
   name: clockwork grille
   description: A flimsy framework of iron rods assembled in traditional Ratvarian fashion. It has seen better days.
   components:
-  # Classic-Start
+  # Moonlight-Start
   - type: Sprite
     drawdepth: Walls
-    sprite: _Classic/Structures/Walls/grille_damaged.rsi
+    sprite: _Moonlight/Structures/Walls/grille_damaged.rsi
   - type: Icon
-    sprite: _Classic/Structures/Walls/grille_damaged.rsi
+    sprite: _Moonlight/Structures/Walls/grille_damaged.rsi
     state: full
   - type: IconSmooth
     key: walls
     base: grille_damaged
-  # Classic-End
+  # Moonlight-End
   - type: Construction
     graph: ClockGrille
     node: clockGrilleBroken

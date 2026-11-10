@@ -11,9 +11,9 @@
           type: StackCustomSplitBoundUserInterface
     # Starlight end
     - type: Sprite
-      sprite: _Classic/Objects/Materials/Sheets/other.rsi
+      sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     - type: Item
-      sprite: _Classic/Objects/Materials/Sheets/other.rsi
+      sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
       size: Normal
     - type: Tag
       tags:

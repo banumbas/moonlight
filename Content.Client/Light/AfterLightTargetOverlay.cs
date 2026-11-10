@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._Classic.ZLevels.Core; // Classic-Edit
+using Content.Client._Moonlight.ZLevels.Core; // Moonlight-Edit
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 
@@ -22,10 +22,10 @@ public sealed partial class AfterLightTargetOverlay : Overlay
         ZIndex = ContentZIndex;
     }
 
-    // Classic-Edit
+    // Moonlight-Edit
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        return args.Viewport.Eye is not IClassicZLevelRenderQuality { UseDirectContentLightTarget: true };
+        return args.Viewport.Eye is not IMoonlightZLevelRenderQuality { UseDirectContentLightTarget: true };
     }
 
     protected override void Draw(in OverlayDrawArgs args)

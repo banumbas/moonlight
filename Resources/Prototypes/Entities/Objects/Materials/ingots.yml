@@ -5,9 +5,9 @@
   description: A heavy metal ingot stamped with the NanoTrasen logo. # SL
   components:
   - type: Sprite
-    sprite: _Classic/Objects/Materials/ingots.rsi
+    sprite: _Moonlight/Objects/Materials/ingots.rsi
   - type: Item
-    sprite: _Classic/Objects/Materials/ingots.rsi
+    sprite: _Moonlight/Objects/Materials/ingots.rsi
     size: Normal
   - type: StaticPrice
     price: 0

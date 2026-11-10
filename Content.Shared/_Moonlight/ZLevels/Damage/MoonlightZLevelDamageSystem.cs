@@ -1,0 +1,162 @@
+/*
+ * This file is sublicensed under MIT License
+ * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
+ */
+
+using Content.Shared._Moonlight.ZLevels.Core.EntitySystems;
+using Content.Shared.CCVar;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Stunnable;
+using Robust.Shared.Configuration;
+using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
+
+namespace Content.Shared._Moonlight.ZLevels.Damage;
+
+public sealed partial class MoonlightZLevelDamageSystem : EntitySystem
+{
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+
+    public float BaseFallingDamage { get; private set; }
+    public float BaseFallingOtherDamage { get; private set; }
+    public float BaseFallingStunTime { get; private set; }
+    public float BaseFallingOtherStunTime { get; private set; }
+
+    private static readonly ProtoId<DamageTypePrototype> PhysicalDamageType = "Blunt";
+    private static readonly EntProtoId FallVFX = "MoonlightDustEffect";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<PhysicsComponent, MoonlightZLevelHitEvent>(OnFallDamage);
+
+        _config.OnValueChanged(CCVars.MoonlightBaseFallingDamage, i => BaseFallingDamage = i, true);
+        _config.OnValueChanged(CCVars.MoonlightBaseFallingOtherDamage, i => BaseFallingOtherDamage = i, true);
+        _config.OnValueChanged(CCVars.MoonlightBaseFallingStunTime, i => BaseFallingStunTime = i, true);
+        _config.OnValueChanged(CCVars.MoonlightBaseFallingOtherStunTime, i => BaseFallingOtherStunTime = i, true);
+    }
+
+    private void OnFallDamage(Entity<PhysicsComponent> ent, ref MoonlightZLevelHitEvent args)
+    {
+        if (!_proto.Resolve(PhysicalDamageType, out var damageType))
+            return;
+
+        var damageModifier = 1f;
+        var stunModifier = 1f;
+
+        var damageToOtherEv = new MoonlightZFallingOnTargetDamageCalculateEvent(args.ImpactPower);
+        RaiseLocalEvent(ent, damageToOtherEv);
+        var otherDamage = damageToOtherEv.DamageMultiplier * BaseFallingOtherDamage * args.ImpactPower *
+                          args.ImpactPower;
+        var otherStun = damageToOtherEv.StunMultiplier * BaseFallingOtherStunTime * args.ImpactPower * args.ImpactPower;
+
+        // Calculate damage modifiers for the falling entity
+        var damageToSelfEv = new MoonlightZFallingDamageCalculateEvent(ent, args.ImpactPower);
+        RaiseLocalEvent(ent, damageToSelfEv);
+        damageModifier *= damageToSelfEv.DamageMultiplier;
+        stunModifier *= damageToSelfEv.StunMultiplier;
+
+        var entitiesAround = _lookup.GetEntitiesInRange(ent, 0.25f, LookupFlags.Uncontained);
+        entitiesAround.Remove(ent); //Don't count self
+
+        //Process entities we fell into
+        var imFallOnEv = new MoonlightZImFallOnEvent(entitiesAround, args.ImpactPower);
+        RaiseLocalEvent(ent, imFallOnEv);
+
+        var victimDamageModifier = 1f;
+        var victimStunModifier = 1f;
+
+        foreach (var victim in entitiesAround)
+        {
+            // Calculate damage modifiers from entities being fallen upon
+            var editDamageToSelfEv = new MoonlightZFallingDamageCalculateEvent(ent, args.ImpactPower);
+            RaiseLocalEvent(victim, editDamageToSelfEv);
+            // Most significant modifier (furthest from 1.0) wins across all victims
+            if (MathF.Abs(editDamageToSelfEv.DamageMultiplier - 1f) > MathF.Abs(victimDamageModifier - 1f))
+                victimDamageModifier = editDamageToSelfEv.DamageMultiplier;
+            if (MathF.Abs(editDamageToSelfEv.StunMultiplier - 1f) > MathF.Abs(victimStunModifier - 1f))
+                victimStunModifier = editDamageToSelfEv.StunMultiplier;
+
+            var fellOnMeEv = new MoonlightZFellOnMeEvent(ent, args.ImpactPower);
+            RaiseLocalEvent(victim, fellOnMeEv);
+
+            // Apply damage and stun to entities that were fallen upon
+            if (otherStun > 0)
+                _stun.TryKnockdown(victim, TimeSpan.FromSeconds(otherStun));
+            if (otherDamage > 0)
+            {
+                var otherDmgSpec = new DamageSpecifier(damageType, otherDamage);
+                _damageable.ChangeDamage(victim, otherDmgSpec);
+            }
+        }
+
+        damageModifier *= victimDamageModifier;
+        stunModifier *= victimStunModifier;
+
+        var damageAmount = args.ImpactPower * args.ImpactPower * BaseFallingDamage * damageModifier;
+        if (damageAmount > 0)
+        {
+            var selfDmgSpec = new DamageSpecifier(damageType, damageAmount);
+            _damageable.ChangeDamage(ent.Owner, selfDmgSpec);
+        }
+
+        var knockdownTime = MathF.Min(args.ImpactPower * args.ImpactPower * BaseFallingStunTime * stunModifier, 5f);
+        if (knockdownTime > 0)
+            _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(knockdownTime));
+
+        if (_net.IsClient && _timing.IsFirstTimePredicted) //Only visuals so client only
+            SpawnAtPosition(FallVFX, Transform(ent).Coordinates);
+    }
+}
+
+/// <summary>
+/// This event is triggered both on the entity that fell and on all entities that it fell on.
+/// Together, they calculate the damage and the duration that should be applied to the fallen entity.
+/// </summary>
+public sealed partial class MoonlightZFallingDamageCalculateEvent(EntityUid fallen, float speed) : EntityEventArgs
+{
+    public EntityUid Fallen = fallen;
+
+    public float DamageMultiplier = 1;
+    public float StunMultiplier = 1;
+    public float Speed = speed;
+}
+
+/// <summary>
+/// Called on a falling entity to calculate how much damage it should inflict on everything it falls on.
+/// </summary>
+public sealed partial class MoonlightZFallingOnTargetDamageCalculateEvent(float speed) : EntityEventArgs
+{
+    public float DamageMultiplier = 1;
+    public float StunMultiplier = 1;
+    public float Speed = speed;
+}
+
+/// <summary>
+/// Event raised on a falling entity to inform it about the entities it is landing on and the impact speed.
+/// </summary>
+public sealed partial class MoonlightZImFallOnEvent(HashSet<EntityUid> targets, float speed) : EntityEventArgs
+{
+    public HashSet<EntityUid> Targets = targets;
+    public float Speed = speed;
+}
+
+/// <summary>
+/// Event raised on an entity that is being fallen on to inform it about the falling entity and the impact speed.
+/// </summary>
+public sealed partial class MoonlightZFellOnMeEvent(EntityUid fallen, float speed) : EntityEventArgs
+{
+    public EntityUid Fallen = fallen;
+    public float Speed = speed;
+}

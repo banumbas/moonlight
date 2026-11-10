@@ -6,7 +6,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: _Classic/Structures/Storage/Crates/generic.rsi
+    - sprite: _Moonlight/Structures/Storage/Crates/generic.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:GroupSelector
@@ -166,7 +166,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: _Classic/Structures/Storage/Crates/o2.rsi
+    - sprite: _Moonlight/Structures/Storage/Crates/o2.rsi
       state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
@@ -182,7 +182,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: _Classic/Structures/Storage/Crates/engineering.rsi
+    - sprite: _Moonlight/Structures/Storage/Crates/engineering.rsi
       state: icon
   - type: RandomSpawner
     rarePrototypes:
@@ -226,7 +226,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: _Classic/Structures/Storage/Crates/sec_gear.rsi
+    - sprite: _Moonlight/Structures/Storage/Crates/sec_gear.rsi
       state: icon
   - type: RandomSpawner
     rarePrototypes: #Very useful stuff we probably don't want random people getting on space ruins often, even if there are hurdles to open it

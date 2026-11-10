@@ -13,7 +13,7 @@
     rotateWhileAnchored: true
   # Starlight-end
   - type: Sprite
-    sprite: _Classic/Objects/Specific/Medical/chemical.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/chemical.rsi
     snapCardinals: false # Starlight-edit: allow non-cardinal rotation for ChemMaster to avoid conflict with 4 direction plumbing connector sprites
     layers:
     - state: chemmaster
@@ -29,7 +29,7 @@
   - type: AtmosPipeColor
   # Starlight-end
   - type: Icon
-    sprite: _Classic/Objects/Specific/Medical/chemical.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/chemical.rsi
     state: chemmaster
   - type: ItemMapper
     containerWhitelist: [beakerSlot]

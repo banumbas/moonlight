@@ -1,0 +1,9 @@
+﻿- type: entity
+  parent: BaseFlatpack
+  id: MoonlightGeyserGeneratorFlatpack
+  name: geyser generator flatpack
+  description: A flatpack used for constructing a geyser generator.
+  categories: [ ForkFiltered ]
+  components:
+  - type: Flatpack
+    entity: MoonlightGeyserGenerator

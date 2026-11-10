@@ -29,7 +29,7 @@
         layer:
         - GlassAirlockLayer
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Windoors/windoor.rsi
+    sprite: _Moonlight/Structures/Doors/Windoors/windoor.rsi
     drawdepth: Doors
     layers:
     - state: closed
@@ -62,7 +62,7 @@
       map: ["enum.DoorVisualLayers.BaseEmagging"]
       shader: unshaded
       visible: false
-  - type: ClassicPerspectiveDepth # Classic-Edit
+  - type: MoonlightPerspectiveDepth # Moonlight-Edit
     baseDrawDepth: Doors
   - type: AnimationPlayer
   - type: ApcPowerReceiver
@@ -195,7 +195,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Windoors/windoor_secure.rsi
+    sprite: _Moonlight/Structures/Doors/Windoors/windoor_secure.rsi
     layers:
     - state: secure_underlay
     - state: closed

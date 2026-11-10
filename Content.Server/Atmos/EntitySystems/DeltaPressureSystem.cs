@@ -29,10 +29,10 @@ public sealed partial class DeltaPressureSystem : SharedDeltaPressureSystem
 
     private void OnComponentInit(Entity<DeltaPressureComponent> ent, ref ComponentInit args)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosphereSystem.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         var xform = Transform(ent);
         if (xform.GridUid == null)
@@ -53,10 +53,10 @@ public sealed partial class DeltaPressureSystem : SharedDeltaPressureSystem
 
     private void OnGridChanged(Entity<DeltaPressureComponent> ent, ref GridUidChangedEvent args)
     {
-        // Classic-Start
+        // Moonlight-Start
         if (!_atmosphereSystem.AtmosEnabled)
             return;
-        // Classic-End
+        // Moonlight-End
 
         if (args.OldGrid != null)
         {

@@ -29,9 +29,9 @@ public sealed partial class AdminNotesManager : IAdminNotesManager, IPostInjectI
     [Dependency] private IEntitySystemManager _systems = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private INullLinkEventBusManager _eventBus = default!; // Starlight-edit
-    // Classic-Start
+    // Moonlight-Start
     [Dependency] private readonly IBanManager _banManager = default!;
-    // Classic-End
+    // Moonlight-End
 
     public const string SawmillId = "admin.notes";
 
@@ -235,7 +235,7 @@ public sealed partial class AdminNotesManager : IAdminNotesManager, IPostInjectI
                 await _db.HideServerBanFromNotes(noteId, userId, deletedAt); // Starlight-edit
                 break;
             case NoteType.RoleBan:
-                await _banManager.PardonRoleBan(noteId, userId, deletedAt); // classic add
+                await _banManager.PardonRoleBan(noteId, userId, deletedAt); // moonlight add
                 await _db.HideServerRoleBanFromNotes(noteId, userId, deletedAt); // Starlight-edit
                 break;
             default:

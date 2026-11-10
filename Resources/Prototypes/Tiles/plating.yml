@@ -15,7 +15,7 @@
   id: Plating
   parent: BasePlating
   name: tiles-plating
-  sprite: /Textures/_Classic/Tiles/Floor/plating.png # Classic-Edit
+  sprite: /Textures/_Moonlight/Tiles/Floor/plating.png # Moonlight-Edit
 
 - type: tile
   id: PlatingRCD

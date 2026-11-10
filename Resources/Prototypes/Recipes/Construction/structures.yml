@@ -284,9 +284,9 @@
   placementMode: SnapgridCenter
   canRotate: false
 
-# Classic-Start
+# Moonlight-Start
 # Diagonal windows are intentionally unavailable from construction.
-# Classic-End
+# Moonlight-End
 
 - type: construction
   id: ReinforcedWindow
@@ -302,9 +302,9 @@
   placementMode: SnapgridCenter
   canRotate: false
 
-# Classic-Start
+# Moonlight-Start
 # Reinforced diagonal windows are intentionally unavailable from construction.
-# Classic-End
+# Moonlight-End
 
 - type: construction
   id: TintedWindow
@@ -334,9 +334,9 @@
   placementMode: SnapgridCenter
   canRotate: false
 
-# Classic-Start
+# Moonlight-Start
 # Clockwork diagonal windows are intentionally unavailable from construction.
-# Classic-End
+# Moonlight-End
 
 - type: construction
   id: PlasmaWindow
@@ -380,9 +380,9 @@
   placementMode: SnapgridCenter
   canRotate: false
 
-# Classic-Start
+# Moonlight-Start
 # Plasma diagonal windows are intentionally unavailable from construction.
-# Classic-End
+# Moonlight-End
 
 - type: construction
   id: WindowDirectional
@@ -449,9 +449,9 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
-# Classic-Start
+# Moonlight-Start
 # Uranium window construction prototypes are intentionally omitted.
-# Classic-End
+# Moonlight-End
 
 - type: construction
   id: Firelock

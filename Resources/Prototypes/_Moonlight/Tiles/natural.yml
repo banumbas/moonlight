@@ -1,0 +1,289 @@
+# 0
+
+- type: tile
+  id: MoonlightIce
+  name: tiles-ice
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/ice.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  heatCapacity: 10000
+  friction: 0.05
+  mobAcceleration: 0.1
+  weather: true
+
+- type: tile
+  id: MoonlightDirt
+  name: moonlight-tiles-dirt
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Dirt/cavedrought.png
+  variants: 16
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Dirt/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Dirt/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Dirt/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Dirt/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Dirt/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Dirt/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Dirt/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Dirt/double_edge_W.png
+  baseTurf: MoonlightStone
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightCobblestone
+  name: moonlight-tiles-cobblestone
+  naturalTerrain: true
+  digType: Stone
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Cobblestone/cobble.png
+  variants: 5
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 2
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Cobblestone/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Cobblestone/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Cobblestone/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Cobblestone/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Cobblestone/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Cobblestone/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Cobblestone/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Cobblestone/double_edge_W.png
+  baseTurf: MoonlightDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightMycelium
+  name: moonlight-tiles-mycelium
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Mycelium/tile.png
+  variants: 12
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 3
+  edgeSprites:
+    South: /Textures/_Moonlight/Tiles/Mycelium/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Mycelium/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Mycelium/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Mycelium/double_edge_W.png
+  baseTurf: MoonlightDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightMyceliumLight
+  name: moonlight-tiles-mycelium-light
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/MyceliumLight/tile.png
+  variants: 12
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 4
+  edgeSprites:
+    South: /Textures/_Moonlight/Tiles/MyceliumLight/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/MyceliumLight/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/MyceliumLight/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/MyceliumLight/double_edge_W.png
+  baseTurf: MoonlightMycelium
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightSand
+  name: moonlight-tiles-sand
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Sand/sand.png
+  variants: 5
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 5
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Sand/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Sand/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Sand/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Sand/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Sand/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Sand/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Sand/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Sand/double_edge_W.png
+  baseTurf: MoonlightStone
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepSnow #TODO
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightSnowDeepDeep
+  name: moonlight-tiles-snow-deep-deep
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/SnowDeepDeep/snow.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 900 # Because snowfall!
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/SnowDeepDeep/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/SnowDeepDeep/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/SnowDeepDeep/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/SnowDeepDeep/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/SnowDeepDeep/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/SnowDeepDeep/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/SnowDeepDeep/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/SnowDeepDeep/double_edge_W.png
+  baseTurf: MoonlightDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepSnow
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightSnowDeep
+  name: moonlight-tiles-snow-deep
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/SnowDeep/snow.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 901 # Because snowfall!
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/SnowDeep/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/SnowDeep/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/SnowDeep/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/SnowDeep/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/SnowDeep/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/SnowDeep/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/SnowDeep/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/SnowDeep/double_edge_W.png
+  baseTurf: MoonlightSnowDeepDeep
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepSnow
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: MoonlightSnow
+  name: moonlight-tiles-snow
+  naturalTerrain: true
+  digType: Soft
+  deconstructTools: [ Digging ]
+  sprite: /Textures/_Moonlight/Tiles/Snow/snow.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 902 # Because snowfall!
+  edgeSprites:
+    SouthEast: /Textures/_Moonlight/Tiles/Snow/single_edge_SE.png
+    NorthEast: /Textures/_Moonlight/Tiles/Snow/single_edge_NE.png
+    NorthWest: /Textures/_Moonlight/Tiles/Snow/single_edge_NW.png
+    SouthWest: /Textures/_Moonlight/Tiles/Snow/single_edge_SW.png
+    South: /Textures/_Moonlight/Tiles/Snow/double_edge_S.png
+    East: /Textures/_Moonlight/Tiles/Snow/double_edge_E.png
+    North: /Textures/_Moonlight/Tiles/Snow/double_edge_N.png
+    West: /Textures/_Moonlight/Tiles/Snow/double_edge_W.png
+  baseTurf: MoonlightSnowDeep
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepSnow
+  heatCapacity: 10000
+  weather: true

@@ -1,0 +1,127 @@
+- type: entity
+  id: MoonlightWater
+  name: water
+  description: You're definitely going to get your feet wet
+  categories: [ ForkFiltered ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: PlacementReplacement
+    key: floorTile
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Moonlight/Structures/Nature/water.rsi
+    state: static
+    drawdepth: Puddles
+  - type: SyncSprite
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+          - -0.50,-0.50
+          - 0.50,-0.50
+          - 0.50,0.50
+          - -0.50,0.50
+        layer:
+        - ConveyorMask
+        hard: False
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+  - type: RandomSpawner
+    prototypes:
+    - MoonlightWaterReeds
+    - MoonlightWaterLilies
+    chance: 0.4
+    offset: 0.1
+    deleteSpawnerAfterSpawn: false
+  - type: AmbientSound
+    volume: 5
+    range: 4
+    sound:
+      path: /Audio/_Moonlight/Ambience/water.ogg
+
+- type: entity
+  parent: MoonlightWater
+  id: MoonlightWaterMoving
+  suffix: Moving
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    state: moving
+    snapCardinals: false
+  - type: Conveyor
+    speed: 0.25
+
+- type: entity
+  parent: MoonlightWater
+  id: MoonlightWaterDeep
+  suffix: Deep
+  categories: [ ForkFiltered ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MoonlightCrystalIceSpawner
+    chance: 0.15
+    offset: 0.0
+    deleteSpawnerAfterSpawn: false
+
+- type: entity
+  id: MoonlightIce
+  name: ice
+  description: Slippery cold ice. Watch your step.
+  categories: [ ForkFiltered ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: PlacementReplacement
+    key: floorTile
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: _Moonlight/Structures/Nature/ice.rsi
+    layers:
+    - state: ice1
+      map: [ "random" ]
+  - type: Appearance
+  - type: RandomSprite
+    available:
+      - random:
+          ice1: ""
+          ice2: ""
+          ice3: ""
+          ice4: ""
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - MidImpassable
+  - type: FrictionContacts
+  - type: TileFrictionModifier
+    modifier: 0.05
+
+- type: entity
+  parent: MoonlightIce
+  id: MoonlightIceFrozenStream
+  suffix: Frozen Stream
+  description: A frozen stream, the current trapped under ice.
+  categories: [ ForkFiltered ]

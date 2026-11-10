@@ -1,5 +1,5 @@
 using Content.Client.Graphics;
-using Content.Client._Classic.ZLevels.Core; // Classic-Edit
+using Content.Client._Moonlight.ZLevels.Core; // Moonlight-Edit
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 
@@ -25,10 +25,10 @@ public sealed partial class LightBlurOverlay : Overlay
         ZIndex = ContentZIndex;
     }
 
-    // Classic-Edit
+    // Moonlight-Edit
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        return args.Viewport.Eye is not IClassicZLevelRenderQuality quality ||
+        return args.Viewport.Eye is not IMoonlightZLevelRenderQuality quality ||
                quality.DrawContentLightBlur && !quality.UseDirectContentLightTarget;
     }
 

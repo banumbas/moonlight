@@ -129,7 +129,7 @@
     layers:
     - sprite: _Starlight/CosmicCult/Effects/malign_anom_infection.rsi
       state: vfx
-    - sprite: _Classic/Mobs/Species/Human/parts.rsi
+    - sprite: _Moonlight/Mobs/Species/Human/parts.rsi
       state: full
   - type: InnerBodyAnomalyInjector
     injectionComponents:

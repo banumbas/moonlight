@@ -3,7 +3,7 @@
   start: start
   graph:
     - node: start
-      edges: [] # Classic-Edit - all diagonal windows are deconstruction-only.
+      edges: [] # Moonlight-Edit - all diagonal windows are deconstruction-only.
 
     - node: windowDiagonal
       entity: WindowDiagonal

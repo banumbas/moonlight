@@ -5,7 +5,7 @@
   suffix: Atmospherics
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/atmospherics.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/atmospherics.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -15,7 +15,7 @@
   suffix: Atmospherics, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/atmospherics.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/atmospherics.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -26,7 +26,7 @@
   suffix: Cargo
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/cargo.rsi
     state: "assembly"
 
 - type: entity
@@ -35,7 +35,7 @@
   suffix: Cargo, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/cargo.rsi
     state: "assembly"
 
 #Clockwork
@@ -70,7 +70,7 @@
   suffix: Command
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/command.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/command.rsi
     state: "assembly"
 
 - type: entity
@@ -79,7 +79,7 @@
   suffix: Command, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/command.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/command.rsi
     state: "assembly"
 
 #Engineering
@@ -89,7 +89,7 @@
   suffix: Engineering
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/atmospherics.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/atmospherics.rsi
     state: "assembly"
 
 - type: entity
@@ -98,7 +98,7 @@
   suffix: Engineering, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/atmospherics.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/atmospherics.rsi
     state: "assembly"
 
 #External
@@ -108,7 +108,7 @@
   suffix: External
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/external.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/external.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -118,7 +118,7 @@
   suffix: External, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/external.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/external.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -129,7 +129,7 @@
   suffix: Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/basic.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/basic.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -140,7 +140,7 @@
   suffix: Freezer
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/medical.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/medical.rsi
     state: "assembly"
 
 #Hydroponics
@@ -150,7 +150,7 @@
   suffix: Hydroponics
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/public.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/public.rsi
     state: "assembly"
 
 - type: entity
@@ -159,7 +159,7 @@
   suffix: Hydroponics, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/public.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/public.rsi
     state: "assembly"
 
 #Maintenance
@@ -169,7 +169,7 @@
   suffix: Maintenance
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/maint.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -179,7 +179,7 @@
   suffix: Maintenance, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/maint.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/maint.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -190,7 +190,7 @@
   suffix: Medical
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/medical.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/medical.rsi
     state: "assembly"
 
 - type: entity
@@ -199,7 +199,7 @@
   suffix: Medical, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/medical.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/medical.rsi
     state: "assembly"
 
 #Salvage
@@ -209,7 +209,7 @@
   suffix: Salvage
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/cargo.rsi
     state: "assembly"
 
 - type: entity
@@ -218,7 +218,7 @@
   suffix: Salvage, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/cargo.rsi
     state: "assembly"
 
 #Science
@@ -228,7 +228,7 @@
   suffix: Science
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/science.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/science.rsi
     state: "assembly"
 
 - type: entity
@@ -237,7 +237,7 @@
   suffix: Science, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/science.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/science.rsi
     state: "assembly"
 
 #Security
@@ -247,7 +247,7 @@
   suffix: Security
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/security.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/security.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -257,7 +257,7 @@
   suffix: Security, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/security.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/security.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -268,7 +268,7 @@
   suffix: Shuttle
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/shuttle.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/shuttle.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -278,7 +278,7 @@
   suffix: Shuttle, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/shuttle.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/shuttle.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -289,7 +289,7 @@
   suffix: Virology
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/basic.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/basic.rsi
     state: "assembly"
 
 - type: entity
@@ -298,7 +298,7 @@
   suffix: Virology, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/basic.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/basic.rsi
     state: "assembly"
 
 #CentralCommand
@@ -308,7 +308,7 @@
   suffix: CentralCommand
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/centcomm.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/centcomm.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -318,7 +318,7 @@
   suffix: CentralCommand, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/centcomm.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/centcomm.rsi
     state: "assembly"
     drawdepth: Overdoors
 
@@ -329,7 +329,7 @@
   suffix: Mining
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Standard/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Standard/cargo.rsi
     state: "assembly"
 
 - type: entity
@@ -338,7 +338,7 @@
   suffix: Mining, Glass
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/Glass/cargo.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/Glass/cargo.rsi
     state: "assembly"
 
 #Syndicate
@@ -386,6 +386,6 @@
   suffix: HighSec
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Doors/Airlocks/highsec/vault.rsi
+    sprite: _Moonlight/Structures/Doors/Airlocks/highsec/vault.rsi
     state: "assembly"
     drawdepth: Overdoors

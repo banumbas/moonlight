@@ -25,7 +25,7 @@
     graph: Girder
     node: girder
   - type: Sprite
-    sprite: _Classic/Structures/structures_tall.rsi
+    sprite: _Moonlight/Structures/structures_tall.rsi
     state: girder
     drawdepth: Overdoors
   - type: Damageable
@@ -63,7 +63,7 @@
   description: A large structural assembly made out of metal and plasteel; It requires a layer of plasteel before it can be considered a reinforced wall.
   components:
     - type: Sprite
-      sprite: _Classic/Structures/structures_tall.rsi
+      sprite: _Moonlight/Structures/structures_tall.rsi
       state: reinforced_struts
       drawdepth: Overdoors
     - type: Construction
@@ -107,7 +107,7 @@
   description: A large gear with mounting brackets for additional plating; This could be made into a wall with more brass plating.
   components:
     - type: Sprite
-      sprite: _Classic/Structures/structures_tall.rsi
+      sprite: _Moonlight/Structures/structures_tall.rsi
       state: wall_gear
       drawdepth: Overdoors
     - type: Construction

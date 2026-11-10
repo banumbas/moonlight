@@ -1,7 +1,7 @@
 #Due to limitations with placement conditions in the construction system, the other kinds of non-fulltile barricades are currently not constructible.
 #This may make it sound like it needs some big refactor to be possible, but make no mistake, it is 100% due to my own technical incompetence.
 - type: constructionGraph
-  id: BarricadeDirectional # classic
+  id: BarricadeDirectional # moonlight
   start: start
   graph:
     - node: start
@@ -12,7 +12,7 @@
               amount: 4
               doAfter: 3
     - node: barricadefull
-      entity: BarricadeDirectional # classic
+      entity: BarricadeDirectional # moonlight
       edges:
         - to: start
           completed:
@@ -46,7 +46,7 @@
         - tool: Prying
           doAfter: 10
 
-# classic
+# moonlight
 # - type: constructionGraph
 #   id: BarricadeDirectional
 #   start: start

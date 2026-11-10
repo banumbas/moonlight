@@ -7,7 +7,7 @@ namespace Content.Shared.Shuttles.Components
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class ShuttleComponent : Component
     {
-        [DataField, ViewVariables, AutoNetworkedField] // Classic-Edit
+        [DataField, ViewVariables, AutoNetworkedField] // Moonlight-Edit
         public bool Enabled = true;
 
         [ViewVariables, AutoNetworkedField]

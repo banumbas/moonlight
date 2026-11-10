@@ -4,10 +4,10 @@
   parent: [BaseDeltaPressureReinforcedGlass, Window]
   components:
   - type: Sprite
-    drawdepth: Doors # Classic-Edit
-    sprite: _Classic/Structures/Windows/reinforced_window.rsi # Classic-Edit
+    drawdepth: Doors # Moonlight-Edit
+    sprite: _Moonlight/Structures/Windows/reinforced_window.rsi # Moonlight-Edit
   - type: Icon
-    sprite: _Classic/Structures/Windows/reinforced_window.rsi # Classic-Edit
+    sprite: _Moonlight/Structures/Windows/reinforced_window.rsi # Moonlight-Edit
   - type: Repairable
     fuelCost: 10
     doAfterDelay: 2
@@ -44,7 +44,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    base: reinforced_window # Classic-Edit
+    base: reinforced_window # Moonlight-Edit
   - type: Construction
     graph: Window
     node: reinforcedWindow
@@ -54,7 +54,7 @@
     damageDivisor: 3
     trackAllDamage: true
     damageOverlay:
-      sprite: _Classic/Structures/Windows/window_damage.rsi # Classic-Edit
+      sprite: _Moonlight/Structures/Windows/window_damage.rsi # Moonlight-Edit
 
 - type: entity
   id: WindowReinforcedDirectional
@@ -67,10 +67,10 @@
     - Window
   components:
   - type: Sprite
-    sprite: _Classic/Structures/Windows/Directional/reinforced.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/reinforced.rsi
     state: reinforced_window
   - type: Icon
-    sprite: _Classic/Structures/Windows/Directional/reinforced.rsi
+    sprite: _Moonlight/Structures/Windows/Directional/reinforced.rsi
     state: reinforced_window
   - type: Construction
     graph: WindowDirectional

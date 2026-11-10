@@ -329,7 +329,7 @@
   id: ChemDispenser
   name: steal-target-groups-chem-dispenser
   sprite:
-    sprite: _Classic/Objects/Specific/Medical/chemical.rsi
+    sprite: _Moonlight/Objects/Specific/Medical/chemical.rsi
     state: dispenser
 
 - type: stealTargetGroup

@@ -7,7 +7,7 @@ namespace Content.Shared.Doors
     /// </summary>
     public sealed class DoorStateChangedEvent : EntityEventArgs
     {
-        public readonly EntityUid Door; // Classic-add
+        public readonly EntityUid Door; // Moonlight-add
         public readonly DoorState State;
         public readonly EntityUid? User; // Starlight
 
@@ -17,14 +17,14 @@ namespace Content.Shared.Doors
             User = user; // Starlight: add user
         }
 
-        // Classic-Start
+        // Moonlight-Start
         public DoorStateChangedEvent(EntityUid door, DoorState state, EntityUid? user = null)
         {
             Door = door;
             State = state;
             User = user;
         }
-        // Classic-End
+        // Moonlight-End
     }
 
     /// <summary>

@@ -110,7 +110,7 @@
         Brute: 0
   - type: Sprite
     noRot: true
-    sprite: _Classic/Structures/Storage/closet.rsi
+    sprite: _Moonlight/Structures/Storage/closet.rsi
     layers:
     - state: cursed
       map: [ "enum.StorageVisualLayers.Base" ]

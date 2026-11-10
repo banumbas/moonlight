@@ -88,7 +88,7 @@ public sealed partial class StationSystem : SharedStationSystem
             return;
 
         stationData.Grids.Remove(uid);
-        stationData.AuxiliaryGrids.Remove(uid); // Classic-add
+        stationData.AuxiliaryGrids.Remove(uid); // Moonlight-add
         Dirty(uid, component);
     }
 
@@ -140,10 +140,10 @@ public sealed partial class StationSystem : SharedStationSystem
             RaiseLocalEvent(new StationGridRemovedEvent(grid, uid));
         }
 
-        // Classic-Start
+        // Moonlight-Start
         foreach (var grid in component.AuxiliaryGrids)
             RemComp<StationMemberComponent>(grid);
-        // Classic-End
+        // Moonlight-End
 
         RaiseNetworkEvent(new StationsUpdatedEvent(GetStationNames()), Filter.Broadcast());
     }
@@ -267,7 +267,7 @@ public sealed partial class StationSystem : SharedStationSystem
         _mapIds.Clear();
 
         // First collect all valid map IDs where station grids exist
-        foreach (var gridUid in dataComponent.Grids.Concat(dataComponent.AuxiliaryGrids)) // Classic-edit
+        foreach (var gridUid in dataComponent.Grids.Concat(dataComponent.AuxiliaryGrids)) // Moonlight-edit
         {
             if (!_xformQuery.TryGetComponent(gridUid, out var xform))
                 continue;
@@ -280,7 +280,7 @@ public sealed partial class StationSystem : SharedStationSystem
         // Cache the rotated bounds for each grid
         _gridBounds.Clear();
 
-        foreach (var gridUid in dataComponent.Grids.Concat(dataComponent.AuxiliaryGrids)) // Classic-edit
+        foreach (var gridUid in dataComponent.Grids.Concat(dataComponent.AuxiliaryGrids)) // Moonlight-edit
         {
             if (!_gridQuery.TryComp(gridUid, out var grid) ||
                 !_xformQuery.TryGetComponent(gridUid, out var gridXform))
@@ -313,10 +313,10 @@ public sealed partial class StationSystem : SharedStationSystem
 
             // Check if the player is directly on any station grid
             var gridUid = xform.GridUid;
-            // Classic-Start
+            // Moonlight-Start
             if (gridUid != null &&
                 (dataComponent.Grids.Contains(gridUid.Value) || dataComponent.AuxiliaryGrids.Contains(gridUid.Value)))
-            // Classic-End
+            // Moonlight-End
             {
                 filter.AddPlayer(session);
                 continue;

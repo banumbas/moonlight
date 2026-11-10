@@ -1,0 +1,322 @@
+- type: entity
+  parent: BaseWall
+  id: MoonlightWallRock
+  name: rock
+  suffix: planetmap
+  categories: [ ForkFiltered ]
+  components:
+  - type: SpriteFade
+    fadeTopOnly: true
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/rock.rsi
+    drawdepth: Overdoors # Moonlight-Edit
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/rock.rsi
+  - type: Transform
+    noRot: true
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60 #Starlight
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: rock
+  - type: MiningScannerViewable
+
+- type: entity
+  parent: MoonlightWallRock
+  id: MoonlightWallRock2
+  name: rock wall variant
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/rock_wall2.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/rock_wall2.rsi
+  - type: IconSmooth
+    key: walls
+    base: rock_wall2
+
+- type: entity
+  id: MoonlightWallSnow
+  parent: MoonlightWallRock
+  name: snow wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/snow.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/snow.rsi
+  - type: IconSmooth
+    key: walls
+    base: snow
+
+- type: entity
+  parent: MoonlightWallRock
+  id: MoonlightWallIcerock
+  name: ice rock wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/icerock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/icerock.rsi
+  - type: IconSmooth
+    key: walls
+    base: icerock
+
+- type: entity
+  parent: MoonlightWallRock
+  id: MoonlightWallRedRock
+  name: red rock wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/red_rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/red_rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: red_rock
+
+- type: entity
+  parent: MoonlightWallRock
+  id: MoonlightWallReinforcedRedRock
+  name: reinforced red rock wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/reinforced_red_rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/reinforced_red_rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: reinforced_red_rock
+
+- type: entity
+  id: MoonlightWallMountain
+  parent: MoonlightWallRock
+  name: mountain wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/mountain.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/mountain.rsi
+  - type: IconSmooth
+    key: walls
+    base: mountain
+
+- type: entity
+  id: MoonlightWallDirt
+  parent: MoonlightWallRock
+  name: dirt wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/dirt.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/dirt.rsi
+  - type: IconSmooth
+    key: walls
+    base: dirt
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+    toolQualities:
+    - Digging
+  - type: SoundOnGather
+    sound:
+      collection: ShovelDig
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Dirt
+
+# Dense underground biomes create thousands of these walls inside ordinary PVS ranges. They are
+# deliberately separate from MoonlightWallRock: hand-placed/surface rocks still inherit BaseWall
+# and participate in grid stability and Z-collapse. Procedural terrain grids remove
+# MoonlightGridStabilityComponent and these walls are permanently static + anchored, so inheriting
+# Anchorable, Rotatable, GravityAffected, MoonlightZPhysics, Pullable, Appearance and
+# MoonlightGridStabilitySupport only allocates components and runs lifecycle handlers with no
+# gameplay effect.
+- type: entity
+  id: MoonlightBiomeWallBase
+  abstract: true
+  name: natural wall
+  suffix: planetmap, streamed
+  categories: [ ForkFiltered ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Tag
+    tags:
+    - Structure
+    - Wall
+  - type: Reactive
+    groups:
+      Dissolvable: [ Touch ]
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: IsRoof
+  - type: SpriteFade
+    fadeTopOnly: true
+  - type: Icon
+    state: full
+  - type: MoonlightPerspectiveDepth
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 2
+  - type: BlockWeather
+  - type: SunShadowCast
+  - type: Ricochetable
+    chance: 0.4
+  - type: Occluder
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MiningScannerViewable
+
+- type: entity
+  parent: MoonlightBiomeWallBase
+  id: MoonlightBiomeWallRock
+  name: rock
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: rock
+
+- type: entity
+  parent: MoonlightBiomeWallBase
+  id: MoonlightBiomeWallRock2
+  name: rock wall variant
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/rock_wall2.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/rock_wall2.rsi
+  - type: IconSmooth
+    key: walls
+    base: rock_wall2
+
+- type: entity
+  parent: MoonlightBiomeWallBase
+  id: MoonlightBiomeWallIcerock
+  name: ice rock wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/icerock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/icerock.rsi
+  - type: IconSmooth
+    key: walls
+    base: icerock
+
+- type: entity
+  parent: MoonlightBiomeWallBase
+  id: MoonlightBiomeWallRedRock
+  name: red rock wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/red_rock.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/red_rock.rsi
+  - type: IconSmooth
+    key: walls
+    base: red_rock
+
+- type: entity
+  parent: MoonlightBiomeWallBase
+  id: MoonlightBiomeWallDirt
+  name: dirt wall
+  components:
+  - type: Sprite
+    sprite: _Moonlight/Structures/Walls/dirt.rsi
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: _Moonlight/Structures/Walls/dirt.rsi
+  - type: IconSmooth
+    key: walls
+    base: dirt
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+    toolQualities:
+    - Digging
+  - type: SoundOnGather
+    sound:
+      collection: ShovelDig
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          DirtBulletImpact
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Dirt

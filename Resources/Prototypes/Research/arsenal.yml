@@ -96,7 +96,7 @@
   id: UraniumMunitions
   name: research-technology-uranium-munitions
   icon:
-    sprite: _Classic/Objects/Materials/Sheets/other.rsi
+    sprite: _Moonlight/Objects/Materials/Sheets/other.rsi
     state: uranium
   discipline: Arsenal
   tier: 1

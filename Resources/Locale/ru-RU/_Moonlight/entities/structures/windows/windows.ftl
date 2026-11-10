@@ -1,0 +1,14 @@
+ent-MoonlightFrostedWindow = замёрзшее окно
+    .desc = Обычное окно, покрытое толстым слоем инея. Жар сварочного аппарата может его разморозить.
+ent-MoonlightBasePaperWindow = бумажное окно
+    .desc = Деревянная решётка, обтянутая тонкой бумагой. Задерживает движение и взгляд, но не воздух.
+ent-MoonlightPaperWindow = { ent-MoonlightBasePaperWindow }
+    .desc = { ent-MoonlightBasePaperWindow.desc }
+ent-MoonlightPaperWindowTorn = порванное бумажное окно
+    .desc = Бумага сильно порвана. Её можно залатать свежими листами.
+ent-MoonlightPaperWindowFixing = недоделанное бумажное окно
+    .desc = Бумажное окно, часть обшивки которого ещё не установлена.
+ent-MoonlightPaperWindowTornFixing = залатанное бумажное окно
+    .desc = Порванное бумажное окно с незаконченной заплатой.
+ent-MoonlightTitaniumWindow = титановое окно
+    .desc = Почти неразрушимое герметичное окно в титановой раме. Обычными средствами его построить нельзя.

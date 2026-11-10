@@ -1,0 +1,70 @@
+- type: gameMap
+  id: MoonlightDev
+  mapName: Moonlight Dev
+  mapPath: /Maps/Test/dev_map.yml
+  maxRandomOffset: 0
+  randomRotation: false
+  minPlayers: 0
+  stations:
+    Dev:
+      stationProto: StandardMoonlightStation
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: Moonlight Dev
+      - type: StationJobs
+        availableJobs:
+          Captain: [-1, -1]
+      - type: MoonlightStationBiome
+        biome: GrasslandsMoonlight
+        parallax: Dirt
+        undergroundLevels:
+        - depth: -1
+          biome: MoonlightUndergroundDirtStone
+          loadEntities: true
+        - depth: -2
+          biome: MoonlightUndergroundCaves
+          loadEntities: true
+        - depth: -3
+          biome: MoonlightUndergroundMagma
+          loadEntities: true
+          parallax: MoonlightMagma
+          mapLightColor: "#48160c"
+          temperature: 343.15
+      - type: MoonlightStationZLevels
+        mapsBelow:
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        mapsAbove:
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        - /Maps/_Moonlight/ZLevels/empty.yml
+        zLevelsComponentOverrides:
+        - type: MapAtmosphere
+          space: false
+          mixture:
+            volume: 2500
+            immutable: true
+            temperature: 293.15
+            moles:
+              Oxygen: 21.824879
+              Nitrogen: 82.10312
+        - type: Parallax
+          parallax: Dirt
+        - type: MoonlightZLevelRoof
+        - type: MoonlightAutoGridGravity
+      - type: MoonlightStationMapRules
+        rules:
+        - MoonlightDevOutpost
+
+- type: entity
+  parent: BaseGameRule
+  id: MoonlightDevOutpost
+  components:
+  - type: MoonlightMergeMapRule
+    zMap: Outpost
+    targetDepth: 0
+    biomeGroundDepth: 0
+    randomPlacement: true
+    minDistance: 24
+    maxDistance: 48

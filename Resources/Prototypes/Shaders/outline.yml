@@ -4,15 +4,15 @@
   kind: source
   path: "/Textures/Shaders/outline.swsl"
   params:
-    outline_color: "#FFFFFFFF" # classic-edit
-    outline_fullbright: true # classic-add
+    outline_color: "#FFFFFFFF" # moonlight-edit
+    outline_fullbright: true # moonlight-add
     light_boost: 2
     light_gamma: 1.5
     light_whitepoint: 48
 
 - type: shader
   id: SelectionOutlineInrange
-  # classic start
+  # moonlight start
   kind: source
   path: "/Textures/Shaders/outline.swsl"
   params:
@@ -24,7 +24,7 @@
 
 - type: shader
   id: TargetOutlineValid
-  # classic end
+  # moonlight end
   kind: source
   path: "/Textures/Shaders/outline.swsl"
   params:
@@ -33,7 +33,7 @@
     light_gamma: 0.9
     light_whitepoint: 1
 
-# Classic start
+# Moonlight start
 - type: shader
   id: TargetOutlineInvalid
   kind: source
@@ -43,4 +43,4 @@
     light_boost: 2
     light_gamma: 1.5
     light_whitepoint: 48
-# Classic end
+# Moonlight end

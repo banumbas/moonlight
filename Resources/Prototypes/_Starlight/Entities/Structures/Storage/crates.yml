@@ -25,9 +25,9 @@
   name: RD crate
   components:
   - type: Icon
-    sprite: _Classic/Structures/Storage/Crates/command.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/command.rsi
   - type: Sprite
-    sprite: _Classic/Structures/Storage/Crates/command.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/command.rsi
   - type: AccessReader
     access: [["ResearchDirector"]]
 
@@ -37,9 +37,9 @@
   name: secure robotics crate
   components:
   - type: Icon
-    sprite: _Classic/Structures/Storage/Crates/scicrate_secure.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/scicrate_secure.rsi
   - type: Sprite
-    sprite: _Classic/Structures/Storage/Crates/scicrate_secure.rsi
+    sprite: _Moonlight/Structures/Storage/Crates/scicrate_secure.rsi
   - type: AccessReader
     access: [["Robotics"]]
 

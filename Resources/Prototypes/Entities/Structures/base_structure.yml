@@ -12,7 +12,7 @@
   - type: GravityAffected
   - type: Physics
     bodyType: Static
-  - type: ClassicZPhysics
+  - type: MoonlightZPhysics
   - type: Fixtures
     fixtures:
       fix1:

@@ -1234,7 +1234,7 @@
   - type: SurgeryStep
     duration: 3
   - type: Sprite
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: torso_m
 
 - type: entity
@@ -1247,7 +1247,7 @@
     tools:
     - type: Scalpel
   - type: Sprite
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: torso_m
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
@@ -1278,7 +1278,7 @@
     tools:
     - type: Item
   - type: Sprite
-    sprite: _Classic/Mobs/Species/Human/parts.rsi
+    sprite: _Moonlight/Mobs/Species/Human/parts.rsi
     state: torso_m
   - type: SurgeryItemSizeCondition
   - type: SurgeryStepOrganInsert

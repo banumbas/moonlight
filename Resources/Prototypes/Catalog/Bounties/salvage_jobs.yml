@@ -175,7 +175,7 @@
   description: bounty-description-diamond
   group: SalvageJobTier3
   sprite:
-    sprite: _Classic/Objects/Materials/materials.rsi
+    sprite: _Moonlight/Objects/Materials/materials.rsi
     state: diamond
   entries:
   - name: bounty-item-diamond
